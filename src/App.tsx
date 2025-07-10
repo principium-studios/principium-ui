@@ -1,7 +1,7 @@
-import "./App.css";
+import ReplicationProvider from "@principium/replicate";
 
 function App() {
-  return <></>;
+  return <ReplicationProvider></ReplicationProvider>;
 }
 
 export default App;

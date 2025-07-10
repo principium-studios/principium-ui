@@ -1,0 +1,44 @@
+{
+  "name": "@principium/replicate",
+  "version": "0.1.0",
+  "description": "A robust real-time data synchronization and collaboration library for React applications. Enables seamless P2P and server-based state synchronization, conflict resolution, and offline-first functionality with minimal configuration.",
+  "license": "MIT",
+  "author": "Principium",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --external react",
+    "dev": "tsup src/index.ts --format esm --watch --dts --external react",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "yjs": "^13.6.27",
+    "y-webrtc": "^10.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "realtime",
+    "collaboration",
+    "p2p",
+    "webrtc",
+    "crdt",
+    "offline-first",
+    "synchronization",
+    "react",
+    "state-management",
+    "multiplayer",
+    "yjs"
+  ]
+}
