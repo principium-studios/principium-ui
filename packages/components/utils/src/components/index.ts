@@ -1,2 +1,2 @@
-export * from "./Slot";
-export * from "./Primitive";
+export * from "./slot";
+export * from "./primitive";

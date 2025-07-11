@@ -1,4 +1,4 @@
-import { createSlot } from "./Slot";
+import { createSlot } from "./slot";
 
 const PRIMITIVE_NODES = [
   "a",

@@ -10,9 +10,6 @@
     },
     "lint": {
       "outputs": []
-    },
-    "test": {
-      "outputs": []
     }
   }
 }
