@@ -1,7 +1,11 @@
-import ReplicationProvider from "@principium/replicate";
+import { Primitive } from "@principium/utils/components";
 
 function App() {
-  return <ReplicationProvider></ReplicationProvider>;
+  return (
+    <Primitive.div className="text-red-500" asChild>
+      <p>Test</p>
+    </Primitive.div>
+  );
 }
 
 export default App;
