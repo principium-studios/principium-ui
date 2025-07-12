@@ -2,16 +2,17 @@
   "name": "@principium/utils",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.js",
-  "scripts": {
-    "build": "tsup",
-    "types:check": "tsc --noEmit",
-    "lint": "eslint . --ext .ts,.tsx"
-  },
   "keywords": [],
-  "types": "./dist/index.d.ts",
-  "module": "./dist/index.mjs",
   "sideEffects": false,
+  "author": "",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "tsup src --dts",
+    "build:fast": "tsup src",
+    "dev": "pnpm build:fast --watch",
+    "type:check": "tsc --noEmit"
+  },
   "files": [
     "dist"
   ],
@@ -32,8 +33,6 @@
       "types": "./dist/components/index.d.ts"
     }
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.3.1"
@@ -45,6 +44,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
     "@types/node": "^24.0.13",
     "eslint": "^9.16.0",
     "tsup": "^8.5.0",

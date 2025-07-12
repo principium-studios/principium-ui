@@ -1,7 +1,5 @@
 import { defineConfig } from "tsup";
-
 export default defineConfig({
-  entry: ["src/index.ts", "src/hooks/index.ts", "src/components/index.ts"],
   clean: true,
   target: "es2019",
   format: ["cjs", "esm"],

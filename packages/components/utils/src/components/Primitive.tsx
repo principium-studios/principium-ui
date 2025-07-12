@@ -53,4 +53,6 @@ export {
   Primitive,
   //
   Root,
+  //,
+  PrimitiveProps,
 };

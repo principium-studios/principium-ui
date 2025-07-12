@@ -1,11 +1,7 @@
-import { Primitive } from "@principium/utils/components";
+import Button from "@principium/button";
 
 function App() {
-  return (
-    <Primitive.div className="text-red-500" asChild>
-      <p>Test</p>
-    </Primitive.div>
-  );
+  return <Button asChild>Test</Button>;
 }
 
 export default App;

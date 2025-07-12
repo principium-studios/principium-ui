@@ -1,14 +1,19 @@
 {
   "$schema": "https://turborepo.com/schema.json",
-  "pipeline": {
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "types:check": {
+    "build:fast": {
+      "dependsOn": ["^build:fast"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "dependsOn": ["^dev"],
       "outputs": []
     },
-    "lint": {
+    "type:check": {
       "outputs": []
     }
   }

@@ -5,14 +5,18 @@
   "type": "module",
   "packageManager": "pnpm@10.2.0",
   "scripts": {
-    "build": "turbo run build",
-    "types:check": "turbo run types:check",
     "dev": "vite",
+    "dev:pkg": "pnpm dev --filter @principium/utils",
+    "build": "turbo run build",
+    "build:fast": "turbo run build:fast",
+    "type:check": "turbo run type:check",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "create:pkg": "plop package"
   },
   "dependencies": {
     "@principium/utils": "workspace:*",
+    "@principium/button": "workspace:*",
     "@tailwindcss/vite": "^4.1.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -32,6 +36,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
     "jsdom": "^26.1.0",
+    "plop": "^4.0.1",
     "turbo": "^2.5.4",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
