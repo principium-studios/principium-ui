@@ -18,19 +18,19 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/index.mjs"
     },
     "./hooks": {
+      "types": "./dist/hooks/index.d.ts",
       "require": "./dist/hooks/index.js",
-      "import": "./dist/hooks/index.mjs",
-      "types": "./dist/hooks/index.d.ts"
+      "import": "./dist/hooks/index.mjs"
     },
     "./components": {
+      "types": "./dist/components/index.d.ts",
       "require": "./dist/components/index.js",
-      "import": "./dist/components/index.mjs",
-      "types": "./dist/components/index.d.ts"
+      "import": "./dist/components/index.mjs"
     }
   },
   "dependencies": {
