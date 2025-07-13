@@ -44,7 +44,7 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
-    "class-variance-authority": "^0.7.1",
-    "@principium/utils": "workspace:*"
+    "@principium/utils": "workspace:*",
+    "class-variance-authority": "^0.7.1"
   }
 }

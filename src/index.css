@@ -1,1 +1,139 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card-background);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover-background);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input-border);
+  --color-ring: var(--focus-ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+:root {
+  /* Radius */
+  --radius: 0.625rem;
+
+  /* Base colors */
+  --background: oklch(0.9999 0 0); /* white */
+  --foreground: oklch(0.145 0 0);
+
+  /* Card & Popover */
+  --card-background: var(--background);
+  --card-foreground: var(--foreground);
+  --popover-background: var(--background);
+  --popover-foreground: var(--foreground);
+
+  /* Primary brand color (purple) */
+  --primary: oklch(0.4984 0.1726 289.89);
+  --primary-foreground: oklch(0.9999 0 0);
+
+  /* Secondary supportive brand color (black) */
+  --secondary: oklch(0.15 0.02 260);
+  --secondary-foreground: oklch(0.9999 0 0);
+
+  /* Success, Warning and Destructive */
+  --success: oklch(0.65 0.18 140); /* rich green */
+  --warning: oklch(0.87 0.15 90); /* amber for warnings */
+  --destructive: oklch(0.55 0.25 28); /* vivid red */
+
+  /* Neutral grays */
+  --muted: oklch(0.94 0.02 260); /* light gray */
+  --muted-foreground: oklch(0.35 0.01 260); /* dark gray */
+
+  /* Accent (use primary for highlights) */
+  --accent: var(--primary);
+  --accent-foreground: var(--primary-foreground);
+
+  /* Borders & Inputs */
+  --border: oklch(0.85 0.03 260); /* subtle gray border */
+  --input-border: var(--border);
+  --focus-ring: var(--primary);
+
+  /* Chart palette (premium harmony) */
+  --chart-1: var(--primary);
+  --chart-2: var(--success);
+  --chart-3: var(--warning);
+  --chart-4: var(--destructive);
+  --chart-5: var(--secondary);
+}
+
+.dark {
+  /* Radius */
+  --radius: 0.625rem;
+
+  /* Base colors */
+  --background: oklch(0.12 0.01 260); /* deep dark gray */
+  --foreground: oklch(0.95 0 0); /* near white text */
+
+  /* Card & Popover */
+  --card-background: var(--background);
+  --card-foreground: var(--foreground);
+
+  /* Primary brand color (purple) */
+  --primary: oklch(0.6 0.18 289.89); /* slightly brighter for visibility */
+  --primary-foreground: oklch(0.98 0 0); /* white text */
+
+  /* Secondary (border-like sleek gray) */
+  --secondary: oklch(0.2 0.015 260); /* nearly black */
+  --secondary-foreground: oklch(0.95 0 0); /* white text */
+
+  /* Status colors */
+  --success: oklch(0.65 0.18 140); /* rich green */
+  --warning: oklch(0.75 0.15 90); /* deeper amber for dark bg */
+  --destructive: oklch(0.6 0.25 28); /* intense red */
+
+  /* Neutral grays */
+  --muted: oklch(0.22 0.01 260); /* dark muted */
+  --muted-foreground: oklch(0.75 0.01 260); /* light muted text */
+
+  /* Accent */
+  --accent: var(--primary);
+  --accent-foreground: var(--primary-foreground);
+
+  /* Borders & Inputs */
+  --border: oklch(0.25 0.015 260); /* subtle dark border */
+  --input-border: var(--border);
+  --focus-ring: var(--primary);
+
+  /* Chart palette (for contrast on dark bg) */
+  --chart-1: var(--primary);
+  --chart-2: var(--success);
+  --chart-3: var(--warning);
+  --chart-4: var(--destructive);
+  --chart-5: oklch(0.45 0.01 260); /* subtle slate gray */
+}
