@@ -46,23 +46,23 @@
   --popover-foreground: hsl(240, 10%, 10%);
   --border: hsl(240, 10%, 90%);
   --input: hsl(240, 10%, 98%);
-  --outline: hsl(210, 100%, 42%);
+  --outline: hsl(212, 100%, 50%);
 
   /* Primary & secondary */
-  --primary: hsl(210, 100%, 42%);
+  --primary: hsl(212, 100%, 50%);
   --primary-foreground: hsl(210, 100%, 95%);
-  --secondary: hsl(275, 73%, 51%);
+  --secondary: hsl(270, 67%, 50%);
   --secondary-foreground: hsl(275, 73%, 95%);
 
   /* Other semantic colors */
   --muted: hsl(240, 10%, 80%);
   --muted-foreground: hsl(240, 10%, 40%);
-  --success: hsl(145, 63%, 49%); /* green */
-  --success-foreground: hsl(240, 10%, 10%);
-  --warning: hsl(45, 100%, 51%); /* yellow/orange */
-  --warning-foreground: hsl(45, 100%, 10%);
-  --danger: hsl(348, 83%, 47%); /* red */
-  --danger-foreground: hsl(348, 83%, 95%);
+  --success: hsl(146, 55%, 50%); /* green */
+  --success-foreground: var(--foreground);
+  --warning: hsl(37, 85%, 50%);
+  --warning-foreground: var(--foreground);
+  --danger: hsl(339, 85%, 50%);
+  --danger-foreground: var(--background);
 }
 
 .dark {
@@ -74,21 +74,21 @@
   --popover-foreground: hsl(0, 0%, 100%);
   --border: hsl(240, 10%, 20%);
   --input: hsl(240, 10%, 12%);
-  --outline: hsl(210, 100%, 42%);
+  --outline: hsl(212, 100%, 50%);
 
-  --primary: hsl(210, 100%, 42%);
+  --primary: hsl(212, 100%, 50%);
   --primary-foreground: hsl(210, 100%, 95%);
-  --secondary: hsl(275, 73%, 51%);
+  --secondary: hsl(270, 67%, 50%);
   --secondary-foreground: hsl(275, 73%, 95%);
 
   --muted: hsl(240, 10%, 30%);
   --muted-foreground: hsl(240, 10%, 60%);
-  --success: hsl(145, 63%, 49%);
-  --success-foreground: hsl(240, 10%, 10%);
-  --warning: hsl(45, 100%, 51%);
-  --warning-foreground: hsl(45, 100%, 10%);
-  --danger: hsl(348, 83%, 47%);
-  --danger-foreground: hsl(348, 83%, 95%);
+  --success: hsl(146, 55%, 50%);
+  --success-foreground: var(--foreground);
+  --warning: hsl(37, 85%, 50%);
+  --warning-foreground: var(--foreground);
+  --danger: hsl(339, 85%, 50%);
+  --danger-foreground: var(--background);
 }
 
 @layer base {

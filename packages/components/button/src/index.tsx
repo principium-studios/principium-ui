@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 // ____________________ Button Variants ____________________
 const buttonVariants = cva(
-  "relative cursor-pointer overflow-hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors duration-300 disabled:pointer-events-none disabled:opacity-50 shrink-0 [&_svg]:shrink-0 active:scale-97",
+  "relative cursor-pointer overflow-hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors transition-transform duration-300 disabled:pointer-events-none disabled:opacity-50 shrink-0 [&_svg]:shrink-0 active:scale-97 focus:z-10 focus-visible:outline-2 focus-visible:outline-transparent focus-visible:outline-offset-2 focus-visible:outline-outline",
   {
     variants: {
       variant: {
@@ -302,6 +302,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   disableRipple = false,
+  disabled,
   ...props
 }) => {
   const { ripples, createRipple, removeRipple } = useRipple();
@@ -310,9 +311,12 @@ const Button: React.FC<ButtonProps> = ({
     <Primitive.button
       {...props}
       onClick={(e) => {
-        (!disableRipple || props.disabled) && createRipple(e);
+        if (disabled) return;
+        !disableRipple && createRipple(e);
         onClick?.(e);
       }}
+      disabled={disabled}
+      aria-disabled={disabled}
       className={cn(buttonVariants({ variant, size, color, className }))}
     >
       {children}

@@ -19,7 +19,7 @@ function DemoContainer({
   );
 }
 
-function App() {
+function ButtonDemo() {
   const variants = [
     "solid",
     "shadow",
@@ -37,20 +37,25 @@ function App() {
     "warning",
     "danger",
   ] as const;
+  return (
+    <DemoContainer title="Button Variants" className="flex">
+      {variants.map((variant) => (
+        <div key={variant} className="flex flex-row gap-4">
+          {colors.map((color) => (
+            <Button key={color} variant={variant} color={color}>
+              {color.charAt(0).toUpperCase() + color.slice(1)}
+            </Button>
+          ))}
+        </div>
+      ))}
+    </DemoContainer>
+  );
+}
 
+function App() {
   return (
     <div className="flex flex-col items-center p-30">
-      <DemoContainer title="Button Variants" className="flex">
-        {variants.map((variant) => (
-          <div key={variant} className="flex flex-row gap-4">
-            {colors.map((color) => (
-              <Button key={color} variant={variant} color={color}>
-                {color.charAt(0).toUpperCase() + color.slice(1)}
-              </Button>
-            ))}
-          </div>
-        ))}
-      </DemoContainer>
+      <ButtonDemo />
     </div>
   );
 }
