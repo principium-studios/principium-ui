@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { RippleItem } from "../hooks/useRipple";
+import { RippleItem } from "./useRipple";
 
 export interface RippleProps {
   ripples: RippleItem[];

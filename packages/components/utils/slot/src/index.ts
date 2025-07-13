@@ -1,6 +1,6 @@
 import React from "react";
-import { AnyProps, combineProps } from "../hooks";
-import { combineRefs } from "../hooks";
+import { AnyProps, combineProps } from "@principium/shared-utils";
+import { combineRefs } from "@principium/shared-utils";
 
 interface SlotProps extends React.HTMLAttributes<HTMLElement> {
   ref?: React.Ref<HTMLElement>;
