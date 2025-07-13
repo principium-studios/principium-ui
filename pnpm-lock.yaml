@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@principium/button':
         specifier: workspace:*
-        version: link:packages/components/general/button
+        version: link:packages/components/button
       '@principium/shared-utils':
         specifier: workspace:*
         version: link:packages/components/utils/shared
@@ -90,17 +90,17 @@ importers:
 
   internal/typescript-config: {}
 
-  packages/components/general/button:
+  packages/components/button:
     dependencies:
       '@principium/primitive':
         specifier: workspace:*
-        version: link:../../utils/primitive
+        version: link:../utils/primitive
       '@principium/ripple':
         specifier: workspace:*
-        version: link:../../utils/ripple
+        version: link:../utils/ripple
       '@principium/shared-utils':
         specifier: workspace:*
-        version: link:../../utils/shared
+        version: link:../utils/shared
       '@types/react':
         specifier: ^19.0.0
         version: 19.1.8
@@ -122,7 +122,7 @@ importers:
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../../../../internal/typescript-config
+        version: link:../../../internal/typescript-config
       '@types/node':
         specifier: ^24.0.13
         version: 24.0.13

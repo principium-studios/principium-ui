@@ -46,6 +46,7 @@
   "dependencies": {
     "@principium/primitive": "workspace:*",
     "@principium/ripple": "workspace:*",
-    "@principium/shared-utils": "workspace:*"
+    "@principium/shared-utils": "workspace:*",
+    "class-variance-authority": "^0.7.1"
   }
 }
