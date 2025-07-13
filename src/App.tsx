@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className="flex flex-col items-center p-30">
-      <DemoContainer title="Variants" className="flex">
+      <DemoContainer title="Button Variants" className="flex">
         {variants.map((variant) => (
           <div key={variant} className="flex flex-row gap-4">
             {colors.map((color) => (
