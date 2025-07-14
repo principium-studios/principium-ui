@@ -1,11 +1,10 @@
 export interface Color {
-  h: string; // Hue used across all shades
-  s: string; // Saturation used across all shades
-  light: { base: string; fg: string }; // Lightness used for base and foreground;
+  hue: string; // Hue used across all shades
+  saturation: string; // Saturation used across all shades
 }
 
 export interface Theme {
-  isDarkTheme: boolean;
+  inverted?: boolean;
   colors: Record<string, Color>;
 }
 

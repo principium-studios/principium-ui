@@ -115,6 +115,7 @@ const ThemeToggle = () => {
   return (
     <Button
       size="icon"
+      variant="faded"
       onClick={() => {
         setDark(!dark);
         document.body.classList.toggle("dark");

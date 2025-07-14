@@ -28,33 +28,6 @@ function loadConfig(pattern: string): PrincipiumConfig {
 function generateCss(cfg: PrincipiumConfig): string {
   const { defaultTheme, themes } = cfg;
 
-  const REQUIRED_KEYS = [
-    "background",
-    "card",
-    "border",
-    "outline",
-    "primary",
-    "secondary",
-    "muted",
-    "success",
-    "warning",
-    "danger",
-  ];
-
-  // Validate theme keys
-  for (const [themeName, themeCfg] of Object.entries(themes)) {
-    const themeKeys = Object.keys(themeCfg.colors);
-    const missing = REQUIRED_KEYS.filter((key) => !themeKeys.includes(key));
-    const extra = themeKeys.filter((key) => !REQUIRED_KEYS.includes(key));
-    if (missing.length || extra.length) {
-      throw new Error(
-        `Theme "${themeName}" is invalid.\n` +
-          (missing.length ? `Missing: ${missing.join(", ")}\n` : "") +
-          (extra.length ? `Unexpected: ${extra.join(", ")}` : "")
-      );
-    }
-  }
-
   const LIGHTNESS: Record<string, string> = {
     "50": "95%",
     "100": "90%",
@@ -66,18 +39,21 @@ function generateCss(cfg: PrincipiumConfig): string {
     "700": "30%",
     "800": "20%",
     "900": "10%",
+    "950": "5%",
   };
+
   const LIGHTNESS_DARK: Record<string, string> = {
-    "50": "10%",
-    "100": "20%",
-    "200": "30%",
-    "300": "40%",
-    "400": "50%",
-    "500": "60%",
-    "600": "70%",
-    "700": "80%",
-    "800": "90%",
-    "900": "95%",
+    "50": "5%",
+    "100": "10%",
+    "200": "20%",
+    "300": "30%",
+    "400": "40%",
+    "500": "50%",
+    "600": "60%",
+    "700": "70%",
+    "800": "80%",
+    "900": "90%",
+    "950": "95%",
   };
 
   const scopes: { selector: string; lines: string[] }[] = [];
@@ -86,40 +62,20 @@ function generateCss(cfg: PrincipiumConfig): string {
 
   for (const [themeName, themeCfg] of Object.entries(themes)) {
     const selector = themeName === defaultTheme ? ":root" : `.${themeName}`;
-    const { isDarkTheme, colors } = themeCfg;
+    const { inverted = false, colors } = themeCfg;
     const lines: string[] = [];
 
-    const lightnessEntries = isDarkTheme
+    const lightnessEntries = inverted
       ? Object.entries(LIGHTNESS_DARK)
       : Object.entries(LIGHTNESS);
 
-    for (const [
-      colorName,
-      {
-        h,
-        s,
-        light: { base: baseL, fg: fgL },
-      },
-    ] of Object.entries(colors)) {
-      // Add base Color
-      themeColors.add(colorName);
-
-      // shade variables
+    for (const [colorName, { hue, saturation }] of Object.entries(colors)) {
       for (const [shade, light] of lightnessEntries) {
-        // Add shade color
         themeColors.add(`${colorName}-${shade}`);
-        lines.push(`  --${colorName}-${shade}: hsl(${h} ${s} ${light});`);
+        lines.push(
+          `  --${colorName}-${shade}: hsl(${hue} ${saturation} ${light});`
+        );
       }
-
-      // base variable
-      lines.push(`  --${colorName}: hsl(${h} ${s} ${baseL});`);
-
-      // foreground variable
-      const fgName =
-        colorName === "background" ? "foreground" : `${colorName}-foreground`;
-      // Add foreground color
-      themeColors.add(fgName);
-      lines.push(`  --${fgName}: hsl(${h} ${s} ${fgL});`);
     }
 
     scopes.push({ selector, lines });
@@ -134,6 +90,7 @@ function generateCss(cfg: PrincipiumConfig): string {
 
   // Generate @theme inline {}
   const themeInline: string[] = ["@theme inline {"];
+  themeInline.push(" --text-tiny: 0.625rem; ");
   for (const color of themeColors) {
     themeInline.push(`  --color-${color}: var(--${color});`);
   }

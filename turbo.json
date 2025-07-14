@@ -13,7 +13,7 @@
       "dependsOn": ["^dev"],
       "outputs": []
     },
-    "type:check": {
+    "typecheck": {
       "outputs": []
     }
   }

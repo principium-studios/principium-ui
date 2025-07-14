@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 import { colorVariants } from "@principium/shared-utils";
 
 export const BadgeVariants = cva(
-  "absolute flex items-center justify-center rounded-full",
+  "absolute flex items-center justify-center select-none rounded-full scale-100 opacity-100 origin-center subpixel-antialiased data-[hidden]:scale-0 data-[hidden]:opacity-0",
   {
     variants: {
       variant: {
@@ -20,7 +20,7 @@ export const BadgeVariants = cva(
         danger: {},
       },
       size: {
-        sm: "px-1 text-xs",
+        sm: "px-1 text-tiny",
         md: "px-1 text-xs",
         lg: "px-1 text-sm",
       },
@@ -35,7 +35,7 @@ export const BadgeVariants = cva(
         "bottom-left": "-translate-x-1/2 translate-y-1/2",
       },
       showOutline: {
-        true: "border-2 border-background",
+        true: "border-2 border-background-50",
         false: "border-transparent border-0",
       },
       isOneChar: {

@@ -1,71 +1,64 @@
 const solid = {
-  default: "bg-border text-foreground",
-  primary: "bg-primary text-primary-foreground",
-  secondary: "bg-secondary text-secondary-foreground",
-  success: "bg-success text-success-foreground",
-  warning: "bg-warning text-warning-foreground",
-  danger: "bg-danger text-danger-foreground",
-  foreground: "bg-foreground text-background",
+  default: "bg-border-300 text-background-950",
+  primary: "bg-primary-600 text-primary-50",
+  secondary: "bg-secondary-600 text-secondary-50",
+  success: "bg-success-600 text-success-950",
+  warning: "bg-warning-600 text-warning-950",
+  danger: "bg-danger-600 text-danger-50",
 };
 
 const shadow = {
-  default: `shadow-lg shadow-border/50 ${solid.default}`,
-  primary: `shadow-lg shadow-primary/40 ${solid.primary}`,
-  secondary: `shadow-lg shadow-secondary/40 ${solid.secondary}`,
-  success: `shadow-lg shadow-success/40 ${solid.success}`,
-  warning: `shadow-lg shadow-warning/40 ${solid.warning}`,
-  danger: `shadow-lg shadow-danger/40 ${solid.danger}`,
-  foreground: `shadow-lg shadow-foreground/40 ${solid.foreground}`,
+  default: `shadow-lg shadow-border-300/50 ${solid.default}`,
+  primary: `shadow-lg shadow-primary-600/40 ${solid.primary}`,
+  secondary: `shadow-lg shadow-secondary-600/40 ${solid.secondary}`,
+  success: `shadow-lg shadow-success-600/40 ${solid.success}`,
+  warning: `shadow-lg shadow-warning-600/40 ${solid.warning}`,
+  danger: `shadow-lg shadow-danger-600/40 ${solid.danger}`,
 };
 
 const bordered = {
-  default: "bg-transparent border-border text-foreground",
-  primary: "bg-transparent border-primary text-primary",
-  secondary: "bg-transparent border-secondary text-secondary",
-  success: "bg-transparent border-success text-success",
-  warning: "bg-transparent border-warning text-warning",
-  danger: "bg-transparent border-danger text-danger",
-  foreground: "bg-transparent border-foreground text-foreground",
+  default: "bg-transparent border-border-300 text-background-950",
+  primary: "bg-transparent border-primary-600 text-primary-600",
+  secondary: "bg-transparent border-secondary-600 text-secondary-600",
+  success: "bg-transparent border-success-600 text-success-600",
+  warning: "bg-transparent border-warning-600 text-warning-600",
+  danger: "bg-transparent border-danger-600 text-danger-600",
 };
 
 const flat = {
-  default: "bg-border/40 text-foreground",
-  primary: "bg-primary/20 text-primary",
-  secondary: "bg-secondary/20 text-secondary",
-  success: "bg-success/20 text-success",
-  warning: "bg-warning/20 text-warning",
-  danger: "bg-danger/20 text-danger",
-  foreground: "bg-foreground/10 text-foreground",
+  default: "bg-border-300/40 text-background-950",
+  primary: "bg-primary-600/20 text-primary-600",
+  secondary: "bg-secondary-600/20 text-secondary-600",
+  success: "bg-success-600/20 text-success-600",
+  warning: "bg-warning-600/20 text-warning-600",
+  danger: "bg-danger-600/20 text-danger-600",
 };
 
 const faded = {
-  default: "border-border bg-border-50 text-foreground",
-  primary: "border-border bg-border-50 text-primary",
-  secondary: "border-border bg-border-50 text-secondary",
-  success: "border-border bg-border-50 text-success",
-  warning: "border-border bg-border-50 text-warning",
-  danger: "border-border bg-border-50 text-danger",
-  foreground: "border-border bg-border-50 text-foreground",
+  default: "border-border-300 bg-border-100 text-background-950",
+  primary: "border-border-300 bg-border-100 text-primary-600",
+  secondary: "border-border-300 bg-border-100 text-secondary-600",
+  success: "border-border-300 bg-border-100 text-success-600",
+  warning: "border-border-300 bg-border-100 text-warning-600",
+  danger: "border-border-300 bg-border-100 text-danger-600",
 };
 
 const light = {
-  default: "bg-transparent text-foreground",
-  primary: "bg-transparent text-primary",
-  secondary: "bg-transparent text-secondary",
-  success: "bg-transparent text-success",
-  warning: "bg-transparent text-warning",
-  danger: "bg-transparent text-danger",
-  foreground: "bg-transparent text-foreground",
+  default: "bg-transparent text-background-950",
+  primary: "bg-transparent text-primary-600",
+  secondary: "bg-transparent text-secondary-600",
+  success: "bg-transparent text-success-600",
+  warning: "bg-transparent text-warning-600",
+  danger: "bg-transparent text-danger-600",
 };
 
 const ghost = {
-  default: "bg-transparent border-border text-foreground",
-  primary: "bg-transparent border-primary text-primary",
-  secondary: "bg-transparent border-secondary text-secondary",
-  success: "bg-transparent border-success text-success",
-  warning: "bg-transparent border-warning text-warning",
-  danger: "bg-transparent border-danger text-danger",
-  foreground: "bg-transparent border-foreground text-foreground",
+  default: "bg-transparent border-border-300 text-background-950",
+  primary: "bg-transparent border-primary-600 text-primary-600",
+  secondary: "bg-transparent border-secondary-600 text-secondary-600",
+  success: "bg-transparent border-success-600 text-success-600",
+  warning: "bg-transparent border-warning-600 text-warning-600",
+  danger: "bg-transparent border-danger-600 text-danger-600",
 };
 
 export const colorVariants = {

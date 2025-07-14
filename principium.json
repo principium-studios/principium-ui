@@ -2,112 +2,91 @@
   "defaultTheme": "light",
   "themes": {
     "light": {
-      "isDarkTheme": false,
       "colors": {
         "background": {
-          "h": "0",
-          "s": "0%",
-          "light": { "base": "99%", "fg": "10%" }
+          "hue": "0",
+          "saturation": "0%"
         },
         "card": {
-          "h": "0",
-          "s": "0%",
-          "light": { "base": "99%", "fg": "10%" }
+          "hue": "0",
+          "saturation": "0%"
         },
         "border": {
-          "h": "240",
-          "s": "10%",
-          "light": { "base": "90%", "fg": "10%" }
+          "hue": "240",
+          "saturation": "10%"
         },
         "outline": {
-          "h": "212",
-          "s": "100%",
-          "light": { "base": "70%", "fg": "10%" }
+          "hue": "212",
+          "saturation": "100%"
         },
         "primary": {
-          "h": "212",
-          "s": "100%",
-          "light": { "base": "70%", "fg": "99%" }
+          "hue": "212",
+          "saturation": "100%"
         },
         "secondary": {
-          "h": "270",
-          "s": "67%",
-          "light": { "base": "70%", "fg": "99%" }
+          "hue": "270",
+          "saturation": "67%"
         },
         "muted": {
-          "h": "240",
-          "s": "10%",
-          "light": { "base": "70%", "fg": "10%" }
+          "hue": "240",
+          "saturation": "10%"
         },
         "success": {
-          "h": "146",
-          "s": "55%",
-          "light": { "base": "70%", "fg": "10%" }
+          "hue": "146",
+          "saturation": "55%"
         },
         "warning": {
-          "h": "37",
-          "s": "90%",
-          "light": { "base": "70%", "fg": "10%" }
+          "hue": "37",
+          "saturation": "90%"
         },
         "danger": {
-          "h": "339",
-          "s": "90%",
-          "light": { "base": "70%", "fg": "99%" }
+          "hue": "339",
+          "saturation": "90%"
         }
       }
     },
     "dark": {
-      "isDarkTheme": true,
+      "inverted": true,
       "colors": {
         "background": {
-          "h": "240",
-          "s": "10%",
-          "light": { "base": "6%", "fg": "92%" }
+          "hue": "240",
+          "saturation": "10%"
         },
         "card": {
-          "h": "240",
-          "s": "10%",
-          "light": { "base": "10%", "fg": "95%" }
+          "hue": "240",
+          "saturation": "10%"
         },
         "border": {
-          "h": "240",
-          "s": "10%",
-          "light": { "base": "14%", "fg": "90%" }
+          "hue": "240",
+          "saturation": "10%"
         },
         "outline": {
-          "h": "212",
-          "s": "100%",
-          "light": { "base": "60%", "fg": "96%" }
+          "hue": "212",
+          "saturation": "100%"
         },
         "primary": {
-          "h": "212",
-          "s": "100%",
-          "light": { "base": "60%", "fg": "99%" }
+          "hue": "212",
+          "saturation": "100%"
         },
         "secondary": {
-          "h": "270",
-          "s": "67%",
-          "light": { "base": "60%", "fg": "99%" }
+          "hue": "270",
+          "saturation": "67%"
         },
         "muted": {
-          "h": "240",
-          "s": "10%",
-          "light": { "base": "15%", "fg": "80%" }
+          "hue": "240",
+          "saturation": "10%"
         },
         "success": {
-          "h": "146",
-          "s": "55%",
-          "light": { "base": "50%", "fg": "10%" }
+          "hue": "146",
+          "saturation": "55%"
         },
         "warning": {
-          "h": "37",
-          "s": "90%",
-          "light": { "base": "50%", "fg": "10%" }
+          "hue": "37",
+          "saturation": "90%"
         },
         "danger": {
-          "h": "339",
-          "s": "90%",
-          "light": { "base": "58%", "fg": "99%" }
+          "hue": "339",
+          "saturation": "90%"
         }
       }
     }

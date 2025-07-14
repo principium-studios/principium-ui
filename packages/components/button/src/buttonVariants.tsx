@@ -189,45 +189,45 @@ const buttonVariants = cva(
       {
         variant: "light",
         color: "default",
-        class: [colorVariants.light.default, "hover:bg-border/40"],
+        class: [colorVariants.light.default, "hover:bg-border-300/40"],
       },
       {
         variant: "light",
         color: "primary",
-        class: [colorVariants.light.primary, "hover:bg-primary/20"],
+        class: [colorVariants.light.primary, "hover:bg-primary-600/20"],
       },
       {
         variant: "light",
         color: "secondary",
-        class: [colorVariants.light.secondary, "hover:bg-secondary/20"],
+        class: [colorVariants.light.secondary, "hover:bg-secondary-600/20"],
       },
       {
         variant: "light",
         color: "success",
-        class: [colorVariants.light.success, "hover:bg-success/20"],
+        class: [colorVariants.light.success, "hover:bg-success-600/20"],
       },
       {
         variant: "light",
         color: "warning",
-        class: [colorVariants.light.warning, "hover:bg-warning/20"],
+        class: [colorVariants.light.warning, "hover:bg-warning-600/20"],
       },
       {
         variant: "light",
         color: "danger",
-        class: [colorVariants.light.danger, "hover:bg-danger/20"],
+        class: [colorVariants.light.danger, "hover:bg-danger-600/20"],
       },
       // ghost / color
       {
         variant: "ghost",
         color: "default",
-        class: [colorVariants.ghost.default, "hover:bg-default"],
+        class: [colorVariants.ghost.default, "hover:bg-border-300"],
       },
       {
         variant: "ghost",
         color: "primary",
         class: [
           colorVariants.ghost.primary,
-          "hover:bg-primary hover:text-primary-foreground",
+          "hover:bg-primary-600 hover:text-primary-50",
         ],
       },
       {
@@ -235,7 +235,7 @@ const buttonVariants = cva(
         color: "secondary",
         class: [
           colorVariants.ghost.secondary,
-          "hover:bg-secondary hover:text-secondary-foreground",
+          "hover:bg-secondary-600 hover:text-secondary-50",
         ],
       },
       {
@@ -243,7 +243,7 @@ const buttonVariants = cva(
         color: "success",
         class: [
           colorVariants.ghost.success,
-          "hover:bg-success hover:text-success-foreground",
+          "hover:bg-success-600 hover:text-success-950",
         ],
       },
       {
@@ -251,7 +251,7 @@ const buttonVariants = cva(
         color: "warning",
         class: [
           colorVariants.ghost.warning,
-          "hover:bg-warning hover:text-warning-foreground",
+          "hover:bg-warning-600 hover:text-warning-950",
         ],
       },
       {
@@ -259,7 +259,7 @@ const buttonVariants = cva(
         color: "danger",
         class: [
           colorVariants.ghost.danger,
-          "hover:bg-danger hover:text-danger-foreground",
+          "hover:bg-danger-600 hover:text-danger-50",
         ],
       },
     ],

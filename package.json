@@ -9,7 +9,7 @@
     "dev:pkg": "pnpm dev --filter @principium/utils",
     "build": "turbo run build",
     "build:fast": "turbo run build:fast",
-    "type:check": "turbo run type:check",
+    "typecheck": "turbo run typecheck",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "create:pkg": "plop package",
