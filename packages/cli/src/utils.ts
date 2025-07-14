@@ -43,7 +43,7 @@ function generateCss(cfg: PrincipiumConfig): string {
 
   // Validate theme keys
   for (const [themeName, themeCfg] of Object.entries(themes)) {
-    const themeKeys = Object.keys(themeCfg);
+    const themeKeys = Object.keys(themeCfg.colors);
     const missing = REQUIRED_KEYS.filter((key) => !themeKeys.includes(key));
     const extra = themeKeys.filter((key) => !REQUIRED_KEYS.includes(key));
     if (missing.length || extra.length) {
@@ -67,6 +67,18 @@ function generateCss(cfg: PrincipiumConfig): string {
     "800": "20%",
     "900": "10%",
   };
+  const LIGHTNESS_DARK: Record<string, string> = {
+    "50": "10%",
+    "100": "20%",
+    "200": "30%",
+    "300": "40%",
+    "400": "50%",
+    "500": "60%",
+    "600": "70%",
+    "700": "80%",
+    "800": "90%",
+    "900": "95%",
+  };
 
   const scopes: { selector: string; lines: string[] }[] = [];
   const themeColors = new Set<string>();
@@ -74,14 +86,26 @@ function generateCss(cfg: PrincipiumConfig): string {
 
   for (const [themeName, themeCfg] of Object.entries(themes)) {
     const selector = themeName === defaultTheme ? ":root" : `.${themeName}`;
+    const { isDarkTheme, colors } = themeCfg;
     const lines: string[] = [];
 
-    for (const [colorName, { h, s, baseL, fgL }] of Object.entries(themeCfg)) {
+    const lightnessEntries = isDarkTheme
+      ? Object.entries(LIGHTNESS_DARK)
+      : Object.entries(LIGHTNESS);
+
+    for (const [
+      colorName,
+      {
+        h,
+        s,
+        light: { base: baseL, fg: fgL },
+      },
+    ] of Object.entries(colors)) {
       // Add base Color
       themeColors.add(colorName);
 
       // shade variables
-      for (const [shade, light] of Object.entries(LIGHTNESS)) {
+      for (const [shade, light] of lightnessEntries) {
         // Add shade color
         themeColors.add(`${colorName}-${shade}`);
         lines.push(`  --${colorName}-${shade}: hsl(${h} ${s} ${light});`);

@@ -39,13 +39,13 @@ const flat = {
 };
 
 const faded = {
-  default: "border-border bg-border-50 dark:bg-border-900 text-foreground",
-  primary: "border-border bg-border-50 dark:bg-border-900 text-primary",
-  secondary: "border-border bg-border-50 dark:bg-border-900 text-secondary",
-  success: "border-border bg-border-50 dark:bg-border-900 text-success",
-  warning: "border-border bg-border-50 dark:bg-border-900 text-warning",
-  danger: "border-border bg-border-50 dark:bg-border-900 text-danger",
-  foreground: "border-border bg-border-50 dark:bg-border-900 text-foreground",
+  default: "border-border bg-border-50 text-foreground",
+  primary: "border-border bg-border-50 text-primary",
+  secondary: "border-border bg-border-50 text-secondary",
+  success: "border-border bg-border-50 text-success",
+  warning: "border-border bg-border-50 text-warning",
+  danger: "border-border bg-border-50 text-danger",
+  foreground: "border-border bg-border-50 text-foreground",
 };
 
 const light = {
