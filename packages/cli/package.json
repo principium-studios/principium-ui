@@ -1,0 +1,40 @@
+{
+  "name": "@principium/cli",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [
+    "cli"
+  ],
+  "author": "Principium <support@principium.dev>",
+  "homepage": "https://principium.dev",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "principium-cli": "dist/index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/rarescovei5/principium/issues"
+  },
+  "scripts": {
+    "build": "tsup src --dts",
+    "build:fast": "tsup src",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "globby": "^14.1.0"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^24.0.13",
+    "eslint": "^9.16.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.5.2"
+  }
+}
