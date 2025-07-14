@@ -1,9 +1,9 @@
 {
-  "name": "@principium/{{packageName}}",
+  "name": "@principium/badge",
   "version": "0.1.0",
-  "description": "{{description}}",
+  "description": "",
   "keywords": [
-    "{{packageName}}"
+    "badge"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://principium.dev",
@@ -13,12 +13,12 @@
   "files": [
     "dist"
   ],
-   "exports": {
+  "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
-    } 
+    }
   },
   "bugs": {
     "url": "https://github.com/rarescovei5/principium/issues"
@@ -27,6 +27,7 @@
     "build": "tsup src --dts",
     "build:fast": "tsup src",
     "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
@@ -43,6 +44,8 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
-    "@principium/shared-utils": "workspace:*"
+    "@principium/primitive": "workspace:*",
+    "@principium/shared-utils": "workspace:*",
+    "class-variance-authority": "^0.7.1"
   }
 }

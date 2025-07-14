@@ -25,19 +25,13 @@ module.exports = function (plop) {
         name: "description",
         message: "Package description:",
       },
-      {
-        type: "input",
-        name: "outDir",
-        message: "Target directory to scaffold into (relative to repo root):",
-        validate: (v) => (v ? true : "Target directory is required."),
-      },
     ],
     actions: [
       {
         type: "addMany",
         templateFiles: "plop/package/**",
         base: "plop/package",
-        destination: "{{outDir}}",
+        destination: "packages/components/{{dashCase packageName}}",
         abortOnFail: true,
       },
     ],
