@@ -1,7 +1,7 @@
 ---
-description: How should I name components ?
+description: How should I name components in this component library ?
 globs: packages/components/**
-alwaysApply: true
+alwaysApply: false
 ---
 
 ## Component Naming

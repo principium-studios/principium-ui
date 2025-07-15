@@ -1,0 +1,13 @@
+---
+description: How should I approach accessibility in this component library ?
+globs: packages/components/**
+alwaysApply: false
+---
+
+## Accessibility
+
+- All components must follow WAI-ARIA guidelines and best practices.
+- Strive for WCAG 2.1 AA compliance or better.
+- Use semantic HTML and ARIA attributes where appropriate.
+- Ensure keyboard navigation and screen reader support for all interactive elements.
+- Accessibility is a first-class concern in design and implementation.

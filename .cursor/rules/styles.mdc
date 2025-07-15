@@ -1,7 +1,7 @@
 ---
-description: How are styles organised ?
+description: How are styles organised in this component library ?
 globs: packages/components/**
-alwaysApply: false
+alwaysApply: true
 ---
 
 - Possible variants: solid, shadow, bordered, flat, faded, light, ghost
