@@ -1,4 +1,4 @@
-export type PossibleRef<T> = React.Ref<T> | undefined;
+type PossibleRef<T> = React.Ref<T> | undefined;
 
 /**
  * Sets the ref to the given value.
@@ -7,7 +7,7 @@ export type PossibleRef<T> = React.Ref<T> | undefined;
  * @returns A cleanup function if the ref is a function, otherwise nothing.
  */
 function setRef<T>(ref: PossibleRef<T>, value: T) {
-  if (typeof ref === "function") {
+  if (typeof ref === 'function') {
     return ref(value);
   } else if (ref !== null && ref !== undefined) {
     ref.current = value;
@@ -19,14 +19,12 @@ function setRef<T>(ref: PossibleRef<T>, value: T) {
  * @param refs The refs to combine.
  * @returns A ref callback that sets all refs to the given value.
  */
-export function combineRefs<T>(
-  ...refs: PossibleRef<T>[]
-): React.RefCallback<T> {
+function combineRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {
   return (node) => {
     let hasCleanup = false;
     const cleanups = refs.map((ref) => {
       const cleanup = setRef(ref, node);
-      if (!hasCleanup && typeof cleanup === "function") {
+      if (!hasCleanup && typeof cleanup === 'function') {
         hasCleanup = true;
       }
       return cleanup;
@@ -35,7 +33,7 @@ export function combineRefs<T>(
     if (hasCleanup) {
       return () => {
         cleanups.forEach((cleanup, i) => {
-          if (typeof cleanup === "function") {
+          if (typeof cleanup === 'function') {
             cleanup();
           } else {
             setRef(refs[i], null);
@@ -45,3 +43,6 @@ export function combineRefs<T>(
     }
   };
 }
+
+export { combineRefs };
+export type { PossibleRef };

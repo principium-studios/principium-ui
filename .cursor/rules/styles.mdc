@@ -1,10 +1,35 @@
 ---
 description: How are styles organised in this component library ?
-globs: packages/components/**
+globs: packages/components/**/*.tsx
 alwaysApply: true
 ---
 
+## Variants
+
 - Possible variants: solid, shadow, bordered, flat, faded, light, ghost
 - Available colors: default, primary, secondary, success, warning, danger
+
+## Base classes
+
 - Base classes are defined in the colorVariants map in shared-utils
 - Merge your classes using the cn utility from shared-utils rather than string concatenation
+
+## Icons
+
+- Use lucide-react for icons
+
+## Colors
+
+- All of the project colors are defined in principium.json. Based on this file, a theme.css file is generated. This theme.css file containts color shades for each provided color in the principium.json file.
+
+### Ex: "primary" in principium.json will generate "primary-**number**" color in the theme.css file, where number is the number of the color shade (similar to tailwindcss color shades).
+
+#### For a color in a theme that has "inverted" set to true, the color shades will be inverted.
+
+- "primary-50" in the theme.css file will be the darkest shade of the primary color.
+- "primary-950" in the theme.css file will be the lightest shade of the primary color.
+
+#### For a color in a theme that has "inverted" set to false, the color shades will not be inverted.
+
+- "primary-50" in the theme.css file will be the lightest shade of the primary color.
+- "primary-950" in the theme.css file will be the darkest shade of the primary color.

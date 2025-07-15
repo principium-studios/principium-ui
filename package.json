@@ -18,6 +18,8 @@
   "dependencies": {
     "@principium/button": "workspace:*",
     "@principium/badge": "workspace:*",
+    "@principium/card": "workspace:*",
+    "@principium/divider": "workspace:*",
     "@principium/shared-utils": "workspace:*",
     "@tailwindcss/vite": "^4.1.11",
     "lucide-react": "^0.525.0",

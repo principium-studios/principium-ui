@@ -1,6 +1,6 @@
 ---
 description: How should I name components in this component library ?
-globs: packages/components/**
+globs: packages/components/**/*.tsx
 alwaysApply: false
 ---
 

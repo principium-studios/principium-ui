@@ -1,8 +1,17 @@
-import Badge from "@principium/badge";
-import Button from "@principium/button";
-import { cn } from "@principium/shared-utils";
-import { Moon, Sun } from "lucide-react";
-import { useState } from "react";
+import { Badge } from '@principium/badge';
+import { Button } from '@principium/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@principium/card';
+import { Divider } from '@principium/divider';
+import { cn } from '@principium/shared-utils';
+import { Moon, Sun } from 'lucide-react';
+import { useState } from 'react';
 
 function DemoContainer({
   children,
@@ -14,7 +23,7 @@ function DemoContainer({
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-col gap-6", className)}>
+    <div className={cn('flex flex-col gap-6', className)}>
       <h3 className="text-lg font-semibold">{title}</h3>
       <hr className="border-border" />
       <div className="flex flex-col gap-4">{children}</div>
@@ -24,21 +33,21 @@ function DemoContainer({
 
 function ButtonDemo() {
   const variants = [
-    "solid",
-    "shadow",
-    "bordered",
-    "flat",
-    "faded",
-    "ghost",
-    "light",
+    'solid',
+    'shadow',
+    'bordered',
+    'flat',
+    'faded',
+    'ghost',
+    'light',
   ] as const;
   const colors = [
-    "default",
-    "primary",
-    "secondary",
-    "success",
-    "warning",
-    "danger",
+    'default',
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'danger',
   ] as const;
   return (
     <DemoContainer title="Button Variants" className="flex">
@@ -56,16 +65,16 @@ function ButtonDemo() {
 }
 
 function BadgeDemo() {
-  const variants = ["solid", "flat", "faded", "shadow"] as const;
-  const shapes = ["circle", "rectangle"] as const;
-  const sizes = ["sm", "md", "lg"] as const;
+  const variants = ['solid', 'flat', 'faded', 'shadow'] as const;
+  const shapes = ['circle', 'rectangle'] as const;
+  const sizes = ['sm', 'md', 'lg'] as const;
   const colors = [
-    "default",
-    "primary",
-    "secondary",
-    "success",
-    "warning",
-    "danger",
+    'default',
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'danger',
   ] as const;
 
   const Avatar = () => {
@@ -82,8 +91,8 @@ function BadgeDemo() {
       {/* Every possible combination */}
       <div
         style={{
-          gridTemplateColumns: "repeat(auto-fill, minmax(30px, 1fr))",
-          gridAutoRows: "max-content",
+          gridTemplateColumns: 'repeat(auto-fill, minmax(30px, 1fr))',
+          gridAutoRows: 'max-content',
         }}
         className="grid gap-4"
       >
@@ -110,6 +119,105 @@ function BadgeDemo() {
   );
 }
 
+function CardDemo() {
+  const FruitCardGrid = () => {
+    const list = [
+      {
+        title: 'Orange',
+        img: 'https://www.heroui.com/images/fruit-1.jpeg',
+        price: '$5.50',
+      },
+      {
+        title: 'Tangerine',
+        img: 'https://www.heroui.com/images/fruit-2.jpeg',
+        price: '$3.00',
+      },
+      {
+        title: 'Raspberry',
+        img: 'https://www.heroui.com/images/fruit-3.jpeg',
+        price: '$10.00',
+      },
+      {
+        title: 'Lemon',
+        img: 'https://www.heroui.com/images/fruit-4.jpeg',
+        price: '$5.30',
+      },
+      {
+        title: 'Avocado',
+        img: 'https://www.heroui.com/images/fruit-5.jpeg',
+        price: '$15.70',
+      },
+      {
+        title: 'Lemon 2',
+        img: 'https://www.heroui.com/images/fruit-6.jpeg',
+        price: '$8.00',
+      },
+      {
+        title: 'Banana',
+        img: 'https://www.heroui.com/images/fruit-7.jpeg',
+        price: '$7.50',
+      },
+      {
+        title: 'Watermelon',
+        img: 'https://www.heroui.com/images/fruit-8.jpeg',
+        price: '$12.20',
+      },
+    ];
+
+    return (
+      <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+        {list.map((item, index) => (
+          <Card key={index} isPressable>
+            <CardContent className="overflow-visible p-0">
+              <img
+                alt={item.title}
+                className="relative w-full object-cover h-[140px] shadow-lg rounded-lg z-10"
+                src={item.img}
+                width="100%"
+              />
+            </CardContent>
+            <CardFooter className="text-small justify-between">
+              <b>{item.title}</b>
+              <p className="text-default-500">{item.price}</p>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <DemoContainer title="Card Variants">
+      <Card className="max-w-[400px]" isPressable={true}>
+        <CardHeader className="flex gap-3">
+          <img
+            alt="heroui logo"
+            src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
+            className="rounded-lg w-10 h-10"
+          />
+          <div className="flex flex-col">
+            <CardTitle className="text-md">HeroUI</CardTitle>
+            <CardDescription className="text-small text-default-500">
+              heroui.com
+            </CardDescription>
+          </div>
+        </CardHeader>
+        <Divider />
+        <CardContent>
+          <p>Make beautiful websites regardless of your design experience.</p>
+        </CardContent>
+        <Divider />
+        <CardFooter>
+          <a href="https://github.com/rarescovei5/principium">
+            Visit source code on GitHub.
+          </a>
+        </CardFooter>
+      </Card>
+      <FruitCardGrid />
+    </DemoContainer>
+  );
+}
+
 const ThemeToggle = () => {
   const [dark, setDark] = useState(false);
   return (
@@ -118,7 +226,7 @@ const ThemeToggle = () => {
       variant="faded"
       onClick={() => {
         setDark(!dark);
-        document.body.classList.toggle("dark");
+        document.body.classList.toggle('dark');
       }}
       className="fixed top-5 right-5 z-50"
     >
@@ -133,6 +241,7 @@ function App() {
       <ThemeToggle />
       <ButtonDemo />
       <BadgeDemo />
+      <CardDemo />
     </div>
   );
 }

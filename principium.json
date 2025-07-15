@@ -7,10 +7,6 @@
           "hue": "0",
           "saturation": "0%"
         },
-        "card": {
-          "hue": "0",
-          "saturation": "0%"
-        },
         "border": {
           "hue": "240",
           "saturation": "10%"
@@ -49,10 +45,6 @@
       "inverted": true,
       "colors": {
         "background": {
-          "hue": "240",
-          "saturation": "10%"
-        },
-        "card": {
           "hue": "240",
           "saturation": "10%"
         },

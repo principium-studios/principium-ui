@@ -1,26 +1,32 @@
-import { createSlot } from "@principium/slot";
+import { createSlot } from '@principium/slot';
 
 const PRIMITIVE_NODES = [
-  "a",
-  "button",
-  "div",
-  "form",
-  "h2",
-  "h3",
-  "img",
-  "input",
-  "label",
-  "li",
-  "nav",
-  "ol",
-  "p",
-  "select",
-  "span",
-  "ul",
+  'a',
+  'button',
+  'div',
+  'form',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'img',
+  'input',
+  'label',
+  'li',
+  'nav',
+  'ol',
+  'p',
+  'select',
+  'span',
+  'ul',
 ] as const;
 
 type Primitives = {
-  [Node in (typeof PRIMITIVE_NODES)[number]]: React.FC<PrimitiveProps<Node>>;
+  [Node in (typeof PRIMITIVE_NODES)[number]]: (
+    props: PrimitiveProps<Node>
+  ) => React.ReactNode;
 };
 type PrimitiveProps<Node extends React.ElementType> =
   React.ComponentPropsWithRef<Node> & {
@@ -32,8 +38,7 @@ const Primitive = PRIMITIVE_NODES.reduce((primitive, node) => {
   const Slot = createSlot(`Primitive.${node}`);
 
   // Create the primitive component with support for asChild prop
-  const Node: React.FC<PrimitiveProps<typeof node>> = (props) => {
-    const { asChild, ref, ...restProps } = props;
+  const Node = ({ asChild, ref, ...restProps }: PrimitiveProps<typeof node>) => {
     const Component = asChild ? Slot : node;
     // @ts-ignore
     return <Component {...restProps} ref={ref} />;
@@ -47,12 +52,8 @@ const Primitive = PRIMITIVE_NODES.reduce((primitive, node) => {
   };
 }, {} as Primitives);
 
-const Root = Primitive;
-
 export {
   Primitive,
   //
-  Root,
-  //,
   PrimitiveProps,
 };

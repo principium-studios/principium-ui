@@ -1,9 +1,9 @@
 {
-  "name": "@principium/card",
+  "name": "@principium/divider",
   "version": "0.1.0",
   "description": "",
   "keywords": [
-    "card"
+    "divider"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://principium.dev",
@@ -44,6 +44,6 @@
   },
   "dependencies": {
     "@principium/shared-utils": "workspace:*",
-    "@principium/ripple": "workspace:*"
+    "class-variance-authority": "^0.7.1"
   }
 }

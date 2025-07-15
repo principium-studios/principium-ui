@@ -1,6 +1,6 @@
 ---
 description: What are tech stack is used in this component library monorepo ?
-globs: packages/components/**
+globs: packages/components/**/*.tsx
 alwaysApply: false
 ---
 

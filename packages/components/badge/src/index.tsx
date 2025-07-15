@@ -1,15 +1,14 @@
-import React from "react";
-import { Primitive, type PrimitiveProps } from "@principium/primitive";
-import { cn } from "@principium/shared-utils";
-import { type VariantProps } from "class-variance-authority";
-import { BadgeVariants } from "./badgeVariants";
+import React from 'react';
+import { Primitive, type PrimitiveProps } from '@principium/primitive';
+import { cn } from '@principium/shared-utils';
+import { type VariantProps } from 'class-variance-authority';
+import { BadgeVariants } from './badgeVariants';
 
-type BadgeProps = PrimitiveProps<"div"> &
+type BadgeProps = PrimitiveProps<'div'> &
   VariantProps<typeof BadgeVariants> & {
     content?: React.ReactNode;
   };
-
-const Badge: React.FC<BadgeProps> = ({
+const Badge = ({
   variant,
   size,
   shape,
@@ -20,11 +19,8 @@ const Badge: React.FC<BadgeProps> = ({
   color,
   children,
   ...props
-}) => {
-  const isOneChar = React.useMemo(
-    () => String(content)?.length === 1,
-    [content]
-  );
+}: BadgeProps) => {
+  const isOneChar = React.useMemo(() => String(content)?.length === 1, [content]);
 
   const isDot = React.useMemo(() => String(content)?.length === 0, [content]);
 
@@ -55,4 +51,8 @@ const Badge: React.FC<BadgeProps> = ({
   );
 };
 
-export default Badge;
+export {
+  Badge,
+  //
+  BadgeProps,
+};

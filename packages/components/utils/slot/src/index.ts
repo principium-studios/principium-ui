@@ -1,6 +1,6 @@
-import React from "react";
-import { AnyProps, combineProps } from "@principium/shared-utils";
-import { combineRefs } from "@principium/shared-utils";
+import React from 'react';
+import { AnyProps, combineProps } from '@principium/shared-utils';
+import { combineRefs } from '@principium/shared-utils';
 
 interface SlotProps extends React.HTMLAttributes<HTMLElement> {
   ref?: React.Ref<HTMLElement>;
@@ -13,16 +13,13 @@ interface SlotProps extends React.HTMLAttributes<HTMLElement> {
  * @param ownerName The name of the owner component.
  * @returns The slot component.
  */
-export function createSlot(ownerName: string) {
+function createSlot(ownerName: string) {
   // Slot component
-  const Slot = (props: SlotProps) => {
-    const { children, ref, ...slotProps } = props;
-
+  const Slot = ({ children, ref, ...slotProps }: SlotProps) => {
     // Expect exactly one child
     if (React.isValidElement(children)) {
       // Get the ref of the child element and its props
-      const childrenRef = (children.props as { ref: React.Ref<HTMLElement> })
-        .ref;
+      const childrenRef = (children.props as { ref: React.Ref<HTMLElement> }).ref;
       const childrenProps = children.props as AnyProps;
 
       // Merge the props of the child element with the props of the slot
@@ -38,7 +35,7 @@ export function createSlot(ownerName: string) {
     }
 
     // If not in production and the child is not a valid element, throw an error
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV !== 'production') {
       console.error(`${ownerName}.Slot expects exactly one child.`);
     }
 
@@ -51,6 +48,6 @@ export function createSlot(ownerName: string) {
   return Slot;
 }
 
-const Slot = createSlot("Slot");
+const Slot = createSlot('Slot');
 
-export { Slot };
+export { Slot, createSlot };

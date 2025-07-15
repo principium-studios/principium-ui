@@ -1,0 +1,48 @@
+---
+description: How should I structure components in this component library ?
+globs: packages/components/**/*.tsx
+alwaysApply: false
+---
+
+- Each component should be in its own directory (e.g. packages/components/card)
+- Each prop type should be in the same file as the component. Adding to that, prop types should be directly above the component.
+- There should be no default export, always use named exports. The exports should be the components and the prop types for them.
+
+```tsx
+// Main component
+// Can provide context for it s children to use or anything else.
+type MyComponentProps = {
+  children: React.ReactNode;
+};
+const MyComponent = (props: MyComponentProps) => {
+  return <div>{props.children}</div>;
+};
+
+// Trigger component
+// Can be used to trigger the content.
+type MyComponentTriggerProps = {
+  children: React.ReactNode;
+};
+const MyComponentTrigger = (props: MyComponentTriggerProps) => {
+  return <div>{props.children}</div>;
+};
+
+// Content component
+// Can be used to display the content.
+type MyComponentContentProps = {
+  children: React.ReactNode;
+};
+const MyComponentContent = (props: MyComponentContentProps) => {
+  return <div>{props.children}</div>;
+};
+
+export {
+  MyComponent,
+  MyComponentTrigger,
+  MyComponentContent,
+  //
+  MyComponentProps,
+  MyComponentTriggerProps,
+  MyComponentContentProps,
+};
+```

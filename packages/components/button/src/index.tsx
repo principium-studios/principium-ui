@@ -1,14 +1,13 @@
-import { Primitive, type PrimitiveProps } from "@principium/primitive";
-import { Ripple, useRipple } from "@principium/ripple";
-import { cn } from "@principium/shared-utils";
-import { type VariantProps } from "class-variance-authority";
-import buttonVariants from "./buttonVariants";
+import { Primitive, type PrimitiveProps } from '@principium/primitive';
+import { Ripple, useRipple } from '@principium/ripple';
+import { cn } from '@principium/shared-utils';
+import { type VariantProps } from 'class-variance-authority';
+import buttonVariants from './buttonVariants';
 
 // ____________________ Button Component ____________________
-type ButtonProps = PrimitiveProps<"button"> &
+type ButtonProps = PrimitiveProps<'button'> &
   VariantProps<typeof buttonVariants> & { disableRipple?: boolean };
-
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   variant,
   size,
   color,
@@ -18,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   disableRipple = false,
   disabled,
   ...props
-}) => {
+}: ButtonProps) => {
   const { ripples, createRipple, removeRipple } = useRipple();
 
   return (
@@ -34,11 +33,13 @@ const Button: React.FC<ButtonProps> = ({
       className={cn(buttonVariants({ variant, size, color, className }))}
     >
       {children}
-      {!disableRipple && (
-        <Ripple ripples={ripples} removeRipple={removeRipple} />
-      )}
+      {!disableRipple && <Ripple ripples={ripples} onClear={removeRipple} />}
     </Primitive.button>
   );
 };
 
-export default Button;
+export {
+  Button,
+  //
+  ButtonProps,
+};

@@ -1,4 +1,4 @@
-export type AnyProps = Record<string, any>;
+type AnyProps = Record<string, any>;
 
 /**
  * Combines two sets of props, with incoming props taking precedence.
@@ -6,7 +6,7 @@ export type AnyProps = Record<string, any>;
  * @param incomingProps The props to combine with.
  * @returns The combined props.
  */
-export function combineProps(ourProps: AnyProps, incomingProps: AnyProps) {
+function combineProps(ourProps: AnyProps, incomingProps: AnyProps) {
   // incoming props take precedence
   const combinedProps = { ...incomingProps };
 
@@ -17,7 +17,7 @@ export function combineProps(ourProps: AnyProps, incomingProps: AnyProps) {
     const incomingValue = incomingProps[propName];
 
     // Handle event handlers
-    const isHandler = propName.startsWith("on");
+    const isHandler = propName.startsWith('on');
     if (isHandler) {
       // if both props have handlers, combine them
       if (ourValue && incomingValue) {
@@ -31,7 +31,7 @@ export function combineProps(ourProps: AnyProps, incomingProps: AnyProps) {
       }
     }
     // Handle style
-    else if (propName === "style") {
+    else if (propName === 'style') {
       combinedProps[propName] = {
         ...ourValue,
         ...incomingValue,
@@ -41,3 +41,6 @@ export function combineProps(ourProps: AnyProps, incomingProps: AnyProps) {
 
   return { ...ourProps, ...combinedProps };
 }
+
+export { combineProps };
+export type { AnyProps };
