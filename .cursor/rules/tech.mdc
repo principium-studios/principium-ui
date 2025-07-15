@@ -1,0 +1,26 @@
+---
+description:
+globs: packages/components/**
+alwaysApply: false
+---
+
+## Tech Stack
+
+- **Framework**: React ^19
+- **Styling**: Tailwind CSS ^4
+- **Variant utilities**:
+  - Class Variance Authority (cva)
+  - tailwind-merge
+  - clsx
+
+## Build
+
+- **Bundler**: tsup
+
+## Testing
+
+- **Test runner**: vitest
+  - Accessibility: vitest‑axe
+  - DOM assertions: @testing‑library/jest‑dom
+  - React testing: @testing‑library/react
+  - User-event simulation: @testing‑library/user‑event

@@ -1,0 +1,10 @@
+---
+description: How are styles organised ?
+globs: packages/components/**
+alwaysApply: false
+---
+
+- Possible variants: solid, shadow, bordered, flat, faded, light, ghost
+- Available colors: default, primary, secondary, success, warning, danger
+- Base classes are defined in the colorVariants map in shared-utils
+- Merge your classes using the cn utility from shared-utils rather than string concatenation
