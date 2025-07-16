@@ -2,7 +2,7 @@ import {cva} from 'class-variance-authority';
 import {colorVariants} from '@principium/theme';
 
 export const BadgeVariants = cva(
-  'absolute box-border flex origin-center scale-100 items-center justify-center rounded-full subpixel-antialiased opacity-100 select-none data-[hidden]:scale-0 data-[hidden]:opacity-0',
+  'absolute box-border flex origin-center scale-100 select-none items-center justify-center rounded-full subpixel-antialiased opacity-100 data-[hidden]:scale-0 data-[hidden]:opacity-0',
   {
     variants: {
       variant: {
@@ -20,7 +20,7 @@ export const BadgeVariants = cva(
         danger: {},
       },
       size: {
-        sm: 'px-1 text-tiny',
+        sm: 'text-tiny px-1',
         md: 'px-1 text-xs',
         lg: 'px-1 text-sm',
       },
@@ -29,13 +29,13 @@ export const BadgeVariants = cva(
         rectangle: {},
       },
       placement: {
-        'top-right': 'translate-x-1/2 -translate-y-1/2',
+        'top-right': '-translate-y-1/2 translate-x-1/2',
         'top-left': '-translate-x-1/2 -translate-y-1/2',
         'bottom-right': 'translate-x-1/2 translate-y-1/2',
         'bottom-left': '-translate-x-1/2 translate-y-1/2',
       },
       showOutline: {
-        true: 'border-2 border-background-50',
+        true: 'border-background-50 border-2',
         false: 'border-0 border-transparent',
       },
       isOneChar: {
@@ -206,17 +206,17 @@ export const BadgeVariants = cva(
       {
         placement: 'top-right',
         shape: 'rectangle',
-        class: 'top-[5%] right-[5%]',
+        class: 'right-[5%] top-[5%]',
       },
       {
         placement: 'top-left',
         shape: 'rectangle',
-        class: 'top-[5%] left-[5%]',
+        class: 'left-[5%] top-[5%]',
       },
       {
         placement: 'bottom-right',
         shape: 'rectangle',
-        class: 'right-[5%] bottom-[5%]',
+        class: 'bottom-[5%] right-[5%]',
       },
       {
         placement: 'bottom-left',
@@ -227,17 +227,17 @@ export const BadgeVariants = cva(
       {
         placement: 'top-right',
         shape: 'circle',
-        class: 'top-[10%] right-[10%]',
+        class: 'right-[10%] top-[10%]',
       },
       {
         placement: 'top-left',
         shape: 'circle',
-        class: 'top-[10%] left-[10%]',
+        class: 'left-[10%] top-[10%]',
       },
       {
         placement: 'bottom-right',
         shape: 'circle',
-        class: 'right-[10%] bottom-[10%]',
+        class: 'bottom-[10%] right-[10%]',
       },
       {
         placement: 'bottom-left',

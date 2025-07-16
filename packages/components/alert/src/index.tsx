@@ -1,22 +1,114 @@
 import React from 'react';
-import {VariantProps} from 'class-variance-authority';
-import {alertIconVariants, alertIconWrapperVariants, alertVariants} from './alertVariants';
-import {cn} from '@principium/shared-utils';
 import {createContext} from '@principium/context';
-import {CircleCheck, ShieldAlert, OctagonAlert, Info} from 'lucide-react';
+import {alert, AlertSlots, AlertVariantProps} from '@principium/theme';
 
-interface AlertContextType {
-  variant: VariantProps<typeof alertVariants>['variant'];
-  color: VariantProps<typeof alertVariants>['color'];
-}
+type AlertContextType = Record<Exclude<AlertSlots, 'base' | 'alertIcon'>, string> & {
+  defaultAlertIcon: React.ReactNode;
+};
 const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
 
 // ________________________ Alert ________________________
-type AlertProps = React.ComponentPropsWithRef<'div'> & VariantProps<typeof alertVariants>;
+type AlertProps = React.ComponentPropsWithRef<'div'> & AlertVariantProps;
 const Alert = ({className, variant, color, ...props}: AlertProps) => {
+  const {base, title, description, iconWrapper, alertIcon} = alert({variant, color});
+  const defaultAlertIcon = React.useMemo(() => {
+    switch (color) {
+      case 'success':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className={alertIcon()}
+          >
+            {/* Background */}
+            <circle cx="12" cy="12" r="10" strokeWidth={0} />
+            {/* Checkmark */}
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+        );
+      case 'warning':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className={alertIcon()}
+          >
+            {/* Background */}
+            <path
+              d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+              strokeWidth={0}
+            />
+            {/* ! */}
+            <path d="M12 8v4" />
+            <path d="M12 16h.01" />
+          </svg>
+        );
+      case 'danger':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className={alertIcon()}
+          >
+            {/* Background */}
+            <path
+              d="M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z"
+              strokeWidth={0}
+            />
+            {/* ! */}
+            <path d="M12 16h.01" />
+            <path d="M12 8v4" />
+          </svg>
+        );
+      default:
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className={alertIcon()}
+          >
+            {/* Background */}
+            <circle cx="12" cy="12" r="10" strokeWidth={0} />
+            {/* i */}
+            <path d="M12 16v-4" />
+            <path d="M12 8h.01" />
+          </svg>
+        );
+    }
+  }, [color]);
+
   return (
-    <AlertProvider variant={variant} color={color}>
-      <div className={cn(alertVariants({variant, color}), className)} {...props} />
+    <AlertProvider
+      defaultAlertIcon={defaultAlertIcon}
+      title={title()}
+      description={description()}
+      iconWrapper={iconWrapper()}
+    >
+      <div className={base()} {...props} />
     </AlertProvider>
   );
 };
@@ -24,48 +116,24 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
 // ________________________ AlertTitle ________________________
 type AlertTitleProps = React.ComponentPropsWithRef<'div'>;
 const AlertTitle = ({className, ...props}: AlertTitleProps) => {
-  return <div className={cn('col-start-2 text-lg font-semibold', className)} {...props} />;
+  const {title} = useAlert();
+  return <div className={title} {...props} />;
 };
 
 // ________________________ AlertDescription ________________________
 type AlertDescriptionProps = React.ComponentPropsWithRef<'div'>;
 const AlertDescription = ({className, ...props}: AlertDescriptionProps) => {
-  return <div className={cn('col-start-2 text-sm', className)} {...props} />;
+  const {description} = useAlert();
+  return <div className={description} {...props} />;
 };
 
 // ________________________ AlertIcon ________________________
 type AlertIconProps = React.ComponentPropsWithRef<'div'>;
 const AlertIcon = ({className, children, ...props}: AlertIconProps) => {
-  const {variant, color} = useAlert();
+  const {iconWrapper, defaultAlertIcon} = useAlert();
   return (
-    <div className={cn(alertIconWrapperVariants({variant, color, className}))} {...props}>
-      {children ? (
-        children
-      ) : color === 'success' ? (
-        <CircleCheck
-          fill="currentColor"
-          strokeWidth={2}
-          className={cn(alertIconVariants({variant, color}), '[&>circle]:stroke-0')}
-        />
-      ) : color === 'warning' ? (
-        <ShieldAlert
-          fill="currentColor"
-          strokeWidth={2}
-          className={cn(alertIconVariants({variant, color}), '[&>path:nth-child(1)]:stroke-0')}
-        />
-      ) : color === 'danger' ? (
-        <OctagonAlert
-          fill="currentColor"
-          strokeWidth={2}
-          className={cn(alertIconVariants({variant, color}), '[&>path:nth-child(3)]:stroke-0')}
-        />
-      ) : (
-        <Info
-          fill="currentColor"
-          strokeWidth={2}
-          className={cn(alertIconVariants({variant, color}), '[&>circle]:stroke-0')}
-        />
-      )}
+    <div className={iconWrapper} {...props}>
+      {children ? children : defaultAlertIcon}
     </div>
   );
 };

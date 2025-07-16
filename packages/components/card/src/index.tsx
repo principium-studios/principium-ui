@@ -67,15 +67,7 @@ const CardDescription = ({className, ...props}: CardDescriptionProps) => {
 // ________________________ CardContent ________________________
 type CardContentProps = React.ComponentPropsWithRef<'div'>;
 const CardContent = ({className, ...props}: CardContentProps) => {
-  return (
-    <div
-      className={cn(
-        'p-3 subpixel-antialiased',
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <div className={cn('p-3 subpixel-antialiased', className)} {...props} />;
 };
 
 // ________________________ CardFooter ________________________
@@ -83,10 +75,7 @@ type CardFooterProps = React.ComponentPropsWithRef<'div'>;
 const CardFooter = ({className, ...props}: CardFooterProps) => {
   return (
     <div
-      className={cn(
-        'flex items-center overflow-hidden p-3 subpixel-antialiased',
-        className,
-      )}
+      className={cn('flex items-center overflow-hidden p-3 subpixel-antialiased', className)}
       {...props}
     />
   );

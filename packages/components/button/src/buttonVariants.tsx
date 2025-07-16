@@ -2,7 +2,7 @@ import {colorVariants} from '@principium/theme';
 import {cva} from 'class-variance-authority';
 
 const buttonVariants = cva(
-  'transition-[background-color, border-color, color, transform, opacity] focus-visible:outline-outline relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-md text-sm font-medium whitespace-nowrap duration-300 hover:opacity-97 focus:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-transparent active:scale-97 disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0',
+  'transition-[background-color, border-color, color, transform, opacity] focus-visible:outline-outline hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md text-sm font-medium duration-300 focus:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-transparent disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
@@ -225,27 +225,42 @@ const buttonVariants = cva(
       {
         variant: 'ghost',
         color: 'primary',
-        class: [colorVariants.ghost.primary, 'hover:bg-primary-400 hover:text-primary-50 dark:hover:bg-primary-600 dark:hover:text-primary-950'],
+        class: [
+          colorVariants.ghost.primary,
+          'hover:bg-primary-400 hover:text-primary-50 dark:hover:bg-primary-600 dark:hover:text-primary-950',
+        ],
       },
       {
         variant: 'ghost',
         color: 'secondary',
-        class: [colorVariants.ghost.secondary, 'hover:bg-secondary-400 hover:text-secondary-50 dark:hover:bg-secondary-600 dark:hover:text-secondary-950'],
+        class: [
+          colorVariants.ghost.secondary,
+          'hover:bg-secondary-400 hover:text-secondary-50 dark:hover:bg-secondary-600 dark:hover:text-secondary-950',
+        ],
       },
       {
         variant: 'ghost',
         color: 'success',
-        class: [colorVariants.ghost.success, 'hover:bg-success-400 hover:text-success-950 dark:hover:bg-success-600 dark:hover:text-success-50'],
+        class: [
+          colorVariants.ghost.success,
+          'hover:bg-success-400 hover:text-success-950 dark:hover:bg-success-600 dark:hover:text-success-50',
+        ],
       },
       {
         variant: 'ghost',
         color: 'warning',
-        class: [colorVariants.ghost.warning, 'hover:bg-warning-400 hover:text-warning-950 dark:hover:bg-warning-600 dark:hover:text-warning-50'],
+        class: [
+          colorVariants.ghost.warning,
+          'hover:bg-warning-400 hover:text-warning-950 dark:hover:bg-warning-600 dark:hover:text-warning-50',
+        ],
       },
       {
         variant: 'ghost',
         color: 'danger',
-        class: [colorVariants.ghost.danger, 'hover:bg-danger-400 hover:text-danger-50 dark:hover:bg-danger-600 dark:hover:text-danger-950'],
+        class: [
+          colorVariants.ghost.danger,
+          'hover:bg-danger-400 hover:text-danger-50 dark:hover:bg-danger-600 dark:hover:text-danger-950',
+        ],
       },
     ],
     defaultVariants: {

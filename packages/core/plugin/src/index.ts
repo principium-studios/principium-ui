@@ -89,6 +89,7 @@ export const principium = (opts: PrincipiumConfig): ReturnType<typeof plugin> =>
 
   return plugin(
     ({addBase}) => {
+      // Add CSS variables
       addBase(baseVars);
     },
     {
