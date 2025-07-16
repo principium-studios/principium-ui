@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
-@import "tailwindcss";
-@import "./themes.css";
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import 'tailwindcss';
+@import './themes.css';
 
 @layer base {
   body {
@@ -8,6 +8,6 @@
   }
   * {
     @apply box-border m-0 p-0;
-    font-family: "Geist", "Outfit", sans-serif;
+    font-family: 'Geist', 'Outfit', sans-serif;
   }
 }

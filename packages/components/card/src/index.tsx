@@ -1,6 +1,6 @@
 import React from 'react';
-import { cn } from '@principium/shared-utils';
-import { useRipple, Ripple } from '@principium/ripple';
+import {cn} from '@principium/shared-utils';
+import {useRipple, Ripple} from '@principium/ripple';
 
 // ________________________ Card ________________________
 type CardProps = React.ComponentPropsWithRef<'div'> & {
@@ -16,14 +16,14 @@ const Card = ({
   onClick,
   ...props
 }: CardProps) => {
-  const { ripples, createRipple, removeRipple } = useRipple();
+  const {ripples, createRipple, removeRipple} = useRipple();
 
   return (
     <div
       className={cn(
-        'relative flex flex-col h-auto box-border overflow-hidden bg-background-100 rounded-lg shadow-sm border border-border-300 transition-[background-color_border-color_color_transform_opacity] duration-300',
+        'relative box-border flex h-auto flex-col overflow-hidden rounded-lg border border-border-300 bg-background-100 shadow-sm transition-[background-color_border-color_color_transform_opacity] duration-300',
         isPressable && 'cursor-pointer active:scale-97 active:opacity-97',
-        className
+        className,
       )}
       onClick={(e) => {
         if (!isPressable) return;
@@ -40,12 +40,12 @@ const Card = ({
 
 // ________________________ CardHeader ________________________
 type CardHeaderProps = React.ComponentPropsWithRef<'div'>;
-const CardHeader = ({ className, ...props }: CardHeaderProps) => {
+const CardHeader = ({className, ...props}: CardHeaderProps) => {
   return (
     <div
       className={cn(
-        'flex p-3 z-10 w-full justify-start items-center shrink-0 overflow-inherit color-inherit subpixel-antialiased',
-        className
+        'overflow-inherit color-inherit z-10 flex w-full shrink-0 items-center justify-start p-3 subpixel-antialiased',
+        className,
       )}
       {...props}
     />
@@ -54,24 +54,24 @@ const CardHeader = ({ className, ...props }: CardHeaderProps) => {
 
 //  CardTitle
 type CardTitleProps = React.ComponentPropsWithRef<'div'>;
-const CardTitle = ({ className, ...props }: CardTitleProps) => {
+const CardTitle = ({className, ...props}: CardTitleProps) => {
   return <div className={cn('text-lg font-semibold', className)} {...props} />;
 };
 
 //  CardDescription
 type CardDescriptionProps = React.ComponentPropsWithRef<'div'>;
-const CardDescription = ({ className, ...props }: CardDescriptionProps) => {
-  return <div className={cn('text-sm text-muted-600', className)} {...props} />;
+const CardDescription = ({className, ...props}: CardDescriptionProps) => {
+  return <div className={cn('text-muted-600 text-sm', className)} {...props} />;
 };
 
 // ________________________ CardContent ________________________
 type CardContentProps = React.ComponentPropsWithRef<'div'>;
-const CardContent = ({ className, ...props }: CardContentProps) => {
+const CardContent = ({className, ...props}: CardContentProps) => {
   return (
     <div
       className={cn(
-        'relative flex flex-1 w-full p-3 flex-col h-auto break-words text-left overflow-y-auto subpixel-antialiased',
-        className
+        'relative flex h-auto w-full flex-1 flex-col overflow-y-auto p-3 text-left break-words subpixel-antialiased',
+        className,
       )}
       {...props}
     />
@@ -80,12 +80,12 @@ const CardContent = ({ className, ...props }: CardContentProps) => {
 
 // ________________________ CardFooter ________________________
 type CardFooterProps = React.ComponentPropsWithRef<'div'>;
-const CardFooter = ({ className, ...props }: CardFooterProps) => {
+const CardFooter = ({className, ...props}: CardFooterProps) => {
   return (
     <div
       className={cn(
-        'p-3 h-auto flex w-full items-center overflow-hidden color-inherit subpixel-antialiased',
-        className
+        'color-inherit flex h-auto w-full items-center overflow-hidden p-3 subpixel-antialiased',
+        className,
       )}
       {...props}
     />

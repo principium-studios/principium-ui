@@ -1,6 +1,6 @@
 import React from 'react';
-import { AnyProps, combineProps } from '@principium/shared-utils';
-import { combineRefs } from '@principium/shared-utils';
+import {AnyProps, combineProps} from '@principium/shared-utils';
+import {combineRefs} from '@principium/shared-utils';
 
 interface SlotProps extends React.HTMLAttributes<HTMLElement> {
   ref?: React.Ref<HTMLElement>;
@@ -15,11 +15,11 @@ interface SlotProps extends React.HTMLAttributes<HTMLElement> {
  */
 function createSlot(ownerName: string) {
   // Slot component
-  const Slot = ({ children, ref, ...slotProps }: SlotProps) => {
+  const Slot = ({children, ref, ...slotProps}: SlotProps) => {
     // Expect exactly one child
     if (React.isValidElement(children)) {
       // Get the ref of the child element and its props
-      const childrenRef = (children.props as { ref: React.Ref<HTMLElement> }).ref;
+      const childrenRef = (children.props as {ref: React.Ref<HTMLElement>}).ref;
       const childrenProps = children.props as AnyProps;
 
       // Merge the props of the child element with the props of the slot
@@ -50,4 +50,4 @@ function createSlot(ownerName: string) {
 
 const Slot = createSlot('Slot');
 
-export { Slot, createSlot };
+export {Slot, createSlot};

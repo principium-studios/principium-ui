@@ -1,2 +1,2 @@
-export * from "./ripple";
-export * from "./useRipple";
+export * from './ripple';
+export * from './useRipple';

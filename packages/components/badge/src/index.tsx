@@ -1,8 +1,8 @@
 import React from 'react';
-import { Primitive, type PrimitiveProps } from '@principium/primitive';
-import { cn } from '@principium/shared-utils';
-import { type VariantProps } from 'class-variance-authority';
-import { BadgeVariants } from './badgeVariants';
+import {Primitive, type PrimitiveProps} from '@principium/primitive';
+import {cn} from '@principium/shared-utils';
+import {type VariantProps} from 'class-variance-authority';
+import {BadgeVariants} from './badgeVariants';
 
 type BadgeProps = PrimitiveProps<'div'> &
   VariantProps<typeof BadgeVariants> & {
@@ -39,7 +39,7 @@ const Badge = ({
             isOneChar,
             isDot,
             className,
-          })
+          }),
         )}
         {...props}
       >

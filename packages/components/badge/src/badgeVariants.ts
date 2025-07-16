@@ -1,8 +1,8 @@
-import { cva } from 'class-variance-authority';
-import { colorVariants } from '@principium/shared-utils';
+import {cva} from 'class-variance-authority';
+import {colorVariants} from '@principium/shared-utils';
 
 export const BadgeVariants = cva(
-  'box-border absolute flex items-center justify-center select-none rounded-full scale-100 opacity-100 origin-center subpixel-antialiased data-[hidden]:scale-0 data-[hidden]:opacity-0',
+  'absolute box-border flex origin-center scale-100 items-center justify-center rounded-full subpixel-antialiased opacity-100 select-none data-[hidden]:scale-0 data-[hidden]:opacity-0',
   {
     variants: {
       variant: {
@@ -36,7 +36,7 @@ export const BadgeVariants = cva(
       },
       showOutline: {
         true: 'border-2 border-background-50',
-        false: 'border-transparent border-0',
+        false: 'border-0 border-transparent',
       },
       isOneChar: {
         true: 'px-0',
@@ -174,33 +174,33 @@ export const BadgeVariants = cva(
       {
         isOneChar: true,
         size: 'sm',
-        class: 'w-4 h-4 min-w-4 min-h-4',
+        class: 'h-4 min-h-4 w-4 min-w-4',
       },
       {
         isOneChar: true,
         size: 'md',
-        class: 'w-5 h-5 min-w-5 min-h-5',
+        class: 'h-5 min-h-5 w-5 min-w-5',
       },
       {
         isOneChar: true,
         size: 'lg',
-        class: 'w-6 h-6 min-w-6 min-h-6',
+        class: 'h-6 min-h-6 w-6 min-w-6',
       },
       // isDot / size
       {
         isDot: true,
         size: 'sm',
-        class: 'w-3 h-3 min-w-3 min-h-3',
+        class: 'h-3 min-h-3 w-3 min-w-3',
       },
       {
         isDot: true,
         size: 'md',
-        class: 'w-3.5 h-3.5 min-w-3.5 min-h-3.5',
+        class: 'h-3.5 min-h-3.5 w-3.5 min-w-3.5',
       },
       {
         isDot: true,
         size: 'lg',
-        class: 'w-4 h-4 min-w-4 min-h-4',
+        class: 'h-4 min-h-4 w-4 min-w-4',
       },
       // placement / rectangle
       {
@@ -216,7 +216,7 @@ export const BadgeVariants = cva(
       {
         placement: 'bottom-right',
         shape: 'rectangle',
-        class: 'bottom-[5%] right-[5%]',
+        class: 'right-[5%] bottom-[5%]',
       },
       {
         placement: 'bottom-left',
@@ -237,7 +237,7 @@ export const BadgeVariants = cva(
       {
         placement: 'bottom-right',
         shape: 'circle',
-        class: 'bottom-[10%] right-[10%]',
+        class: 'right-[10%] bottom-[10%]',
       },
       {
         placement: 'bottom-left',
@@ -253,5 +253,5 @@ export const BadgeVariants = cva(
       placement: 'top-right',
       showOutline: true,
     },
-  }
+  },
 );

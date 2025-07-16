@@ -1,8 +1,8 @@
-import { colorVariants } from '@principium/shared-utils';
-import { cva } from 'class-variance-authority';
+import {colorVariants} from '@principium/shared-utils';
+import {cva} from 'class-variance-authority';
 
 const buttonVariants = cva(
-  'relative cursor-pointer overflow-hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium box-border transition-[background-color, border-color, color, transform, opacity] hover:opacity-97 duration-300 disabled:pointer-events-none disabled:opacity-50 shrink-0 [&_svg]:shrink-0 active:scale-97 focus:z-10 focus-visible:outline-2 focus-visible:outline-transparent focus-visible:outline-offset-2 focus-visible:outline-outline transform-gpu',
+  'transition-[background-color, border-color, color, transform, opacity] focus-visible:outline-outline relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-md text-sm font-medium whitespace-nowrap duration-300 hover:opacity-97 focus:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-transparent active:scale-97 disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
@@ -15,9 +15,9 @@ const buttonVariants = cva(
         ghost: 'border-2',
       },
       size: {
-        sm: 'px-3 min-w-16 h-8 gap-2 rounded-sm',
-        md: 'px-4 min-w-20 h-10 gap-2 rounded-md',
-        lg: 'px-6 min-w-24 h-12 gap-3 rounded-lg',
+        sm: 'h-8 min-w-16 gap-2 rounded-sm px-3',
+        md: 'h-10 min-w-20 gap-2 rounded-md px-4',
+        lg: 'h-12 min-w-24 gap-3 rounded-lg px-6',
         icon: 'size-9',
       },
       color: {
@@ -225,39 +225,27 @@ const buttonVariants = cva(
       {
         variant: 'ghost',
         color: 'primary',
-        class: [
-          colorVariants.ghost.primary,
-          'hover:bg-primary-600 hover:text-primary-50',
-        ],
+        class: [colorVariants.ghost.primary, 'hover:bg-primary-400 hover:text-primary-50 dark:hover:bg-primary-600 dark:hover:text-primary-950'],
       },
       {
         variant: 'ghost',
         color: 'secondary',
-        class: [
-          colorVariants.ghost.secondary,
-          'hover:bg-secondary-600 hover:text-secondary-50',
-        ],
+        class: [colorVariants.ghost.secondary, 'hover:bg-secondary-400 hover:text-secondary-50 dark:hover:bg-secondary-600 dark:hover:text-secondary-950'],
       },
       {
         variant: 'ghost',
         color: 'success',
-        class: [
-          colorVariants.ghost.success,
-          'hover:bg-success-600 hover:text-success-950',
-        ],
+        class: [colorVariants.ghost.success, 'hover:bg-success-400 hover:text-success-950 dark:hover:bg-success-600 dark:hover:text-success-50'],
       },
       {
         variant: 'ghost',
         color: 'warning',
-        class: [
-          colorVariants.ghost.warning,
-          'hover:bg-warning-600 hover:text-warning-950',
-        ],
+        class: [colorVariants.ghost.warning, 'hover:bg-warning-400 hover:text-warning-950 dark:hover:bg-warning-600 dark:hover:text-warning-50'],
       },
       {
         variant: 'ghost',
         color: 'danger',
-        class: [colorVariants.ghost.danger, 'hover:bg-danger-600 hover:text-danger-50'],
+        class: [colorVariants.ghost.danger, 'hover:bg-danger-400 hover:text-danger-50 dark:hover:bg-danger-600 dark:hover:text-danger-950'],
       },
     ],
     defaultVariants: {
@@ -265,7 +253,7 @@ const buttonVariants = cva(
       size: 'md',
       color: 'default',
     },
-  }
+  },
 );
 
 export default buttonVariants;

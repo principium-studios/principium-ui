@@ -44,5 +44,5 @@ function combineRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {
   };
 }
 
-export { combineRefs };
-export type { PossibleRef };
+export {combineRefs};
+export type {PossibleRef};

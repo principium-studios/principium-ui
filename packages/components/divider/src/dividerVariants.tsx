@@ -1,9 +1,9 @@
-import { cva } from 'class-variance-authority';
+import {cva} from 'class-variance-authority';
 
-export const dividerVariants = cva('shrink-0 bg-border-300 border-none', {
+export const dividerVariants = cva('shrink-0 border-none bg-border-300', {
   variants: {
     orientation: {
-      horizontal: 'w-full h-px',
+      horizontal: 'h-px w-full',
       vertical: 'h-full w-px',
     },
   },

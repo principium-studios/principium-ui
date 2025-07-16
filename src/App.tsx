@@ -1,3 +1,4 @@
+import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@principium/alert';
 import { Badge } from '@principium/badge';
 import { Button } from '@principium/button';
 import {
@@ -10,8 +11,7 @@ import {
 } from '@principium/card';
 import { Divider } from '@principium/divider';
 import { cn } from '@principium/shared-utils';
-import { Moon, Sun } from 'lucide-react';
-import { useState } from 'react';
+import { Coffee, Moon, Sun } from 'lucide-react';
 
 function DemoContainer({
   children,
@@ -218,30 +218,92 @@ function CardDemo() {
   );
 }
 
-const ThemeToggle = () => {
-  const [dark, setDark] = useState(false);
+function AlertDemo() {
+  const variants = ['solid', 'bordered', 'flat', 'faded'] as const;
+  const colors = [
+    'default',
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'danger',
+  ] as const;
   return (
-    <Button
-      size="icon"
-      variant="faded"
-      onClick={() => {
-        setDark(!dark);
-        document.body.classList.toggle('dark');
-      }}
-      className="fixed top-5 right-5 z-50"
-    >
-      {dark ? <Moon /> : <Sun />}
-    </Button>
+    <DemoContainer title="Alert Variants">
+      {variants.map((variant) =>
+        colors.map((color) => (
+          <Alert key={variant + color} color={color} variant={variant}>
+            <AlertIcon />
+            <AlertTitle>Alert</AlertTitle>
+            <AlertDescription>
+              This is a {variant} variant alert with {color} color
+            </AlertDescription>
+          </Alert>
+        ))
+      )}
+    </DemoContainer>
+  );
+}
+
+const Themes = () => {
+  const themeOptions = [
+    {
+      name: 'Light',
+      className: 'light',
+      icon: <Sun />,
+      image:
+        'https://images.unsplash.com/photo-1619252584172-a83a949b6efd?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bGlnaHQlMjB0aGVtZXxlbnwwfHwwfHx8MA%3D%3D',
+    },
+    {
+      name: 'Dark',
+      className: 'dark',
+      icon: <Moon />,
+      image:
+        'https://img.freepik.com/free-photo/black-smooth-wall-textured-background_53876-124461.jpg?semt=ais_hybrid&w=740',
+    },
+    {
+      name: 'Coffee',
+      className: 'coffee',
+      icon: <Coffee />,
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAO4TI1FaVtSIrrO9eP-ywv_pEVHopArgzcA&s',
+    },
+  ];
+  return (
+    <div className="fixed top-5 right-5 z-50 flex flex-col gap-3 select-none">
+      {themeOptions.map((theme) => (
+        <Card
+          key={theme.name}
+          isPressable
+          aria-label={`Switch to ${theme.name} theme`}
+          onClick={() => {
+            document.body.className = theme.className;
+          }}
+          className="hover:scale-105 hover:outline-2 hover:outline-offset-2 hover:outline-outline-600"
+        >
+          <CardContent className="relative overflow-hidden p-0 grid place-items-center">
+            <img
+              alt={`${theme.name} theme preview`}
+              className="w-full h-[40px] object-cover rounded-lg opacity-50"
+              src={theme.image}
+            />
+            <span className="absolute z-10 text-xl text-white">{theme.icon}</span>
+          </CardContent>
+          <CardFooter className="text-sm justify-center">{theme.name}</CardFooter>
+        </Card>
+      ))}
+    </div>
   );
 };
 
 function App() {
   return (
-    <div className="flex flex-col p-30 gap-30">
-      <ThemeToggle />
+    <div className="flex flex-col px-60 py-30 gap-30">
+      <Themes />
       <ButtonDemo />
       <BadgeDemo />
       <CardDemo />
+      <AlertDemo />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion, AnimatePresence, clamp, HTMLMotionProps } from 'framer-motion';
-import { RippleItem } from './useRipple';
+import {motion, AnimatePresence, clamp, HTMLMotionProps} from 'framer-motion';
+import {RippleItem} from './useRipple';
 
 interface RippleProps {
   ripples: RippleItem[];
@@ -40,10 +40,10 @@ const Ripple = ({
             height: `${ripple.size}px`,
             ...style,
           }}
-          initial={{ scale: 0, opacity: 0.3 }}
-          animate={{ scale: 2, opacity: 0 }}
-          exit={{ scale: 2, opacity: 0 }}
-          transition={{ duration }}
+          initial={{scale: 0, opacity: 0.3}}
+          animate={{scale: 2, opacity: 0}}
+          exit={{scale: 2, opacity: 0}}
+          transition={{duration}}
           onAnimationComplete={() => onClear(ripple.id)}
           {...motionProps}
         />

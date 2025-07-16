@@ -13,11 +13,14 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "create:pkg": "plop package",
-    "theme:gen": "principium-cli generate-theme"
+    "theme:gen": "principium-cli generate-theme",
+    "format:check": "prettier --check packages/components/**/**/src/** --cache",
+    "format:write": "prettier --write packages/components/**/**/src/** --cache"
   },
   "dependencies": {
-    "@principium/button": "workspace:*",
+    "@principium/alert": "workspace:*",
     "@principium/badge": "workspace:*",
+    "@principium/button": "workspace:*",
     "@principium/card": "workspace:*",
     "@principium/divider": "workspace:*",
     "@principium/shared-utils": "workspace:*",
@@ -28,8 +31,8 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
-    "@principium/cli": "workspace:*",
     "@eslint/js": "^9.30.1",
+    "@principium/cli": "workspace:*",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -43,6 +46,8 @@
     "globals": "^16.3.0",
     "jsdom": "^26.1.0",
     "plop": "^4.0.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "turbo": "^2.5.4",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",

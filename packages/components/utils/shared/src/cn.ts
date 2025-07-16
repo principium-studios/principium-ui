@@ -1,5 +1,5 @@
-import { extendTailwindMerge } from 'tailwind-merge';
-import { clsx, type ClassValue } from 'clsx';
+import {extendTailwindMerge} from 'tailwind-merge';
+import {clsx, type ClassValue} from 'clsx';
 
 const twMerge = extendTailwindMerge({
   extend: {
@@ -13,4 +13,4 @@ function cn(...args: ClassValue[]) {
   return twMerge(clsx(args));
 }
 
-export { cn };
+export {cn};

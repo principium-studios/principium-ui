@@ -8,7 +8,7 @@ type AnyProps = Record<string, any>;
  */
 function combineProps(ourProps: AnyProps, incomingProps: AnyProps) {
   // incoming props take precedence
-  const combinedProps = { ...incomingProps };
+  const combinedProps = {...incomingProps};
 
   // loop over incoming props
   for (const propName in incomingProps) {
@@ -39,8 +39,8 @@ function combineProps(ourProps: AnyProps, incomingProps: AnyProps) {
     }
   }
 
-  return { ...ourProps, ...combinedProps };
+  return {...ourProps, ...combinedProps};
 }
 
-export { combineProps };
-export type { AnyProps };
+export {combineProps};
+export type {AnyProps};
