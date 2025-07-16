@@ -21,8 +21,8 @@ const Card = ({
   return (
     <div
       className={cn(
-        'relative box-border flex h-auto flex-col overflow-hidden rounded-lg border border-border-300 bg-background-100 shadow-sm transition-[background-color_border-color_color_transform_opacity] duration-300',
-        isPressable && 'cursor-pointer active:scale-97 active:opacity-97',
+        'border-border-300 bg-background-100 relative box-border flex flex-col overflow-hidden rounded-lg border shadow-sm transition-[background-color_border-color_color_transform_opacity] duration-300',
+        isPressable && 'active:scale-97 active:opacity-97 cursor-pointer',
         className,
       )}
       onClick={(e) => {
@@ -44,7 +44,7 @@ const CardHeader = ({className, ...props}: CardHeaderProps) => {
   return (
     <div
       className={cn(
-        'overflow-inherit color-inherit z-10 flex w-full shrink-0 items-center justify-start p-3 subpixel-antialiased',
+        'overflow-inherit color-inherit z-10 grid shrink-0 auto-rows-min grid-rows-[auto_auto] items-start items-center justify-start gap-1.5 p-3 subpixel-antialiased',
         className,
       )}
       {...props}
@@ -55,7 +55,7 @@ const CardHeader = ({className, ...props}: CardHeaderProps) => {
 //  CardTitle
 type CardTitleProps = React.ComponentPropsWithRef<'div'>;
 const CardTitle = ({className, ...props}: CardTitleProps) => {
-  return <div className={cn('text-lg font-semibold', className)} {...props} />;
+  return <div className={cn('font-semibold leading-none', className)} {...props} />;
 };
 
 //  CardDescription
@@ -70,7 +70,7 @@ const CardContent = ({className, ...props}: CardContentProps) => {
   return (
     <div
       className={cn(
-        'relative flex h-auto w-full flex-1 flex-col overflow-y-auto p-3 text-left break-words subpixel-antialiased',
+        'p-3 subpixel-antialiased',
         className,
       )}
       {...props}
@@ -84,7 +84,7 @@ const CardFooter = ({className, ...props}: CardFooterProps) => {
   return (
     <div
       className={cn(
-        'color-inherit flex h-auto w-full items-center overflow-hidden p-3 subpixel-antialiased',
+        'flex items-center overflow-hidden p-3 subpixel-antialiased',
         className,
       )}
       {...props}

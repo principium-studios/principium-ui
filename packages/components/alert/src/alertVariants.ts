@@ -181,27 +181,27 @@ const alertIconVariants = cva('', {
     {
       variant: 'solid',
       color: 'primary',
-      class: 'stroke-primary-500 dark:stroke-primary-600',
+      class: 'stroke-primary-400 dark:stroke-primary-600',
     },
     {
       variant: 'solid',
       color: 'secondary',
-      class: 'stroke-secondary-500 dark:stroke-secondary-600',
+      class: 'stroke-secondary-400 dark:stroke-secondary-600',
     },
     {
       variant: 'solid',
       color: 'success',
-      class: 'stroke-success-500 dark:stroke-success-600',
+      class: 'stroke-success-400 dark:stroke-success-600',
     },
     {
       variant: 'solid',
       color: 'warning',
-      class: 'stroke-warning-500 dark:stroke-warning-600',
+      class: 'stroke-warning-400 dark:stroke-warning-600',
     },
     {
       variant: 'solid',
       color: 'danger',
-      class: 'stroke-danger-500 dark:stroke-danger-600',
+      class: 'stroke-danger-400 dark:stroke-danger-600',
     },
     // flat & faded / color
     {
