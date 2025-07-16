@@ -5,13 +5,14 @@
   "type": "module",
   "packageManager": "pnpm@10.13.1",
   "scripts": {
-    "dev:pkg": "turbo run dev --filter @principium/cli",
-    "build": "turbo run build",
-    "build:fast": "turbo run build:fast",
+    "sb": "pnpm --filter @principium/storybook dev",
+    "dev:comp": "turbo run dev",
+    "build": "turbo run build --filter=!@principium/storybook",
+    "build:fast": "turbo run build:fast --filter=!@principium/storybook",
     "typecheck": "turbo run typecheck",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "create:pkg": "plop package",
+    "create:comp": "plop component",
     "format:check": "prettier --check packages/components/**/**/src/** --cache",
     "format:write": "prettier --write packages/components/**/**/src/** --cache"
   },

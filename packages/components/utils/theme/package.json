@@ -1,9 +1,9 @@
 {
-  "name": "@principium/button",
+  "name": "@principium/theme",
   "version": "0.1.0",
-  "description": "Buttons allow users to perform actions and choose with a single tap.",
+  "description": "",
   "keywords": [
-    "button"
+    "theme"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://principium.dev",
@@ -13,9 +13,6 @@
   "files": [
     "dist"
   ],
-  "bugs": {
-    "url": "https://github.com/rarescovei5/principium/issues"
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -23,31 +20,19 @@
       "import": "./dist/index.mjs"
     }
   },
+  "bugs": {
+    "url": "https://github.com/rarescovei5/principium/issues"
+  },
   "scripts": {
     "build": "tsup src --dts",
     "build:fast": "tsup src",
     "dev": "pnpm build:fast --watch",
     "typecheck": "tsc --noEmit"
   },
-  "peerDependencies": {
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwindcss": "^4.0.0"
-  },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^24.0.13",
     "eslint": "^9.16.0",
     "tsup": "^8.5.0",
     "typescript": "^5.5.2"
-  },
-  "dependencies": {
-    "@principium/primitive": "workspace:*",
-    "@principium/ripple": "workspace:*",
-    "@principium/shared-utils": "workspace:*",
-    "@principium/theme": "workspace:*",
-    "class-variance-authority": "^0.7.1"
   }
 }

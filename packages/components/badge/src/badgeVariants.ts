@@ -1,5 +1,5 @@
 import {cva} from 'class-variance-authority';
-import {colorVariants} from '@principium/shared-utils';
+import {colorVariants} from '@principium/theme';
 
 export const BadgeVariants = cva(
   'absolute box-border flex origin-center scale-100 items-center justify-center rounded-full subpixel-antialiased opacity-100 select-none data-[hidden]:scale-0 data-[hidden]:opacity-0',

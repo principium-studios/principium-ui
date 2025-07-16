@@ -1,69 +1,50 @@
-# React + TypeScript + Vite
+# Principium React Component Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A collection of reusable, accessible and customizable React components.
 
-Currently, two official plugins are available:
+## Components
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Component                                          | Description                                         |
+| -------------------------------------------------- | --------------------------------------------------- |
+| [Alert](./packages/components/alert)               | Primitive for alert / call-out messages             |
+| [Badge](./packages/components/badge)               | Small status label to highlight information         |
+| [Button](./packages/components/button)             | Accessible button with configurable variants        |
+| [Card](./packages/components/card)                 | Surface container with header / body / footer slots |
+| [Divider](./packages/components/divider)           | Horizontal / vertical separator                     |
 
-## Expanding the ESLint configuration
+| Helper Component                                   | Description                                         |
+| -------------------------------------------------- | --------------------------------------------------- |
+| [Primitive](./packages/components/utils/primitive) | Helper that adds `asChild` support to any element   |
+| [Slot](./packages/components/utils/slot)           | Utility for slot-based composition                  |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Contributing
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Contributions are always welcome!
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### 1. Creating a new component
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- You can create a new component via the `pnpm run create:comp` command.
+- The starter template includes a shared **tsup.config.ts** and **tsconfig.json**, so you don't need to configure them yourself. It also contains a **package.json** with all the necessary scripts and minimal dependencies.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Making a component
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- The components in this project are built to be used like shadcn components and styled to resemble HeroUI.
+- Naming should be in the format of `[component-name]`, `[component-name]Trigger`, `[component-name]Content` or other variants.
+- Styling should be done using Tailwind CSS. For components that provide variants and colors you can use the `class-variance-authority` package alongside the [colorVariants](./packages/components/utils/shared/src/colorVariants.ts) helper to match each case.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 3. Building the components
+
+- To build the components run `pnpm run build` or `pnpm run build:fast` to build the components without typechecking.
+- To typecheck the components run `pnpm run typecheck`.
+
+### 4. Testing the components
+
+- To test the components run `pnpm run test` or `pnpm run test:ui` to test the components with vitest or vitest ui.
+
+### 5. Formatting the components
+
+- To format the components run `pnpm run format:check` to check if the components are formatted correctly or `pnpm run format:write` to format the components.
+
+### 6. Development
+
+- Run `pnpm run sb` to start the custom "storybook" server.

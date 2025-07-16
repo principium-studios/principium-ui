@@ -1,4 +1,4 @@
-import {colorVariants} from '@principium/shared-utils';
+import {colorVariants} from '@principium/theme';
 import {cva} from 'class-variance-authority';
 
 const buttonVariants = cva(

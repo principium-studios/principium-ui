@@ -1,9 +1,9 @@
 {
-  "name": "@principium/cli",
+  "name": "@principium/{{componentName}}",
   "version": "0.1.0",
-  "description": "",
+  "description": "{{description}}",
   "keywords": [
-    "cli"
+    "{{componentName}}"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://principium.dev",
@@ -13,8 +13,12 @@
   "files": [
     "dist"
   ],
-  "bin": {
-    "principium-cli": "dist/index.js"
+   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    } 
   },
   "bugs": {
     "url": "https://github.com/rarescovei5/principium/issues"
@@ -23,12 +27,13 @@
     "build": "tsup src --dts",
     "build:fast": "tsup src",
     "dev": "pnpm build:fast --watch",
-    "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "commander": "^14.0.0",
-    "globby": "^14.1.0"
+  "peerDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
@@ -36,5 +41,8 @@
     "eslint": "^9.16.0",
     "tsup": "^8.5.0",
     "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "@principium/shared-utils": "workspace:*"
   }
 }
