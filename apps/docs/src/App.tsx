@@ -1,8 +1,12 @@
-import {Button} from '@principium/button';
+import { Badge } from '@principium/badge';
 import React from 'react';
 
 function App() {
-  return <Button>Button</Button>  ;
+  return (
+    <>
+      <Badge content={"2"}>Badge</Badge>
+    </>
+  );
 }
 
 export default App;

@@ -1,4 +1,3 @@
-// plopfile.js
 module.exports = function (plop) {
   // Helper to convert text to kebab-case
   plop.setHelper('dashCase', (text) =>
