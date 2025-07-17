@@ -16,7 +16,7 @@ type Slots =
   | {
       [slotName: string]: ClassValue;
     }
-  | string;
+  | ClassValue;
 
 /**
  * Variants define named variant categories, each with options that

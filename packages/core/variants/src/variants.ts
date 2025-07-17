@@ -4,7 +4,9 @@ const pv: PV = (slots, config) => {
 };
 
 const base = pv(
-  "",
+  {
+    base: "px-4 4py-2"
+  },
   {
     variants: {
       variant: {
