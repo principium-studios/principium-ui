@@ -1,4 +1,4 @@
-import { principium } from "@principium/plugin";
+import { principium } from "@principium/theme";
 
 export default principium({
     defaultTheme: "light",

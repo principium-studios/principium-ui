@@ -1,6 +1,6 @@
 import React from 'react';
-import {AnyProps, combineProps} from '@principium/shared-utils';
-import {combineRefs} from '@principium/shared-utils';
+import {AnyProps, combineProps} from './combineProps';
+import {combineRefs} from './combineRefs';
 
 interface SlotProps extends React.HTMLAttributes<HTMLElement> {
   ref?: React.Ref<HTMLElement>;
@@ -50,4 +50,4 @@ function createSlot(ownerName: string) {
 
 const Slot = createSlot('Slot');
 
-export {Slot, createSlot};
+export {Slot, createSlot, combineProps, combineRefs};

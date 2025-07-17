@@ -78,10 +78,10 @@ export const principium = (opts: PrincipiumConfig): ReturnType<typeof plugin> =>
         const varName = `--${colorName}-${shadeKey}`;
         const varValue = `hsl(${hue}, ${saturation}%, ${lightness})`;
 
-        // 1) collect CSS variable under the selector
+        // 1) Collect css variables under the selector (theme)
         baseVars[selector][varName] = varValue;
 
-        // 2) prepare utilities for this variable
+        // 2) Prepare utilities for this variable
         palette[colorName][shadeKey] = `var(${varName})`;
       }
     }
