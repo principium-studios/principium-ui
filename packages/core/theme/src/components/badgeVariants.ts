@@ -66,8 +66,8 @@ const badgeVariants = tv({
       true: {},
     },
     showOutline: {
-      true: 'border-background-50 border-2',
-      false: 'border-0 border-transparent',
+      true: {badge: 'border-background-50 border-2'},
+      false: {badge: 'border-0 border-transparent'},
     },
   },
   defaultVariants: {
