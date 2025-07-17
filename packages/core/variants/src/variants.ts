@@ -1,36 +1,34 @@
 import {PV} from './types';
 
 const pv: PV = (slots, config) => {
-  
-
-    if()
 };
 
-const badgeVariants = pv({
-    base: ""
-  },{
-  variants: {
-    variant: {
-      solid: {
-        base: ""
+const base = pv(
+  "",
+  {
+    variants: {
+      variant: {
+        solid: "",
+        flat: '',
+        faded: '',
+        shadow: '',
       },
-      flat: "",
-      faded: "",
-      shadow: "",
+      size: {
+        sm: '',
+        md: '',
+        lg: '',
+      },
     },
-    size: {
-      sm: "",
-      md: "",
-      lg: "",
+    compoundVariants: [
+      {
+        size: 'sm',
+        className: '',
+      },
+    ],
+    defaultVariants: {
+      variant: 'solid',
     },
   },
-  compoundVariants: [
-    {
-      size: 'sm',
-      className: "",
-    },
-  ],
-  defaultVariants: {
-    variant: 'solid',
-  },
-});
+);
+
+base({variant: "solid", size: "lg"});

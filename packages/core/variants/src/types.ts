@@ -5,18 +5,12 @@ type ClassValueArray = ClassValue[];
 // _______________________ Types _______________________
 
 /**
- * Slots can be an object of slots like
- *
- * @example
- * ```ts
- * {
- *     base: "",
- *     title: "",
- *     description: ""
- * }
- * ```
- *
- * If u only need a single slot, you can pass a string
+ * Slots can be either:
+ *  - an object mapping slot names to ClassValue, e.g.:
+ *    ```ts
+ *    { base: "", title: "", description: "" }
+ *    ```
+ *  - a single slot name (string), for components without multiple parts
  */
 type Slots =
   | {
@@ -25,48 +19,21 @@ type Slots =
   | string;
 
 /**
- * Variants can be an object of variants:
+ * Variants define named variant categories, each with options that
+ * assign classes (or per-slot overrides) for that variant.
  *
  * @example
  * ```ts
- * {
- *     variant: {
- *         solid: {
- *             base: "",
- *             title: ""
- *         }
- *         flat: {
- *             base: "",
- *             description: ""
- *         }
- *         faded: {
- *             base: ""
- *         }
- *         shadow: {
- *             base: "",
- *             title: "",
- *             description: ""
- *         }
- *     }
- * }
- * ```
- *
- * If u need to apply classnames to all slots, you can pass a string:
- *
- * @example
- * ```ts
- * {
- *     variant: {
- *         solid: "",
- *         flat: "",
- *         faded: "",
- *         shadow: ""
- *     }
- *     size: {
- *         sm: "",
- *         md: "",
- *         lg: ""
- *     }
+ * variants: {
+ *   size: {
+ *     sm: { base: "px-2 py-1" },
+ *     md: { base: "px-3 py-1.5" },
+ *     lg: "px-4 py-2",
+ *   },
+ *   color: {
+ *     primary: "bg-blue-500 text-white",
+ *     secondary: { base: "bg-gray-200 text-black" }
+ *   }
  * }
  * ```
  */
@@ -81,13 +48,13 @@ type Variants<S extends Slots | undefined> = {
 };
 
 /**
- * Default variants is an object of default variants and their options like
+ * DefaultVariants sets the initial option for each named variant.
  *
  * @example
  * ```ts
- * {
- *     variant: "solid"
- *     size: "md"
+ * defaultVariants: {
+ *   size: "md",
+ *   color: "primary"
  * }
  * ```
  */
@@ -96,23 +63,23 @@ type DefaultVariants<V extends Variants<Slots>> = {
 };
 
 /**
- * Compound variants is an array of objects of variants and their options, with a required className property
+ * CompoundVariants is an array of configurations that apply when
+ * a specific combination of variant values is selected.
+ * Each entry must include a `className` override, either global
+ * or per-slot.
  *
  * @example
  * ```ts
- * [
- *     {
- *         size: "md",
- *         className: {
- *             base: "",
- *             title: ""
- *         }
- *     },
- *     {
- *         variant: "flat",
- *         size: "lg",
- *         className: ""
- *     }
+ * compoundVariants: [
+ *   {
+ *     size: "md",
+ *     color: "primary",
+ *     className: { base: "font-bold", title: "uppercase" }
+ *   },
+ *   {
+ *     size: "lg",
+ *     className: "shadow-lg"
+ *   }
  * ]
  * ```
  */
@@ -128,11 +95,29 @@ type CompoundVariants<V extends Variants<Slots>, S extends Slots> = Array<
   }
 >;
 
-// _______________________ Factory Function Type _______________________
-type PVReturnType<V extends Variants<Slots>> = Array<
-  (props: {[variantName in keyof V]: V[variantName]}) => any
->;
+// _______________________ Factory Function Types _______________________
 
+/**
+ * Core function signature for a single-slot component.
+ * Accepts exact variant props and returns any result (e.g., class string).
+ */
+type PVSlotFNType<V extends Variants<Slots>> = (props: {[variantName in keyof V]: keyof V[variantName]}) => any;
+
+/**
+ * The return type of the `pv` factory function:
+ * - When `S` is a `string`, returns one function (for single slot).
+ * - When `S` is an object, returns a map of functions keyed by slot names.
+ */
+type PVReturnType<V extends Variants<Slots>, S extends Slots> = S extends string
+  ? PVSlotFNType<V>
+  : Record<keyof S, PVSlotFNType<V>>;
+
+/**
+ * Variant factory:
+ * Alternative to multiple `cva()` calls for each slot.
+ * Define slots, variants, compoundVariants, and defaultVariants
+ * in a single primitive factory invocation.
+ */
 type PV = <
   S extends Slots,
   V extends Variants<S>,
@@ -145,6 +130,6 @@ type PV = <
     compoundVariants?: CV;
     defaultVariants?: DV;
   },
-) => PVReturnType<V>;
+) => PVReturnType<V, S>;
 
 export type {PV};
