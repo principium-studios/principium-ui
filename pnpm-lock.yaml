@@ -187,6 +187,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.0
         version: 19.1.6(@types/react@19.1.8)
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)
@@ -205,30 +208,15 @@ importers:
       '@principium/ripple':
         specifier: workspace:*
         version: link:../utils/ripple
-      '@principium/shared-utils':
-        specifier: workspace:*
-        version: link:../utils/shared
       '@principium/theme':
         specifier: workspace:*
         version: link:../../core/theme
-      '@types/react':
-        specifier: ^19.0.0
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: ^19.0.0
-        version: 19.1.6(@types/react@19.1.8)
-      class-variance-authority:
-        specifier: ^0.7.1
-        version: 0.7.1
       react:
         specifier: ^19.0.0
         version: 19.1.0
       react-dom:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
-      tailwindcss:
-        specifier: ^4.0.0
-        version: 4.1.11
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -236,6 +224,15 @@ importers:
       '@types/node':
         specifier: ^24.0.13
         version: 24.0.13
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.1.6(@types/react@19.1.8)
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)
@@ -251,15 +248,9 @@ importers:
       '@principium/ripple':
         specifier: workspace:*
         version: link:../utils/ripple
-      '@principium/shared-utils':
+      '@principium/theme':
         specifier: workspace:*
-        version: link:../utils/shared
-      '@types/react':
-        specifier: ^19.0.0
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: ^19.0.0
-        version: 19.1.6(@types/react@19.1.8)
+        version: link:../../core/theme
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -273,6 +264,15 @@ importers:
       '@types/node':
         specifier: ^24.0.13
         version: 24.0.13
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.1.6(@types/react@19.1.8)
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)
@@ -285,18 +285,9 @@ importers:
 
   packages/components/divider:
     dependencies:
-      '@principium/shared-utils':
+      '@principium/theme':
         specifier: workspace:*
-        version: link:../utils/shared
-      '@types/react':
-        specifier: ^19.0.0
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: ^19.0.0
-        version: 19.1.6(@types/react@19.1.8)
-      class-variance-authority:
-        specifier: ^0.7.1
-        version: 0.7.1
+        version: link:../../core/theme
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -310,6 +301,15 @@ importers:
       '@types/node':
         specifier: ^24.0.13
         version: 24.0.13
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.1.6(@types/react@19.1.8)
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)
@@ -322,15 +322,6 @@ importers:
 
   packages/components/utils/context:
     dependencies:
-      '@principium/shared-utils':
-        specifier: workspace:*
-        version: link:../shared
-      '@types/react':
-        specifier: ^19.0.0
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: ^19.0.0
-        version: 19.1.6(@types/react@19.1.8)
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -344,6 +335,15 @@ importers:
       '@types/node':
         specifier: ^24.0.13
         version: 24.0.13
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.1.6(@types/react@19.1.8)
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)
@@ -359,12 +359,6 @@ importers:
       '@principium/slot':
         specifier: workspace:*
         version: link:../slot
-      '@types/react':
-        specifier: ^19.0.0
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: ^19.0.0
-        version: 19.1.6(@types/react@19.1.8)
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -378,6 +372,15 @@ importers:
       '@types/node':
         specifier: ^24.0.13
         version: 24.0.13
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.1.6(@types/react@19.1.8)
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)
@@ -390,12 +393,6 @@ importers:
 
   packages/components/utils/ripple:
     dependencies:
-      '@types/react':
-        specifier: ^19.0.0
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: ^19.0.0
-        version: 19.1.6(@types/react@19.1.8)
       framer-motion:
         specifier: ^12.0.0
         version: 12.23.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -412,43 +409,15 @@ importers:
       '@types/node':
         specifier: ^24.0.13
         version: 24.0.13
-      eslint:
-        specifier: ^9.16.0
-        version: 9.30.1(jiti@2.4.2)
-      tsup:
-        specifier: ^8.5.0
-        version: 8.5.0(jiti@2.4.2)(postcss@8.5.6)(typescript@5.8.3)(yaml@2.8.0)
-      typescript:
-        specifier: ^5.5.2
-        version: 5.8.3
-
-  packages/components/utils/shared:
-    dependencies:
       '@types/react':
         specifier: ^19.0.0
         version: 19.1.8
       '@types/react-dom':
         specifier: ^19.0.0
         version: 19.1.6(@types/react@19.1.8)
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      react:
-        specifier: ^19.0.0
-        version: 19.1.0
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.1.0(react@19.1.0)
-      tailwind-merge:
-        specifier: ^3.3.1
-        version: 3.3.1
-    devDependencies:
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../../../internal/typescript-config
-      '@types/node':
-        specifier: ^24.0.13
-        version: 24.0.13
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)
@@ -461,15 +430,6 @@ importers:
 
   packages/components/utils/slot:
     dependencies:
-      '@principium/shared-utils':
-        specifier: workspace:*
-        version: link:../shared
-      '@types/react':
-        specifier: ^19.0.0
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: ^19.0.0
-        version: 19.1.6(@types/react@19.1.8)
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -483,6 +443,15 @@ importers:
       '@types/node':
         specifier: ^24.0.13
         version: 24.0.13
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.1.6(@types/react@19.1.8)
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)
@@ -514,6 +483,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../../internal/typescript-config
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)

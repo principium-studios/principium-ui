@@ -138,14 +138,6 @@ const AlertIcon = ({className, children, ...props}: AlertIconProps) => {
   );
 };
 
-export {
-  Alert,
-  AlertTitle,
-  AlertDescription,
-  AlertIcon,
-  //
-  AlertProps,
-  AlertTitleProps,
-  AlertDescriptionProps,
-  AlertIconProps,
-};
+export {Alert, AlertTitle, AlertDescription, AlertIcon};
+
+export type {AlertProps, AlertTitleProps, AlertDescriptionProps, AlertIconProps};
