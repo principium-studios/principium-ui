@@ -1,6 +1,6 @@
 import {Primitive, type PrimitiveProps} from '@principium/primitive';
 import {Ripple, useRipple} from '@principium/ripple';
-import {button, type ButtonVariantProps} from "@principium/theme";
+import {buttonVariants, type ButtonVariantProps} from "@principium/theme";
 
 // ____________________ Button Component ____________________
 type ButtonProps = PrimitiveProps<'button'> &
@@ -29,8 +29,8 @@ const Button = ({
       }}
       disabled={disabled}
       aria-disabled={disabled}
-      className={button({variant, size, color, className})}
-    >
+      className={buttonVariants({variant, size, color, className})}
+     >
       {children}
       {!disableRipple && <Ripple ripples={ripples} onClear={removeRipple} />}
     </Primitive.button>

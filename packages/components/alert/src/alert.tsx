@@ -1,6 +1,6 @@
 import React from 'react';
 import {createContext} from '@principium/context';
-import {alert, AlertSlots, AlertVariantProps} from '@principium/theme';
+import {alertVariants, AlertSlots, AlertVariantProps} from '@principium/theme';
 import {Slot} from '@principium/slot';
 
 type AlertContextType = Record<
@@ -14,7 +14,7 @@ const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
 // ________________________ Alert ________________________
 type AlertProps = React.ComponentPropsWithRef<'div'> & AlertVariantProps;
 const Alert = ({className, variant, color, ...props}: AlertProps) => {
-  const {base, title, description, iconWrapper, alertIcon} = alert({variant, color});
+  const {base, title, description, iconWrapper, alertIcon} = alertVariants({variant, color});
   
   const defaultAlertIcon = React.useMemo(() => {
     switch (color) {

@@ -1,11 +1,9 @@
 import React from 'react';
 import {Primitive, type PrimitiveProps} from '@principium/primitive';
-import {cn} from '@principium/shared-utils';
-import {type VariantProps} from 'class-variance-authority';
-import {BadgeVariants} from './badgeVariants';
+import {badgeVariants, type BadgeVariantProps} from '@principium/theme';
 
 type BadgeProps = PrimitiveProps<'div'> &
-  VariantProps<typeof BadgeVariants> & {
+  BadgeVariantProps & {
     content?: React.ReactNode;
   };
 const Badge = ({
@@ -24,23 +22,23 @@ const Badge = ({
 
   const isDot = React.useMemo(() => String(content)?.length === 0, [content]);
 
+  const {badge, base} = badgeVariants({
+    variant,
+    size,
+    shape,
+    placement,
+    color,
+    showOutline,
+    isOneChar,
+    isDot,
+    className,
+  });
+
   return (
-    <div className="relative shrink-0">
+    <div className={base()}>
       {/* Badge */}
       <Primitive.span
-        className={cn(
-          BadgeVariants({
-            variant,
-            size,
-            shape,
-            placement,
-            color,
-            showOutline,
-            isOneChar,
-            isDot,
-            className,
-          }),
-        )}
+        className={badge()}
         {...props}
       >
         {content}
@@ -51,8 +49,5 @@ const Badge = ({
   );
 };
 
-export {
-  Badge,
-  //
-  BadgeProps,
-};
+export {Badge};
+export type {BadgeProps};

@@ -1,7 +1,7 @@
 import { VariantProps } from 'tailwind-variants';
 import {colorVariants, tv} from '../utils';
 
-const button = tv({
+const buttonVariants = tv({
   base: 'transition-[background-color, border-color, color, transform, opacity] focus-visible:outline-outline hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md text-sm font-medium duration-300 focus:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-transparent disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0',
   variants: {
     variant: {
@@ -269,6 +269,6 @@ const button = tv({
   },
 });
 
-export type ButtonVariantProps = VariantProps<typeof button>;
+export type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
-export {button};
+export {buttonVariants};

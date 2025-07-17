@@ -19,7 +19,7 @@ import {colorVariants} from '../utils';
  * </div>
  * ```
  */
-const alert = tv({
+const alertVariants = tv({
   slots: {
     base: 'relative grid grid-cols-[0_1fr] grid-rows-[1fr] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3',
     title: "col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight",
@@ -285,7 +285,7 @@ const alert = tv({
   ],
 });
 
-export type AlertVariantProps = VariantProps<typeof alert>;
-export type AlertSlots = keyof ReturnType<typeof alert>;
+export type AlertVariantProps = VariantProps<typeof alertVariants>;
+export type AlertSlots = keyof ReturnType<typeof alertVariants>;
 
-export {alert};
+export {alertVariants};
