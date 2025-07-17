@@ -60,7 +60,7 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0(vitest@3.2.4)
 
-  apps/storybook:
+  apps/docs:
     dependencies:
       '@principium/alert':
         specifier: workspace:*
@@ -125,6 +125,9 @@ importers:
       '@principium/context':
         specifier: workspace:*
         version: link:../utils/context
+      '@principium/slot':
+        specifier: workspace:*
+        version: link:../utils/slot
       '@principium/theme':
         specifier: workspace:*
         version: link:../../core/theme
@@ -430,6 +433,9 @@ importers:
 
   packages/components/utils/slot:
     dependencies:
+      '@principium/theme':
+        specifier: workspace:*
+        version: link:../../../core/theme
       react:
         specifier: ^19.0.0
         version: 19.1.0

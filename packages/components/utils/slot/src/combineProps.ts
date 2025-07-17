@@ -1,3 +1,5 @@
+import {cn} from '@principium/theme';
+
 type AnyProps = Record<string, any>;
 
 /**
@@ -36,6 +38,10 @@ function combineProps(ourProps: AnyProps, incomingProps: AnyProps) {
         ...ourValue,
         ...incomingValue,
       };
+    }
+    // Handle className
+    else if (propName === 'className') {
+      combinedProps[propName] = cn(ourValue, incomingValue);
     }
   }
 

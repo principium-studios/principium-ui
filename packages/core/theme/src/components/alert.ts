@@ -21,7 +21,7 @@ import {colorVariants} from '../utils';
  */
 const alert = tv({
   slots: {
-    base: 'relative grid grid-cols-[0_1fr] grid-rows-[max-content] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3',
+    base: 'relative grid grid-cols-[0_1fr] grid-rows-[1fr] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3',
     title: "col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight",
     description:  "text-muted-600 col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed",
     iconWrapper: 'flex-none relative w-9 h-9 rounded-full grid place-items-center',
@@ -40,10 +40,10 @@ const alert = tv({
       solid: {},
       flat: {},
       faded: {
-        base: 'border-sm',
+        base: 'border-1',
       },
       bordered: {
-        base: 'border-sm bg-transparent',
+        base: 'border-1 bg-transparent',
       },
     },
     hideIconWrapper: {

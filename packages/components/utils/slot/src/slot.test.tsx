@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {render, screen, cleanup} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {describe, it, beforeEach, afterEach, vi, expect} from 'vitest';
+import {describe, it, afterEach, vi, expect} from 'vitest';
 import {Slot} from './index';
 
 // Tiny wrapper to drive <Slot>

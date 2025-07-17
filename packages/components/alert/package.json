@@ -55,7 +55,8 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
-    "@principium/context": "workspace:*"
+    "@principium/context": "workspace:*",
+    "@principium/slot": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

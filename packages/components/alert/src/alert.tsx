@@ -1,8 +1,12 @@
 import React from 'react';
 import {createContext} from '@principium/context';
 import {alert, AlertSlots, AlertVariantProps} from '@principium/theme';
+import {Slot} from '@principium/slot';
 
-type AlertContextType = Record<Exclude<AlertSlots, 'base' | 'alertIcon'>, string> & {
+type AlertContextType = Record<
+  Exclude<AlertSlots, 'base' | 'alertIcon'>,
+  (props?: any) => string
+> & {
   defaultAlertIcon: React.ReactNode;
 };
 const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
@@ -11,6 +15,7 @@ const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
 type AlertProps = React.ComponentPropsWithRef<'div'> & AlertVariantProps;
 const Alert = ({className, variant, color, ...props}: AlertProps) => {
   const {base, title, description, iconWrapper, alertIcon} = alert({variant, color});
+  
   const defaultAlertIcon = React.useMemo(() => {
     switch (color) {
       case 'success':
@@ -99,16 +104,16 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
           </svg>
         );
     }
-  }, [color]);
+  }, [alertIcon]);
 
   return (
     <AlertProvider
       defaultAlertIcon={defaultAlertIcon}
-      title={title()}
-      description={description()}
-      iconWrapper={iconWrapper()}
+      title={title}
+      description={description}
+      iconWrapper={iconWrapper}
     >
-      <div className={base()} {...props} />
+      <div className={base({className})} {...props} />
     </AlertProvider>
   );
 };
@@ -117,14 +122,14 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
 type AlertTitleProps = React.ComponentPropsWithRef<'div'>;
 const AlertTitle = ({className, ...props}: AlertTitleProps) => {
   const {title} = useAlert();
-  return <div className={title} {...props} />;
+  return <div className={title({className})} {...props} />;
 };
 
 // ________________________ AlertDescription ________________________
 type AlertDescriptionProps = React.ComponentPropsWithRef<'div'>;
 const AlertDescription = ({className, ...props}: AlertDescriptionProps) => {
   const {description} = useAlert();
-  return <div className={description} {...props} />;
+  return <div className={description({className})} {...props} />;
 };
 
 // ________________________ AlertIcon ________________________
@@ -132,8 +137,8 @@ type AlertIconProps = React.ComponentPropsWithRef<'div'>;
 const AlertIcon = ({className, children, ...props}: AlertIconProps) => {
   const {iconWrapper, defaultAlertIcon} = useAlert();
   return (
-    <div className={iconWrapper} {...props}>
-      {children ? children : defaultAlertIcon}
+    <div className={iconWrapper({className})} {...props}>
+      {children ? <Slot className={iconWrapper()}>{children}</Slot> : defaultAlertIcon}
     </div>
   );
 };
