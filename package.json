@@ -5,10 +5,10 @@
   "type": "module",
   "packageManager": "pnpm@10.13.1",
   "scripts": {
-    "sb": "pnpm --filter @principium/storybook dev",
+    "sb": "pnpm --filter @principium/docs dev",
     "dev:comp": "turbo run dev",
-    "build": "turbo run build --filter=!@principium/storybook",
-    "build:fast": "turbo run build:fast --filter=!@principium/storybook",
+    "build": "turbo run build --filter=!@principium/docs",
+    "build:fast": "turbo run build:fast --filter=!@principium/docs",
     "typecheck": "turbo run typecheck",
     "test": "vitest",
     "test:ui": "vitest --ui",
