@@ -1,6 +1,6 @@
 import type {VariantProps} from 'tailwind-variants';
 
-import {tv} from '../utils/tv';
+import {pv} from '@principium/variants';
 import {colorVariants} from '../utils';
 /**
  * Alert wrapper **Tailwind Variants** component
@@ -19,14 +19,15 @@ import {colorVariants} from '../utils';
  * </div>
  * ```
  */
-const alertVariants = tv({
-  slots: {
-    base: 'relative grid grid-cols-[0_1fr] grid-rows-[1fr] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3',
+const alertVariants = pv({
+  base: 'relative grid grid-cols-[0_1fr] grid-rows-[1fr] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3',
     title: "col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight",
     description:  "text-muted-600 col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed",
     iconWrapper: 'flex-none relative w-9 h-9 rounded-full grid place-items-center',
     alertIcon: 'fill-current w-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-  },
+  
+},{
+  
   variants: {
     color: {
       default: {},

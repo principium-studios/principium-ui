@@ -40,14 +40,25 @@ export type DefaultVariants<V extends Variants<S>, S extends Slots> = {
 /**
  * CompoundVariants apply classes when specific variant combinations are active
  */
+
+export type ClassProp<S extends Slots> =
+  | {
+      class?: S extends Record<string, any>
+        ? ClassValue | {[slotName in keyof S]?: ClassValue}
+        : ClassValue;
+      className?: never;
+    }
+  | {
+      class?: never;
+      className?: S extends Record<string, any>
+        ? ClassValue | {[slotName in keyof S]?: ClassValue}
+        : ClassValue;
+    };
+
 export type CompoundVariants<V extends Variants<S>, S extends Slots> = Array<
   {
     [variantName in keyof V]?: keyof V[variantName] | boolean;
-  } & {
-    className: S extends Record<string, any>
-      ? ClassValue | {[slotName in keyof S]?: ClassValue}
-      : ClassValue;
-  }
+  } & ClassProp<S>
 >;
 
 /**

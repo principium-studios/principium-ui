@@ -84,7 +84,7 @@ function evaluateCompoundVariants<
   return config.compoundVariants
     .filter((compound) => {
       return Object.entries(compound).every(([key, value]) => {
-        if (key === 'className') return true;
+        if (key === 'className' || key === 'class') return true;
 
         // Compare the **pickedVariantOption** with the variantOption in the compound variant
         const propValue = props[key as keyof V];
@@ -93,16 +93,19 @@ function evaluateCompoundVariants<
       });
     })
     .map((compound) => {
-      // If there is no className, return an empty string
-      if(!compound.className) return '';
+      // Get the class value from either className or class property
+      const classValue = compound.className || compound.class;
+      
+      // If there is no class value, return an empty string
+      if (!classValue) return '';
 
-      // If the className is a string, return it
-      if (typeof compound.className === 'string') {
-        return compound.className;
+      // If the class value is a string, return it
+      if (typeof classValue === 'string') {
+        return classValue;
       }
 
-      // If the className is an object, return the className for the slotName
-      return compound.className[slotName as string] || '';
+      // If the class value is an object, return the class for the slotName
+      return classValue[slotName as string] || '';
     })
     .filter(Boolean)
     .join(' ');
@@ -188,39 +191,3 @@ export function pv<
   }
   return result as any;
 }
-
-// Example usage:
-// Single slot
-const button = pv('btn', {
-  variants: {
-    size: {
-      sm: 'text-sm',
-      md: 'text-md',
-      lg: 'text-lg',
-    },
-  },
-  defaultVariants: {
-    size: 'md',
-  },
-});
-
-// Multi-slot
-const card = pv(
-  {
-    header: 'card-header',
-    body: 'card-body',
-    footer: 'card-footer',
-  },
-  {
-    variants: {
-      size: {
-        sm: 'text-sm',
-        md: 'text-md',
-        lg: 'text-lg',
-      },
-    },
-    defaultVariants: {
-      size: 'md',
-    },
-  },
-);
