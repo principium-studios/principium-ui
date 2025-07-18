@@ -89,6 +89,13 @@ function evaluateCompoundVariants<
         // Compare the **pickedVariantOption** with the variantOption in the compound variant
         const propValue = props[key as keyof V];
         const compoundValue = normalizeVariantValue(value);
+        
+        // If the compound value is an array, check if the pickedOption matches every option in the array
+        if (Array.isArray(compoundValue)) {
+          return compoundValue.every(v => normalizeVariantValue(propValue) === normalizeVariantValue(v));
+        }
+        
+        // Otherwise do a direct comparison
         return normalizeVariantValue(propValue) === compoundValue;
       });
     })
