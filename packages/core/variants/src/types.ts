@@ -81,7 +81,7 @@ export type SlotFunction<V extends Variants<S>, S extends Slots> = (
 /**
  * Return type for pv() - a record of slot functions
  */
-export type PvReturn<S extends MultiSlots, V extends Variants<S>> = {
+export type SlotFunctions<S extends MultiSlots, V extends Variants<S>> = {
   [K in keyof S]: SlotFunction<V, S>;
 };
 

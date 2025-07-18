@@ -6,10 +6,11 @@ import {
   CompoundVariants,
   VariantConfig,
   VariantProps,
-  PvReturn,
   ClassValue,
   InvalidVariantError,
   InvalidVariantValueError,
+  SlotFunction,
+  SlotFunctions,
 } from './types';
 
 /**
@@ -32,11 +33,14 @@ function validateVariantProps<
   CV extends CompoundVariants<V, S>,
 >(props: VariantProps<V, S> | undefined, config: VariantConfig<S, V, DV, CV>): void {
   if (!props || !config.variants) return;
-
+  
   for (const [key, value] of Object.entries(props)) {
+    // If provided variant is not in the config, throw an error
     if (!config.variants[key]) {
       throw new InvalidVariantError(key);
     }
+
+    // If provided option is not in the variant, throw an error
     const normalizedValue = normalizeVariantValue(value);
     if (normalizedValue && !config.variants[key][normalizedValue]) {
       throw new InvalidVariantValueError(key, String(value));
@@ -51,6 +55,11 @@ function getVariantClass<S extends Slots>(
   slotName: keyof S | null,
   variantValue: unknown,
 ): ClassValue {
+  /**
+   * This handles:
+   * - If the variant option is an object apply it only to the slotName, otherwise apply it to all slots
+   * - If slotName is null, apply the variant to the base (baisically still all slots)
+   */
   if (typeof variantValue === 'object' && variantValue !== null && slotName) {
     return (variantValue as Record<string, ClassValue>)[slotName as string];
   }
@@ -76,19 +85,24 @@ function evaluateCompoundVariants<
     .filter((compound) => {
       return Object.entries(compound).every(([key, value]) => {
         if (key === 'className') return true;
+
+        // Compare the **pickedVariantOption** with the variantOption in the compound variant
         const propValue = props[key as keyof V];
         const compoundValue = normalizeVariantValue(value);
         return normalizeVariantValue(propValue) === compoundValue;
       });
     })
     .map((compound) => {
+      // If there is no className, return an empty string
+      if(!compound.className) return '';
+
+      // If the className is a string, return it
       if (typeof compound.className === 'string') {
         return compound.className;
       }
-      if (slotName) {
-        return (compound.className as Record<string, ClassValue>)[slotName as string] || '';
-      }
-      return '';
+
+      // If the className is an object, return the className for the slotName
+      return compound.className[slotName as string] || '';
     })
     .filter(Boolean)
     .join(' ');
@@ -110,7 +124,8 @@ function createSlotFunction<
   return (props?: VariantProps<V, S>) => {
     validateVariantProps(props, config);
 
-    const mergedProps = {
+    // Merge default variants with provided props , these will be used to evaluate variants 
+    const pickedVariants = {
       ...config.defaultVariants,
       ...props,
     } as VariantProps<V, S>;
@@ -120,8 +135,13 @@ function createSlotFunction<
 
     // Add variant classes
     if (config.variants) {
-      for (const [variantName, variantValue] of Object.entries(mergedProps)) {
+      // Loop through picked variants and add variant classes
+      for (const [variantName, variantValue] of Object.entries(pickedVariants)) {
+        // Return normalized value of variant value, if it is a boolean, return the string value of the boolean
+        // Could also be named as pickedVariantOption
         const normalizedValue = normalizeVariantValue(variantValue);
+
+        // If there is a variant in config by the name **variantName** add the variant class to the classes array
         if (normalizedValue && config.variants[variantName]) {
           const variantClass = getVariantClass(
             slotName,
@@ -135,7 +155,7 @@ function createSlotFunction<
     }
 
     // Add compound variants
-    const compoundClass = evaluateCompoundVariants(mergedProps, config, slotName);
+    const compoundClass = evaluateCompoundVariants(pickedVariants, config, slotName);
     if (compoundClass) {
       classes.push(compoundClass);
     }
@@ -155,14 +175,14 @@ export function pv<
 >(
   slots: S,
   config: VariantConfig<S, V, DV, CV>,
-): S extends MultiSlots ? PvReturn<S, V> : (props?: VariantProps<V, S>) => ClassValue {
+): S extends MultiSlots ? SlotFunctions<S, V> : SlotFunction<V, S> {
   // Handle single slot case
   if (typeof slots === 'string' || slots === null || slots === undefined) {
     return createSlotFunction(null, slots, config) as any;
   }
 
   // Handle multi-slot case
-  const result = {} as PvReturn<S & MultiSlots, V>;
+  const result = {} as SlotFunctions<S & MultiSlots, V>;
   for (const [slotName, baseClasses] of Object.entries(slots)) {
     result[slotName as keyof S] = createSlotFunction(slotName as keyof S, baseClasses, config);
   }
