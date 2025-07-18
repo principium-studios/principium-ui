@@ -62,12 +62,9 @@ importers:
 
   apps/docs:
     dependencies:
-      '@principium/badge':
+      '@principium/alert':
         specifier: workspace:*
-        version: link:../../packages/components/badge
-      '@principium/button':
-        specifier: workspace:*
-        version: link:../../packages/components/button
+        version: link:../../packages/components/alert
       '@principium/theme':
         specifier: workspace:*
         version: link:../../packages/core/theme
@@ -503,16 +500,6 @@ importers:
         version: 5.8.3
 
   packages/core/variants:
-    dependencies:
-      '@principium/theme':
-        specifier: workspace:*
-        version: link:../theme
-      react:
-        specifier: ^19.0.0
-        version: 19.1.0
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.1.0(react@19.1.0)
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -529,6 +516,9 @@ importers:
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)

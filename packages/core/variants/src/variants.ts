@@ -79,7 +79,7 @@ function evaluateCompoundVariants<
   config: VariantConfig<S, V, DV, CV>,
   slotName: keyof S | null,
 ): ClassValue {
-  if (!config.compoundVariants) return '';
+  if (!config.compoundVariants) return null;
 
   return config.compoundVariants
     .filter((compound) => {
@@ -92,7 +92,7 @@ function evaluateCompoundVariants<
         
         // If the compound value is an array, check if the pickedOption matches every option in the array
         if (Array.isArray(compoundValue)) {
-          return compoundValue.every(v => normalizeVariantValue(propValue) === normalizeVariantValue(v));
+          return compoundValue.some(v => normalizeVariantValue(propValue) === normalizeVariantValue(v));
         }
         
         // Otherwise do a direct comparison
@@ -103,19 +103,18 @@ function evaluateCompoundVariants<
       // Get the class value from either className or class property
       const classValue = compound.className || compound.class;
       
-      // If there is no class value, return an empty string
-      if (!classValue) return '';
+      // If there is no class value, return null
+      if (!classValue) return null;
 
-      // If the class value is a string, return it
-      if (typeof classValue === 'string') {
+      // If the class value is a string or array, return it directly
+      if (typeof classValue === 'string' || Array.isArray(classValue)) {
         return classValue;
       }
 
       // If the class value is an object, return the class for the slotName
-      return classValue[slotName as string] || '';
+      return classValue[slotName as string] ?? null;
     })
-    .filter(Boolean)
-    .join(' ');
+    .filter(Boolean);
 }
 
 /**
@@ -165,12 +164,12 @@ function createSlotFunction<
     }
 
     // Add compound variants
-    const compoundClass = evaluateCompoundVariants(pickedVariants, config, slotName);
-    if (compoundClass) {
-      classes.push(compoundClass);
+    const compoundClasses = evaluateCompoundVariants(pickedVariants, config, slotName);
+    if (compoundClasses) {
+      classes.push(compoundClasses);
     }
 
-    return classes.filter(Boolean).join(' ');
+    return classes.filter(Boolean);
   };
 }
 
@@ -187,7 +186,7 @@ export function pv<
   config: VariantConfig<S, V, DV, CV>,
 ): S extends MultiSlots ? SlotFunctions<S, V> : SlotFunction<V, S> {
   // Handle single slot case
-  if (typeof slots === 'string' || slots === null || slots === undefined) {
+  if (typeof slots === 'string' || Array.isArray(slots) || slots === null || slots === undefined) {
     return createSlotFunction(null, slots, config) as any;
   }
 

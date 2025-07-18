@@ -34,11 +34,6 @@
     "postpack": "clean-package restore",
     "prepublishOnly": "pnpm build"
   },
-  "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@principium/theme": "workspace:*"
-  },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^24.0.13",
@@ -47,7 +42,8 @@
     "eslint": "^9.16.0",
     "tsup": "^8.5.0",
     "typescript": "^5.5.2",
-    "clean-package": "^2.2.0"
+    "clean-package": "^2.2.0",
+    "clsx": "^2.1.1"
   },
   "clean-package": "../../../clean-package.config.json"
 }

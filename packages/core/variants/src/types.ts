@@ -3,7 +3,7 @@
  */
 
 // Represents any valid CSS class string
-export type ClassValue = string | null | undefined;
+export type ClassValue = ClassArray | string | null | undefined;
 export type ClassArray = ClassValue[];
 
 // Slots can be either an object mapping slot names to classes or a single slot

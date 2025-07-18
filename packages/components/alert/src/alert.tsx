@@ -1,20 +1,55 @@
 import React from 'react';
 import {createContext} from '@principium/context';
-import {alertVariants, AlertSlots, AlertVariantProps} from '@principium/theme';
+import {
+  base,
+  title,
+  description,
+  iconWrapper,
+  alertIcon,
+  AlertVariantProps,
+  cn,
+} from '@principium/theme';
 import {Slot} from '@principium/slot';
 
-type AlertContextType = Record<
-  Exclude<AlertSlots, 'base' | 'alertIcon'>,
-  (props?: any) => string
-> & {
-  defaultAlertIcon: React.ReactNode;
+type AlertContextType = {
+  variant: AlertVariantProps['variant'];
+  color: AlertVariantProps['color'];
 };
 const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
 
 // ________________________ Alert ________________________
 type AlertProps = React.ComponentPropsWithRef<'div'> & AlertVariantProps;
 const Alert = ({className, variant, color, ...props}: AlertProps) => {
-  const {base, title, description, iconWrapper, alertIcon} = alertVariants({variant, color});
+  return (
+    <AlertProvider
+      variant={variant}
+      color={color}
+    >
+      <div className={cn(base({variant, color}), className)} {...props} />
+    </AlertProvider>
+  );
+};
+
+// ________________________ AlertTitle ________________________
+type AlertTitleProps = React.ComponentPropsWithRef<'div'>;
+const AlertTitle = ({className, ...props}: AlertTitleProps) => {
+  const {variant, color} = useAlert();
+  return <div className={cn(title({variant, color}), className)} {...props} />;
+};
+
+// ________________________ AlertDescription ________________________
+type AlertDescriptionProps = React.ComponentPropsWithRef<'div'>;
+const AlertDescription = ({className, ...props}: AlertDescriptionProps) => {
+  const {variant, color} = useAlert();
+  return <div className={cn(description({variant, color}), className)} {...props} />;
+};
+
+// ________________________ AlertIcon ________________________
+type AlertIconProps = React.ComponentPropsWithRef<'div'> & {
+  hideIconWrapper?: boolean;
+};
+const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconProps) => {
+  const {variant, color} = useAlert();
   
   const defaultAlertIcon = React.useMemo(() => {
     switch (color) {
@@ -29,7 +64,7 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={alertIcon()}
+            className={cn(alertIcon({variant, color}))}
           >
             {/* Background */}
             <circle cx="12" cy="12" r="10" strokeWidth={0} />
@@ -48,7 +83,7 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={alertIcon()}
+            className={cn(alertIcon({variant, color}))}
           >
             {/* Background */}
             <path
@@ -71,7 +106,7 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={alertIcon()}
+            className={cn(alertIcon({variant, color}))}
           >
             {/* Background */}
             <path
@@ -94,7 +129,7 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={alertIcon()}
+            className={cn(alertIcon({variant, color}))}
           >
             {/* Background */}
             <circle cx="12" cy="12" r="10" strokeWidth={0} />
@@ -104,45 +139,14 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
           </svg>
         );
     }
-  }, [alertIcon]);
+  }, [variant, color]);
 
   return (
-    <AlertProvider
-      defaultAlertIcon={defaultAlertIcon}
-      title={title}
-      description={description}
-      iconWrapper={iconWrapper}
-    >
-      <div className={base({className})} {...props} />
-    </AlertProvider>
-  );
-};
-
-// ________________________ AlertTitle ________________________
-type AlertTitleProps = React.ComponentPropsWithRef<'div'>;
-const AlertTitle = ({className, ...props}: AlertTitleProps) => {
-  const {title} = useAlert();
-  return <div className={title({className})} {...props} />;
-};
-
-// ________________________ AlertDescription ________________________
-type AlertDescriptionProps = React.ComponentPropsWithRef<'div'>;
-const AlertDescription = ({className, ...props}: AlertDescriptionProps) => {
-  const {description} = useAlert();
-  return <div className={description({className})} {...props} />;
-};
-
-// ________________________ AlertIcon ________________________
-type AlertIconProps = React.ComponentPropsWithRef<'div'>;
-const AlertIcon = ({className, children, ...props}: AlertIconProps) => {
-  const {iconWrapper, defaultAlertIcon} = useAlert();
-  return (
-    <div className={iconWrapper({className})} {...props}>
-      {children ? <Slot className={iconWrapper()}>{children}</Slot> : defaultAlertIcon}
+    <div className={cn(iconWrapper({variant, color, hideIconWrapper}), className)} {...props}>
+      {children ? <Slot className={cn(alertIcon({variant, color}))}>{children}</Slot> : defaultAlertIcon}
     </div>
   );
 };
 
 export {Alert, AlertTitle, AlertDescription, AlertIcon};
-
 export type {AlertProps, AlertTitleProps, AlertDescriptionProps, AlertIconProps};
