@@ -1,135 +1,99 @@
-// _______________________ Utilities _______________________
-type ClassValue = ClassValueArray | string | null | undefined | 0 | 0n | false;
-type ClassValueArray = ClassValue[];
-
-// _______________________ Types _______________________
-
 /**
- * Slots can be either:
- *  - an object mapping slot names to ClassValue, e.g.:
- *    ```ts
- *    { base: "", title: "", description: "" }
- *    ```
- *  - a single slot name (string), for components without multiple parts
+ * Base types for variant configuration and usage
  */
-type Slots =
+
+// Represents any valid CSS class string
+export type ClassValue = string | null | undefined;
+export type ClassArray = ClassValue[];
+
+// Slots can be either an object mapping slot names to classes or a single slot
+export type MultiSlots = {
+  [slotName: string]: ClassValue;
+};
+export type SingleSlot = ClassValue;
+export type Slots = MultiSlots | SingleSlot;
+
+// Variant options can be either a direct class string or slot-specific classes
+export type SlotVariantOption =
   | {
       [slotName: string]: ClassValue;
     }
   | ClassValue;
 
 /**
- * Variants define named variant categories, each with options that
- * assign classes (or per-slot overrides) for that variant.
- *
- * @example
- * ```ts
- * variants: {
- *   size: {
- *     sm: { base: "px-2 py-1" },
- *     md: { base: "px-3 py-1.5" },
- *     lg: "px-4 py-2",
- *   },
- *   color: {
- *     primary: "bg-blue-500 text-white",
- *     secondary: { base: "bg-gray-200 text-black" }
- *   }
- * }
- * ```
+ * Variants define named variant categories with their options
+ * Each option can be either a direct class string or slot-specific overrides
  */
-type Variants<S extends Slots | undefined> = {
+export type Variants<S extends Slots> = {
   [variantName: string]: {
-    [option: string]:
-      | {
-          [slotName in keyof S]?: ClassValue;
-        }
-      | ClassValue;
+    [optionName: string]: S extends Record<string, any> ? SlotVariantOption : ClassValue;
   };
 };
 
 /**
- * DefaultVariants sets the initial option for each named variant.
- *
- * @example
- * ```ts
- * defaultVariants: {
- *   size: "md",
- *   color: "primary"
- * }
- * ```
+ * DefaultVariants sets the initial option for each variant
  */
-type DefaultVariants<V extends Variants<Slots>> = {
-  [variantName in keyof V]?: keyof V[variantName];
+export type DefaultVariants<V extends Variants<S>, S extends Slots> = {
+  [variantName in keyof V]?: keyof V[variantName] | boolean;
 };
 
 /**
- * CompoundVariants is an array of configurations that apply when
- * a specific combination of variant values is selected.
- * Each entry must include a `className` override, either global
- * or per-slot.
- *
- * @example
- * ```ts
- * compoundVariants: [
- *   {
- *     size: "md",
- *     color: "primary",
- *     className: { base: "font-bold", title: "uppercase" }
- *   },
- *   {
- *     size: "lg",
- *     className: "shadow-lg"
- *   }
- * ]
- * ```
+ * CompoundVariants apply classes when specific variant combinations are active
  */
-type CompoundVariants<V extends Variants<Slots>, S extends Slots> = Array<
+export type CompoundVariants<V extends Variants<S>, S extends Slots> = Array<
   {
-    [variantName in keyof V]?: keyof V[variantName];
+    [variantName in keyof V]?: keyof V[variantName] | boolean;
   } & {
-    className:
-      | {
-          [slotName in keyof S]?: ClassValue;
-        }
-      | ClassValue;
+    className: S extends Record<string, any>
+      ? ClassValue | {[slotName in keyof S]?: ClassValue}
+      : ClassValue;
   }
 >;
 
-// _______________________ Factory Function Types _______________________
-
 /**
- * Core function signature for a single-slot component.
- * Accepts exact variant props and returns any result (e.g., class string).
+ * Configuration object for the variant system
  */
-type PVSlotFNType<V extends Variants<Slots>> = (props: {[variantName in keyof V]: keyof V[variantName]}) => any;
-
-/**
- * The return type of the `pv` factory function:
- * - When `S` is a `string`, returns one function (for single slot).
- * - When `S` is an object, returns a map of functions keyed by slot names.
- */
-type PVReturnType<V extends Variants<Slots>, S extends Slots> = S extends string
-  ? PVSlotFNType<V>
-  : Record<keyof S, PVSlotFNType<V>>;
-
-/**
- * Variant factory:
- * Alternative to multiple `cva()` calls for each slot.
- * Define slots, variants, compoundVariants, and defaultVariants
- * in a single primitive factory invocation.
- */
-type PV = <
+export type VariantConfig<
   S extends Slots,
   V extends Variants<S>,
-  DV extends DefaultVariants<V>,
+  DV extends DefaultVariants<V, S>,
   CV extends CompoundVariants<V, S>,
->(
-  slots: S,
-  options: {
-    variants?: V;
-    compoundVariants?: CV;
-    defaultVariants?: DV;
-  },
-) => PVReturnType<V, S>;
+> = {
+  variants?: V;
+  defaultVariants?: DV;
+  compoundVariants?: CV;
+};
 
-export type {PV};
+/**
+ * Props type derived from variants configuration
+ */
+export type VariantProps<V extends Variants<S>, S extends Slots> = {
+  [variantName in keyof V]?: keyof V[variantName] | boolean | null | undefined;
+};
+
+/**
+ * Return type for slot functions
+ */
+export type SlotFunction<V extends Variants<S>, S extends Slots> = (
+  props?: VariantProps<V, S>,
+) => ClassValue;
+
+/**
+ * Return type for pv() - a record of slot functions
+ */
+export type PvReturn<S extends MultiSlots, V extends Variants<S>> = {
+  [K in keyof S]: SlotFunction<V, S>;
+};
+
+// Error types for runtime validation
+export class InvalidVariantError extends Error {
+  constructor(variantName: string) {
+    super(`Invalid variant name: ${variantName}`);
+  }
+}
+
+export class InvalidVariantValueError extends Error {
+  constructor(variantName: string, value: string) {
+    super(`Invalid value "${value}" for variant "${variantName}"`);
+  }
+}
