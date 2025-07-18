@@ -1,9 +1,16 @@
 {
   "name": "@principium/variants",
   "version": "0.0.1",
-  "description": "",
+  "description": "A powerful and flexible variant system for building component libraries with TypeScript support",
   "keywords": [
-    "variants"
+    "variants",
+    "tailwind",
+    "typescript",
+    "react",
+    "css-in-js",
+    "styling",
+    "component-library",
+    "design-system"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://principium.dev",
