@@ -1,5 +1,5 @@
 import {describe, test, expect} from 'vitest';
-import {pv} from '../variants';
+import {pv} from '../src/variants';
 import clsx from 'clsx';
 
 describe('Principium Variants (PV)', () => {
