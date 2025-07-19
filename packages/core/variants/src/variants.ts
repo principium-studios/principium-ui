@@ -34,21 +34,21 @@ function validateVariantProps<
 >(props: VariantProps<V, S> | undefined, config: VariantConfig<S, V, DV, CV>): void {
   if (!props || !config.variants) return;
 
-  for (const [key, value] of Object.entries(props)) {
+  for (const [variantName, variantOption] of Object.entries(props)) {
     // If provided variant is not in the config, throw an error
-    if (!config.variants[key]) {
-      throw new InvalidVariantError(key);
+    if (!config.variants[variantName]) {
+      throw new InvalidVariantError(variantName);
     }
 
     // If provided option is not in the variant, throw an error
-    const normalizedValue = normalizeVariantValue(value);
+    const normalizedOption = normalizeVariantValue(variantOption);
     if (
-      normalizedValue &&
-      !config.variants[key][normalizedValue] &&
-      normalizedValue !== 'false' &&
-      normalizedValue !== 'true'
+      normalizedOption &&
+      !(normalizedOption in config.variants[variantName]) &&
+      normalizedOption !== 'false' &&
+      normalizedOption !== 'true'
     ) {
-      throw new InvalidVariantValueError(key, String(value));
+      throw new InvalidVariantValueError(variantName, String(variantOption));
     }
   }
 }
@@ -140,10 +140,12 @@ function createSlotFunction<
   return (props?: VariantProps<V, S>) => {
     validateVariantProps(props, config);
 
-    // Merge default variants with provided props , these will be used to evaluate variants
+    // Merge default variants with provided props, filtering out undefined values
     const pickedVariants = {
       ...config.defaultVariants,
-      ...props,
+      ...Object.fromEntries(
+        Object.entries(props || {}).filter(([_, value]) => value !== undefined)
+      ),
     } as VariantProps<V, S>;
 
     // Start with base classes

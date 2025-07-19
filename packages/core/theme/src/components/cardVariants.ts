@@ -17,14 +17,13 @@ import {pv, type VariantProps} from '@principium/variants';
  */
 const cardVariants = pv(
   {
-    base: 'flex flex-col relative overflow-hidden h-auto outline-hidden text-background-950 box-border bg-background-100 focus-within:outline-outline-400 dark:focus-within:outline-outline-600',
+    base: 'shadow-sm shadow-border-300/50 border border-border-300 flex flex-col relative overflow-hidden outline-hidden text-background-950 box-border bg-background-100 focus-within:outline-outline-400 dark:focus-within:outline-outline-600',
     header:
       'flex p-3 z-10 w-full justify-start items-center shrink-0 overflow-inherit color-inherit subpixel-antialiased',
     title: 'font-semibold leading-none',
     description: 'text-muted-600 text-sm',
-    body: 'relative flex w-full p-3 flex-auto flex-col h-auto break-words text-left overflow-y-auto subpixel-antialiased',
-    footer:
-      'p-3 h-auto flex w-full items-center overflow-hidden color-inherit subpixel-antialiased',
+    body: 'relative flex w-full p-3 flex-auto flex-col break-words text-left overflow-y-auto subpixel-antialiased',
+    footer: 'p-3 flex w-full items-center overflow-hidden color-inherit subpixel-antialiased',
   },
   {
     variants: {
