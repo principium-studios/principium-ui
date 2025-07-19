@@ -1,5 +1,6 @@
 import React from 'react';
 import {Alert, AlertTitle, AlertDescription, AlertIcon} from '@principium/alert';
+import { Badge } from '@principium/badge';
 
 function App() {
   const [variant, setVariant] = React.useState<'flat' | 'faded' | 'bordered' | 'solid'>('flat');
@@ -28,6 +29,9 @@ React.useEffect(() => {
         <AlertTitle>Alert</AlertTitle>
         <AlertDescription>This is an alert</AlertDescription>
       </Alert>
+      <Badge variant="solid" color="primary" size="md" shape="circle" placement="top-right" showOutline={true} content="5+">
+        c321
+      </Badge>
     </>
   );
 }

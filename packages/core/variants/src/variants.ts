@@ -33,7 +33,7 @@ function validateVariantProps<
   CV extends CompoundVariants<V, S>,
 >(props: VariantProps<V, S> | undefined, config: VariantConfig<S, V, DV, CV>): void {
   if (!props || !config.variants) return;
-  
+
   for (const [key, value] of Object.entries(props)) {
     // If provided variant is not in the config, throw an error
     if (!config.variants[key]) {
@@ -42,7 +42,12 @@ function validateVariantProps<
 
     // If provided option is not in the variant, throw an error
     const normalizedValue = normalizeVariantValue(value);
-    if (normalizedValue && !config.variants[key][normalizedValue]) {
+    if (
+      normalizedValue &&
+      !config.variants[key][normalizedValue] &&
+      normalizedValue !== 'false' &&
+      normalizedValue !== 'true'
+    ) {
       throw new InvalidVariantValueError(key, String(value));
     }
   }
@@ -61,9 +66,9 @@ function getVariantClass<S extends Slots>(
    * - If slotName is null, apply the variant to the base (baisically still all slots)
    */
   if (typeof variantValue === 'object' && variantValue !== null && slotName) {
-    return (variantValue as Record<string, ClassValue>)[slotName as string];
+    return (variantValue as Record<string, ClassValue>)[slotName as string] ?? null;
   }
-  return variantValue as ClassValue;
+  return (variantValue as ClassValue) ?? null;
 }
 
 /**
@@ -89,12 +94,14 @@ function evaluateCompoundVariants<
         // Compare the **pickedVariantOption** with the variantOption in the compound variant
         const propValue = props[key as keyof V];
         const compoundValue = normalizeVariantValue(value);
-        
+
         // If the compound value is an array, check if the pickedOption matches every option in the array
         if (Array.isArray(compoundValue)) {
-          return compoundValue.some(v => normalizeVariantValue(propValue) === normalizeVariantValue(v));
+          return compoundValue.some(
+            (v) => normalizeVariantValue(propValue) === normalizeVariantValue(v),
+          );
         }
-        
+
         // Otherwise do a direct comparison
         return normalizeVariantValue(propValue) === compoundValue;
       });
@@ -102,7 +109,7 @@ function evaluateCompoundVariants<
     .map((compound) => {
       // Get the class value from either className or class property
       const classValue = compound.className || compound.class;
-      
+
       // If there is no class value, return null
       if (!classValue) return null;
 
@@ -133,7 +140,7 @@ function createSlotFunction<
   return (props?: VariantProps<V, S>) => {
     validateVariantProps(props, config);
 
-    // Merge default variants with provided props , these will be used to evaluate variants 
+    // Merge default variants with provided props , these will be used to evaluate variants
     const pickedVariants = {
       ...config.defaultVariants,
       ...props,

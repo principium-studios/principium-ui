@@ -5,19 +5,17 @@ import {colorVariants} from '../utils';
  *
  * @example
  * ```js
- * const {base,title, description, iconWrapper, alertIcon} = alert({...})
  *
- *
- * <div className={base()}>
- *    <div className={iconWrapper()}>
- *       <svg className={alertIcon()}></svg>
+ * <div className={cn(alertVariants.base({...}))}>
+ *    <div className={cn(alertVariants.iconWrapper({...}))}>
+ *       <svg className={cn(alertVariants.alertIcon({...}))}></svg>
  *    </div>
- *    <div className={title()}>Title</div>
- *    <div className={description()}>Description</div>
+ *    <div className={cn(alertVariants.title({...}))}>Title</div>
+ *    <div className={cn(alertVariants.description({...}))}>Description</div>
  * </div>
  * ```
  */
-const {base, title, description, iconWrapper, alertIcon} = pv(
+const alertVariants = pv(
   {
     base: 'relative grid grid-cols-[0_1fr] grid-rows-[1fr] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3',
     title: 'col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight',
@@ -286,5 +284,5 @@ const {base, title, description, iconWrapper, alertIcon} = pv(
   },
 );
 
-export type AlertVariantProps = VariantProps<typeof base>;
-export {base, title, description, iconWrapper, alertIcon};
+export type AlertVariantProps = VariantProps<typeof alertVariants.base>;
+export {alertVariants};

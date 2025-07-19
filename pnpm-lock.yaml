@@ -65,6 +65,9 @@ importers:
       '@principium/alert':
         specifier: workspace:*
         version: link:../../packages/components/alert
+      '@principium/badge':
+        specifier: workspace:*
+        version: link:../../packages/components/badge
       '@principium/theme':
         specifier: workspace:*
         version: link:../../packages/core/theme

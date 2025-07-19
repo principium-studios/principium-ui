@@ -1,11 +1,7 @@
 import React from 'react';
 import {createContext} from '@principium/context';
 import {
-  base,
-  title,
-  description,
-  iconWrapper,
-  alertIcon,
+  alertVariants,
   AlertVariantProps,
   cn,
 } from '@principium/theme';
@@ -25,7 +21,7 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
       variant={variant}
       color={color}
     >
-      <div className={cn(base({variant, color}), className)} {...props} />
+      <div className={cn(alertVariants.base({variant, color}), className)} {...props} />
     </AlertProvider>
   );
 };
@@ -34,14 +30,14 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
 type AlertTitleProps = React.ComponentPropsWithRef<'div'>;
 const AlertTitle = ({className, ...props}: AlertTitleProps) => {
   const {variant, color} = useAlert();
-  return <div className={cn(title({variant, color}), className)} {...props} />;
+  return <div className={cn(alertVariants.title({variant, color}), className)} {...props} />;
 };
 
 // ________________________ AlertDescription ________________________
 type AlertDescriptionProps = React.ComponentPropsWithRef<'div'>;
 const AlertDescription = ({className, ...props}: AlertDescriptionProps) => {
   const {variant, color} = useAlert();
-  return <div className={cn(description({variant, color}), className)} {...props} />;
+  return <div className={cn(alertVariants.description({variant, color}), className)} {...props} />;
 };
 
 // ________________________ AlertIcon ________________________
@@ -64,7 +60,7 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={cn(alertIcon({variant, color}))}
+            className={cn(alertVariants.alertIcon({variant, color}))}
           >
             {/* Background */}
             <circle cx="12" cy="12" r="10" strokeWidth={0} />
@@ -83,7 +79,7 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={cn(alertIcon({variant, color}))}
+            className={cn(alertVariants.alertIcon({variant, color}))}
           >
             {/* Background */}
             <path
@@ -106,7 +102,7 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={cn(alertIcon({variant, color}))}
+            className={cn(alertVariants.alertIcon({variant, color}))}
           >
             {/* Background */}
             <path
@@ -129,7 +125,7 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={cn(alertIcon({variant, color}))}
+            className={cn(alertVariants.alertIcon({variant, color}))}
           >
             {/* Background */}
             <circle cx="12" cy="12" r="10" strokeWidth={0} />
@@ -142,8 +138,8 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
   }, [variant, color]);
 
   return (
-    <div className={cn(iconWrapper({variant, color, hideIconWrapper}), className)} {...props}>
-      {children ? <Slot className={cn(alertIcon({variant, color}))}>{children}</Slot> : defaultAlertIcon}
+    <div className={cn(alertVariants.iconWrapper({variant, color, hideIconWrapper}), className)} {...props}>
+      {children ? <Slot className={cn(alertVariants.alertIcon({variant, color}))}>{children}</Slot> : defaultAlertIcon}
     </div>
   );
 };

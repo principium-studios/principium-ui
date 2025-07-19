@@ -1,8 +1,14 @@
-import { VariantProps } from 'tailwind-variants';
-import {colorVariants, tv} from '../utils';
+import { pv, VariantProps } from '@principium/variants';
+import {colorVariants} from '../utils';
 
-const buttonVariants = tv({
-  base: 'transition-[background-color, border-color, color, transform, opacity] focus-visible:outline-outline hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md text-sm font-medium duration-300 focus:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-transparent disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0',
+
+/**
+ * Button **Tailwind Variants** component
+ *
+ * @example
+ * <button className={cn(buttonVariants({...}))}>Button</button>
+ */
+const buttonVariants = pv('transition-[background-color, border-color, color, transform, opacity] outline-hidden focus-visible:outline-outline-400 dark:focus-visible:outline-outline-600 hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md text-sm font-medium duration-300 focus:z-10 [&_svg]:shrink-0',{
   variants: {
     variant: {
       solid: '',
@@ -26,6 +32,9 @@ const buttonVariants = tv({
       success: '',
       warning: '',
       danger: '',
+    },
+    disabled: {
+      true: 'pointer-events-none cursor-not-allowed opacity-50',
     },
   },
   compoundVariants: [
@@ -266,6 +275,7 @@ const buttonVariants = tv({
     variant: 'solid',
     size: 'md',
     color: 'default',
+    disabled: false,
   },
 });
 

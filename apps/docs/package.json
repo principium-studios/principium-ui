@@ -6,13 +6,14 @@
   "packageManager": "pnpm@10.13.1",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build",        
     "lint": "eslint .",
     "preview": "vite preview",
     "theme:gen": "principium-cli generate-theme"
   },
   "dependencies": {
     "@principium/theme": "workspace:*",
+    "@principium/badge": "workspace:*",
     "@principium/alert": "workspace:*",
     "@tailwindcss/vite": "^4.1.11",
     "react": "^19.1.0",

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Primitive, type PrimitiveProps} from '@principium/primitive';
-import {badgeVariants, type BadgeVariantProps} from '@principium/theme';
+import {badgeVariants, type BadgeVariantProps, cn} from '@principium/theme';
 
 type BadgeProps = PrimitiveProps<'div'> &
-  BadgeVariantProps & {
+  Omit<BadgeVariantProps, 'isOneChar' | 'isDot'> & {
     content?: React.ReactNode;
   };
 const Badge = ({
@@ -19,26 +19,22 @@ const Badge = ({
   ...props
 }: BadgeProps) => {
   const isOneChar = React.useMemo(() => String(content)?.length === 1, [content]);
-
   const isDot = React.useMemo(() => String(content)?.length === 0, [content]);
 
-  const {badge, base} = badgeVariants({
-    variant,
-    size,
-    shape,
-    placement,
-    color,
-    showOutline,
-    isOneChar,
-    isDot,
-    className,
-  });
-
   return (
-    <div className={base()}>
+    <div className={cn(badgeVariants.base(), className)}>
       {/* Badge */}
       <Primitive.span
-        className={badge()}
+        className={cn(badgeVariants.badge({
+          variant,
+          size,
+          shape,
+          placement,
+          color,
+          isOneChar,
+          isDot,
+          showOutline,
+        }))}
         {...props}
       >
         {content}

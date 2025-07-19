@@ -1,18 +1,22 @@
 import React from 'react';
-import {cn} from '@principium/shared-utils';
+
 import {useRipple, Ripple} from '@principium/ripple';
+import {cardVariants, cn, type CardVariantProps} from '@principium/theme';
 
 // ________________________ Card ________________________
-type CardProps = React.ComponentPropsWithRef<'div'> & {
-  disableRipple?: boolean;
-  isPressable?: boolean;
-};
+type CardProps = React.ComponentPropsWithRef<'div'> &
+  Omit<CardVariantProps, 'isFooterBlurred'> & {
+    disableRipple?: boolean;
+  };
 
 const Card = ({
   className,
   children,
   disableRipple = false,
-  isPressable = false,
+  isPressable,
+  disabled,
+  isHoverable,
+  isBlurred,
   onClick,
   ...props
 }: CardProps) => {
@@ -20,11 +24,7 @@ const Card = ({
 
   return (
     <div
-      className={cn(
-        'border-border-300 bg-background-100 relative box-border flex flex-col overflow-hidden rounded-lg border shadow-sm transition-[background-color_border-color_color_transform_opacity] duration-300',
-        isPressable && 'active:scale-97 active:opacity-97 cursor-pointer',
-        className,
-      )}
+      className={cn(cardVariants.base({isPressable, disabled, isHoverable, isBlurred}), className)}
       onClick={(e) => {
         if (!isPressable) return;
         !disableRipple && createRipple(e);
@@ -41,44 +41,31 @@ const Card = ({
 // ________________________ CardHeader ________________________
 type CardHeaderProps = React.ComponentPropsWithRef<'div'>;
 const CardHeader = ({className, ...props}: CardHeaderProps) => {
-  return (
-    <div
-      className={cn(
-        'overflow-inherit color-inherit z-10 grid shrink-0 auto-rows-min grid-rows-[auto_auto] items-start items-center justify-start gap-1.5 p-3 subpixel-antialiased',
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <div className={cn(cardVariants.header(), className)} {...props} />;
 };
 
 //  CardTitle
 type CardTitleProps = React.ComponentPropsWithRef<'div'>;
 const CardTitle = ({className, ...props}: CardTitleProps) => {
-  return <div className={cn('font-semibold leading-none', className)} {...props} />;
+  return <div className={cn(cardVariants.title(), className)} {...props} />;
 };
 
 //  CardDescription
 type CardDescriptionProps = React.ComponentPropsWithRef<'div'>;
 const CardDescription = ({className, ...props}: CardDescriptionProps) => {
-  return <div className={cn('text-muted-600 text-sm', className)} {...props} />;
+  return <div className={cn(cardVariants.description(), className)} {...props} />;
 };
 
 // ________________________ CardContent ________________________
 type CardContentProps = React.ComponentPropsWithRef<'div'>;
 const CardContent = ({className, ...props}: CardContentProps) => {
-  return <div className={cn('p-3 subpixel-antialiased', className)} {...props} />;
+  return <div className={cn(cardVariants.body(), className)} {...props} />;
 };
 
 // ________________________ CardFooter ________________________
-type CardFooterProps = React.ComponentPropsWithRef<'div'>;
-const CardFooter = ({className, ...props}: CardFooterProps) => {
-  return (
-    <div
-      className={cn('flex items-center overflow-hidden p-3 subpixel-antialiased', className)}
-      {...props}
-    />
-  );
+type CardFooterProps = React.ComponentPropsWithRef<'div'> & {isBlurred?: boolean};
+const CardFooter = ({className, isBlurred, ...props}: CardFooterProps) => {
+  return <div className={cn(cardVariants.footer({isFooterBlurred: isBlurred}), className)} {...props} />;
 };
 
 export {

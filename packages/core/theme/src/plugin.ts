@@ -95,6 +95,9 @@ export const principium = (opts: PrincipiumConfig): ReturnType<typeof plugin> =>
     {
       theme: {
         extend: {
+          transitionTimingFunction: {
+            "soft-spring": "cubic-bezier(0.155, 1.105, 0.295, 1.12)",
+          },
           colors: palette,
           fontSize: {
             tiny: '0.625rem',
