@@ -37,6 +37,7 @@ const Primitive = PRIMITIVE_NODES.reduce((primitive, node) => {
   // Create the primitive component with support for asChild prop
   const Node = ({asChild, ref, ...restProps}: PrimitiveProps<typeof node>) => {
     const Component = asChild ? Slot : node;
+
     // @ts-ignore
     return <Component {...restProps} ref={ref} />;
   };

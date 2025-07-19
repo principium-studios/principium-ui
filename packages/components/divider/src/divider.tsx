@@ -1,12 +1,14 @@
+import type {DividerVariantProps} from '@principium/theme';
+
 import React from 'react';
-import {dividerVariants, cn, type DividerVariantProps} from '@principium/theme';
+import {dividerVariants, cn} from '@principium/theme';
 
 type DividerProps = React.ComponentPropsWithRef<'hr'> & DividerVariantProps;
 const Divider = ({className, orientation, ...props}: DividerProps) => {
   return (
     <hr
-      data-orientation={orientation}
       className={cn(dividerVariants({orientation}), className)}
+      data-orientation={orientation}
       {...props}
     />
   );

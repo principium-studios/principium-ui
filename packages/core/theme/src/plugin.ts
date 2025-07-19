@@ -1,5 +1,6 @@
-import plugin from 'tailwindcss/plugin.js';
 import type {PrincipiumConfig} from './types';
+
+import plugin from 'tailwindcss/plugin.js';
 
 export const principium = (opts: PrincipiumConfig): ReturnType<typeof plugin> => {
   const {themes, defaultTheme} = opts;
@@ -63,13 +64,13 @@ export const principium = (opts: PrincipiumConfig): ReturnType<typeof plugin> =>
    *    ...
    *  }
    */
-  const palette: Record<string, Record<string, string>> = {}
-  
+  const palette: Record<string, Record<string, string>> = {};
 
   // Build CSS variables and utility classes
   for (const [themeName, themeDef] of Object.entries(themes)) {
     const selector = themeName === defaultTheme ? ':root' : `.${themeName}`;
     const shades = themeDef.isDarkTheme ? LIGHTNESS_DARK : LIGHTNESS;
+
     baseVars[selector] = {};
 
     for (const [colorName, {hue, saturation}] of Object.entries(themeDef.colors)) {
@@ -96,12 +97,12 @@ export const principium = (opts: PrincipiumConfig): ReturnType<typeof plugin> =>
       theme: {
         extend: {
           transitionTimingFunction: {
-            "soft-spring": "cubic-bezier(0.155, 1.105, 0.295, 1.12)",
+            'soft-spring': 'cubic-bezier(0.155, 1.105, 0.295, 1.12)',
           },
           colors: palette,
           fontSize: {
             tiny: '0.625rem',
-          }
+          },
         },
       },
     },

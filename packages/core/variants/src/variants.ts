@@ -1,4 +1,4 @@
-import {
+import type {
   Slots,
   MultiSlots,
   Variants,
@@ -7,11 +7,11 @@ import {
   VariantConfig,
   VariantProps,
   ClassValue,
-  InvalidVariantError,
-  InvalidVariantValueError,
   SlotFunction,
   SlotFunctions,
 } from './types';
+
+import {InvalidVariantError, InvalidVariantValueError} from './types';
 
 /**
  * Converts a variant value to a string
@@ -20,6 +20,7 @@ function normalizeVariantValue(value: unknown): string | undefined {
   if (typeof value === 'boolean') {
     return value.toString();
   }
+
   return value as string | undefined;
 }
 
@@ -42,6 +43,7 @@ function validateVariantProps<
 
     // If provided option is not in the variant, throw an error
     const normalizedOption = normalizeVariantValue(variantOption);
+
     if (
       normalizedOption &&
       !(normalizedOption in config.variants[variantName]) &&
@@ -68,6 +70,7 @@ function getVariantClass<S extends Slots>(
   if (typeof variantValue === 'object' && variantValue !== null && slotName) {
     return (variantValue as Record<string, ClassValue>)[slotName as string] ?? null;
   }
+
   return (variantValue as ClassValue) ?? null;
 }
 
@@ -144,7 +147,7 @@ function createSlotFunction<
     const pickedVariants = {
       ...config.defaultVariants,
       ...Object.fromEntries(
-        Object.entries(props || {}).filter(([_, value]) => value !== undefined)
+        Object.entries(props || {}).filter(([_, value]) => value !== undefined),
       ),
     } as VariantProps<V, S>;
 
@@ -165,6 +168,7 @@ function createSlotFunction<
             slotName,
             config.variants[variantName][normalizedValue],
           );
+
           if (variantClass) {
             classes.push(variantClass);
           }
@@ -174,6 +178,7 @@ function createSlotFunction<
 
     // Add compound variants
     const compoundClasses = evaluateCompoundVariants(pickedVariants, config, slotName);
+
     if (compoundClasses) {
       classes.push(compoundClasses);
     }
@@ -201,8 +206,10 @@ export function pv<
 
   // Handle multi-slot case
   const result = {} as SlotFunctions<S & MultiSlots, V>;
+
   for (const [slotName, baseClasses] of Object.entries(slots)) {
     result[slotName as keyof S] = createSlotFunction(slotName as keyof S, baseClasses, config);
   }
+
   return result as any;
 }

@@ -55,7 +55,9 @@ export type ClassProp<S extends Slots> =
         : ClassValue;
     };
 
-type VariantOption<V extends Variants<S>, S extends Slots, K extends keyof V> = keyof V[K] | boolean;
+type VariantOption<V extends Variants<S>, S extends Slots, K extends keyof V> =
+  | keyof V[K]
+  | boolean;
 export type CompoundVariants<V extends Variants<S>, S extends Slots> = Array<
   {
     [K in keyof V]?: VariantOption<V, S, K> | Array<VariantOption<V, S, K>>;

@@ -1,6 +1,7 @@
 import {describe, test, expect} from 'vitest';
-import {pv} from '../src/variants';
 import clsx from 'clsx';
+
+import {pv} from '../src/variants';
 
 describe('Principium Variants (PV)', () => {
   test('should work with single slot variants', () => {

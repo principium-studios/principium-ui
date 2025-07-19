@@ -1,5 +1,8 @@
+import type {AnyProps} from './combineProps';
+
 import React from 'react';
-import {AnyProps, combineProps} from './combineProps';
+
+import {combineProps} from './combineProps';
 import {combineRefs} from './combineRefs';
 
 interface SlotProps extends React.HTMLAttributes<HTMLElement> {
@@ -36,7 +39,7 @@ function createSlot(ownerName: string) {
 
     // If not in production and the child is not a valid element, throw an error
     if (process.env.NODE_ENV !== 'production') {
-      console.error(`${ownerName}.Slot expects exactly one child.`);
+      throw new Error(`${ownerName}.Slot expects exactly one child.`);
     }
 
     // Return null if the child is not a valid element

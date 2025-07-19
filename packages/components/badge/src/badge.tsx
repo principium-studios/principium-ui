@@ -1,6 +1,9 @@
+import type {PrimitiveProps} from '@principium/primitive';
+import type {BadgeVariantProps} from '@principium/theme';
+
 import React from 'react';
-import {Primitive, type PrimitiveProps} from '@principium/primitive';
-import {badgeVariants, type BadgeVariantProps, cn} from '@principium/theme';
+import {Primitive} from '@principium/primitive';
+import {badgeVariants, cn} from '@principium/theme';
 
 type BadgeProps = PrimitiveProps<'div'> &
   Omit<BadgeVariantProps, 'isOneChar' | 'isDot'> & {

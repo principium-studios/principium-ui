@@ -1,6 +1,8 @@
+import type {AlertVariantProps} from '@principium/theme';
+
 import React from 'react';
 import {createContext} from '@principium/context';
-import {alertVariants, AlertVariantProps, cn} from '@principium/theme';
+import {alertVariants, cn} from '@principium/theme';
 import {Slot} from '@principium/slot';
 
 type AlertContextType = {
@@ -13,7 +15,7 @@ const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
 type AlertProps = React.ComponentPropsWithRef<'div'> & AlertVariantProps;
 const Alert = ({className, variant, color, ...props}: AlertProps) => {
   return (
-    <AlertProvider variant={variant} color={color}>
+    <AlertProvider color={color} variant={variant}>
       <div className={cn(alertVariants.base({variant, color}), className)} {...props} />
     </AlertProvider>
   );
@@ -23,6 +25,7 @@ const Alert = ({className, variant, color, ...props}: AlertProps) => {
 type AlertTitleProps = React.ComponentPropsWithRef<'div'>;
 const AlertTitle = ({className, ...props}: AlertTitleProps) => {
   const {variant, color} = useAlert();
+
   return <div className={cn(alertVariants.title({variant, color}), className)} {...props} />;
 };
 
@@ -30,6 +33,7 @@ const AlertTitle = ({className, ...props}: AlertTitleProps) => {
 type AlertDescriptionProps = React.ComponentPropsWithRef<'div'>;
 const AlertDescription = ({className, ...props}: AlertDescriptionProps) => {
   const {variant, color} = useAlert();
+
   return <div className={cn(alertVariants.description({variant, color}), className)} {...props} />;
 };
 
@@ -45,15 +49,15 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
       case 'success':
         return (
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+            className={cn(alertVariants.alertIcon({variant, color}))}
             fill="currentColor"
-            strokeWidth="2"
+            height="24"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={cn(alertVariants.alertIcon({variant, color}))}
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             {/* Background */}
             <circle cx="12" cy="12" r="10" strokeWidth={0} />
@@ -64,15 +68,15 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
       case 'warning':
         return (
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+            className={cn(alertVariants.alertIcon({variant, color}))}
             fill="currentColor"
-            strokeWidth="2"
+            height="24"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={cn(alertVariants.alertIcon({variant, color}))}
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             {/* Background */}
             <path
@@ -87,15 +91,15 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
       case 'danger':
         return (
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+            className={cn(alertVariants.alertIcon({variant, color}))}
             fill="currentColor"
-            strokeWidth="2"
+            height="24"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={cn(alertVariants.alertIcon({variant, color}))}
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             {/* Background */}
             <path
@@ -110,15 +114,15 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
       default:
         return (
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+            className={cn(alertVariants.alertIcon({variant, color}))}
             fill="currentColor"
-            strokeWidth="2"
+            height="24"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={cn(alertVariants.alertIcon({variant, color}))}
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             {/* Background */}
             <circle cx="12" cy="12" r="10" strokeWidth={0} />

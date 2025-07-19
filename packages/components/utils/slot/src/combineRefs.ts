@@ -24,9 +24,11 @@ function combineRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {
     let hasCleanup = false;
     const cleanups = refs.map((ref) => {
       const cleanup = setRef(ref, node);
+
       if (!hasCleanup && typeof cleanup === 'function') {
         hasCleanup = true;
       }
+
       return cleanup;
     });
 

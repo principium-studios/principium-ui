@@ -1,4 +1,6 @@
-import {pv, VariantProps} from '@principium/variants';
+import type {VariantProps} from '@principium/variants';
+
+import {pv} from '@principium/variants';
 
 /**
  * Divider **Tailwind Variants** component
@@ -17,7 +19,6 @@ const dividerVariants = pv('bg-border-300 shrink-0 border-none', {
     orientation: 'horizontal',
   },
 });
-
 
 export type DividerVariantProps = VariantProps<typeof dividerVariants>;
 export {dividerVariants};

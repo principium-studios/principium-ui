@@ -1,4 +1,7 @@
-import {pv, VariantProps} from '@principium/variants';
+import type {VariantProps} from '@principium/variants';
+
+import {pv} from '@principium/variants';
+
 import {colorVariants} from '../utils';
 
 /**

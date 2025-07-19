@@ -20,12 +20,15 @@ function combineProps(ourProps: AnyProps, incomingProps: AnyProps) {
 
     // Handle event handlers
     const isHandler = propName.startsWith('on');
+
     if (isHandler) {
       // if both props have handlers, combine them
       if (ourValue && incomingValue) {
         combinedProps[propName] = (...args: unknown[]) => {
           const res = incomingValue(...args);
+
           ourValue(...args);
+
           return res;
         };
       } else if (ourValue) {

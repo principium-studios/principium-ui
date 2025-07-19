@@ -1,40 +1,48 @@
-import React from 'react';
+import type {CardVariantProps} from '@principium/theme';
 
+import React from 'react';
 import {useRipple, Ripple} from '@principium/ripple';
-import {cardVariants, cn, type CardVariantProps} from '@principium/theme';
+import {cardVariants, cn} from '@principium/theme';
 
 // ________________________ Card ________________________
-type CardProps = React.ComponentPropsWithRef<'div'> &
-  Omit<CardVariantProps, 'isFooterBlurred'> & {
+type CardProps = (
+  | ({isPressable: true} & React.ComponentPropsWithRef<'button'>)
+  | ({isPressable?: false | undefined | null} & React.ComponentPropsWithRef<'div'>)
+) &
+  (Omit<CardVariantProps, 'isFooterBlurred'> & {
     disableRipple?: boolean;
-  };
+  });
 
+// TODO: fix types
 const Card = ({
-  className,
-  children,
   disableRipple = false,
   isPressable,
   disabled,
   isHoverable,
   isBlurred,
+  className,
+  children,
   onClick,
   ...props
 }: CardProps) => {
   const {ripples, createRipple, removeRipple} = useRipple();
+  const Component = isPressable ? 'button' : 'div';
 
   return (
-    <div
+    // @ts-ignore
+    <Component
       className={cn(cardVariants.base({isPressable, disabled, isHoverable, isBlurred}), className)}
       onClick={(e) => {
         if (!isPressable) return;
         !disableRipple && createRipple(e);
+        // @ts-ignore
         onClick?.(e);
       }}
       {...props}
     >
       {children}
       {!disableRipple && <Ripple ripples={ripples} onClear={removeRipple} />}
-    </div>
+    </Component>
   );
 };
 

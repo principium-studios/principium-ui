@@ -1,6 +1,6 @@
-import "@testing-library/jest-dom/vitest";
-import * as axeMatchers from "vitest-axe/matchers";
-import { expect } from "vitest";
+import '@testing-library/jest-dom/vitest';
+import * as axeMatchers from 'vitest-axe/matchers';
+import {expect} from 'vitest';
 
 expect.extend(axeMatchers);
 
@@ -11,7 +11,7 @@ global.ResizeObserver = class ResizeObserver {
     this.cb = cb;
   }
   observe() {
-    this.cb([{ borderBoxSize: { inlineSize: 0, blockSize: 0 } }]);
+    this.cb([{borderBoxSize: {inlineSize: 0, blockSize: 0}}]);
   }
   unobserve() {}
   disconnect() {}
