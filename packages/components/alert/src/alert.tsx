@@ -1,10 +1,6 @@
 import React from 'react';
 import {createContext} from '@principium/context';
-import {
-  alertVariants,
-  AlertVariantProps,
-  cn,
-} from '@principium/theme';
+import {alertVariants, AlertVariantProps, cn} from '@principium/theme';
 import {Slot} from '@principium/slot';
 
 type AlertContextType = {
@@ -17,10 +13,7 @@ const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
 type AlertProps = React.ComponentPropsWithRef<'div'> & AlertVariantProps;
 const Alert = ({className, variant, color, ...props}: AlertProps) => {
   return (
-    <AlertProvider
-      variant={variant}
-      color={color}
-    >
+    <AlertProvider variant={variant} color={color}>
       <div className={cn(alertVariants.base({variant, color}), className)} {...props} />
     </AlertProvider>
   );
@@ -46,7 +39,7 @@ type AlertIconProps = React.ComponentPropsWithRef<'div'> & {
 };
 const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconProps) => {
   const {variant, color} = useAlert();
-  
+
   const defaultAlertIcon = React.useMemo(() => {
     switch (color) {
       case 'success':
@@ -138,8 +131,15 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
   }, [variant, color]);
 
   return (
-    <div className={cn(alertVariants.iconWrapper({variant, color, hideIconWrapper}), className)} {...props}>
-      {children ? <Slot className={cn(alertVariants.alertIcon({variant, color}))}>{children}</Slot> : defaultAlertIcon}
+    <div
+      className={cn(alertVariants.iconWrapper({variant, color, hideIconWrapper}), className)}
+      {...props}
+    >
+      {children ? (
+        <Slot className={cn(alertVariants.alertIcon({variant, color}))}>{children}</Slot>
+      ) : (
+        defaultAlertIcon
+      )}
     </div>
   );
 };

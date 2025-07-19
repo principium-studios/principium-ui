@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    paths:
+      - ".changeset/**"
+      - "packages/**"
+      - "apps/**"
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: Setup and Install
+        uses: ./.github/common-actions/install
+
+      - name: Run Tests
+        run: pnpm test
+        
+      - name: Build
+        id: build
+        continue-on-error: false
+        run: |
+          pnpm build || {
+            echo "Build failed with exit code $?"
+            exit 1
+          }
+
+      - name: Create Release Pull Request or Publish to npm
+        if: steps.build.outcome == 'success'
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+          title: "ci(changesets): 📦 version packages"
+          commit: "ci(changesets): version packages"
+          setupGitUser: false
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

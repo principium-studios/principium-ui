@@ -25,16 +25,18 @@ const Badge = ({
     <div className={cn(badgeVariants.base(), className)}>
       {/* Badge */}
       <Primitive.span
-        className={cn(badgeVariants.badge({
-          variant,
-          size,
-          shape,
-          placement,
-          color,
-          isOneChar,
-          isDot,
-          showOutline,
-        }))}
+        className={cn(
+          badgeVariants.badge({
+            variant,
+            size,
+            shape,
+            placement,
+            color,
+            isOneChar,
+            isDot,
+            showOutline,
+          }),
+        )}
         {...props}
       >
         {content}

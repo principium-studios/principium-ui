@@ -65,7 +65,9 @@ const CardContent = ({className, ...props}: CardContentProps) => {
 // ________________________ CardFooter ________________________
 type CardFooterProps = React.ComponentPropsWithRef<'div'> & {isBlurred?: boolean};
 const CardFooter = ({className, isBlurred, ...props}: CardFooterProps) => {
-  return <div className={cn(cardVariants.footer({isFooterBlurred: isBlurred}), className)} {...props} />;
+  return (
+    <div className={cn(cardVariants.footer({isFooterBlurred: isBlurred}), className)} {...props} />
+  );
 };
 
 export {
