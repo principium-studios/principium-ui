@@ -5,10 +5,7 @@ import React from 'react';
 import {Primitive} from '@principium/primitive';
 import {badgeVariants, cn} from '@principium/theme';
 
-type BadgeProps = PrimitiveProps<'div'> &
-  Omit<BadgeVariantProps, 'isOneChar' | 'isDot'> & {
-    content?: React.ReactNode;
-  };
+type BadgeProps = PrimitiveProps<'div'> & Omit<BadgeVariantProps, 'isOneChar' | 'isDot'>;
 const Badge = ({
   variant,
   size,
@@ -16,37 +13,32 @@ const Badge = ({
   placement,
   showOutline,
   className,
-  content,
   color,
   children,
   ...props
 }: BadgeProps) => {
-  const isOneChar = React.useMemo(() => String(content)?.length === 1, [content]);
-  const isDot = React.useMemo(() => String(content)?.length === 0, [content]);
+  const isOneChar = React.useMemo(() => String(children)?.length === 1, [children]);
+  const isDot = React.useMemo(() => String(children)?.length === 0, [children]);
 
   return (
-    <div className={cn(badgeVariants.base(), className)}>
-      {/* Badge */}
-      <Primitive.span
-        className={cn(
-          badgeVariants.badge({
-            variant,
-            size,
-            shape,
-            placement,
-            color,
-            isOneChar,
-            isDot,
-            showOutline,
-          }),
-        )}
-        {...props}
-      >
-        {content}
-      </Primitive.span>
-      {/* Content */}
+    <Primitive.span
+      className={cn(
+        badgeVariants({
+          variant,
+          size,
+          shape,
+          placement,
+          color,
+          isOneChar,
+          isDot,
+          showOutline,
+        }),
+        className,
+      )}
+      {...props}
+    >
       {children}
-    </div>
+    </Primitive.span>
   );
 };
 
