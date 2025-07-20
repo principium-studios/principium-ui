@@ -11,9 +11,11 @@ import type {
   SlotFunctions,
   BaseVariantProps,
 } from './types';
-import {InvalidConfigError, InvalidVariantError, InvalidVariantValueError} from './types';
+
 import clsx from 'clsx';
 import {twMerge} from 'tailwind-merge';
+
+import {InvalidConfigError, InvalidVariantError, InvalidVariantValueError} from './types';
 
 /**
  * Converts a variant value to a string

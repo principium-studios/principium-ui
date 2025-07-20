@@ -16,18 +16,18 @@ const badgeVariants = pv(
   {
     variants: {
       variant: {
-        solid: "",
-        flat: "",
+        solid: '',
+        flat: '',
         faded: 'border-2',
-        shadow: "",
+        shadow: '',
       },
       color: {
-        default: "",
-        primary: "",
-        secondary: "",
-        success: "",
-        warning: "",
-        danger: "",
+        default: '',
+        primary: '',
+        secondary: '',
+        success: '',
+        warning: '',
+        danger: '',
       },
       size: {
         sm: 'px-1 text-tiny',
@@ -41,14 +41,14 @@ const badgeVariants = pv(
         'bottom-left': '-translate-x-1/2 translate-y-1/2',
       },
       shape: {
-        circle: "",
-        rectangle: "",
+        circle: '',
+        rectangle: '',
       },
       isOneChar: {
         true: 'px-0',
       },
       isDot: {
-        true: "",
+        true: '',
       },
       showOutline: {
         true: 'border-background-50 border-2',
@@ -114,7 +114,7 @@ const badgeVariants = pv(
       {
         variant: 'shadow',
         color: 'success',
-          class: colorVariants.shadow.success,
+        class: colorVariants.shadow.success,
       },
       {
         variant: 'shadow',
@@ -171,7 +171,7 @@ const badgeVariants = pv(
       {
         variant: 'faded',
         color: 'secondary',
-            class: colorVariants.faded.secondary,
+        class: colorVariants.faded.secondary,
       },
       {
         variant: 'faded',
@@ -229,7 +229,7 @@ const badgeVariants = pv(
       {
         placement: 'top-left',
         shape: 'rectangle',
-            class: 'top-[5%] left-[5%] ',
+        class: 'top-[5%] left-[5%] ',
       },
       {
         placement: 'bottom-right',

@@ -1,6 +1,7 @@
 import {describe, test, expect} from 'vitest';
-import {createPv, pv} from '../src/variants';
 import {extendTailwindMerge} from 'tailwind-merge';
+
+import {createPv, pv} from '../src/variants';
 
 const COMMON_UNITS = ['small', 'medium', 'large'];
 
