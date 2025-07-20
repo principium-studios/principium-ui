@@ -1,6 +1,6 @@
 {
   "name": "@principium/divider",
-  "version": "0.0.4",
+  "version": "0.0.2",
   "description": "A flexible and accessible divider component for React applications with multiple variants and customization options.",
   "keywords": [
     "divider",
