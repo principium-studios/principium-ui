@@ -1,13 +1,14 @@
 name: Release
 
 on:
-  push:
-    paths:
-      - ".changeset/**"
-      - "packages/**"
-      - "apps/**"
-    branches:
-      - main
+  workflow_dispatch:
+  # Will come back to this in the future
+  # push:
+  #   paths:
+  #     - ".changeset/**"
+  #     - "packages/**"
+  #   branches:
+  #     - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
