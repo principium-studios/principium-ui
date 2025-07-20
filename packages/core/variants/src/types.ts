@@ -81,9 +81,20 @@ export type VariantConfig<
 /**
  * Props type derived from variants configuration
  */
-export type VariantProps<V extends Variants<S>, S extends Slots> = {
+export type BaseVariantProps<V extends Variants<S>, S extends Slots> = {
   [variantName in keyof V]?: keyof V[variantName] | boolean | null | undefined;
 };
+export type VariantProps<V extends Variants<S>, S extends Slots> = BaseVariantProps<V, S> &
+  (
+    | {
+        class?: never;
+        className?: ClassValue;
+      }
+    | {
+        class?: ClassValue;
+        className?: never;
+      }
+  );
 
 /**
  * Return type for slot functions
@@ -109,5 +120,11 @@ export class InvalidVariantError extends Error {
 export class InvalidVariantValueError extends Error {
   constructor(variantName: string, value: string) {
     super(`Invalid value "${value}" for variant "${variantName}"`);
+  }
+}
+
+export class InvalidConfigError extends Error {
+  constructor(message: string) {
+    super(message);
   }
 }

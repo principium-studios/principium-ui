@@ -9,9 +9,11 @@ import type {
   ClassValue,
   SlotFunction,
   SlotFunctions,
+  BaseVariantProps,
 } from './types';
-
-import {InvalidVariantError, InvalidVariantValueError} from './types';
+import {InvalidConfigError, InvalidVariantError, InvalidVariantValueError} from './types';
+import clsx from 'clsx';
+import {twMerge} from 'tailwind-merge';
 
 /**
  * Converts a variant value to a string
@@ -32,7 +34,7 @@ function validateVariantProps<
   V extends Variants<S>,
   DV extends DefaultVariants<V, S>,
   CV extends CompoundVariants<V, S>,
->(props: VariantProps<V, S> | undefined, config: VariantConfig<S, V, DV, CV>): void {
+>(props: BaseVariantProps<V, S> | undefined, config: VariantConfig<S, V, DV, CV>): void {
   if (!props || !config.variants) return;
 
   for (const [variantName, variantOption] of Object.entries(props)) {
@@ -139,15 +141,21 @@ function createSlotFunction<
   slotName: keyof S | null,
   baseClasses: ClassValue,
   config: VariantConfig<S, V, DV, CV>,
+  twMerge: any,
 ): (props?: VariantProps<V, S>) => ClassValue {
   return (props?: VariantProps<V, S>) => {
-    validateVariantProps(props, config);
+    // Extract class and className props and rest of the props
+    const {class: classProp, className: classNameProp, ...rest} = props || {};
+    const pickedVariantsProps = rest as BaseVariantProps<V, S>;
+
+    // Validate the picked variants props
+    validateVariantProps(pickedVariantsProps, config);
 
     // Merge default variants with provided props, filtering out undefined values
     const pickedVariants = {
       ...config.defaultVariants,
       ...Object.fromEntries(
-        Object.entries(props || {}).filter(([_, value]) => value !== undefined),
+        Object.entries(pickedVariantsProps || {}).filter(([_, value]) => value !== undefined),
       ),
     } as VariantProps<V, S>;
 
@@ -183,14 +191,29 @@ function createSlotFunction<
       classes.push(compoundClasses);
     }
 
-    return classes.filter(Boolean);
+    return twMerge(clsx(classes, classNameProp, classProp));
   };
+}
+
+/**
+ * Validates the config
+ * @param config - The config to validate
+ */
+function validateConfig<
+  S extends Slots,
+  V extends Variants<S>,
+  DV extends DefaultVariants<V, S>,
+  CV extends CompoundVariants<V, S>,
+>(config: VariantConfig<S, V, DV, CV>): void {
+  if (config.compoundVariants && !Array.isArray(config.compoundVariants)) {
+    throw new InvalidConfigError('compoundVariants must be an array');
+  }
 }
 
 /**
  * Main variant engine function that creates slot-split variant functions
  */
-export function pv<
+function pvBase<
   S extends Slots,
   V extends Variants<S>,
   DV extends DefaultVariants<V, S>,
@@ -198,18 +221,40 @@ export function pv<
 >(
   slots: S,
   config: VariantConfig<S, V, DV, CV>,
+  twMerge: any,
 ): S extends MultiSlots ? SlotFunctions<S, V> : SlotFunction<V, S> {
+  validateConfig(config);
+
   // Handle single slot case
   if (typeof slots === 'string' || Array.isArray(slots) || slots === null || slots === undefined) {
-    return createSlotFunction(null, slots, config) as any;
+    return createSlotFunction(null, slots, config, twMerge) as any;
   }
 
   // Handle multi-slot case
   const result = {} as SlotFunctions<S & MultiSlots, V>;
 
   for (const [slotName, baseClasses] of Object.entries(slots)) {
-    result[slotName as keyof S] = createSlotFunction(slotName as keyof S, baseClasses, config);
+    result[slotName as keyof S] = createSlotFunction(
+      slotName as keyof S,
+      baseClasses,
+      config,
+      twMerge,
+    );
   }
 
   return result as any;
 }
+
+export function createPv(twMerge: any) {
+  return <
+    S extends Slots,
+    V extends Variants<S>,
+    DV extends DefaultVariants<V, S>,
+    CV extends CompoundVariants<V, S>,
+  >(
+    slots: S,
+    config: VariantConfig<S, V, DV, CV>,
+  ) => pvBase(slots, config, twMerge);
+}
+
+export const pv = createPv(twMerge);
