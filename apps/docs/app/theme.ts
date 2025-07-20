@@ -1,6 +1,6 @@
-import { principium } from "@principium/react";
+import { shadesPlugin } from "@principium/theme";
 
-export default principium({
+export default shadesPlugin({
   defaultTheme: 'light',
   themes: {
     light: {

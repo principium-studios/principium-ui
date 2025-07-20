@@ -116,6 +116,9 @@ importers:
       '@principium/react':
         specifier: workspace:*
         version: link:../../packages/core/react
+      '@principium/theme':
+        specifier: workspace:*
+        version: link:../../packages/core/theme
       next:
         specifier: 15.4.2-canary.10
         version: 15.4.2-canary.10(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -564,9 +567,6 @@ importers:
       '@principium/divider':
         specifier: workspace:*
         version: link:../../components/divider
-      '@principium/theme':
-        specifier: workspace:*
-        version: link:../theme
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*

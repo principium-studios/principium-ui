@@ -35,7 +35,6 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
-    "@principium/theme": "workspace:*",
     "@principium/alert": "workspace:*",
     "@principium/avatar": "workspace:*",
     "@principium/badge": "workspace:*",
