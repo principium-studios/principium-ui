@@ -1,4 +1,4 @@
-import {principium} from '@principium/theme';
+import { principium } from "@principium/react";
 
 export default principium({
   defaultTheme: 'light',
