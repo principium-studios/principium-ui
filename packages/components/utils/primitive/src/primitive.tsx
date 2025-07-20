@@ -1,3 +1,5 @@
+'use client';
+
 import {createSlot} from '@principium/slot';
 
 const PRIMITIVE_NODES = [

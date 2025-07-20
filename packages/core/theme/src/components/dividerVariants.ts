@@ -1,5 +1,3 @@
-import type {VariantProps} from '@principium/variants';
-
 import {pv} from '../utils/pv';
 
 /**
@@ -20,5 +18,4 @@ const dividerVariants = pv('bg-border-300 shrink-0 border-none', {
   },
 });
 
-export type DividerVariantProps = VariantProps<typeof dividerVariants>;
 export {dividerVariants};

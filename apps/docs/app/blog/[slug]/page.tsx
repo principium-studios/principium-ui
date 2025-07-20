@@ -1,5 +1,5 @@
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default function BlogPost({params}: {params: {slug: string}}) {
+  const {slug} = params;
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import { shadesPlugin } from "@principium/theme";
+import {shadesPlugin} from '@principium/theme';
 
 export default shadesPlugin({
   defaultTheme: 'light',

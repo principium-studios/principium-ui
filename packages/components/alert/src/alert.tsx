@@ -1,3 +1,5 @@
+'use client';
+
 import type {AlertVariantProps} from '@principium/theme';
 
 import React from 'react';

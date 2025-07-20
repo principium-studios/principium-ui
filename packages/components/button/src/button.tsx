@@ -1,3 +1,5 @@
+'use client';
+
 import type {PrimitiveProps} from '@principium/primitive';
 import type {ButtonVariantProps} from '@principium/theme';
 

@@ -1,5 +1,5 @@
-export default function PatternPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default function PatternPage({params}: {params: {slug: string}}) {
+  const {slug} = params;
 
   return (
     <div>

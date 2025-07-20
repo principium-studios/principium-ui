@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <footer className="bg-background-50 border-border-300 border-t py-4">
-      <div className="flex justify-center items-center">
+    <footer className="bg-background-50 py-4">
+      <div className="flex items-center justify-center">
         <p className="text-background-600 text-sm">
           &copy; {new Date().getFullYear()} Principium Studios. MIT License.
         </p>

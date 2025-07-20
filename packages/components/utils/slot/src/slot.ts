@@ -1,3 +1,5 @@
+'use client';
+
 import type {AnyProps} from './combineProps';
 
 import React from 'react';

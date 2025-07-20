@@ -1,4 +1,4 @@
-import type {SlotsToClasses, VariantProps} from '@principium/variants';
+import type {VariantProps} from '@principium/variants';
 
 import {pv} from '../utils/pv';
 import {colorVariants, dataFocusVisibleClasses, translateCenterClasses} from '../utils';
@@ -7,7 +7,7 @@ import {colorVariants, dataFocusVisibleClasses, translateCenterClasses} from '..
  * Avatar wrapper **Tailwind Variants** component
  *
  * @example
- * 
+ *
  * <div className={avatarVariants.base({size, color, isBordered, disabled}))} data-focus={true/false} data-focus-visible={true/false}>
  *    <img className={avatarVariants.img()} src="https://picsum.photos/200/300" alt="your avatar" />
  *    <div role="img" aria-label="your name" className={avatarVariants.name()}>your name</div>

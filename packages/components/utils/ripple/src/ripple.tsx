@@ -1,3 +1,5 @@
+'use client';
+
 import type {HTMLMotionProps} from 'framer-motion';
 import type {RippleItem} from './useRipple';
 
