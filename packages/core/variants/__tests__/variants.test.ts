@@ -622,469 +622,168 @@ describe('Principium Variants (PV) - Slots', () => {
     } as const;
 
     // base
-    expect(base({...variants, class: 'text-xl'})).toBe('text-xl font-bold underline color--secondary-base');
-    expect(base({...variants, className: 'text-xl'})).toBe('text-xl font-bold underline color--secondary-base');
+    expect(base({...variants, class: 'text-xl'})).toBe('font-bold underline text-xl');
+    expect(base({...variants, className: 'text-xl'})).toBe('font-bold underline text-xl');
     // title
-    expect(title({...variants, class: 'text-2xl'})).toBe('text-2xl color--secondary-title size--md-title');
-    expect(title({...variants, className: 'text-2xl'})).toBe('text-2xl color--secondary-title size--md-title');
+    expect(title({...variants, class: 'text-2xl'})).toBe('text-white text-2xl');
+    expect(title({...variants, className: 'text-2xl'})).toBe('text-white text-2xl');
     //item
-    expect(item({...variants, class: 'bg-purple-50'})).toBe('text-xl bg-purple-50 opacity-100 color--secondary-item');
-    expect(item({...variants, className: 'bg-purple-50'})).toBe('text-xl bg-purple-50 opacity-100 color--secondary-item');
+    expect(item({...variants, class: 'bg-purple-50'})).toBe('text-xl opacity-100 bg-purple-50');
+    expect(item({...variants, className: 'bg-purple-50'})).toBe('text-xl opacity-100 bg-purple-50');
     // list
-    expect(list({...variants, class: 'bg-purple-100'})).toBe('list-none bg-purple-100 color--secondary-list');
-    expect(list({...variants, className: 'bg-purple-100'})).toBe('list-none bg-purple-100 color--secondary-list');
+    expect(list({...variants, class: 'bg-purple-100'})).toBe('list-none bg-purple-100');
+    expect(list({...variants, className: 'bg-purple-100'})).toBe('list-none bg-purple-100');
     // wrapper
-    expect(wrapper({...variants, class: 'bg-purple-900 flex-row'})).toBe('flex bg-purple-900 flex-row color--secondary-wrapper');
-    expect(wrapper({...variants, className: 'bg-purple-900 flex-row'})).toBe('flex bg-purple-900 flex-row color--secondary-wrapper');
+    expect(wrapper({...variants, class: 'bg-purple-900 flex-row'})).toBe(
+      'flex bg-purple-900 flex-row',
+    );
+    expect(wrapper({...variants, className: 'bg-purple-900 flex-row'})).toBe(
+      'flex bg-purple-900 flex-row',
+    );
   });
 
-  //   test("should work with slots and compoundVariants", () => {
-  //     const menu = tv({
-  //       base: "text-3xl font-bold underline",
-  //       slots: {
-  //         title: "text-2xl",
-  //         item: "text-xl",
-  //         list: "list-none",
-  //         wrapper: "flex flex-col",
-  //       },
-  //       variants: {
-  //         color: {
-  //           primary: "color--primary",
-  //           secondary: {
-  //             base: "color--secondary-base",
-  //             title: "color--secondary-title",
-  //             item: "color--secondary-item",
-  //             list: "color--secondary-list",
-  //             wrapper: "color--secondary-wrapper",
-  //           },
-  //         },
-  //         size: {
-  //           xs: "size--xs",
+  test('should work with slots and compoundVariants', () => {
+    const {base, title, item, list, wrapper} = pv(
+      {
+        base: 'text-3xl font-bold underline',
+        title: 'text-2xl',
+        item: 'text-xl',
+        list: 'list-none',
+        wrapper: 'flex flex-col',
+      },
+      {
+        variants: {
+          color: {
+            primary: 'color--primary',
+            secondary: {
+              base: 'color--secondary-base',
+              title: 'color--secondary-title',
+              item: 'color--secondary-item',
+              list: 'color--secondary-list',
+              wrapper: 'color--secondary-wrapper',
+            },
+          },
+          size: {
+            xs: 'size--xs',
 
-  //           sm: "size--sm",
-  //           md: {
-  //             title: "size--md-title",
-  //           },
-  //         },
-  //         isDisabled: {
-  //           true: {
-  //             title: "disabled--title",
-  //           },
-  //           false: {
-  //             item: "enabled--item",
-  //           },
-  //         },
-  //       },
-  //       defaultVariants: {
-  //         color: "primary",
-  //         size: "sm",
-  //         isDisabled: false,
-  //       },
-  //       compoundVariants: [
-  //         {
-  //           color: "secondary",
-  //           size: "md",
-  //           class: {
-  //             base: "compound--base",
-  //             title: "compound--title",
-  //             item: "compound--item",
-  //             list: "compound--list",
-  //             wrapper: "compound--wrapper",
-  //           },
-  //         },
-  //       ],
-  //     });
+            sm: 'size--sm',
+            md: {
+              title: 'size--md-title',
+            },
+          },
+          isDisabled: {
+            true: {
+              title: 'disabled--title',
+            },
+            false: {
+              item: 'enabled--item',
+            },
+          },
+        },
+        defaultVariants: {
+          color: 'primary',
+          size: 'sm',
+          isDisabled: false,
+        },
+        compoundVariants: [
+          {
+            color: 'secondary',
+            size: 'md',
+            class: {
+              base: 'compound--base',
+              title: 'compound--title',
+              item: 'compound--item',
+              list: 'compound--list',
+              wrapper: 'compound--wrapper',
+            },
+          },
+        ],
+      },
+    );
 
-  //     const {base, title, item, list, wrapper} = menu({
-  //       color: "secondary",
-  //       size: "md",
-  //     });
+    const variants = {
+      color: 'secondary',
+      size: 'md',
+    } as const;
 
-  //     expect(base()).toHaveClass([
-  //       "text-3xl",
-  //       "font-bold",
-  //       "underline",
-  //       "color--secondary-base",
-  //       "compound--base",
-  //     ]);
-  //     expect(title()).toHaveClass([
-  //       "text-2xl",
-  //       "size--md-title",
-  //       "color--secondary-title",
-  //       "compound--title",
-  //     ]);
-  //     expect(item()).toHaveClass([
-  //       "text-xl",
-  //       "color--secondary-item",
-  //       "enabled--item",
-  //       "compound--item",
-  //     ]);
-  //     expect(list()).toHaveClass(["list-none", "color--secondary-list", "compound--list"]);
-  //     expect(wrapper()).toHaveClass([
-  //       "flex",
-  //       "flex-col",
-  //       "color--secondary-wrapper",
-  //       "compound--wrapper",
-  //     ]);
-  //   });
+    expect(base(variants)).toBe(
+      'text-3xl font-bold underline color--secondary-base compound--base',
+    );
+    expect(title(variants)).toBe('text-2xl color--secondary-title size--md-title compound--title');
+    expect(item(variants)).toBe('text-xl color--secondary-item enabled--item compound--item');
+    expect(list(variants)).toBe('list-none color--secondary-list compound--list');
+    expect(wrapper(variants)).toBe('flex flex-col color--secondary-wrapper compound--wrapper');
+  });
 
-  //   test("should support slot level variant overrides", () => {
-  //     const menu = tv({
-  //       base: "text-3xl",
-  //       slots: {
-  //         title: "text-2xl",
-  //       },
-  //       variants: {
-  //         color: {
-  //           primary: {
-  //             base: "color--primary-base",
-  //             title: "color--primary-title",
-  //           },
-  //           secondary: {
-  //             base: "color--secondary-base",
-  //             title: "color--secondary-title",
-  //           },
-  //         },
-  //       },
-  //       defaultVariants: {
-  //         color: "primary",
-  //       },
-  //     });
+  test('should support slot level variant overrides', () => {
+    const {base, title} = pv(
+      {
+        base: 'text-3xl',
+        title: 'text-2xl',
+      },
+      {
+        variants: {
+          color: {
+            primary: {
+              base: 'color--primary-base',
+              title: 'color--primary-title',
+            },
+            secondary: {
+              base: 'color--secondary-base',
+              title: 'color--secondary-title',
+            },
+          },
+        },
+        defaultVariants: {
+          color: 'primary',
+        },
+      },
+    );
 
-  //     const {base, title} = menu();
+    expect(base()).toBe('text-3xl color--primary-base');
+    expect(title()).toBe('text-2xl color--primary-title');
+    expect(base({color: 'secondary'})).toBe('text-3xl color--secondary-base');
+    expect(title({color: 'secondary'})).toBe('text-2xl color--secondary-title');
+  });
 
-  //     expect(base()).toHaveClass(["text-3xl", "color--primary-base"]);
-  //     expect(title()).toHaveClass(["text-2xl", "color--primary-title"]);
-  //     expect(base({color: "secondary"})).toHaveClass(["text-3xl", "color--secondary-base"]);
-  //     expect(title({color: "secondary"})).toHaveClass(["text-2xl", "color--secondary-title"]);
-  //   });
+  test('should support slot level variant overrides - compoundVariants', () => {
+    const {base, title} = pv(
+      {
+        base: 'text-3xl',
+        title: 'text-2xl',
+      },
+      {
+        variants: {
+          color: {
+            primary: {
+              base: 'color--primary-base',
+              title: 'color--primary-title',
+            },
+            secondary: {
+              base: 'color--secondary-base',
+              title: 'color--secondary-title',
+            },
+          },
+        },
+        compoundVariants: [
+          {
+            color: 'secondary',
+            class: {
+              title: 'truncate',
+            },
+          },
+        ],
+        defaultVariants: {
+          color: 'primary',
+        },
+      },
+    );
 
-  //   test("should support slot level variant overrides - compoundSlots", () => {
-  //     const menu = tv({
-  //       base: "text-3xl",
-  //       slots: {
-  //         title: "text-2xl",
-  //         subtitle: "text-xl",
-  //       },
-  //       variants: {
-  //         color: {
-  //           primary: {
-  //             base: "color--primary-base",
-  //             title: "color--primary-title",
-  //             subtitle: "color--primary-subtitle",
-  //           },
-  //           secondary: {
-  //             base: "color--secondary-base",
-  //             title: "color--secondary-title",
-  //             subtitle: "color--secondary-subtitle",
-  //           },
-  //         },
-  //       },
-  //       compoundSlots: [
-  //         {
-  //           slots: ["title", "subtitle"],
-  //           color: "secondary",
-  //           class: ["truncate"],
-  //         },
-  //       ],
-  //       defaultVariants: {
-  //         color: "primary",
-  //       },
-  //     });
-
-  //     const {base, title, subtitle} = menu();
-
-  //     expect(base()).toHaveClass(["text-3xl", "color--primary-base"]);
-  //     expect(title()).toHaveClass(["text-2xl", "color--primary-title"]);
-  //     expect(subtitle()).toHaveClass(["text-xl", "color--primary-subtitle"]);
-  //     expect(base({color: "secondary"})).toHaveClass(["text-3xl", "color--secondary-base"]);
-  //     expect(title({color: "secondary"})).toHaveClass([
-  //       "text-2xl",
-  //       "color--secondary-title",
-  //       "truncate",
-  //     ]);
-  //     expect(subtitle({color: "secondary"})).toHaveClass([
-  //       "text-xl",
-  //       "color--secondary-subtitle",
-  //       "truncate",
-  //     ]);
-  //   });
-
-  //   test("should support slot level variant and array variants overrides - compoundSlots", () => {
-  //     const menu = tv({
-  //       slots: {
-  //         base: "flex flex-wrap",
-  //         cursor: ["absolute", "flex", "overflow-visible"],
-  //       },
-  //       variants: {
-  //         size: {
-  //           xs: {},
-  //           sm: {},
-  //         },
-  //       },
-  //       compoundSlots: [
-  //         {
-  //           slots: ["base"],
-  //           size: ["xs", "sm"],
-  //           class: "w-7 h-7 text-xs",
-  //         },
-  //       ],
-  //     });
-
-  //     const {base, cursor} = menu();
-
-  //     expect(base()).toEqual("flex flex-wrap");
-  //     expect(base({size: "xs"})).toEqual("flex flex-wrap w-7 h-7 text-xs");
-  //     expect(base({size: "sm"})).toEqual("flex flex-wrap w-7 h-7 text-xs");
-  //     expect(cursor()).toEqual("absolute flex overflow-visible");
-  //   });
-
-  //   test("should not override the default classes when the variant doesn't match - compoundSlots", () => {
-  //     const tabs = tv({
-  //       slots: {
-  //         base: "inline-flex",
-  //         tabList: ["flex"],
-  //         tab: ["z-0", "w-full", "px-3", "py-1", "flex", "group", "relative"],
-  //         tabContent: ["relative", "z-10", "text-inherit", "whitespace-nowrap"],
-  //         cursor: ["absolute", "z-0", "bg-white"],
-  //         panel: ["py-3", "px-1", "outline-none"],
-  //       },
-  //       variants: {
-  //         variant: {
-  //           solid: {},
-  //           light: {},
-  //           underlined: {},
-  //           bordered: {},
-  //         },
-  //         color: {
-  //           default: {},
-  //           primary: {},
-  //           secondary: {},
-  //           success: {},
-  //           warning: {},
-  //           danger: {},
-  //         },
-  //         size: {
-  //           sm: {
-  //             tabList: "rounded-md",
-  //             tab: "h-7 text-xs rounded-sm",
-  //             cursor: "rounded-sm",
-  //           },
-  //           md: {
-  //             tabList: "rounded-md",
-  //             tab: "h-8 text-sm rounded-sm",
-  //             cursor: "rounded-sm",
-  //           },
-  //           lg: {
-  //             tabList: "rounded-lg",
-  //             tab: "h-9 text-md rounded-md",
-  //             cursor: "rounded-md",
-  //           },
-  //         },
-  //         radius: {
-  //           none: {
-  //             tabList: "rounded-none",
-  //             tab: "rounded-none",
-  //             cursor: "rounded-none",
-  //           },
-  //           sm: {
-  //             tabList: "rounded-md",
-  //             tab: "rounded-sm",
-  //             cursor: "rounded-sm",
-  //           },
-  //           md: {
-  //             tabList: "rounded-md",
-  //             tab: "rounded-sm",
-  //             cursor: "rounded-sm",
-  //           },
-  //           lg: {
-  //             tabList: "rounded-lg",
-  //             tab: "rounded-md",
-  //             cursor: "rounded-md",
-  //           },
-  //           full: {
-  //             tabList: "rounded-full",
-  //             tab: "rounded-full",
-  //             cursor: "rounded-full",
-  //           },
-  //         },
-  //       },
-  //       defaultVariants: {
-  //         color: "default",
-  //         variant: "solid",
-  //         size: "md",
-  //       },
-  //       compoundSlots: [
-  //         {
-  //           variant: "underlined",
-  //           slots: ["tab", "tabList", "cursor"],
-  //           class: ["rounded-none"],
-  //         },
-  //       ],
-  //     });
-
-  //     const {tab, tabList, cursor} = tabs();
-
-  //     expect(tab()).toHaveClass([
-  //       "z-0",
-  //       "w-full",
-  //       "px-3",
-  //       "py-1",
-  //       "h-8",
-  //       "flex",
-  //       "group",
-  //       "relative",
-  //       "text-sm",
-  //       "rounded-sm",
-  //     ]);
-  //     expect(tabList()).toHaveClass(["flex", "rounded-md"]);
-  //     expect(cursor()).toHaveClass(["absolute", "z-0", "bg-white", "rounded-sm"]);
-  //   });
-
-  //   test("should override the default classes when the variant matches - compoundSlots", () => {
-  //     const tabs = tv({
-  //       slots: {
-  //         base: "inline-flex",
-  //         tabList: ["flex"],
-  //         tab: ["z-0", "w-full", "px-3", "py-1", "flex", "group", "relative"],
-  //         tabContent: ["relative", "z-10", "text-inherit", "whitespace-nowrap"],
-  //         cursor: ["absolute", "z-0", "bg-white"],
-  //         panel: ["py-3", "px-1", "outline-none"],
-  //       },
-  //       variants: {
-  //         variant: {
-  //           solid: {},
-  //           light: {},
-  //           underlined: {},
-  //           bordered: {},
-  //         },
-  //         color: {
-  //           default: {},
-  //           primary: {},
-  //           secondary: {},
-  //           success: {},
-  //           warning: {},
-  //           danger: {},
-  //         },
-  //         size: {
-  //           sm: {
-  //             tabList: "rounded-md",
-  //             tab: "h-7 text-xs rounded-sm",
-  //             cursor: "rounded-sm",
-  //           },
-  //           md: {
-  //             tabList: "rounded-md",
-  //             tab: "h-8 text-sm rounded-sm",
-  //             cursor: "rounded-sm",
-  //           },
-  //           lg: {
-  //             tabList: "rounded-lg",
-  //             tab: "h-9 text-md rounded-md",
-  //             cursor: "rounded-md",
-  //           },
-  //         },
-  //         radius: {
-  //           none: {
-  //             tabList: "rounded-none",
-  //             tab: "rounded-none",
-  //             cursor: "rounded-none",
-  //           },
-  //           sm: {
-  //             tabList: "rounded-md",
-  //             tab: "rounded-sm",
-  //             cursor: "rounded-sm",
-  //           },
-  //           md: {
-  //             tabList: "rounded-md",
-  //             tab: "rounded-sm",
-  //             cursor: "rounded-sm",
-  //           },
-  //           lg: {
-  //             tabList: "rounded-lg",
-  //             tab: "rounded-md",
-  //             cursor: "rounded-md",
-  //           },
-  //           full: {
-  //             tabList: "rounded-full",
-  //             tab: "rounded-full",
-  //             cursor: "rounded-full",
-  //           },
-  //         },
-  //       },
-  //       defaultVariants: {
-  //         color: "default",
-  //         variant: "solid",
-  //         size: "md",
-  //       },
-  //       compoundSlots: [
-  //         {
-  //           variant: "underlined",
-  //           slots: ["tab", "tabList", "cursor"],
-  //           class: ["rounded-none"],
-  //         },
-  //       ],
-  //     });
-
-  //     const {tab, tabList, cursor} = tabs({variant: "underlined"});
-
-  //     expect(tab()).toHaveClass([
-  //       "z-0",
-  //       "w-full",
-  //       "px-3",
-  //       "py-1",
-  //       "h-8",
-  //       "flex",
-  //       "group",
-  //       "relative",
-  //       "text-sm",
-  //       "rounded-none",
-  //     ]);
-  //     expect(tabList()).toHaveClass(["flex", "rounded-none"]);
-  //     expect(cursor()).toHaveClass(["absolute", "z-0", "bg-white", "rounded-none"]);
-  //   });
-
-  //   test("should support slot level variant overrides - compoundVariants", () => {
-  //     const menu = tv({
-  //       base: "text-3xl",
-  //       slots: {
-  //         title: "text-2xl",
-  //       },
-  //       variants: {
-  //         color: {
-  //           primary: {
-  //             base: "color--primary-base",
-  //             title: "color--primary-title",
-  //           },
-  //           secondary: {
-  //             base: "color--secondary-base",
-  //             title: "color--secondary-title",
-  //           },
-  //         },
-  //       },
-  //       compoundVariants: [
-  //         {
-  //           color: "secondary",
-  //           class: {
-  //             title: "truncate",
-  //           },
-  //         },
-  //       ],
-  //       defaultVariants: {
-  //         color: "primary",
-  //       },
-  //     });
-
-  //     const {base, title} = menu();
-
-  //     expect(base()).toHaveClass(["text-3xl", "color--primary-base"]);
-  //     expect(title()).toHaveClass(["text-2xl", "color--primary-title"]);
-  //     expect(base({color: "secondary"})).toHaveClass(["text-3xl", "color--secondary-base"]);
-  //     expect(title({color: "secondary"})).toHaveClass([
-  //       "text-2xl",
-  //       "color--secondary-title",
-  //       "truncate",
-  //     ]);
-  //   });
+    expect(base()).toBe('text-3xl color--primary-base');
+    expect(title()).toBe('text-2xl color--primary-title');
+    expect(base({color: 'secondary'})).toBe('text-3xl color--secondary-base');
+    expect(title({color: 'secondary'})).toBe('text-2xl color--secondary-title truncate');
+  });
 });
 
 describe('Principium Variants (PV) - Tailwind Merge', () => {
