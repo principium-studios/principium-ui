@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {Primitive, PrimitiveProps} from '@principium/primitive';
 import {avatarVariants, AvatarVariantProps} from '@principium/theme';
 
