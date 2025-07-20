@@ -1,6 +1,6 @@
 {
   "name": "@principium/context",
-  "version": "0.0.4",
+  "version": "0.0.3",
   "description": "A flexible context component for React that enables sharing values between components.",
   "keywords": [
     "context",
