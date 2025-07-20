@@ -1,4 +1,4 @@
 import {createPv} from '@principium/variants';
 
-import {twMerge} from './customTwMerge';
+import {twMerge} from './twMerge';
 export const pv = createPv(twMerge);
