@@ -1,8 +1,8 @@
-import type {PrincipiumConfig} from './types';
+import type {PrincipiumConfig, Themes} from './types';
 
 import plugin from 'tailwindcss/plugin.js';
 
-export const principium = (opts: PrincipiumConfig): ReturnType<typeof plugin> => {
+export const principium = <T extends Themes>(opts: PrincipiumConfig<T>): ReturnType<typeof plugin> => {
   const {themes, defaultTheme} = opts;
 
   // lightness maps

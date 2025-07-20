@@ -18,9 +18,11 @@ interface Theme {
   colors: Record<ColorKey, Color>;
 }
 
-interface PrincipiumConfig {
-  defaultTheme: string;
-  themes: Record<string, Theme>;
+type Themes = Record<string, Theme>;
+
+interface PrincipiumConfig<T extends Themes> {
+  defaultTheme: keyof T;
+  themes: T;
 }
 
-export type {ColorKey, Color, Theme, PrincipiumConfig};
+export type {Themes, PrincipiumConfig};
