@@ -1,6 +1,6 @@
 import type {VariantProps} from '@principium/variants';
 
-import {pv} from '@principium/variants';
+import {pv} from '../utils';
 
 /**
  * Card **Tailwind Variants** component

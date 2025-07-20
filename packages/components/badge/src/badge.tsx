@@ -3,7 +3,7 @@ import type {BadgeVariantProps} from '@principium/theme';
 
 import React from 'react';
 import {Primitive} from '@principium/primitive';
-import {badgeVariants, cn} from '@principium/theme';
+import {badgeVariants} from '@principium/theme';
 
 type BadgeProps = PrimitiveProps<'div'> & Omit<BadgeVariantProps, 'isOneChar' | 'isDot'>;
 const Badge = ({
@@ -22,19 +22,17 @@ const Badge = ({
 
   return (
     <Primitive.span
-      className={cn(
-        badgeVariants({
-          variant,
-          size,
-          shape,
-          placement,
-          color,
-          isOneChar,
-          isDot,
-          showOutline,
-        }),
+      className={badgeVariants({
+        variant,
+        size,
+        shape,
+        placement,
+        color,
+        isOneChar,
+        isDot,
+        showOutline,
         className,
-      )}
+      })}
       {...props}
     >
       {children}

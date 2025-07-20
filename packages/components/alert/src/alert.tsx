@@ -2,7 +2,7 @@ import type {AlertVariantProps} from '@principium/theme';
 
 import React from 'react';
 import {createContext} from '@principium/context';
-import {alertVariants, cn} from '@principium/theme';
+import {alertVariants} from '@principium/theme';
 import {Slot} from '@principium/slot';
 
 type AlertContextType = {
@@ -16,7 +16,7 @@ type AlertProps = React.ComponentPropsWithRef<'div'> & AlertVariantProps;
 const Alert = ({className, variant, color, ...props}: AlertProps) => {
   return (
     <AlertProvider color={color} variant={variant}>
-      <div className={cn(alertVariants.base({variant, color}), className)} {...props} />
+      <div className={alertVariants.base({variant, color, className})} {...props} />
     </AlertProvider>
   );
 };
@@ -26,7 +26,7 @@ type AlertTitleProps = React.ComponentPropsWithRef<'div'>;
 const AlertTitle = ({className, ...props}: AlertTitleProps) => {
   const {variant, color} = useAlert();
 
-  return <div className={cn(alertVariants.title({variant, color}), className)} {...props} />;
+  return <div className={alertVariants.title({variant, color, className})} {...props} />;
 };
 
 // ________________________ AlertDescription ________________________
@@ -34,7 +34,7 @@ type AlertDescriptionProps = React.ComponentPropsWithRef<'div'>;
 const AlertDescription = ({className, ...props}: AlertDescriptionProps) => {
   const {variant, color} = useAlert();
 
-  return <div className={cn(alertVariants.description({variant, color}), className)} {...props} />;
+  return <div className={alertVariants.description({variant, color, className})} {...props} />;
 };
 
 // ________________________ AlertIcon ________________________
@@ -49,7 +49,7 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
       case 'success':
         return (
           <svg
-            className={cn(alertVariants.alertIcon({variant, color}))}
+            className={alertVariants.alertIcon({variant, color})}
             fill="currentColor"
             height="24"
             strokeLinecap="round"
@@ -68,7 +68,7 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
       case 'warning':
         return (
           <svg
-            className={cn(alertVariants.alertIcon({variant, color}))}
+            className={alertVariants.alertIcon({variant, color})}
             fill="currentColor"
             height="24"
             strokeLinecap="round"
@@ -91,7 +91,7 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
       case 'danger':
         return (
           <svg
-            className={cn(alertVariants.alertIcon({variant, color}))}
+            className={alertVariants.alertIcon({variant, color})}
             fill="currentColor"
             height="24"
             strokeLinecap="round"
@@ -114,7 +114,7 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
       default:
         return (
           <svg
-            className={cn(alertVariants.alertIcon({variant, color}))}
+            className={alertVariants.alertIcon({variant, color})}
             fill="currentColor"
             height="24"
             strokeLinecap="round"
@@ -136,11 +136,11 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
 
   return (
     <div
-      className={cn(alertVariants.iconWrapper({variant, color, hideIconWrapper}), className)}
+      className={alertVariants.iconWrapper({variant, color, hideIconWrapper, className})}
       {...props}
     >
       {children ? (
-        <Slot className={cn(alertVariants.alertIcon({variant, color}))}>{children}</Slot>
+        <Slot className={alertVariants.alertIcon({variant, color})}>{children}</Slot>
       ) : (
         defaultAlertIcon
       )}

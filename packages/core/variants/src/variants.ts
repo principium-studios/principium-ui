@@ -142,7 +142,7 @@ function createSlotFunction<
   baseClasses: ClassValue,
   config: VariantConfig<S, V, DV, CV>,
   twMerge: any,
-): (props?: VariantProps<V, S>) => ClassValue {
+) {
   return (props?: VariantProps<V, S>) => {
     // Extract class and className props and rest of the props
     const {class: classProp, className: classNameProp, ...rest} = props || {};

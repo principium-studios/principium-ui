@@ -101,7 +101,7 @@ export type VariantProps<V extends Variants<S>, S extends Slots> = BaseVariantPr
  */
 export type SlotFunction<V extends Variants<S>, S extends Slots> = (
   props?: VariantProps<V, S>,
-) => ClassValue;
+) => string;
 
 /**
  * Return type for pv() - a record of slot functions

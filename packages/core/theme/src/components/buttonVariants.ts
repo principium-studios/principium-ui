@@ -1,8 +1,6 @@
 import type {VariantProps} from '@principium/variants';
 
-import {pv} from '@principium/variants';
-
-import {colorVariants} from '../utils';
+import {pv, colorVariants} from '../utils';
 
 /**
  * Button **Tailwind Variants** component
