@@ -1,6 +1,6 @@
 {
   "name": "@principium/alert",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A flexible and accessible alert component for React applications with multiple variants and customization options.",
   "keywords": [
     "alert",

@@ -1,6 +1,6 @@
 {
   "name": "@principium/variants",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A powerful and flexible variant system for building component libraries with TypeScript support",
   "keywords": [
     "variants",

@@ -1,6 +1,6 @@
 {
   "name": "@principium/primitive",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Primitive components with support for asChild prop for React components.",
   "keywords": [
     "primitive",
@@ -56,5 +56,5 @@
   "dependencies": {
     "@principium/slot": "workspace:*"
   },
-  "clean-package": "../../../clean-package.config.json"
+  "clean-package": "../../../../clean-package.config.json"
 }

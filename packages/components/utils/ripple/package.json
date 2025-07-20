@@ -1,6 +1,6 @@
 {
   "name": "@principium/ripple",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A flexible and accessible ripple effect component for React applications.",
   "keywords": [
     "ripple",
@@ -54,5 +54,5 @@
     "typescript": "^5.5.2",
     "clean-package": "^2.2.0"
   },
-  "clean-package": "../../clean-package.config.json"
+  "clean-package": "../../../../clean-package.config.json"
 }

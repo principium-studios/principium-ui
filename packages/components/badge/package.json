@@ -1,6 +1,6 @@
 {
   "name": "@principium/badge",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A flexible and accessible badge component for React applications with multiple variants and customization options.",
   "keywords": [
     "badge",

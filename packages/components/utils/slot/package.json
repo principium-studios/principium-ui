@@ -1,6 +1,6 @@
 {
   "name": "@principium/slot",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A flexible slot component for React that enables composition and prop merging between components.",
   "keywords": [
     "slot",
@@ -53,5 +53,5 @@
     "typescript": "^5.5.2",
     "clean-package": "^2.2.0"
   },
-  "clean-package": "../../clean-package.config.json"
+  "clean-package": "../../../../clean-package.config.json"
 }

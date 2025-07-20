@@ -1,6 +1,6 @@
 {
   "name": "@principium/card",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A flexible and accessible card component for React applications with multiple variants and customization options.",
   "keywords": [
     "card",

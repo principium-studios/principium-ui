@@ -1,6 +1,6 @@
 {
   "name": "@principium/context",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A flexible context component for React that enables sharing values between components.",
   "keywords": [
     "context",
@@ -52,5 +52,5 @@
     "typescript": "^5.5.2",
     "clean-package": "^2.2.0"
   },
-  "clean-package": "../../../clean-package.config.json"
+  "clean-package": "../../../../clean-package.config.json"
 }
