@@ -6,6 +6,7 @@ import type {ButtonVariantProps} from '@principium/theme';
 import {Primitive} from '@principium/primitive';
 import {Ripple, RippleProvider} from '@principium/ripple';
 import {buttonVariants} from '@principium/theme';
+import React from 'react';
 
 // ____________________ Button Component ____________________
 type ButtonProps = PrimitiveProps<'button'> & ButtonVariantProps & {disableRipple?: boolean};
@@ -19,8 +20,31 @@ const Button = ({
   onClick,
   disableRipple,
   disabled,
+  asChild,
   ...props
 }: ButtonProps) => {
+  const content = React.useMemo(() => {
+    if (!asChild) {
+      return (
+        <>
+          {children}
+          <Ripple />
+        </>
+      );
+    }
+
+    const child = children as React.ReactElement<{ children?: React.ReactNode }>;
+    
+    return React.cloneElement(child, {
+      children: (
+        <>
+          {child.props?.children}
+          <Ripple />
+        </>
+      ),
+    });
+  }, [asChild]);
+
   return (
     <RippleProvider disableRipple={disableRipple || disabled}>
       <Primitive.button
@@ -32,9 +56,9 @@ const Button = ({
           if (disabled) return;
           onClick?.(e);
         }}
+        asChild={asChild}
       >
-        {children}
-        <Ripple />
+        {content}
       </Primitive.button>
     </RippleProvider>
   );
