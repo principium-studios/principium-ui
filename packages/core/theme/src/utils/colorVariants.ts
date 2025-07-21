@@ -1,5 +1,5 @@
 const solid = {
-  default: 'bg-border-300 text-background-950',
+  default: 'bg-border-100 text-background-950',
   primary: 'bg-primary-400 text-primary-50 dark:bg-primary-600 dark:text-primary-950',
   secondary: 'bg-secondary-400 text-secondary-50 dark:bg-secondary-600 dark:text-secondary-950',
   success: 'bg-success-400 text-success-950 dark:bg-success-600 dark:text-success-50',
