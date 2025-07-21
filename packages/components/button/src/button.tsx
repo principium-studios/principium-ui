@@ -43,7 +43,7 @@ const Button = ({
         </>
       ),
     });
-  }, [asChild]);
+  }, [asChild,children]);
 
   return (
     <RippleProvider disableRipple={disableRipple || disabled}>

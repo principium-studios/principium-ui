@@ -1,6 +1,7 @@
 import {Button, Divider} from '@principium/react';
 import Link from 'next/link';
 import {GithubIcon, MoonIcon} from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 const Navbar = () => {
   return (
@@ -34,9 +35,7 @@ const Navbar = () => {
                 <GithubIcon size={16} />
               </Link>
             </Button>
-            <Button className="border-1 rounded-full" size="icon" variant="bordered">
-              <MoonIcon size={16} />
-            </Button>
+           <ThemeToggle />
           </div>
         </div>
       </header>
