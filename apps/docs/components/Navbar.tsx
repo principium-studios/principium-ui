@@ -17,7 +17,7 @@ const Navbar = () => {
           {/* Links to Docs, Components, Blog, */}
           <ul className="flex items-center gap-4">
             <li>
-              <Link href="/docs">Docs</Link>
+              <Link href="/docs/guide/introduction">Docs</Link>
             </li>
             <li>
               <Link href="/components">Components</Link>

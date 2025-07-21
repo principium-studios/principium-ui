@@ -21,6 +21,8 @@ const Portal = ({container: containerProp, ...props}: PortalProps) => {
    * This is cause we can't access the document object until then.
    */
   const [mounted, setMounted] = React.useState(false);
+
+  // We use useLayoutEffect instead of useEffect to avoid flickering (https://stackoverflow.com/questions/64683234/setstate-inside-uselayouteffect)
   useLayoutEffect(() => setMounted(true), []);
 
   // If no containerProp is provided, we use the document.body

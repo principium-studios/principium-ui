@@ -1,7 +1,8 @@
 import type {NextConfig} from 'next';
+import redirects from './next-redirect';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  redirects,
 };
 
 export default nextConfig;
