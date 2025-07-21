@@ -1,8 +1,8 @@
 import {Button, Divider} from '@principium/react';
 import Link from 'next/link';
-import { ThemeToggle } from './ThemeToggle';
+import {GithubLogoIcon} from '@phosphor-icons/react/dist/ssr';
 
-import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr';
+import {ThemeToggle} from './ThemeToggle';
 
 const Navbar = () => {
   return (
@@ -36,7 +36,7 @@ const Navbar = () => {
                 <GithubLogoIcon size={16} />
               </Link>
             </Button>
-           <ThemeToggle />
+            <ThemeToggle />
           </div>
         </div>
       </header>

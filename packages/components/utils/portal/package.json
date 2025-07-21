@@ -1,0 +1,57 @@
+{
+  "name": "@principium/portal",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [
+    "portal"
+  ],
+  "author": "Principium <support@principium.dev>",
+  "homepage": "https://principium.dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rarescovei5/principium",
+    "directory": "packages/components/utils/portal"
+  },
+  "sideEffects": false,
+  "main": "src/index.ts",
+  "files": [
+    "dist",
+    "!dist/**/*.test.*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/rarescovei5/principium/issues"
+  },
+  "scripts": {
+    "build": "tsup src --dts",
+    "build:fast": "tsup src",
+    "dev": "pnpm build:fast --watch",
+    "typecheck": "tsc --noEmit",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@principium/theme": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^24.0.13",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.16.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.5.2",
+    "clean-package": "^2.2.0"
+  },
+  "dependencies": {
+    "@principium/primitive": "workspace:*",
+    "@principium/use-layout-effect": "workspace:*"
+  },
+  "clean-package": "../../../../clean-package.config.json"
+}

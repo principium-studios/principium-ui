@@ -18,7 +18,7 @@ const features = [
     description:
       'Includes automatic dark mode and shade inversion. Simply enable it in your config for seamless dark theme support.',
     icon: <MoonIcon className="text-secondary-400 dark:text-secondary-600" />,
-  }
+  },
 ];
 
 export {features};

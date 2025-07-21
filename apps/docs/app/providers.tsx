@@ -5,11 +5,11 @@ import {ThemeProvider} from 'next-themes';
 
 export function Providers({children}: {children: React.ReactNode}) {
   return (
-    <ThemeProvider   
+    <ThemeProvider
       disableTransitionOnChange
-      themes={['light', 'dark']}
       attribute="class"
       defaultTheme="dark"
+      themes={['light', 'dark']}
     >
       {children}
     </ThemeProvider>

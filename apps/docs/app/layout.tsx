@@ -3,9 +3,10 @@ import type {Metadata} from 'next';
 import {Outfit} from 'next/font/google';
 
 import './globals.css';
+import {Providers} from './providers';
+
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import {Providers} from './providers';
 
 const outfit = Outfit({
   variable: '--font-outfit',
@@ -23,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html suppressHydrationWarning lang="en">
       <body className={`${outfit.variable}`}>
         <Providers>
           <Navbar />

@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
 import type {CardVariantProps} from '@principium/theme';
+import type {PrimitiveProps} from '@principium/primitive';
 
+import React from 'react';
 import {Ripple, RippleProvider} from '@principium/ripple';
 import {cardVariants} from '@principium/theme';
-import {Primitive, PrimitiveProps} from '@principium/primitive';
+import {Primitive} from '@principium/primitive';
 
 // ________________________ Card ________________________
 type CardProps = (
@@ -57,13 +58,13 @@ const Card = ({
     <RippleProvider disableRipple={disableRipple || !isPressable}>
       {/* @ts-ignore */}
       <Component
+        asChild={asChild}
         className={cardVariants.base({isPressable, disabled, isHoverable, isBlurred, className})}
         onClick={(e) => {
           if (!isPressable) return;
           // @ts-ignore
           onClick?.(e);
         }}
-        asChild={asChild}
         {...props}
       >
         {content}

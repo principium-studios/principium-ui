@@ -33,8 +33,8 @@ const Button = ({
       );
     }
 
-    const child = children as React.ReactElement<{ children?: React.ReactNode }>;
-    
+    const child = children as React.ReactElement<{children?: React.ReactNode}>;
+
     return React.cloneElement(child, {
       children: (
         <>
@@ -43,20 +43,20 @@ const Button = ({
         </>
       ),
     });
-  }, [asChild,children]);
+  }, [asChild, children]);
 
   return (
     <RippleProvider disableRipple={disableRipple || disabled}>
       <Primitive.button
         {...props}
         aria-disabled={disabled}
+        asChild={asChild}
         className={buttonVariants({variant, size, color, disabled, className})}
         disabled={disabled}
         onClick={(e) => {
           if (disabled) return;
           onClick?.(e);
         }}
-        asChild={asChild}
       >
         {content}
       </Primitive.button>
