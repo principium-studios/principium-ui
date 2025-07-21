@@ -19,7 +19,7 @@ import {pv} from '../utils/pv';
  */
 const cardVariants = pv(
   {
-    base: 'shadow-sm shadow-border-300/50 border border-border-300 flex flex-col relative overflow-hidden outline-hidden text-background-950 box-border bg-background-100 focus-within:outline-outline-400 dark:focus-within:outline-outline-600',
+    base: 'shadow-sm shadow-border-300/50 border border-border-300 flex flex-col relative overflow-hidden outline-hidden text-background-950 box-border bg-background-100 focus-within:outline-outline-400 dark:focus-within:outline-outline-600 rounded-lg',
     header:
       'flex p-3 z-10 w-full justify-start items-center shrink-0 overflow-inherit color-inherit subpixel-antialiased',
     title: 'font-semibold leading-none',

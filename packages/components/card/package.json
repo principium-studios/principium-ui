@@ -54,7 +54,8 @@
     "clean-package": "^2.2.0"
   },
   "dependencies": {
-    "@principium/ripple": "workspace:*"
+    "@principium/ripple": "workspace:*",
+    "@principium/primitive": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

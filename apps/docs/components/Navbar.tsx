@@ -1,7 +1,8 @@
 import {Button, Divider} from '@principium/react';
 import Link from 'next/link';
-import {GithubIcon, MoonIcon} from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
+
+import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr';
 
 const Navbar = () => {
   return (
@@ -32,7 +33,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <Button className="border-1 rounded-full" size="icon" variant="bordered">
               <Link href="https://github.com/principium-studios/principium" target="_blank">
-                <GithubIcon size={16} />
+                <GithubLogoIcon size={16} />
               </Link>
             </Button>
            <ThemeToggle />

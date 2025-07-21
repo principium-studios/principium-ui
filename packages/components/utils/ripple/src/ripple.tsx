@@ -1,9 +1,11 @@
 'use client';
 
-import type {HTMLMotionProps} from 'framer-motion';
+import type {HTMLMotionProps} from 'motion/react';
 import {useRipple, type RippleItem} from './useRipple';
 
-import {motion, AnimatePresence, clamp} from 'framer-motion';
+import * as motion from 'motion/react-client';
+import {AnimatePresence, clamp} from 'motion/react';
+
 import {createContext} from '@principium/context';
 import {Slot} from '@principium/slot';
 
@@ -11,7 +13,7 @@ import {Slot} from '@principium/slot';
 interface RippleContextType {
   ripples: RippleItem[];
   onClear: (id: number) => void;
-  disableRipple?: boolean;
+  disableRipple?: boolean | null;
 }
 
 const [RippleContext, useRippleContext] = createContext<RippleContextType>('RippleContext', {
@@ -26,7 +28,7 @@ const RippleProvider = ({
   disableRipple,
 }: {
   children: React.ReactNode;
-  disableRipple?: boolean;
+  disableRipple?: boolean | null;
 }) => {
   const {ripples, createRipple, removeRipple} = useRipple();
 

@@ -1,13 +1,16 @@
-import type {CardVariantProps} from '@principium/theme';
+'use client';
 
 import React from 'react';
-import {useRipple, Ripple} from '@principium/ripple';
+import type {CardVariantProps} from '@principium/theme';
+
+import {Ripple, RippleProvider} from '@principium/ripple';
 import {cardVariants} from '@principium/theme';
+import {Primitive, PrimitiveProps} from '@principium/primitive';
 
 // ________________________ Card ________________________
 type CardProps = (
-  | ({isPressable: true} & React.ComponentPropsWithRef<'button'>)
-  | ({isPressable?: false | undefined | null} & React.ComponentPropsWithRef<'div'>)
+  | ({isPressable: true} & PrimitiveProps<'button'>)
+  | ({isPressable?: false | undefined | null} & PrimitiveProps<'div'>)
 ) &
   (Omit<CardVariantProps, 'isFooterBlurred'> & {
     disableRipple?: boolean;
@@ -23,26 +26,49 @@ const Card = ({
   className,
   children,
   onClick,
+  asChild,
   ...props
 }: CardProps) => {
-  const {ripples, createRipple, removeRipple} = useRipple();
-  const Component = isPressable ? 'button' : 'div';
+  const Component = isPressable ? Primitive.button : Primitive.div;
+
+  const content = React.useMemo(() => {
+    if (!asChild) {
+      return (
+        <>
+          {children}
+          <Ripple />
+        </>
+      );
+    }
+
+    const child = children as React.ReactElement<{children?: React.ReactNode}>;
+
+    return React.cloneElement(child, {
+      children: (
+        <>
+          {child.props?.children}
+          <Ripple />
+        </>
+      ),
+    });
+  }, [asChild, children]);
 
   return (
-    // @ts-ignore
-    <Component
-      className={cardVariants.base({isPressable, disabled, isHoverable, isBlurred, className})}
-      onClick={(e) => {
-        if (!isPressable) return;
-        !disableRipple && createRipple(e);
-        // @ts-ignore
-        onClick?.(e);
-      }}
-      {...props}
-    >
-      {children}
-      {!disableRipple && <Ripple ripples={ripples} onClear={removeRipple} />}
-    </Component>
+    <RippleProvider disableRipple={disableRipple || !isPressable}>
+      {/* @ts-ignore */}
+      <Component
+        className={cardVariants.base({isPressable, disabled, isHoverable, isBlurred, className})}
+        onClick={(e) => {
+          if (!isPressable) return;
+          // @ts-ignore
+          onClick?.(e);
+        }}
+        asChild={asChild}
+        {...props}
+      >
+        {content}
+      </Component>
+    </RippleProvider>
   );
 };
 
