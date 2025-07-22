@@ -7,7 +7,7 @@ import {ThemeToggle} from './ThemeToggle';
 const Navbar = () => {
   return (
     <nav className="sticky top-0 z-40 flex h-16 items-center backdrop-blur-xl backdrop-saturate-150">
-      <header className="relative flex flex-1 items-center justify-between gap-4 px-6">
+      <header className="relative flex flex-1 items-center justify-between gap-4 px-6 max-w-8xl mx-auto">
         {/* Link to Home Page  */}
         <div className="flex items-center gap-2 text-xl">
           <Link href="/">Principium UI</Link>

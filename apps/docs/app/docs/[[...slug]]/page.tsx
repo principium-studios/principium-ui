@@ -1,21 +1,20 @@
-import { MdxContent } from "@/components/MdxContent";
-import { siteConfig } from "@/config/site";
-import { allDocs } from "contentlayer2/generated";
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import {MdxContent} from '@/components/MdxContent';
+import {siteConfig} from '@/config/site';
+import {allDocs} from 'contentlayer2/generated';
+import {Metadata} from 'next';
+import {notFound} from 'next/navigation';
 
-interface DocPageProps {   
-  params: Promise<{slug: string[]}>; 
+interface DocPageProps {
+  params: Promise<{slug: string[]}>;
 }
 
 async function getDocFromParams({params}: DocPageProps) {
   const {slug} = await params;
-  const paramsSlug = slug?.join("/") || "";
+  const paramsSlug = slug?.join('/') || '';
   const doc = allDocs.find((doc) => doc.slugAsParams === paramsSlug);
 
   return doc;
 }
-
 
 export async function generateMetadata({params}: DocPageProps): Promise<Metadata> {
   const doc = await getDocFromParams({params});
@@ -30,7 +29,7 @@ export async function generateMetadata({params}: DocPageProps): Promise<Metadata
     openGraph: {
       title: doc.title,
       description: doc.description,
-      type: "article",
+      type: 'article',
       url: doc.url,
       images: [
         {
@@ -42,7 +41,7 @@ export async function generateMetadata({params}: DocPageProps): Promise<Metadata
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: doc.title,
       description: doc.description,
       images: [siteConfig.ogImage],
@@ -60,7 +59,9 @@ export default async function DocPage({params}: DocPageProps) {
 
   return (
     <section className="col-span-10">
-      <MdxContent code={doc.body.code} />
+      <div className="prose prose-neutral mx-auto">
+        <MdxContent code={doc.body.code} />
+      </div>
     </section>
   );
 }

@@ -9,7 +9,7 @@ interface Feature {
 
 const FeaturesGrid = ({features}: {features: Feature[]}) => {
   return (
-    <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+    <section className="grid grid-cols-1 gap-4 sm:grid-cols-3 max-w-6xl mx-auto">
       {features.map((feature, idx) => (
         <Card key={feature.title} asChild isBlurred>
           <motion.div
