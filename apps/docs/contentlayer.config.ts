@@ -1,10 +1,6 @@
 import {ComputedFields, makeSource, defineDocumentType} from 'contentlayer2/source-files';
 
 const computedFields: ComputedFields = {
-  slug: {
-    type: 'string',
-    resolve: (doc) => `/${doc._raw.flattenedPath}`,
-  },
   slugAsParams: {
     type: 'string',
     resolve: (doc) => doc._raw.flattenedPath.split('/').slice(1).join('/'),
