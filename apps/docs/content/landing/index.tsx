@@ -10,7 +10,7 @@ const features = [
   {
     title: 'Fast',
     description:
-      'Powered by Tailwind CSS—no runtime styles, and no unused classes bloating your final bundle.',
+      'Powered by Tailwind CSS - no runtime styles, and no unused classes bloating your final bundle.',
     icon: <LightningIcon className="text-secondary-400 dark:text-secondary-600" />,
   },
   {

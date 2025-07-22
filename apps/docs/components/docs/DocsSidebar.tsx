@@ -13,14 +13,14 @@ const Collapsible = ({category}: {category: Route}) => {
 
   return (
     <div
-      className={`grid gap-2 transition-[grid-template-rows] duration-300 ${
+      className={`grid gap-2 transition-[grid-template-rows] duration-150 ${
         isOpen ? 'grid-rows-[auto_1fr]' : 'grid-rows-[auto_0fr]'
       }`}
     >
       <button onClick={() => setIsOpen(!isOpen)} className="flex items-center gap-2 cursor-pointer">
         <CaretDownIcon
           size={16}
-          className={`transition-transform duration-300 ${isOpen ? '' : '-rotate-90'}`}
+          className={`transition-transform duration-150 ${isOpen ? '' : '-rotate-90'}`}
         />
         {category.title}
       </button>

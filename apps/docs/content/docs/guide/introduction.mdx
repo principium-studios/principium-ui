@@ -1,0 +1,61 @@
+---
+title: Introduction
+description: Principium UI is a React component library built on TailwindCSSv4 that combines the best patterns from existing ecosystems.
+---
+
+# Introduction
+
+Welcome to the **Principium UI** documentation!
+
+<Image
+  priority
+  src="/principium-banner.png"
+  alt="Principium UI banner"
+  width={700}
+  height={350}
+  className="dark:border-default-200/50 w-full rounded-xl border border-transparent object-cover shadow-lg"
+/>
+
+## What is Principium UI
+
+**Principium UI** is a React component library built on top of **TailwindCSS** (v4). It combines the best of:
+
+- **Radix-style API** familiar, composable props surface
+- **HeroUI-inspired design** polished, production-ready look
+- **Framer Motion** for performant, maintainable animations
+
+---
+
+## FAQ
+
+### Do I need to install multiple packages
+
+If you want to have all the components in one package, you can install `@principium/react`. Otherwise, you can install each component separately. In both cases, the package `@principium/theme` is required for components to be styled correctly.
+
+### Can I apply Tailwind classes directly
+
+Absolutely. Since Principium UI is driven by TailwindCSS v4 and uses the `@principium/variants` utility, you can layer your own utility classes on top of our components.
+
+### Does Principium UI require runtime CSS
+
+No, all styles are generated at build time via TailwindCSS.
+
+### Can I use Principium UI outside of React
+
+Our components leverage React hooks and patterns but work seamlessly in both React and Next.js applications. For other frameworks, like Vue, Angular, Svelte, etc., you can use another library 🙏.
+
+### Why Framer Motion
+
+Instead of maintaining a custom animation library, we rely on Framer Motion for its robust, production-ready API and longterm maintainability.
+
+---
+
+## Community
+
+Were excited to see what you build with Principium UI! Open issues, share your projects, or send PRs on [GitHub](https://github.com/principium-studios/principium-ui).
+
+## Contributing
+
+Contributions are always welcome. Please see our [README](https://github.com/principium-studios/principium-ui/blob/main/README.md) for details.
+
+<Spacer y={4} />
