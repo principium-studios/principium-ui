@@ -23,7 +23,7 @@ const FeaturesGrid = ({features}: {features: Feature[]}) => {
 
   return (
     <section
-      className="mx-auto grid max-w-6xl gap-4 grid-cols-1  md:grid-cols-[repeat(auto-fit,minmax(100px,1fr))]"
+      className="mx-auto grid max-w-6xl gap-4 grid-cols-1 md:grid-flow-col md:auto-cols-[1fr]"
     >
       {features.map((feature) => (
         <Card

@@ -41,7 +41,7 @@ const Collapsible = ({category}: {category: Route}) => {
 
 const DocsSidebar = ({routes}: {routes: Route[]}) => {
   return (
-    <aside className="sticky top-[64px] col-span-2 flex flex-col gap-2 text-nowrap overflow-y-auto">
+    <aside className="sticky top-[76px] col-span-2 flex flex-col gap-2 text-nowrap overflow-y-auto">
       {routes.map((route) => (
         <Collapsible key={route.key} category={route} />
       ))}

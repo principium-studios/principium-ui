@@ -8,6 +8,7 @@ interface MdxContentProps {
   code: string;
 }
 
+// Any components that aren't in the **content** folder should be added here
 const components = {NextImage: Image, Community};
 
 export function MdxContent({code}: MdxContentProps) {
