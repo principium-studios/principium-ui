@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
 import {useMDXComponent} from 'next-contentlayer2/hooks';
-import * as PrincipiumComponents from '@principium/react';
 import Image from 'next/image';
+import Community from './Community';
 
 interface MdxContentProps {
   code: string;
 }
 
-const components = {...PrincipiumComponents, NextImage: Image};
+const components = {NextImage: Image, Community};
 
 export function MdxContent({code}: MdxContentProps) {
   const Component = useMDXComponent(code);

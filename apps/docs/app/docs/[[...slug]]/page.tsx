@@ -1,6 +1,6 @@
 import {MdxContent} from '@/components/MdxContent';
 import {siteConfig} from '@/config/site';
-import {allDocs} from 'contentlayer2/generated';
+import {allDocs} from 'contentlayer/generated';
 import {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 

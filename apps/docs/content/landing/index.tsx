@@ -1,6 +1,7 @@
+import { Feature } from '@/components/home/FeaturesGrid';
 import {LightningIcon, MagicWandIcon, MoonIcon} from '@phosphor-icons/react/dist/ssr';
 
-const features = [
+const features: Feature[] = [
   {
     title: 'Themeable',
     description:

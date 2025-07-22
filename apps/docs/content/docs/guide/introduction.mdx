@@ -5,8 +5,6 @@ description: Principium UI is a React component library built on TailwindCSSv4 t
 
 # Introduction
 
-Welcome to the **Principium UI** documentation!
-
 <NextImage
   priority
   src="/principium-banner.png"
@@ -31,38 +29,34 @@ Welcome to the **Principium UI** documentation!
 ### Do I need to install multiple packages
 
 <div className="text-background-600">
-If you want to have all the components in one package, you can install `@principium/react`. Otherwise, you can install each component separately. In both cases, the package `@principium/theme` is required for components to be styled correctly.
+The only package you need for the components to work is <code>@principium/theme</code>. This package not only provides the **tailwindcss plugin** that creates the styles for the components, but also the classes for the components themselves.
 </div>
 
 ### Can I apply Tailwind classes directly
 
 <div className="text-background-600">
-Absolutely. Since Principium UI is driven by TailwindCSS v4 and uses the `@principium/variants` utility, you can layer your own utility classes on top of our components.
-</div>
-
-### Does Principium UI require runtime CSS
-
-<div className="text-background-600">
-No, all styles are generated at build time via TailwindCSS.
+Absolutely. Since Principium UI uses the `@principium/variants` utility, the classes that you provide to the components will automatically be merged with the component's classes.
 </div>
 
 ### Can I use Principium UI outside of React
 
 <div className="text-background-600">
-Our components leverage React hooks and patterns but work seamlessly in both React and Next.js applications. For other frameworks, like Vue, Angular, Svelte, etc., you can use another library 🙏.
+Our components are built on top of React hooks and patterns, making them work only in environments like React or Next.js. For other frameworks, there is no plan to support them.
 </div>
 
 ### Why Framer Motion
 
 <div className="text-background-600">
-Instead of maintaining a custom animation library, we rely on Framer Motion for its robust, production-ready API and longterm maintainability.
+Instead of maintaining a custom animation library, we rely on Framer Motion for its robust, production-ready API and long-term maintainability. In the future, we plan to add animation based components like <code>Ticker</code>.
 </div>
 
 ---
 
 ## Community
 
-Were excited to see what you build with Principium UI! Open issues, share your projects, or send PRs on [GitHub](https://github.com/principium-studios/principium-ui).
+We belive in building Principium together. Wether you are a user, a contributor or a sponsor, we would love to hear from you.
+
+<Community />
 
 ## Contributing
 
