@@ -56,9 +56,7 @@ const DocsSidebar = ({routes}: {routes: Route[]}) => {
               route.key === 'components'
                 ? [
                     route.routes?.[0]!,
-                    ...(
-                      route.routes?.slice(1).flatMap((r) => (r.routes ? r.routes : r)) ?? []
-                    ).toSorted((a, b) => a.title?.localeCompare(b.title ?? '') ?? 0),
+                    ...(route.routes?.slice(1).toSorted((a, b) => a.title?.localeCompare(b.title ?? '') ?? 0) ?? []),
                   ]
                 : route.routes,
           }}
