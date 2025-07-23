@@ -2,63 +2,52 @@
 
 import React from 'react';
 import {useLayoutEffect} from '@principium/use-layout-effect';
-import {useCmdkCtx} from './Wrapper';
+import {useStateCtx} from './Wrapper';
 
-interface OverviewGroupContextType {
-  filteredChildren: Set<string>;
-  subscribeItem: (item: string, title: string) => () => void;
-}
-const OverviewGroupContext = React.createContext<OverviewGroupContextType | null>(null);
+// Context to keep track of visible items in group
+type StateCtxType = (itemId: string) => (isVisible: boolean) => void;
+const OverviewGroupContext = React.createContext<StateCtxType | null>(null);
 
 function OverviewGroup({children, title}: {children?: React.ReactNode; title: string}) {
   const groupId = React.useId();
 
-  const allItems = React.useRef(new Map<string, string>());
-  const [filteredChildren, setFilteredChildren] = React.useState(new Set<string>());
-  const {fuzzyRegex, query, subscribeGroup} = useCmdkCtx();
-
+  // Tell wrapper when group is visible
   const setIsVisible = React.useRef<((isVisible: boolean) => void) | null>(null);
-
-  const subscribeItem = React.useCallback((item: string, title: string) => {
-    allItems.current.set(item, title);
-    return () => {
-      allItems.current.delete(item);
-    };
-  }, []);
-
+  const subscribeGroup = useStateCtx();
   useLayoutEffect(() => {
-    const {setIsVisible: setIsVisibleGroup, unsubscribe} = subscribeGroup(groupId);
+    const setIsVisibleGroup = subscribeGroup(groupId);
     setIsVisible.current = setIsVisibleGroup;
     return () => {
-      unsubscribe();
+      setIsVisibleGroup(false);
+      setIsVisible.current = null;
     };
   }, []);
 
-  useLayoutEffect(() => {
-    const filtered = Array.from(allItems.current.entries()).filter(([_, title]) =>
-      fuzzyRegex.test(title),
-    );
-    setFilteredChildren(new Set(filtered.map(([item]) => item)));
-  }, [fuzzyRegex]);
+  // Keep track of items in group
+  const visibleItems = React.useRef(new Set<string>());
+  const subscribeItem = React.useCallback((itemId: string) => {
+    visibleItems.current.add(itemId);
+    return (isVisible: boolean) => {
+      if (isVisible) {
+        visibleItems.current.add(itemId);
+      } else {
+        visibleItems.current.delete(itemId);
+      }
+    };
+  }, []);
 
   const isVisible = React.useMemo(() => {
-    const isVisible = !(
-      (query.length > 0 && filteredChildren.size === 0) ||
-      React.Children.count(children) === 0
-    );
-    if (setIsVisible.current) {
-      setIsVisible.current(isVisible);
-    }
-    return isVisible;
-  }, [query, filteredChildren, children]);
+    console.log(title, visibleItems.current.size);
+    return visibleItems.current.size > 0;
+  }, [visibleItems.current.size]);
 
   return (
-    <OverviewGroupContext.Provider value={{filteredChildren, subscribeItem}}>
+    <OverviewGroupContext.Provider value={subscribeItem}>
       <div className={isVisible ? '' : 'hidden'}>
-        <div className={isVisible ? 'mb-4 flex items-center gap-2' : 'hidden'}>
+        <div className="mb-4 flex items-center gap-2">
           <h2 className="text-background-950 text-lg font-semibold">{title}</h2>
           <span className="bg-border-100 border-border-300 flex h-6 w-6 items-center justify-center rounded-full border text-xs font-semibold">
-            {Array.from(filteredChildren).length}
+            {visibleItems.current.size}
           </span>
         </div>
         <div

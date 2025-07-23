@@ -4,79 +4,63 @@ import {Divider} from '@principium/react';
 import React from 'react';
 import {useFuzzy} from '@principium/use-fuzzy';
 
-interface CmdkCtxType {
-  fuzzyRegex: RegExp;
-  query: string;
-  subscribeGroup: (groupId: string) => {
-    setIsVisible: (isVisible: boolean) => void;
-    unsubscribe: () => void;
-  };
-}
-const CmdkCtx = React.createContext<CmdkCtxType | null>(null);
+// Context that allows groups (children) to share their visibility state
+type StateCtxType = (groupId: string) => (isVisible: boolean) => void;
+const StateCtx = React.createContext<StateCtxType | null>(null);
+
+// Query Context for controlling the search
+const CmdkCtx = React.createContext<RegExp | null>(null);
 
 function OverviewWrapper({children}: {children?: React.ReactNode}) {
+  // Keep track of the query
   const [query, setQuery] = React.useState('');
+  const cmdkCtxValue = React.useMemo(() => useFuzzy(query), [query]);
 
-  const [groups, setGroups] = React.useState(new Set<string>());
+  // Keep track of visible groups
+  const visibleGroups = React.useRef(new Set<string>());
   const subscribeGroup = React.useCallback((groupId: string) => {
-    setGroups((prev) => {
-      const newGroups = new Set(prev);
-      newGroups.add(groupId);
-      return newGroups;
-    });
-    return {
-      setIsVisible: (isVisible: boolean) => {
-        if (isVisible) {
-          setGroups((prev) => {
-            const newGroups = new Set(prev);
-            newGroups.add(groupId);
-            return newGroups;
-          });
-        } else {
-          setGroups((prev) => {
-            const newGroups = new Set(prev);
-            newGroups.delete(groupId);
-            return newGroups;
-          });
-        }
-      },
-      unsubscribe: () => {
-        setGroups((prev) => {
-          const newGroups = new Set(prev);
-          newGroups.delete(groupId);
-          return newGroups;
-        });
-      },
+    visibleGroups.current.add(groupId);
+    return (isVisible: boolean) => {
+      if (isVisible) {
+        visibleGroups.current.add(groupId);
+      } else {
+        visibleGroups.current.delete(groupId);
+      }
     };
   }, []);
 
-  const cmdkCtxValue = React.useMemo(
-    () => ({fuzzyRegex: useFuzzy(query), query, subscribeGroup}),
-    [query],
-  );
+  const isEmptyVisible = visibleGroups.current.size === 0;
 
   return (
     <CmdkCtx value={cmdkCtxValue}>
-      <div className="not-prose mt-3">
-        <Divider />
-        <input
-          type="text"
-          className="w-full py-4 outline-none"
-          placeholder="Search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <Divider className="mb-8" />
-        {children}
-        {groups.size === 0 && <p className="text-foreground-500 text-sm text-center">Not Found</p>}
-      </div>
+      <StateCtx value={subscribeGroup}>
+        <div className="not-prose mt-3">
+          <Divider />
+          <input
+            type="text"
+            className="w-full py-4 outline-none"
+            placeholder="Search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <Divider className="mb-8" />
+          {children}
+          {isEmptyVisible && <p className="text-foreground-500 text-center text-sm">Not Found</p>}
+        </div>
+      </StateCtx>
     </CmdkCtx>
   );
 }
 
-export function useCmdkCtx() {
+export function useQueryCtx() {
   const context = React.useContext(CmdkCtx);
-  if (!context) throw new Error('useCmdkCtx must be used within an OverviewWrapper');
+  if (!context) throw new Error('useQueryCtx must be used within an OverviewWrapper');
+  return context;
+}
+
+export function useStateCtx() {
+  const context = React.useContext(StateCtx);
+  if (!context) throw new Error('useStateCtx must be used within an OverviewWrapper');
   return context;
 }
 
