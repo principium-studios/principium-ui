@@ -1,5 +1,7 @@
-import Wrapper from './Wrapper.raw.jsx?raw';
-import GroupContainer from './GroupContainer.raw.jsx?raw';
-import ComponentContainer from './ComponentContainer.raw.jsx?raw';
+import Wrapper from './Wrapper';
+import GroupContainer from './GroupContainer';
+import ComponentContainer from './ComponentContainer';
 
-export default {Wrapper, GroupContainer, ComponentContainer};
+export const Overview = {Wrapper, GroupContainer, ComponentContainer};
+
+
