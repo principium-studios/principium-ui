@@ -28,14 +28,13 @@ export default function OverviewComponent({
     };
   }, []);
 
-  const isVisible = React.useMemo(() => {
-    const match = fuzzyRegex.test(title);
-    
+  useLayoutEffect(() => {
     if (setIsVisible.current) {
-      setIsVisible.current(match);
+      setIsVisible.current(fuzzyRegex.test(title));
     }
-    return match;
   }, [fuzzyRegex, title]);
+
+  const isVisible = fuzzyRegex.test(title);
 
   return (
     <Card asChild isPressable={true} className={isVisible ? '' : 'hidden'}>

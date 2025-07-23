@@ -48,6 +48,12 @@ function OverviewGroup({children, title}: {children?: React.ReactNode; title: st
     };
   }, []);
 
+  useLayoutEffect(() => {
+    if (setIsVisible.current) {
+      setIsVisible.current(visibleItems.size > 0);
+    }
+  }, [visibleItems]);
+
   const isVisible = visibleItems.size > 0;
 
   return (
