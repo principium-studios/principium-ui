@@ -11,14 +11,26 @@ interface OverviewGroupContextType {
 const OverviewGroupContext = React.createContext<OverviewGroupContextType | null>(null);
 
 function OverviewGroup({children, title}: {children?: React.ReactNode; title: string}) {
+  const groupId = React.useId();
+
   const allItems = React.useRef(new Map<string, string>());
   const [filteredChildren, setFilteredChildren] = React.useState(new Set<string>());
-  const {fuzzyRegex, query} = useCmdkCtx();
+  const {fuzzyRegex, query, subscribeGroup} = useCmdkCtx();
+
+  const setIsVisible = React.useRef<((isVisible: boolean) => void) | null>(null);
 
   const subscribeItem = React.useCallback((item: string, title: string) => {
     allItems.current.set(item, title);
     return () => {
       allItems.current.delete(item);
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    const {setIsVisible: setIsVisibleGroup, unsubscribe} = subscribeGroup(groupId);
+    setIsVisible.current = setIsVisibleGroup;
+    return () => {
+      unsubscribe();
     };
   }, []);
 
@@ -30,10 +42,14 @@ function OverviewGroup({children, title}: {children?: React.ReactNode; title: st
   }, [fuzzyRegex]);
 
   const isVisible = React.useMemo(() => {
-    return !(
+    const isVisible = !(
       (query.length > 0 && filteredChildren.size === 0) ||
       React.Children.count(children) === 0
     );
+    if (setIsVisible.current) {
+      setIsVisible.current(isVisible);
+    }
+    return isVisible;
   }, [query, filteredChildren, children]);
 
   return (
