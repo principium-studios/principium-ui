@@ -128,6 +128,9 @@ importers:
       '@principium/use-fuzzy':
         specifier: workspace:*
         version: link:../../packages/components/utils/use-fuzzy
+      '@principium/use-layout-effect':
+        specifier: workspace:*
+        version: link:../../packages/components/utils/use-layout-effect
       concurrently:
         specifier: ^9.2.0
         version: 9.2.0
@@ -628,9 +631,6 @@ importers:
 
   packages/components/utils/use-fuzzy:
     dependencies:
-      '@principium/theme':
-        specifier: workspace:*
-        version: link:../../../core/theme
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -665,9 +665,6 @@ importers:
 
   packages/components/utils/use-layout-effect:
     dependencies:
-      '@principium/theme':
-        specifier: workspace:*
-        version: link:../../../core/theme
       react:
         specifier: ^19.0.0
         version: 19.1.0

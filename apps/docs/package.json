@@ -13,6 +13,7 @@
     "@principium/react": "workspace:*",
     "@principium/use-fuzzy": "workspace:*",
     "@principium/theme": "workspace:*",
+    "@principium/use-layout-effect": "workspace:*",
     "concurrently": "^9.2.0",
     "contentlayer2": "^0.5.8",
     "date-fns": "^4.1.0",
