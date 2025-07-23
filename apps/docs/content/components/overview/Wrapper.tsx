@@ -17,19 +17,31 @@ function OverviewWrapper({children}: {children?: React.ReactNode}) {
   const cmdkCtxValue = React.useMemo(() => useFuzzy(query), [query]);
 
   // Keep track of visible groups
-  const visibleGroups = React.useRef(new Set<string>());
+  const [visibleGroups, setVisibleGroups] = React.useState(new Set<string>());
   const subscribeGroup = React.useCallback((groupId: string) => {
-    visibleGroups.current.add(groupId);
+    setVisibleGroups((prev) => {
+      const newGroups = new Set(prev);
+      newGroups.add(groupId);
+      return newGroups;
+    });
     return (isVisible: boolean) => {
       if (isVisible) {
-        visibleGroups.current.add(groupId);
+        setVisibleGroups((prev) => {
+          const newGroups = new Set(prev);
+          newGroups.add(groupId);
+          return newGroups;
+        });
       } else {
-        visibleGroups.current.delete(groupId);
+        setVisibleGroups((prev) => {
+          const newGroups = new Set(prev);
+          newGroups.delete(groupId);
+          return newGroups;
+        });
       }
     };
   }, []);
 
-  const isEmptyVisible = visibleGroups.current.size === 0;
+  const isEmptyVisible = visibleGroups.size === 0;
 
   return (
     <CmdkCtx value={cmdkCtxValue}>

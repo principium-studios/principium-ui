@@ -24,22 +24,31 @@ function OverviewGroup({children, title}: {children?: React.ReactNode; title: st
   }, []);
 
   // Keep track of items in group
-  const visibleItems = React.useRef(new Set<string>());
+  const [visibleItems, setVisibleItems] = React.useState(new Set<string>());
   const subscribeItem = React.useCallback((itemId: string) => {
-    visibleItems.current.add(itemId);
+    setVisibleItems((prev) => {
+      const newItems = new Set(prev);
+      newItems.add(itemId);
+      return newItems;
+    });
     return (isVisible: boolean) => {
       if (isVisible) {
-        visibleItems.current.add(itemId);
+        setVisibleItems((prev) => {
+          const newItems = new Set(prev);
+          newItems.add(itemId);
+          return newItems;
+        });
       } else {
-        visibleItems.current.delete(itemId);
+        setVisibleItems((prev) => {
+          const newItems = new Set(prev);
+          newItems.delete(itemId);
+          return newItems;
+        });
       }
     };
   }, []);
 
-  const isVisible = React.useMemo(() => {
-    console.log(title, visibleItems.current.size);
-    return visibleItems.current.size > 0;
-  }, [visibleItems.current.size]);
+  const isVisible = visibleItems.size > 0;
 
   return (
     <OverviewGroupContext.Provider value={subscribeItem}>
@@ -47,7 +56,7 @@ function OverviewGroup({children, title}: {children?: React.ReactNode; title: st
         <div className="mb-4 flex items-center gap-2">
           <h2 className="text-background-950 text-lg font-semibold">{title}</h2>
           <span className="bg-border-100 border-border-300 flex h-6 w-6 items-center justify-center rounded-full border text-xs font-semibold">
-            {visibleItems.current.size}
+            {visibleItems.size}
           </span>
         </div>
         <div
