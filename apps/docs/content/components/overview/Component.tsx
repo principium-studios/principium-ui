@@ -1,7 +1,7 @@
+import {Card, CardHeader, CardTitle, CardContent, Divider} from '@principium/react';
 import Image from 'next/image';
-import {Card, CardTitle, CardHeader, CardContent, Divider} from '@principium/react';
 
-export default function ComponentContainer({title, img}: {title: string, img: string}) {
+export default function OverviewComponent({title, img}: {title: string, img: string}) {
   return (
     <Card>
       <CardHeader>

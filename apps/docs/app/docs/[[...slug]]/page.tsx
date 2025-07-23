@@ -58,10 +58,8 @@ export default async function DocPage({params}: DocPageProps) {
   }
 
   return (
-    <section className="col-span-10">
-      <div className="prose prose-neutral mx-auto">
-        <MDXContent code={doc.body.code} />
-      </div>
-    </section>
+    <article className="prose prose-neutral col-span-10 max-w-none flex flex-col items-center [&_*]:max-w-2xl [&_*]:w-full">
+      <MDXContent code={doc.body.code} />
+    </article>
   );
 }

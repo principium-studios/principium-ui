@@ -1,4 +1,4 @@
-  export default function GroupContainer({children, title}: {children?: React.ReactNode, title: string}) {
+  export default function OverviewGroup({children, title}: {children?: React.ReactNode, title: string}) {
   return (
     <>
       <h2>{title}</h2>
