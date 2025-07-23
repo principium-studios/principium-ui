@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {useLayoutEffect} from '@principium/use-layout-effect';
-import {useFuzzyCtx} from './Wrapper';
+import {useCmdkCtx} from './Wrapper';
 
 interface OverviewGroupContextType {
   filteredChildren: Set<string>;
@@ -13,7 +13,7 @@ const OverviewGroupContext = React.createContext<OverviewGroupContextType | null
 function OverviewGroup({children, title}: {children?: React.ReactNode; title: string}) {
   const allItems = React.useRef(new Map<string, string>());
   const [filteredChildren, setFilteredChildren] = React.useState(new Set<string>());
-  const {fuzzyRegex, query} = useFuzzyCtx();
+  const {fuzzyRegex, query} = useCmdkCtx();
 
   const subscribeItem = React.useCallback((item: string, title: string) => {
     allItems.current.set(item, title);
@@ -29,19 +29,31 @@ function OverviewGroup({children, title}: {children?: React.ReactNode; title: st
     setFilteredChildren(new Set(filtered.map(([item]) => item)));
   }, [fuzzyRegex]);
 
-  if (query.length > 0 && filteredChildren.size === 0) return null;
+  const isVisible = React.useMemo(() => {
+    return !(
+      (query.length > 0 && filteredChildren.size === 0) ||
+      React.Children.count(children) === 0
+    );
+  }, [query, filteredChildren, children]);
 
   return (
     <OverviewGroupContext.Provider value={{filteredChildren, subscribeItem}}>
-      <h2 className="text-background-950 text-lg font-semibold">{title}</h2>
-      <div
-        style={{
-          gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
-          gridAutoRows: 'max-content',
-        }}
-        className="grid gap-2"
-      >
-        {children}
+      <div className={isVisible ? '' : 'hidden'}>
+        <div className={isVisible ? 'mb-4 flex items-center gap-2' : 'hidden'}>
+          <h2 className="text-background-950 text-lg font-semibold">{title}</h2>
+          <span className="bg-border-100 border-border-300 flex h-6 w-6 items-center justify-center rounded-full border text-xs font-semibold">
+            {Array.from(filteredChildren).length}
+          </span>
+        </div>
+        <div
+          style={{
+            gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+            gridAutoRows: 'max-content',
+          }}
+          className="mb-8 grid gap-2"
+        >
+          {children}
+        </div>
       </div>
     </OverviewGroupContext.Provider>
   );

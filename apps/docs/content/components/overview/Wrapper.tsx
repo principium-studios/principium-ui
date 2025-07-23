@@ -4,15 +4,19 @@ import {Divider} from '@principium/react';
 import React from 'react';
 import {useFuzzy} from '@principium/use-fuzzy';
 
-const FuzzyCtx = React.createContext<{fuzzyRegex: RegExp; query: string} | null>(null);
+interface CmdkCtxType {
+  fuzzyRegex: RegExp;
+  query: string;
+}
+const CmdkCtx = React.createContext<CmdkCtxType | null>(null);
 
 function OverviewWrapper({children}: {children?: React.ReactNode}) {
   const [query, setQuery] = React.useState('');
 
-  const FuzzyCtxValue = React.useMemo(() => ({fuzzyRegex: useFuzzy(query), query}), [query]);
+  const cmdkCtxValue = React.useMemo(() => ({fuzzyRegex: useFuzzy(query), query}), [query]);
 
   return (
-    <FuzzyCtx.Provider value={FuzzyCtxValue}>
+    <CmdkCtx value={cmdkCtxValue}>
       <div className="not-prose mt-3">
         <Divider />
         <input
@@ -23,16 +27,15 @@ function OverviewWrapper({children}: {children?: React.ReactNode}) {
           onChange={(e) => setQuery(e.target.value)}
         />
         <Divider className="mb-8" />
-        <div className="space-y-4">{children}</div>
-        <Divider className="my-8" />
+        {children}
       </div>
-    </FuzzyCtx.Provider>
+    </CmdkCtx>
   );
 }
 
-export function useFuzzyCtx() {
-  const context = React.useContext(FuzzyCtx);
-  if (!context) throw new Error('useFuzzyCtx must be used within an OverviewWrapper');
+export function useCmdkCtx() {
+  const context = React.useContext(CmdkCtx);
+  if (!context) throw new Error('useCmdkCtx must be used within an OverviewWrapper');
   return context;
 }
 

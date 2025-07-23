@@ -22,10 +22,8 @@ export default function OverviewComponent({
 
   const match = React.useMemo(() => filteredChildren.has(itemId), [filteredChildren]);
 
-  if (!match) return null;
-
   return (
-    <Card asChild isPressable={true}>
+    <Card asChild isPressable={true} className={!match ? "hidden" : ""}>
       <Link {...props}>
         <CardHeader className="py-2">
           <CardTitle className="text-background-800 text-sm font-normal">{title}</CardTitle>
