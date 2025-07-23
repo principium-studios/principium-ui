@@ -1,4 +1,5 @@
 import {ComputedFields, makeSource, defineDocumentType} from 'contentlayer2/source-files';
+import RawPlugin from 'esbuild-plugin-raw';
 
 const computedFields: ComputedFields = {
   slugAsParams: {
@@ -22,5 +23,13 @@ export const Doc = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: './content',
-  documentTypes: [Doc]
+  documentTypes: [Doc],
+  mdx: {
+    esbuildOptions(options) {
+      options.plugins ||= [];
+      options.plugins.unshift(RawPlugin());
+
+      return options;
+    }
+  }
 });

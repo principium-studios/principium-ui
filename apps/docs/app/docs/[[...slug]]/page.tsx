@@ -1,4 +1,4 @@
-import {MdxContent} from '@/components/MdxContent';
+import {MDXContent} from '@/components/MDXContent';
 import {siteConfig} from '@/config/site';
 import {allDocs} from 'contentlayer/generated';
 import {Metadata} from 'next';
@@ -60,7 +60,7 @@ export default async function DocPage({params}: DocPageProps) {
   return (
     <section className="col-span-10">
       <div className="prose prose-neutral mx-auto">
-        <MdxContent code={doc.body.code} />
+        <MDXContent code={doc.body.code} />
       </div>
     </section>
   );
