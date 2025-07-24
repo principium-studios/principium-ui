@@ -1,5 +1,7 @@
+import TableOfContents from '@/components/docs/TableOfContents';
 import {MDXContent} from '@/components/MDXContent';
 import {siteConfig} from '@/config/site';
+import {getHeadings} from '@/lib/getHeadings';
 import {allDocs} from 'contentlayer/generated';
 import {Metadata} from 'next';
 import {notFound} from 'next/navigation';
@@ -13,11 +15,13 @@ async function getDocFromParams({params}: DocPageProps) {
   const paramsSlug = slug?.join('/') || '';
   const doc = allDocs.find((doc) => doc.slugAsParams === paramsSlug);
 
-  return doc;
+  const headings = getHeadings(doc?.body.raw);
+
+  return {doc, headings};
 }
 
 export async function generateMetadata({params}: DocPageProps): Promise<Metadata> {
-  const doc = await getDocFromParams({params});
+  const {doc} = await getDocFromParams({params});
 
   if (!doc) {
     return {};
@@ -51,15 +55,20 @@ export async function generateMetadata({params}: DocPageProps): Promise<Metadata
 }
 
 export default async function DocPage({params}: DocPageProps) {
-  const doc = await getDocFromParams({params});
+  const {doc, headings} = await getDocFromParams({params});
 
   if (!doc) {
     notFound();
   }
 
   return (
-    <article className="prose prose-neutral col-span-10 max-w-none flex flex-col items-center [&_*]:max-w-3xl [&>*]:w-full">
-      <MDXContent code={doc.body.code} />
-    </article>
+    <>
+      <article className="prose prose-neutral col-span-8 flex max-w-none flex-col items-center [&>*]:w-full [&_*]:max-w-3xl">
+        <MDXContent code={doc.body.code} />
+      </article>
+      <aside className="sticky top-20 col-span-2">
+        <TableOfContents headings={headings} />
+      </aside>
+    </>
   );
 }
