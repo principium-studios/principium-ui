@@ -29,8 +29,11 @@ const Hero = () => {
           <Button
             className="rounded-full max-sm:h-10 max-sm:min-w-20 max-sm:gap-2 max-sm:px-4 max-sm:text-sm lg:text-base"
             size="lg"
+            asChild
           >
-            Build Your Own
+            <Link href="/blog">
+              <span>Build Your Own</span>
+            </Link>
           </Button>
         </div>
       </div>

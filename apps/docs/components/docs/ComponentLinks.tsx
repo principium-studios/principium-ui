@@ -11,6 +11,7 @@ interface ComponentLinksProps {
 const ComponentLinks = ({name, isUtility}: ComponentLinksProps) => {
   const fileName = name.toLowerCase();
 
+  const npmSource = `https://www.npmjs.com/package/@principium/${fileName}`;
   const stylesSource =
     siteConfig.links.github +
     `/blob/main/packages/core/theme/src/components/${fileName}Variants.ts`;
@@ -22,8 +23,8 @@ const ComponentLinks = ({name, isUtility}: ComponentLinksProps) => {
 
   return (
     <div className="not-prose mb-4 flex gap-2">
-        <Button asChild>
-        <Link href={source} target="_blank">
+      <Button asChild>
+        <Link href={npmSource} target="_blank">
           <PackageIcon size={16} /> @principium/{fileName}
         </Link>
       </Button>

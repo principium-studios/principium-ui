@@ -11,11 +11,11 @@
     "principium"
   ],
   "author": "Principium <support@principium.dev>",
-  "homepage": "https://principium.dev",
+  "homepage": "https://github.com/principium-studios/principium",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rarescovei5/principium",
+    "url": "https://github.com/principium-studios/principium",
     "directory": "packages/components/utils/primitive"
   },
   "main": "src/index.ts",
@@ -28,7 +28,7 @@
     "!dist/**/*.test.*"
   ],
   "bugs": {
-    "url": "https://github.com/rarescovei5/principium/issues"
+    "url": "https://github.com/principium-studios/principium/issues"
   },
   "scripts": {
     "build": "tsup src --dts",

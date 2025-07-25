@@ -2,21 +2,21 @@ export const siteConfig = {
   name: 'Principium UI',
   description:
     'A modern, accessible React component library, built for speed, styled with Tailwind, and designed to scale.',
-  url: 'https://principium.dev',
-  ogImage: 'https://principium.dev/og-image.png',
+  url: null,
+  ogImage: null,
   email: 'principiumstudios@gmail.com',
   author: 'Covei Rares',
   creator: '@principium_studios',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://principium.dev',
+    url: null,
     siteName: 'Principium UI',
     description:
       'A modern, accessible React component library, built for speed, styled with Tailwind, and designed to scale.',
     images: [
       {
-        url: 'https://principium.dev/principium-banner.png',
+        url: null,
         width: 1200,
         height: 630,
         alt: 'Principium UI',
@@ -28,7 +28,7 @@ export const siteConfig = {
     title: 'Principium UI',
     description:
       'A modern, accessible React component library, built for speed, styled with Tailwind, and designed to scale.',
-    image: 'https://principium.dev/principium-banner.png',
+    image: null,
     creator: '@principium_studios',
   },
   links: {

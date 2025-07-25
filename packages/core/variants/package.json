@@ -13,11 +13,11 @@
     "design-system"
   ],
   "author": "Principium <support@principium.dev>",
-  "homepage": "https://principium.dev",
+  "homepage": "https://github.com/principium-studios/principium",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rarescovei5/principium",
+    "url": "https://github.com/principium-studios/principium",
     "directory": "packages/core/variants"
   },
   "sideEffects": false,
@@ -30,7 +30,7 @@
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/rarescovei5/principium/issues"
+    "url": "https://github.com/principium-studios/principium/issues"
   },
   "scripts": {
     "build": "tsup src --dts",

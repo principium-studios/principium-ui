@@ -10,13 +10,13 @@
     "principium"
   ],
   "author": "Principium <support@principium.dev>",
-  "homepage": "https://principium.dev",
+  "homepage": "https://github.com/principium-studios/principium",
   "license": "MIT",
   "main": "src/index.ts",
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/rarescovei5/principium",
+    "url": "https://github.com/principium-studios/principium",
     "directory": "packages/components/utils/slot"
   },
   "publishConfig": {
@@ -27,7 +27,7 @@
     "!dist/**/*.test.*"
   ],
   "bugs": {
-    "url": "https://github.com/rarescovei5/principium/issues"
+    "url": "https://github.com/principium-studios/principium/issues"
   },
   "scripts": {
     "build": "tsup src --dts",
