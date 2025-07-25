@@ -1,11 +1,9 @@
-'use client';
-
 import type {AnyProps} from './combineProps';
 
 import React from 'react';
 
 import {combineProps} from './combineProps';
-import {combineRefs} from './combineRefs';
+import {composeRefs} from '@principium/compose-refs';
 
 interface SlotProps extends React.HTMLAttributes<HTMLElement> {
   ref?: React.Ref<HTMLElement>;
@@ -32,7 +30,7 @@ function createSlot(ownerName: string) {
 
       // If the child is not a fragment, merge the refs
       if (children.type !== React.Fragment) {
-        combinedProps.ref = ref ? combineRefs(ref, childrenRef) : childrenRef;
+        combinedProps.ref = ref ? composeRefs(ref, childrenRef) : childrenRef;
       }
 
       // Return the child element with the merged props
@@ -55,4 +53,4 @@ function createSlot(ownerName: string) {
 
 const Slot = createSlot('Slot');
 
-export {Slot, createSlot, combineProps, combineRefs};
+export {Slot, createSlot};

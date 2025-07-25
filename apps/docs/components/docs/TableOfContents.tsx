@@ -10,7 +10,7 @@ const TableOfContents = ({headings}: {headings: Heading[]}) => {
   const handleScroll = React.useCallback((e: React.UIEvent<HTMLDivElement, UIEvent>) => {
     if (tocRef.current) {
       const {scrollTop} = tocRef.current;
-      tocRef.current.setAttribute('data-top-fade', scrollTop > 5 ? 'true' : 'false');
+      tocRef.current.setAttribute('data-top-fade', scrollTop > 10 ? 'true' : 'false');
     }
   }, []);
 

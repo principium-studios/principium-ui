@@ -1,5 +1,3 @@
-'use client';
-
 type PossibleRef<T> = React.Ref<T> | undefined;
 
 /**
@@ -21,7 +19,7 @@ function setRef<T>(ref: PossibleRef<T>, value: T) {
  * @param refs The refs to combine.
  * @returns A ref callback that sets all refs to the given value.
  */
-function combineRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {
+function composeRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {
   return (node) => {
     let hasCleanup = false;
     const cleanups = refs.map((ref) => {
@@ -48,5 +46,5 @@ function combineRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {
   };
 }
 
-export {combineRefs};
+export {composeRefs};
 export type {PossibleRef};

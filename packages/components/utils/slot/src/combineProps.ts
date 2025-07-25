@@ -1,5 +1,3 @@
-'use client';
-
 import {cn} from '@principium/theme';
 
 type AnyProps = Record<string, any>;
