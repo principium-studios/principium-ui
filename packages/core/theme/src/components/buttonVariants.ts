@@ -1,7 +1,7 @@
 import type {VariantProps} from '@principium/variants';
 
 import {pv} from '../utils/pv';
-import {colorVariants} from '../utils';
+import {colorVariants, dataFocusVisibleClasses} from '../utils';
 
 /**
  * Button **Tailwind Variants** component
@@ -10,7 +10,7 @@ import {colorVariants} from '../utils';
  * <button className={cn(buttonVariants({...}))}>Button</button>
  */
 const buttonVariants = pv(
-  'transition-[background-color, border-color, color, transform, opacity] outline-hidden focus-visible:outline-outline-400 dark:focus-visible:outline-outline-600 hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md text-sm font-medium duration-300 focus:z-10 [&_svg]:shrink-0',
+  ['transition-[background-color, border-color, color, transform, opacity] hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md text-sm font-medium duration-300 [&_svg]:shrink-0', ...dataFocusVisibleClasses],
   {
     variants: {
       variant: {

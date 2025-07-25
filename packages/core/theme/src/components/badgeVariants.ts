@@ -1,7 +1,7 @@
 import type {VariantProps} from '@principium/variants';
 
 import {pv} from '../utils/pv';
-import {colorVariants} from '../utils';
+import {colorVariants, dataFocusVisibleClasses} from '../utils';
 
 /**
  * Badge wrapper **Tailwind Variants** component
@@ -13,7 +13,7 @@ import {colorVariants} from '../utils';
  * </div>
  */
 const badgeVariants = pv(
-  'flex z-10 flex-wrap absolute box-border rounded-full whitespace-nowrap justify-center origin-center items-center text-inherit select-none font-regular scale-100 opacity-100 subpixel-antialiased data-[invisible=true]:scale-0 data-[invisible=true]:opacity-0',
+  ['flex z-10 flex-wrap absolute box-border rounded-full whitespace-nowrap justify-center origin-center items-center text-inherit select-none font-regular scale-100 opacity-100 subpixel-antialiased data-[invisible=true]:scale-0 data-[invisible=true]:opacity-0', ...dataFocusVisibleClasses],
   {
     variants: {
       variant: {

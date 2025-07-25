@@ -1,7 +1,7 @@
 import type {VariantProps} from '@principium/variants';
 
 import {pv} from '../utils/pv';
-import {colorVariants} from '../utils';
+import {colorVariants, dataFocusVisibleClasses} from '../utils';
 
 /**
  * Alert wrapper **Tailwind Variants** component
@@ -20,7 +20,7 @@ import {colorVariants} from '../utils';
  */
 const alertVariants = pv(
   {
-    base: 'relative grid grid-cols-[0_1fr] grid-rows-[1fr] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3',
+    base: ['relative grid grid-cols-[0_1fr] grid-rows-[1fr] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3', ...dataFocusVisibleClasses],
     title: 'col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight',
     description:
       'text-muted-600 col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed',
