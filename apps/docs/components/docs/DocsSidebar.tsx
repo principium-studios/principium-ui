@@ -13,8 +13,8 @@ const Collapsible = ({category}: {category: Route}) => {
 
   return (
     <div
-      className={`group grid gap-2 transition-[grid-template-rows] duration-150 ${
-        isOpen ? 'grid-rows-[auto_1fr]' : 'grid-rows-[auto_0fr]'
+      className={`group grid gap-2 transition-[grid-template-rows] duration-300 ${
+        isOpen ? 'grid-rows-[max-content_1fr]' : 'grid-rows-[max-content_0fr]'
       }`}
     >
       <button onClick={() => setIsOpen(!isOpen)} className="flex cursor-pointer items-center gap-2">
@@ -46,7 +46,7 @@ const Collapsible = ({category}: {category: Route}) => {
 
 const DocsSidebar = ({routes}: {routes: Route[]}) => {
   return (
-    <aside className="sticky top-[76px] col-span-2 flex flex-col gap-2 overflow-y-auto text-nowrap">
+    <aside className="sticky top-20 col-span-2 flex flex-col gap-2 overflow-y-auto text-nowrap">
       {routes.map((route) => (
         <Collapsible
           key={route.key}

@@ -40,6 +40,7 @@ const Primitive = PRIMITIVE_NODES.reduce((primitive, node) => {
   const Node = ({asChild, ref, ...restProps}: PrimitiveProps<typeof node>) => {
     const Component = asChild ? Slot : node;
 
+    // TODO: Fix this
     // @ts-ignore
     return <Component {...restProps} ref={ref} />;
   };

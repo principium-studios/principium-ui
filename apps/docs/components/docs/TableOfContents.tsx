@@ -19,6 +19,7 @@ const TableOfContents = ({headings}: {headings: Heading[]}) => {
       className="group max-h-100 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-20"
       onScroll={handleScroll}
       ref={tocRef}
+      data-top-fade={false}
     >
       <h2 className="text-background-800 mb-4 text-base font-medium">On this page</h2>
       <ul className="flex flex-col gap-2">

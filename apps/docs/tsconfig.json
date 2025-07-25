@@ -32,7 +32,7 @@
     "**/*.jsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated",
-    "global.d.ts"
-, "content/jsx/components/overview/Wrappertsx", "content/jsx/components/overview/GroupContainer.tssx"  ],
+    "global.d.ts",
+  ],
   "exclude": ["node_modules"]
 }

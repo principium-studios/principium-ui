@@ -2,7 +2,7 @@ function escapeRegex(str: string) {
   return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 
-export const useFuzzy = (str: string) => {
+function useFuzzy(str: string) {
   if (!str) return /.*/i;
 
   let fuzzyString = '';
@@ -10,3 +10,5 @@ export const useFuzzy = (str: string) => {
 
   return new RegExp(fuzzyString, 'i');
 };
+
+export {useFuzzy};

@@ -21,6 +21,7 @@ function setRef<T>(ref: PossibleRef<T>, value: T) {
  */
 function composeRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {
   return (node) => {
+    // React 19 allows for refs to have a cleanup function, so keep track of that
     let hasCleanup = false;
     const cleanups = refs.map((ref) => {
       const cleanup = setRef(ref, node);
@@ -32,6 +33,7 @@ function composeRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {
       return cleanup;
     });
 
+    // If there is a cleanup function, return it
     if (hasCleanup) {
       return () => {
         cleanups.forEach((cleanup, i) => {

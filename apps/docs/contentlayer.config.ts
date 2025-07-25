@@ -15,8 +15,8 @@ export const Doc = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     title: {type: 'string', required: true},
-    description: {type: 'string', required: false},
-    date: {type: 'date', required: false},
+    description: {type: 'string', required: true},
+    displayDescription: {type: 'string', required: false, default: 'true'},
   },
   computedFields,
 }));

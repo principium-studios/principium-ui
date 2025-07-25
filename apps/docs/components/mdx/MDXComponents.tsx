@@ -1,5 +1,5 @@
 import React from 'react';
-import Community from './Community';
+import Community from '../marketing/Community';
 import Overview from '@/content/components/overview';
 import * as PrincipiumComponents from '@principium/react';
 import Image from 'next/image';
