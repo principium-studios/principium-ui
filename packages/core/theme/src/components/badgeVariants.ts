@@ -7,9 +7,9 @@ import {colorVariants, dataFocusVisibleClasses} from '../utils';
  * Badge wrapper **Tailwind Variants** component
  *
  * @example
- * <div className={cn(badgeVariants.base({...}))}>
+ * <div className={badgeVariants.base({...})}>
  *   // children
- *   <span className={cn(badgeVariants.badge({...}))}>5+</span>
+ *   <span className={badgeVariants.badge({...})}>5+</span>
  * </div>
  */
 const badgeVariants = pv(

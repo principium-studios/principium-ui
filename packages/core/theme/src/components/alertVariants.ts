@@ -9,18 +9,21 @@ import {colorVariants, dataFocusVisibleClasses} from '../utils';
  * @example
  * ```js
  *
- * <div className={cn(alertVariants.base({...}))}>
- *    <div className={cn(alertVariants.iconWrapper({...}))}>
- *       <svg className={cn(alertVariants.alertIcon({...}))}></svg>
+ * <div className={alertVariants.base({...})}>
+ *    <div className={alertVariants.iconWrapper({...})}>
+ *       <svg className={alertVariants.alertIcon({...})}></svg>
  *    </div>
- *    <div className={cn(alertVariants.title({...}))}>Title</div>
- *    <div className={cn(alertVariants.description({...}))}>Description</div>
+ *    <div className={alertVariants.title({...})}>Title</div>
+ *    <div className={alertVariants.description({...})}>Description</div>
  * </div>
  * ```
  */
 const alertVariants = pv(
   {
-    base: ['relative grid grid-cols-[0_1fr] grid-rows-[1fr] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3', ...dataFocusVisibleClasses],
+    base: [
+      'relative grid grid-cols-[0_1fr] grid-rows-[1fr] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3',
+      ...dataFocusVisibleClasses,
+    ],
     title: 'col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight',
     description:
       'text-muted-600 col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed',
@@ -57,7 +60,6 @@ const alertVariants = pv(
     defaultVariants: {
       color: 'default',
       variant: 'flat',
-      hideIconWrapper: false,
     },
     compoundVariants: [
       // solid / color

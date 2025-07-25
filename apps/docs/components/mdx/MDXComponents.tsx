@@ -34,11 +34,13 @@ const MDXComponents = {
   ...Overview,
   NextImage: Image,
   Community,
+  ComponentLinks,
+  // Primitives
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h1" />,
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h2" />,
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h3" />,
   h4: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h4" />,
-  ComponentLinks,
+  hr: (props: React.HTMLAttributes<HTMLHRElement>) => <PrincipiumComponents.Divider {...props} className="not-prose my-6"/>
 };
 
 export default MDXComponents;

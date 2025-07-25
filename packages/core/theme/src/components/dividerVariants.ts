@@ -4,7 +4,7 @@ import {pv} from '../utils/pv';
  * Divider **Tailwind Variants** component
  *
  * @example
- * <hr className={cn(dividerVariants({...}))} />
+ * <hr className={dividerVariants({...})} />
  */
 const dividerVariants = pv('bg-border-300 shrink-0 border-none', {
   variants: {

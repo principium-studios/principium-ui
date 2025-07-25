@@ -31,8 +31,9 @@ const FeaturesGrid = ({features}: {features: Feature[]}) => {
           isBlurred
           isPressable={!!feature.href}
           onClick={() => handleClick(feature)}
+      
         >
-          <CardHeader className="gap-2">
+          <CardHeader className="gap-2 items-center">
             <div className="bg-secondary-100 flex items-center justify-center rounded-full p-2">
               {feature.icon}
             </div>

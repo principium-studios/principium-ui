@@ -224,7 +224,7 @@ function pvBase<
   slots: S,
   config: VariantConfig<S, V, DV, CV>,
   twMerge: any,
-): S extends MultiSlots ? SlotFunctions<S, V> : SlotFunction<V, S> {
+): S extends MultiSlots ? SlotFunctions<S, V> : SlotFunction<S, V, keyof S> {
   validateConfig(config);
 
   // Handle single slot case

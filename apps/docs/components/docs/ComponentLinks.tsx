@@ -22,7 +22,7 @@ const ComponentLinks = ({name, isUtility}: ComponentLinksProps) => {
       : `/blob/main/packages/components/${fileName}`);
 
   return (
-    <div className="not-prose mb-4 flex gap-2">
+    <div className="not-prose flex gap-2">
       <Button asChild>
         <Link href={npmSource} target="_blank">
           <PackageIcon size={16} /> @principium/{fileName}

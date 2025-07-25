@@ -8,10 +8,10 @@ import {colorVariants, dataFocusVisibleClasses, translateCenterClasses} from '..
  *
  * @example
  *
- * <div className={avatarVariants.base({size, color, isBordered, disabled}))} data-focus={true/false} data-focus-visible={true/false}>
- *    <img className={avatarVariants.img()} src="https://picsum.photos/200/300" alt="your avatar" />
- *    <div role="img" aria-label="your name" className={avatarVariants.name()}>your name</div>
- *    <span role="img" aria-label="your icon" className={avatarVariants.icon()}>your icon</span>
+ * <div className={avatarVariants.base({...})}>
+ *    <img className={avatarVariants.img({...})} alt="your avatar" />
+ *    <div className={avatarVariants.name({...})}>your name</div>
+ *    <span className={avatarVariants.icon({...})}>your icon</span>
  * </div>
  */
 const avatarVariants = pv(

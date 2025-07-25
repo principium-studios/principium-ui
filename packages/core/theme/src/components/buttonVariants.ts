@@ -7,7 +7,7 @@ import {colorVariants, dataFocusVisibleClasses} from '../utils';
  * Button **Tailwind Variants** component
  *
  * @example
- * <button className={cn(buttonVariants({...}))}>Button</button>
+ * <button className={buttonVariants({...})}>Button</button>
  */
 const buttonVariants = pv(
   ['transition-[background-color, border-color, color, transform, opacity] hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md text-sm font-medium duration-300 [&_svg]:shrink-0', ...dataFocusVisibleClasses],
