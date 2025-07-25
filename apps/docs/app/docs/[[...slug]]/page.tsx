@@ -1,3 +1,4 @@
+import ExploreComponentsCard from '@/components/docs/ExploreComponentsCard';
 import TableOfContents from '@/components/docs/TableOfContents';
 import {MDXContent} from '@/components/mdx/MDXContent';
 import {siteConfig} from '@/config/site';
@@ -81,7 +82,11 @@ export default async function DocPage({params}: DocPageProps) {
         <MDXContent code={doc.body.code} />
       </article>
       <aside className="sticky top-20 col-span-2">
+        <div className='relative'>
         <TableOfContents headings={headings} />
+
+        </div>
+        <ExploreComponentsCard />
       </aside>
     </>
   );

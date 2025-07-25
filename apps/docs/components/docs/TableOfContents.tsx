@@ -14,20 +14,20 @@ const TableOfContents = ({headings}: {headings: Heading[]}) => {
     }
   }, []);
 
-  return (
+  return headings.length > 0 && (
     <div
-      className="group max-h-100 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-20"
+      className="group max-h-100 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       onScroll={handleScroll}
       ref={tocRef}
       data-top-fade={false}
     >
       <h2 className="text-background-800 mb-4 text-base font-medium">On this page</h2>
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2 mb-10">
         {headings.map((heading) => (
           <li
             key={heading.id}
             className="text-background-600 data-[active=true]:text-background-950 text-sm"
-            style={{marginLeft: `${(heading.level - 1) * 16}px`}}
+            style={{marginLeft: `${(heading.level - 2) * 16}px`}}
             data-active={activeId === heading.id}
             onClick={() => setActiveId(heading.id)}
           >

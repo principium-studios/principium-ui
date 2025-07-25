@@ -22,9 +22,9 @@ const cardVariants = pv(
   {
     base: ['shadow-sm shadow-border-300/50 border border-border-300 flex flex-col relative overflow-hidden text-background-950 box-border bg-background-100 rounded-lg transition-all', ...dataFocusVisibleClasses],
     header:
-      'flex p-3 z-10 w-full justify-start items-center shrink-0 overflow-inherit color-inherit subpixel-antialiased',
+      'flex p-3 z-10 w-full justify-start shrink-0 overflow-inherit color-inherit subpixel-antialiased',
     title: 'font-semibold leading-none',
-    description: 'text-muted-600 text-sm',
+    description: 'text-background-600 text-sm',
     body: 'relative flex w-full p-3 flex-auto flex-col break-words text-left overflow-y-auto subpixel-antialiased',
     footer: 'p-3 flex w-full items-center overflow-hidden color-inherit subpixel-antialiased',
   },
