@@ -30,7 +30,7 @@ const Collapsible = ({category}: {category: Route}) => {
           return (
             <li
               key={route.key}
-              className={`${isSelected ? 'text-background-950' : 'text-background-600'} ml-8 flex items-center gap-6 transition-all active:opacity-75`}
+              className={`${isSelected ? 'text-primary-400 dark:text-primary-600' : 'text-background-600'} ml-8 flex items-center gap-6 transition-all active:opacity-75`}
             >
               {route.key !== 'overview' && (
                 <span className="bg-background-600 h-1 w-1 shrink-0 rounded-full"></span>
