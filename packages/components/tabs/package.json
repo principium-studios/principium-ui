@@ -37,7 +37,8 @@
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@principium/theme": "workspace:*"
+    "@principium/theme": "workspace:*",
+    "motion": "^12.23.6"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
@@ -51,7 +52,9 @@
     "@principium/variants": "workspace:*"
   },
   "dependencies": {
-    "@principium/context": "workspace:*"
+    "@principium/context": "workspace:*",
+    "@principium/use-controllable-state": "workspace:*",
+    "@principium/primitive": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

@@ -2,24 +2,33 @@ import {colorVariants, dataFocusVisibleClasses} from '../utils';
 import {pv} from '../utils/pv';
 
 /**
- * Tabs wrapper **Tailwind Variants** component
  *
  * @example
  * ```js
  *
- * <div className={tabs.base({...})}>
  *  <div className={tabs.tabList({...})}>
- *    <div className={tabs.tab({...})} data-selected="boolean">Tab 1</div>
- *    <div className={tabs.tab({...})} data-selected="boolean" data-disabled="boolean">Tab 2</div>
- *    <div className={tabs.tab({...})} data-selected="boolean">Tab 3</div>
+ *    <button className={tabs.tab({...})} data-selected="boolean">
+ *      <span className={tabs.cursor({...})} />
+ *      <span className={tabs.tabContent({...})}>
+ *        Tab 1
+ *      </span>
+ *    </button>
+ *    <button className={tabs.tab({...})} data-selected="boolean">
+ *      <span className={tabs.tabContent({...})}>
+ *        Tab 2
+ *      </span>
+ *    </button>
+ *    <button className={tabs.tab({...})} data-selected="boolean">
+ *      <span className={tabs.tabContent({...})}>
+ *        Tab 3
+ *      </span>
+ *    </button>
  *  </div>
  *  <div className={tabs.panel({...})}>Selected panel</div>
- * </div>
  * ```
  */
 const tabsVariants = pv(
   {
-    base: 'inline-flex',
     tabList: [
       'flex',
       'p-1',
@@ -28,7 +37,9 @@ const tabsVariants = pv(
       'items-center',
       'flex-nowrap',
       'overflow-x-scroll',
-      'scrollbar-hide',
+      '[&::-webkit-scrollbar]:hidden',
+      '[-ms-overflow-style:none]',
+      '[scrollbar-width:none]',
       'bg-border-100',
     ],
     tab: [
@@ -44,10 +55,10 @@ const tabsVariants = pv(
       'outline-hidden',
       'cursor-pointer',
       'transition-opacity',
-      'tap-highlight-transparent',
       'data-[disabled=true]:cursor-not-allowed',
-      'data-[disabled=true]:opacity-30',
-      'data-[hover-unselected=true]:opacity-disabled',
+      'data-[disabled=true]:opacity-50',
+      'hover:[&:not([data-selected=true])]:opacity-90',
+      'active:[&:not([data-selected=true])]:opacity-50',
       // focus ring
       ...dataFocusVisibleClasses,
     ],
@@ -57,19 +68,17 @@ const tabsVariants = pv(
       'text-inherit',
       'whitespace-nowrap',
       'transition-colors',
-      'text-border-500',
+      'text-background-600',
       'group-data-[selected=true]:text-background-950',
     ],
-    cursor: ['absolute', 'z-0', 'bg-white'],
+    cursor: ['absolute', 'z-0'],
     panel: [
       'py-3',
       'px-1',
       'outline-hidden',
-      'data-[inert=true]:hidden',
       // focus ring
       ...dataFocusVisibleClasses,
     ],
-    tabWrapper: '',
   },
   {
     variants: {
@@ -144,35 +153,18 @@ const tabsVariants = pv(
       },
       fullWidth: {
         true: {
-          base: 'w-full',
           tabList: 'w-full',
         },
       },
       isDisabled: {
         true: {
-          tabList: 'opacity-disabled pointer-events-none',
+          tabList: 'opacity-50 pointer-events-none',
         },
       },
       disableAnimation: {
         true: {
           tab: 'transition-none',
           tabContent: 'transition-none',
-        },
-      },
-      placement: {
-        top: {},
-        start: {
-          tabList: 'flex-col',
-          panel: 'py-0 px-3',
-          tabWrapper: 'flex',
-        },
-        end: {
-          tabList: 'flex-col',
-          panel: 'py-0 px-3',
-          tabWrapper: 'flex flex-row-reverse',
-        },
-        bottom: {
-          tabWrapper: 'flex flex-col-reverse',
         },
       },
     },
@@ -185,7 +177,7 @@ const tabsVariants = pv(
         variant: ['solid', 'bordered', 'light'],
         color: 'default',
         class: {
-          cursor: ['bg-background-50', 'dark:bg-border-50', 'shadow-sm'],
+          cursor: ['bg-background-50', 'shadow-sm'],
           tabContent: 'group-data-[selected=true]:text-background-950',
         },
       },
@@ -242,40 +234,45 @@ const tabsVariants = pv(
         variant: 'underlined',
         color: 'primary',
         class: {
-          cursor: 'bg-primary',
-          tabContent: 'group-data-[selected=true]:text-primary',
+          cursor: 'bg-primary-400 dark:bg-primary-600',
+          tabContent:
+            'group-data-[selected=true]:text-primary-400 dark:group-data-[selected=true]:text-primary-600',
         },
       },
       {
         variant: 'underlined',
         color: 'secondary',
         class: {
-          cursor: 'bg-secondary',
-          tabContent: 'group-data-[selected=true]:text-secondary',
+          cursor: 'bg-secondary-400 dark:bg-secondary-600',
+          tabContent:
+            'group-data-[selected=true]:text-secondary-400 dark:group-data-[selected=true]:text-secondary-600',
         },
       },
       {
         variant: 'underlined',
         color: 'success',
         class: {
-          cursor: 'bg-success',
-          tabContent: 'group-data-[selected=true]:text-success',
+          cursor: 'bg-success-400 dark:bg-success-600',
+          tabContent:
+            'group-data-[selected=true]:text-success-400 dark:group-data-[selected=true]:text-success-600',
         },
       },
       {
         variant: 'underlined',
         color: 'warning',
         class: {
-          cursor: 'bg-warning',
-          tabContent: 'group-data-[selected=true]:text-warning',
+          cursor: 'bg-warning-400 dark:bg-warning-600',
+          tabContent:
+            'group-data-[selected=true]:text-warning-400 dark:group-data-[selected=true]:text-warning-600',
         },
       },
       {
         variant: 'underlined',
         color: 'danger',
         class: {
-          cursor: 'bg-danger',
-          tabContent: 'group-data-[selected=true]:text-danger',
+          cursor: 'bg-danger-400 dark:bg-danger-600',
+          tabContent:
+            'group-data-[selected=true]:text-danger-400 dark:group-data-[selected=true]:text-danger-600',
         },
       },
       /**
@@ -403,7 +400,7 @@ const tabsVariants = pv(
         class: {
           tab: 'rounded-none',
           tabList: 'rounded-none',
-          cursor: 'rounded-none'
+          cursor: 'rounded-none',
         },
       },
     ],

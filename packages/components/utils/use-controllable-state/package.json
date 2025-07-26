@@ -1,9 +1,9 @@
 {
-  "name": "@principium/use-controllable-state.tsx",
+  "name": "@principium/use-controllable-state",
   "version": "0.0.1",
   "description": "",
   "keywords": [
-    "use-controllable-state.tsx"
+    "use-controllable-state"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",
@@ -11,7 +11,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/principium-studios/principium",
-    "directory": "packages/components/use-controllable-state.tsx"
+    "directory": "packages/components/utils/use-controllable-state"
   },
   "sideEffects": false,
   "main": "src/index.ts",

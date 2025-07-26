@@ -5,3 +5,4 @@ export * from '@principium/badge';
 export * from '@principium/button';
 export * from '@principium/card';
 export * from '@principium/divider';
+export * from '@principium/tabs';
