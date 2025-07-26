@@ -1,8 +1,11 @@
+'use client';
+
 import {VariantProps} from '@principium/variants';
 import {tabsVariants} from '@principium/theme';
 import {createContext} from '@principium/context';
 import {useControllableState} from '@principium/use-controllable-state';
 import {LazyMotion, domMax, m} from 'motion/react';
+import {Primitive, PrimitiveProps} from '@principium/primitive';
 
 // _______________________________________ Tabs _______________________________________
 interface TabsContextType {
@@ -43,17 +46,26 @@ const Tabs = ({children, value, defaultValue, onChange, ...variantProps}: TabsPr
 
 // _______________________________________ TabsList _______________________________________
 
-interface TabsListProps {
+interface TabsListProps extends PrimitiveProps<'div'> {
   children: React.ReactNode;
 }
-const TabsList = ({children}: TabsListProps) => {
+const TabsList = ({children, className, ...props}: TabsListProps) => {
   const {variant, size, color, radius, fullWidth, isDisabled} = useTabsVariant();
   return (
-    <div
-      className={tabsVariants.tabList({variant, size, color, radius, fullWidth, isDisabled})}
+    <Primitive.div
+      className={tabsVariants.tabList({
+        variant,
+        size,
+        color,
+        radius,
+        fullWidth,
+        isDisabled,
+        className,
+      })}
+      {...props}
     >
       {children}
-    </div>
+    </Primitive.div>
   );
 };
 
@@ -67,7 +79,7 @@ const TabsTrigger = ({children, value}: TabsTriggerProps) => {
   const {variant, size, color, radius, disableAnimation} = useTabsVariant();
   return (
     <button
-    data-selected={activeTab === value}
+      data-selected={activeTab === value}
       className={tabsVariants.tab({variant, size, color, radius, disableAnimation})}
       onClick={() => setActiveTab(value)}
     >
@@ -84,10 +96,7 @@ const TabsTrigger = ({children, value}: TabsTriggerProps) => {
           />
         </LazyMotion>
       )}
-      <span
-       
-        className={tabsVariants.tabContent({disableAnimation, variant, color})}
-      >
+      <span className={tabsVariants.tabContent({disableAnimation, variant, color})}>
         {children}
       </span>
     </button>
@@ -95,18 +104,21 @@ const TabsTrigger = ({children, value}: TabsTriggerProps) => {
 };
 
 // _______________________________________ TabsContent _______________________________________
-interface TabsContentProps {
-  children: React.ReactNode;
+interface TabsContentProps extends PrimitiveProps<'div'> {
   value: string;
 }
-const TabsContent = ({children, value}: TabsContentProps) => {
+const TabsContent = ({children, value, className, ...props}: TabsContentProps) => {
   const {activeTab} = useTabs();
 
   const shouldRender = value === activeTab;
 
   if (!shouldRender) return null;
 
-  return <div className={tabsVariants.panel({})}>{children}</div>;
+  return (
+    <Primitive.div className={tabsVariants.panel({className})} {...props}>
+      {children}
+    </Primitive.div>
+  );
 };
 
 export type {TabsProps, TabsListProps, TabsTriggerProps, TabsContentProps};

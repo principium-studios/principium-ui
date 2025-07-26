@@ -287,6 +287,7 @@ const buttonVariants = pv(
       size: 'md',
       color: 'default',
       disabled: false,
+      radius: 'md',
     },
   },
 );

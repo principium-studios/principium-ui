@@ -30,7 +30,7 @@ import {pv} from '../utils/pv';
 const tabsVariants = pv(
   {
     tabList: [
-      'flex',
+      'inline-flex',
       'p-1',
       'h-fit',
       'gap-2',
@@ -73,8 +73,7 @@ const tabsVariants = pv(
     ],
     cursor: ['absolute', 'z-0'],
     panel: [
-      'py-3',
-      'px-1',
+
       'outline-hidden',
       // focus ring
       ...dataFocusVisibleClasses,
@@ -169,15 +168,21 @@ const tabsVariants = pv(
       },
     },
     compoundVariants: [
+      {
+        variant: 'bordered',
+        class: {
+          cursor: ['bg-background-100', 'shadow-sm'],
+        },
+      },
       /**
        * Variants & Colors
        */
       // solid + bordered + light && color
       {
-        variant: ['solid', 'bordered', 'light'],
+        variant: ['solid', 'light'],
         color: 'default',
         class: {
-          cursor: ['bg-background-50', 'shadow-sm'],
+          cursor: ['bg-background-200', 'shadow-sm'],
           tabContent: 'group-data-[selected=true]:text-background-950',
         },
       },
