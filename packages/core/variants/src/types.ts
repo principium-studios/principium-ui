@@ -8,6 +8,15 @@ type ExcludeUndefinedKeys<T> = Omit<T, FindUndefinedKeys<T>>;
 // Represents any valid CSS class string
 export type ClassValue = ClassArray | string | null | undefined;
 export type ClassArray = ClassValue[];
+type ClassAttrib =
+  | {
+      class?: never;
+      className?: ClassValue;
+    }
+  | {
+      class?: ClassValue;
+      className?: never;
+    };
 
 // Slots can be either an object mapping slot names to classes or a single slot
 export type MultiSlots = {
@@ -60,7 +69,9 @@ export type ClassProp<S extends Slots> =
 
 export type CompoundVariants<V extends Variants<S>, S extends Slots> = Array<
   {
-    [VariantName in keyof V]?: StringToBoolean<keyof V[VariantName]> | Array<StringToBoolean<keyof V[VariantName]>>;
+    [VariantName in keyof V]?:
+      | StringToBoolean<keyof V[VariantName]>
+      | Array<StringToBoolean<keyof V[VariantName]>>;
   } & ClassProp<S>
 >;
 
@@ -96,88 +107,65 @@ export type VariantProps<V extends Variants<S>, S extends Slots> = BaseVariantPr
       }
   );
 
-// 1️⃣ Slots
-const testSlots = {
-  root: 'root-class',
-  label: 'label-class',
-  icon: 'icon-class',
-};
-
-// 2️⃣ Variants
-const testVariants = {
-  // ———————— scalar‑only variant ————————
-  size: {
-    sm: 'text-sm',
-    md: 'text-md',
-    lg: 'text-lg',
-  },
-
-  // ———————— slot‑aware variant ————————
-  intent: {
-    primary: {root: 'bg-blue-500 text-white', label: 'uppercase'},
-    secondary: {root: 'bg-gray-500 text-black', icon: 'fill-current'},
-    ghost: {icon: 'opacity-50'},
-  },
-
-  // ———————— boolean‑style (true/false) variant ————————
-  outlined: {
-    true: {root: 'ring-2 ring-offset-2', icon: 'stroke-2'},
-    false: 'none', // scalar => applies to every slot
-  },
-
-  // ———————— weird edge: empty‑object option ————————
-  mood: {
-    happy: {icon: 'rotate-12'},
-    sad: {}, // no keys → applies nowhere
-  },
-};
-
-// 3️⃣ What we expect `VariantsForSlot` to produce:
-
-type TestResultRoot = VariantsForSlot<typeof testSlots, typeof testVariants, 'root'>;
-//    → "size" | "intent" | "outlined"
-
-type TestResultLabel = VariantsForSlot<typeof testSlots, typeof testVariants, 'label'>;
-//    → "size" | "intent" | "outlined"
-
-type TestResultIcon = VariantsForSlot<typeof testSlots, typeof testVariants, 'icon'>;
-//    → "size" | "intent" | "outlined" | "mood"
-
 /**
  * Computes which variant keys apply to a given slot
  */
+type SlotIsInVariantOptions<
+  V extends Variants<S>,
+  S extends Slots,
+  Slot extends keyof S,
+  VariantName extends keyof V,
+> = {
+  // Loop through the options in the variant
+  [OptionName in keyof V[VariantName]]?: V[VariantName][OptionName] extends Record<string, any> // If the option is a record
+    ? Slot extends keyof V[VariantName][OptionName] // If the slot is in the option
+      ? StringToBoolean<keyof V[VariantName]> // add the variant as an option
+      : never
+    : V[VariantName][OptionName] extends ClassValue // If the option is a class value
+      ? StringToBoolean<keyof V[VariantName]> // add the variant as an option
+      : never;
+}[keyof V[VariantName]];
+
+type SlotIsInCompoundOption<
+  S extends Slots,
+  V extends Variants<S>,
+  CV extends CompoundVariants<V, S>,
+  Slot extends keyof S,
+> = CV[number] extends infer CVItem // Get the current compound variant
+  ? CVItem extends CompoundVariants<V, S>[number] // Check if the current compound variant is valid
+    ? CVItem['class' | 'className'] extends Record<string, any> // If the class of the current compound variant is a record
+      ? Slot extends keyof CVItem['class' | 'className'] // and the slot is in the class
+        ? {
+            [K in Extract<Exclude<keyof CVItem, 'class' | 'className'>, keyof V>]?: StringToBoolean<
+              keyof V[K]
+            >;
+          } // add the variant as an option
+        : never
+      : CVItem['class' | 'className'] extends ClassValue
+        ? {
+            [K in Extract<Exclude<keyof CVItem, 'class' | 'className'>, keyof V>]?: StringToBoolean<
+              keyof V[K]
+            >;
+          }
+        : never
+    : never
+  : never;
+
+type SuggestedVariantsForSlot<
+  S extends Slots,
+  V extends Variants<S>,
+  Slot extends keyof S,
+> = ExcludeUndefinedKeys<{
+  [VariantName in keyof V]?:
+    | SlotIsInVariantOptions<V, S, Slot, VariantName>
+    | SlotIsInCompoundOption<S, V, CompoundVariants<V, S>, Slot>;
+}>;
+
 export type VariantsForSlot<
   S extends Slots,
   V extends Variants<S>,
   Slot extends keyof S,
-> = S extends MultiSlots
-  ? ExcludeUndefinedKeys<{
-      // A Map
-      [VariantName in keyof V]?: {
-        // of the variants
-        [OptionName in keyof V[VariantName]]?: V[VariantName][OptionName] extends Record<
-          // mapped to the options in the current variant
-          string,
-          any
-        >
-          ? Slot extends keyof V[VariantName][OptionName] // If the slot is in the option
-            ? StringToBoolean<OptionName> // add it to the result
-            : never // otherwise it's never.
-          : V[VariantName][OptionName] extends ClassValue // if the option is a class value, it's any of the variant options
-            ? StringToBoolean<OptionName> // add it to the result
-            : never; // otherwise it's never.
-      }[keyof V[VariantName]];
-    }> & (
-      | {
-          class?: never;
-          className?: ClassValue;
-        }
-      | {
-          class?: ClassValue;
-          className?: never;
-        }
-    )
-  : VariantProps<V, S>;
+> = S extends MultiSlots ? SuggestedVariantsForSlot<S, V, Slot> & ClassAttrib : VariantProps<V, S>;
 
 /**
  * Return type for slot functions

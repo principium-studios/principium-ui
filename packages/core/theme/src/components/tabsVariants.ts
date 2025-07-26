@@ -18,7 +18,7 @@ import {pv} from '../utils/pv';
  * </div>
  * ```
  */
-const tabs = pv(
+const tabsVariants = pv(
   {
     base: 'inline-flex',
     tabList: [
@@ -418,6 +418,6 @@ const tabs = pv(
   },
 );
 
-export type TabsVariantProps = VariantProps<typeof tabs.base>;
+export type TabsVariantProps = VariantProps<typeof tabsVariants.base>;
 
-export {tabs};
+export {tabsVariants};
