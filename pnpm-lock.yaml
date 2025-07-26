@@ -216,6 +216,9 @@ importers:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
+      '@principium/variants':
+        specifier: workspace:*
+        version: link:../../core/variants
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../../internal/typescript-config
@@ -256,6 +259,9 @@ importers:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
+      '@principium/variants':
+        specifier: workspace:*
+        version: link:../../core/variants
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../../internal/typescript-config
@@ -296,6 +302,9 @@ importers:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
+      '@principium/variants':
+        specifier: workspace:*
+        version: link:../../core/variants
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../../internal/typescript-config
@@ -339,6 +348,9 @@ importers:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
+      '@principium/variants':
+        specifier: workspace:*
+        version: link:../../core/variants
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../../internal/typescript-config
@@ -382,6 +394,9 @@ importers:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
+      '@principium/variants':
+        specifier: workspace:*
+        version: link:../../core/variants
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../../internal/typescript-config
@@ -419,6 +434,9 @@ importers:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
+      '@principium/variants':
+        specifier: workspace:*
+        version: link:../../core/variants
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../../internal/typescript-config
@@ -459,6 +477,9 @@ importers:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
+      '@principium/variants':
+        specifier: workspace:*
+        version: link:../../core/variants
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../../internal/typescript-config

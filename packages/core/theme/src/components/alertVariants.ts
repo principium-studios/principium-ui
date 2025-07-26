@@ -1,5 +1,3 @@
-import type {VariantProps} from '@principium/variants';
-
 import {pv} from '../utils/pv';
 import {colorVariants, dataFocusVisibleClasses} from '../utils';
 
@@ -289,5 +287,4 @@ const alertVariants = pv(
   },
 );
 
-export type AlertVariantProps = VariantProps<typeof alertVariants.base>;
 export {alertVariants};

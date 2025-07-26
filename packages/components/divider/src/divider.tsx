@@ -5,7 +5,7 @@ type VerticalProps = React.ComponentPropsWithRef<'div'> & {
   orientation: 'vertical';
 };
 type HorizontalProps = React.ComponentPropsWithRef<'hr'> & {
-  orientation?: 'horizontal' | undefined | null;
+  orientation?: 'horizontal' | undefined;
 };
 type DividerProps = VerticalProps | HorizontalProps;
 

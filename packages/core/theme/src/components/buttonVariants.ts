@@ -1,5 +1,3 @@
-import type {VariantProps} from '@principium/variants';
-
 import {pv} from '../utils/pv';
 import {colorVariants, dataFocusVisibleClasses} from '../utils';
 
@@ -282,7 +280,5 @@ const buttonVariants = pv(
     },
   },
 );
-
-export type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
 export {buttonVariants};

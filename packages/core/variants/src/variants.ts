@@ -10,10 +10,11 @@ import type {
   SlotFunction,
   SlotFunctions,
   BaseVariantProps,
+  SingleSlot,
 } from './types';
 
 import clsx from 'clsx';
-import {twMerge} from 'tailwind-merge';
+import {twMerge as twMergeFn} from 'tailwind-merge';
 
 import {InvalidConfigError, InvalidVariantError, InvalidVariantValueError} from './types';
 
@@ -26,6 +27,13 @@ function normalizeVariantValue(value: unknown): string | undefined {
   }
 
   return value as string | undefined;
+}
+
+/**
+ * Narrow down to single slot
+ */
+function isSingleSlot(slots: Slots): slots is SingleSlot {
+  return typeof slots === 'string' || Array.isArray(slots) || slots === null || slots === undefined;
 }
 
 /**
@@ -140,12 +148,12 @@ function createSlotFunction<
   DV extends DefaultVariants<V, S>,
   CV extends CompoundVariants<V, S>,
 >(
-  slotName: keyof S | null,
+  slotName: keyof S,
   baseClasses: ClassValue,
   config: VariantConfig<S, V, DV, CV>,
   twMerge: any,
-) {
-  return (props?: VariantProps<V, S>) => {
+): SlotFunction<S, V, typeof slotName> {
+  return (props) => {
     // Extract class and className props and rest of the props
     const {class: classProp, className: classNameProp, ...rest} = props || {};
     const pickedVariantsProps = rest as BaseVariantProps<V, S>;
@@ -223,14 +231,15 @@ function pvBase<
 >(
   slots: S,
   config: VariantConfig<S, V, DV, CV>,
-  twMerge: any,
+  twMerge: typeof twMergeFn,
 ): S extends MultiSlots ? SlotFunctions<S, V> : SlotFunction<S, V, keyof S> {
   validateConfig(config);
 
   // Handle single slot case
-  if (typeof slots === 'string' || Array.isArray(slots) || slots === null || slots === undefined) {
-    return createSlotFunction(null, slots, config, twMerge) as any;
-  }
+  if (isSingleSlot(slots)) {
+    return createSlotFunction('placeholder' as keyof S, slots, config, twMerge) as any;
+  } 
+
 
   // Handle multi-slot case
   const result = {} as SlotFunctions<S & MultiSlots, V>;
@@ -259,4 +268,57 @@ export function createPv(twMerge: any) {
   ) => pvBase(slots, config, twMerge);
 }
 
-export const pv = createPv(twMerge);
+export const pv = createPv(twMergeFn);
+
+const test = pv(
+  {
+    base: '',
+    title: '',
+    footer: '',
+  },
+  {
+    variants: {
+      // All should have this
+      variant: {
+        solid: '',
+        outline: '',
+      },
+      // None should have this
+      color: {
+        red: {},
+        blue: {},
+      },
+      // Only base should have this
+      size: {
+        sm: {
+          base: '',
+        },
+        md: {
+          base: '',
+        },
+      },
+      // Only footer should have this
+      hide: {
+        true: {
+          footer: '',
+        },
+      },
+      sum: {
+        ceva: {},
+      },
+    },
+    compoundVariants: [
+      {
+        sum: 'ceva',
+        class: 'ceva',
+      },
+    ],
+    defaultVariants: {
+      variant: 'solid',
+    },
+  },
+);
+
+test.base({});
+test.title({});
+test.footer({});

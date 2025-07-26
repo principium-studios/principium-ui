@@ -1,6 +1,6 @@
 'use client';
 
-import type {CardVariantProps} from '@principium/theme';
+import type {VariantProps} from '@principium/variants';
 import type {PrimitiveProps} from '@principium/primitive';
 
 import React from 'react';
@@ -13,7 +13,7 @@ type CardProps = (
   | ({isPressable: true} & PrimitiveProps<'button'>)
   | ({isPressable?: false | undefined | null} & PrimitiveProps<'div'>)
 ) &
-  (Omit<CardVariantProps, 'isFooterBlurred'> & {
+  (Omit<VariantProps<typeof cardVariants.base>, 'isFooterBlurred'> & {
     disableRipple?: boolean;
   });
 

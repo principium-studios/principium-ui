@@ -52,7 +52,8 @@
     "clean-package": "^2.2.0",
     "eslint": "^9.16.0",
     "tsup": "^8.5.0",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.2",
+    "@principium/variants": "workspace:*"
   },
   "dependencies": {
     "@principium/context": "workspace:*",

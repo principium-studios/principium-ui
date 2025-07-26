@@ -1,5 +1,3 @@
-import type {VariantProps} from '@principium/variants';
-
 import {pv} from '../utils/pv';
 import { dataFocusVisibleClasses } from '../utils';
 
@@ -68,7 +66,5 @@ const cardVariants = pv(
     },
   },
 );
-
-export type CardVariantProps = VariantProps<typeof cardVariants.base>;
 
 export {cardVariants};

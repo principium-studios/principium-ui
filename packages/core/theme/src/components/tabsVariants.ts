@@ -1,4 +1,3 @@
-import type {VariantProps} from '@principium/variants';
 import {colorVariants, dataFocusVisibleClasses} from '../utils';
 import {pv} from '../utils/pv';
 
@@ -417,7 +416,5 @@ const tabsVariants = pv(
     },
   },
 );
-
-export type TabsVariantProps = VariantProps<typeof tabsVariants.base>;
 
 export {tabsVariants};

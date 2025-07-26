@@ -1,7 +1,7 @@
 'use client';
 
 import type {PrimitiveProps} from '@principium/primitive';
-import type {ButtonVariantProps} from '@principium/theme';
+import type {VariantProps} from '@principium/variants';
 
 import {Primitive} from '@principium/primitive';
 import {Ripple, RippleProvider} from '@principium/ripple';
@@ -9,7 +9,7 @@ import {buttonVariants} from '@principium/theme';
 import React from 'react';
 
 // ____________________ Button Component ____________________
-type ButtonProps = PrimitiveProps<'button'> & ButtonVariantProps & {disableRipple?: boolean};
+type ButtonProps = PrimitiveProps<'button'> & VariantProps<typeof buttonVariants> & {disableRipple?: boolean};
 
 const Button = ({
   variant,

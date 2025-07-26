@@ -1,5 +1,3 @@
-import type {VariantProps} from '@principium/variants';
-
 import {pv} from '../utils/pv';
 import {colorVariants, dataFocusVisibleClasses} from '../utils';
 
@@ -266,7 +264,5 @@ const badgeVariants = pv(
     ],
   },
 );
-
-export type BadgeVariantProps = VariantProps<typeof badgeVariants>;
 
 export {badgeVariants};

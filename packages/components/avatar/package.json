@@ -40,8 +40,7 @@
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@principium/theme": "workspace:*",
-    "@principium/primitive": "workspace:*"
+    "@principium/theme": "workspace:*"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
@@ -51,8 +50,11 @@
     "eslint": "^9.16.0",
     "tsup": "^8.5.0",
     "typescript": "^5.5.2",
-    "clean-package": "^2.2.0"
+    "clean-package": "^2.2.0",
+    "@principium/variants": "workspace:*"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@principium/primitive": "workspace:*"
+  },
   "clean-package": "../../../clean-package.config.json"
 }

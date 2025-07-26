@@ -1,5 +1,3 @@
-import type {VariantProps} from '@principium/variants';
-
 import {pv} from '../utils/pv';
 import {colorVariants, dataFocusVisibleClasses, translateCenterClasses} from '../utils';
 
@@ -146,7 +144,5 @@ const avatarVariants = pv(
     ],
   },
 );
-
-export type AvatarVariantProps = VariantProps<typeof avatarVariants.base>;
 
 export {avatarVariants};
