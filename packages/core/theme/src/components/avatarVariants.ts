@@ -24,7 +24,6 @@ const avatarVariants = pv(
       'align-middle',
       'text-background-950',
       'z-0',
-      'rounded-full',
       // focus ring
       ...dataFocusVisibleClasses,
     ],
@@ -63,6 +62,23 @@ const avatarVariants = pv(
           base: 'w-14 h-14 text-small',
         },
       },
+      radius: {
+        none: {
+          base: "rounded-none",
+        },
+        sm: {
+          base: "rounded-sm",
+        },
+        md: {
+          base: "rounded-md",
+        },
+        lg: {
+          base: "rounded-lg",
+        },
+        full: {
+          base: 'rounded-full',
+        },
+      },
       color: {
         default: {
           base: colorVariants.solid.default,
@@ -97,6 +113,7 @@ const avatarVariants = pv(
     defaultVariants: {
       size: 'md',
       color: 'default',
+      radius: 'full',
     },
     compoundVariants: [
       {

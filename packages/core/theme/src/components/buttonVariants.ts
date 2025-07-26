@@ -8,7 +8,10 @@ import {colorVariants, dataFocusVisibleClasses} from '../utils';
  * <button className={buttonVariants({...})}>Button</button>
  */
 const buttonVariants = pv(
-  ['transition-[background-color, border-color, color, transform, opacity] hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md text-sm font-medium duration-300 [&_svg]:shrink-0', ...dataFocusVisibleClasses],
+  [
+    'transition-[background-color, border-color, color, transform, opacity] hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap text-sm font-medium duration-300 [&_svg]:shrink-0',
+    ...dataFocusVisibleClasses,
+  ],
   {
     variants: {
       variant: {
@@ -33,6 +36,13 @@ const buttonVariants = pv(
         success: '',
         warning: '',
         danger: '',
+      },
+      radius: {
+        none: 'rounded-none',
+        sm: 'rounded-sm',
+        md: 'rounded-md',
+        lg: 'rounded-lg',
+        full: 'rounded-full',
       },
       disabled: {
         true: 'pointer-events-none cursor-not-allowed opacity-50',

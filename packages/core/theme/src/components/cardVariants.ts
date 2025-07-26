@@ -18,7 +18,7 @@ import { dataFocusVisibleClasses } from '../utils';
  */
 const cardVariants = pv(
   {
-    base: ['shadow-sm shadow-border-300/50 border border-border-300 flex flex-col relative overflow-hidden text-background-950 box-border bg-background-100 rounded-lg transition-all', ...dataFocusVisibleClasses],
+    base: ['shadow-border-300/50 border border-border-300 flex flex-col relative overflow-hidden text-background-950 box-border bg-background-100 transition-all', ...dataFocusVisibleClasses],
     header:
       'flex p-3 z-10 w-full shrink-0 overflow-inherit color-inherit subpixel-antialiased',
     title: 'font-semibold leading-none',
@@ -28,6 +28,42 @@ const cardVariants = pv(
   },
   {
     variants: {
+      shadow: {
+        none: {
+          base: "shadow-none",
+        },
+        sm: {
+          base: "shadow-small",
+        },
+        md: {
+          base: "shadow-medium",
+        },
+        lg: {
+          base: "shadow-large",
+        },
+      },
+      radius: {
+        none: {
+          base: "rounded-none",
+          header: "rounded-none",
+          footer: "rounded-none",
+        },
+        sm: {
+          base: "rounded-sm",
+          header: "rounded-t-sm",
+          footer: "rounded-b-sm",
+        },
+        md: {
+          base: "rounded-md",
+          header: "rounded-t-md",
+          footer: "rounded-b-md",
+        },
+        lg: {
+          base: "rounded-lg",
+          header: "rounded-t-lg",
+          footer: "rounded-b-lg",
+        },
+      },
       isHoverable: {
         true: {
           base: 'hover:bg-background-200 dark:hover:bg-background-800',
@@ -63,6 +99,8 @@ const cardVariants = pv(
       isPressable: false,
       disabled: false,
       isFooterBlurred: false,
+      radius: 'md',
+      shadow: 'sm',
     },
   },
 );

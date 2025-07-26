@@ -21,6 +21,7 @@ const Button = ({
   disableRipple,
   disabled,
   asChild,
+  radius,
   ...props
 }: ButtonProps) => {
   const content = React.useMemo(() => {
@@ -51,7 +52,7 @@ const Button = ({
         {...props}
         aria-disabled={disabled}
         asChild={asChild}
-        className={buttonVariants({variant, size, color, disabled, className})}
+        className={buttonVariants({variant, size, color, disabled, className, radius})}
         disabled={disabled}
         onClick={(e) => {
           if (disabled) return;

@@ -7,10 +7,10 @@ import {avatarVariants} from '@principium/theme';
 // ______________________________________________________ Avatar ______________________________________________________
 type AvatarProps = PrimitiveProps<'span'> & VariantProps<typeof avatarVariants.base>;
 
-const Avatar = ({className, size, color, isBordered, disabled, ...props}: AvatarProps) => {
+const Avatar = ({className, size, color, isBordered, disabled, radius, ...props}: AvatarProps) => {
   return (
     <Primitive.span
-      className={avatarVariants.base({size, color, isBordered, disabled, className})}
+      className={avatarVariants.base({size, color, isBordered, disabled, className, radius})}
       {...props}
     />
   );

@@ -19,7 +19,7 @@ import {colorVariants, dataFocusVisibleClasses} from '../utils';
 const alertVariants = pv(
   {
     base: [
-      'relative grid grid-cols-[0_1fr] grid-rows-[1fr] rounded-lg px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3',
+      'relative grid grid-cols-[0_1fr] grid-rows-[1fr] px-4 py-3 has-[svg]:grid-cols-[auto_1fr] has-[svg]:gap-x-3',
       ...dataFocusVisibleClasses,
     ],
     title: 'col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight',
@@ -48,6 +48,23 @@ const alertVariants = pv(
           base: 'border-1 bg-transparent',
         },
       },
+      radius: {
+        none: {
+          base: 'rounded-none',
+        },
+        sm: {
+          base: 'rounded-sm',
+        },
+        md: {
+          base: 'rounded-md',
+        },
+        lg: {
+          base: 'rounded-lg',
+        },
+        full: {
+          base: 'rounded-full',
+        },
+      },
       hideIconWrapper: {
         true: {
           base: 'gap-x-0',
@@ -58,6 +75,7 @@ const alertVariants = pv(
     defaultVariants: {
       color: 'default',
       variant: 'flat',
+      radius: 'md',
     },
     compoundVariants: [
       // solid / color
