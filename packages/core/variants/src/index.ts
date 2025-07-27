@@ -1,6 +1,31 @@
-export * from './variants';
+import {pv} from './pv';
+export {pv, createPv} from './pv';
+export type SlotParams<T> = T extends (props: infer P) => any ? P : never;
 
-export type VariantProps<T> = T extends (props?: infer P) => any
-  ? Omit<P, 'class' | 'className'>
-  : never;
 
+const {header, body, footer} = pv(
+    {
+      header: '',
+      body: '',
+      footer: '',
+    },
+    {
+      variants: {
+        variant: {
+          primary: {
+            body: "something"
+          }
+        },
+        size: {
+            sm: ""
+        },
+        isVisible: {
+            true: {}
+        }
+      },
+  
+    },
+  );
+  
+header({})
+body({});

@@ -1,146 +1,125 @@
-// Used to convert variant options
-type StringToBoolean<T> = T extends 'true' ? boolean : T extends 'false' ? boolean : T;
+/**
+ * The order in which u need to go over these types to understand them is the following:
+ * 1. -=- Helper Types (General) -=-
+ * 2. ___ Slot Types ___
+ * 3. ___ Utility Types ___
+ * 4. ___ Variant Types ___
+ * 5. -=- Function Types -=- (In the order they are present)
+ */
+
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- Helper Types (General) -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+type StringToBoolean<T> = T extends 'true' | 'false' ? boolean : T;
+
+type ClassValue = ClassArray | string | null | undefined;
+type ClassArray = ClassValue[];
+
 type FindUndefinedKeys<T> = {
   [K in keyof T]: T[K] extends undefined ? K : never;
 }[keyof T];
 type ExcludeUndefinedKeys<T> = Omit<T, FindUndefinedKeys<T>>;
 
-// Represents any valid CSS class string
-export type ClassValue = ClassArray | string | null | undefined;
-export type ClassArray = ClassValue[];
-type ClassAttrib =
-  | {
-      class?: never;
-      className?: ClassValue;
-    }
-  | {
-      class?: ClassValue;
-      className?: never;
-    };
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- Base Types -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-// ________________________________ CONFIG TYPES ________________________________
+// _________________________________________ Utility Types _________________________________________
 
-// Slots can be either an object mapping slot names to classes or a single slot
-export type MultiSlots = {
-  [slotKey: string]: ClassValue;
-};
-export type SingleSlot = ClassValue;
-export type Slots = MultiSlots | SingleSlot;
+// A helper type to get the options for variants
+type VariantOptions<T> = {[K in keyof T]?: StringToBoolean<keyof T[K]>};
+
+// Helper type for allowing either 'class' or 'className' prop, but not both
+// Example: { class: 'foo' } or { className: 'foo' }
+type ClassField<T> = {class?: T; className?: never} | {class?: never; className?: T};
+
+// For multi-slot components, allows specifying classes for any subset of slots
+// Example: { header: 'foo', body: 'bar' }
+type SlotsClasses<S extends Slots> = Partial<Record<keyof S, ClassValue>>;
+
+// _________________________________________ Slot Types _________________________________________
+
+// Slot Types
+type SingleSlot = ClassValue; // a single class value (string, array, etc)
+type MultiSlot = Record<string, ClassValue>; // a map of slot names to class values
+type Slots = SingleSlot | MultiSlot; // union of both
+
+// _________________________________________ Variant Types _________________________________________
 
 /**
- * Variants define named variant categories with their options
- * Each option can be either a direct class string or slot-specific overrides
- */
-export type Variants<S extends Slots> = {
-  [variantKey: string]: {
-    [optionKey: string]: S extends MultiSlots
-      ?
-          | {
-              [slotKey in keyof S]?: ClassValue;
-            }
-          | ClassValue
-      : ClassValue;
+ * Variants: maps variant names to their options, which map to class values
+ * For multi-slot, options can also be a map of slot-specific classes
+ *
+ * @example
+ * { size: { sm: 'foo', md: { header: 'bar' } } }
+ **/
+type Variants<S extends Slots> = {
+  [variantKey in string]: {
+    [optionKey in string]: S extends MultiSlot ? ClassValue | SlotsClasses<S> : ClassValue;
   };
 };
 
 /**
- * DefaultVariants sets the initial option for each variant
+ * DefaultVariants: maps variant names to their default option
+ *
+ * @example
+ * { size: 'sm', color: 'primary' }
  */
-export type DefaultVariants<V extends Variants<S>, S extends Slots> = {
-  [VariantKey in keyof V]?: StringToBoolean<keyof V[VariantKey]>;
-};
+type DefaultVariants<S extends Slots, V extends Variants<S>> = VariantOptions<V>;
 
 /**
- * CompoundVariants apply classes when specific variant combinations are active
+ * CompoundVariants: array of objects specifying combinations of variant options and their associated classes
+ *
+ * @example
+ * [ { size: 'sm', color: ['primary', 'secondary'], class: 'foo' } ]
  */
-
-export type ClassProp<S extends Slots> =
-  | {
-      class?: S extends MultiSlots ? ClassValue | {[slotKey in keyof S]?: ClassValue} : ClassValue;
-      className?: never;
-    }
-  | {
-      class?: never;
-      className?: S extends MultiSlots
-        ? ClassValue | {[slotKey in keyof S]?: ClassValue}
-        : ClassValue;
-    };
-
-export type CompoundVariants<V extends Variants<S>, S extends Slots> = Array<
+type CompoundVariants<S extends Slots, V extends Variants<S>> = Array<
   {
-    [VariantKey in keyof V]?:
-      | StringToBoolean<keyof V[VariantKey]>
-      | Array<StringToBoolean<keyof V[VariantKey]>>;
-  } & ClassProp<S>
+    [K in keyof V]?: StringToBoolean<keyof V[K]> | Array<StringToBoolean<keyof V[K]>>;
+  } & ClassField<SlotsClasses<S> | ClassValue>
 >;
 
-/**
- * Configuration object for the variant system
- */
-export type VariantConfig<
-  S extends Slots,
-  V extends Variants<S>,
-  DV extends DefaultVariants<V, S>,
-  CV extends CompoundVariants<V, S>,
-> = {
-  variants?: V;
-  defaultVariants?: DV;
-  compoundVariants?: CV;
-};
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- Function Types -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 /**
- * Props type derived from variants configuration
+ * Determines if a given slot is targeted by any of the options in a specific variant.
  */
-export type BaseVariantProps<V extends Variants<S>, S extends Slots> = {
-  [variantKey in keyof V]?: StringToBoolean<keyof V[variantKey]>;
-};
-export type VariantProps<V extends Variants<S>, S extends Slots> = BaseVariantProps<V, S> &
-  (
-    | {
-        class?: never;
-        className?: ClassValue;
-      }
-    | {
-        class?: ClassValue;
-        className?: never;
-      }
-  );
-
-// ________________________________ SLOT FUNCTIONS ________________________________
-
-/**
- * Computes which variant keys apply to a given slot
- */
+// prettier-ignore
 type SlotIsInVariantOptions<
   V extends Variants<S>,
   S extends Slots,
-  Slot extends keyof S,
-  VariantKey extends keyof V,
+  SlotName extends keyof S,
+  VariantName extends keyof V,
 > = {
-  // Loop through the options in the variant
-  [OptionKey in keyof V[VariantKey]]?: V[VariantKey][OptionKey] extends Record<string, any> // If the option is a record
-    ? Slot extends keyof V[VariantKey][OptionKey] // If the slot is in the option
-      ? StringToBoolean<keyof V[VariantKey]> // add the variant as an option
-      : never
-    : V[VariantKey][OptionKey] extends ClassValue // If the option is a class value
-      ? StringToBoolean<keyof V[VariantKey]> // add the variant as an option
-      : never;
-}[keyof V[VariantKey]];
+  [OptionName in keyof V[VariantName]]?: 
+    // If the option value is a record, it only affects the slot if the slotName is a key of it
+    V[VariantName][OptionName] extends Record<string, any>
+      ? SlotName extends keyof V[VariantName][OptionName]
+        ? StringToBoolean<keyof V[VariantName]>
+        : never
+      : // If the option value is a string then it affects all slots
+        V[VariantName][OptionName] extends ClassValue
+        ? StringToBoolean<keyof V[VariantName]>
+        : never;
+}[keyof V[VariantName]];
 
-// TODO: Fix this type, I have no clue why it doesn't work, I will crash out if I spend any more time on it
+/**
+ * Determines whether a specific slot is targeted by any compound variant's class definition,
+ * based on whether that compound variant also defines a specific variant key.
+ */
+// prettier-ignore
 type SlotIsInCompoundOption<
   S extends Slots,
   V extends Variants<S>,
-  CV extends CompoundVariants<V, S>,
+  CV extends CompoundVariants<S, V>,
   SlotKey extends keyof S,
   VariantKey extends keyof V,
 > = {
-  [I in keyof CV]: CV[I]['class' | 'className'] extends Record<string, any> // If the class of the current compound variant is a record
-    ? SlotKey extends keyof CV[I]['class' | 'className'] // and the slot is in the class
+  [I in keyof CV]: 
+    // If the class is a record, it only affects the slot if the slotName is a key of it
+    CV[I]['class' | 'className'] extends Record<string, any> 
+    ? SlotKey extends keyof CV[I]['class' | 'className'] 
       ? VariantKey extends keyof CV[I]
         ? StringToBoolean<keyof V[VariantKey]>
         : never
       : never
+    // If the class is a string then it affects all slots
     : CV[I]['class' | 'className'] extends ClassValue
       ? VariantKey extends keyof CV[I]
         ? StringToBoolean<keyof V[VariantKey]>
@@ -148,52 +127,76 @@ type SlotIsInCompoundOption<
       : never;
 }[number];
 
-type SuggestedVariantsForSlot<
+type MultiSlotFunctionParams<
+  S extends MultiSlot,
+  V extends Variants<S>,
+  CV extends CompoundVariants<S, V>,
+  SlotName extends keyof S,
+> = ExcludeUndefinedKeys<{
+  [K in keyof V]?:
+    | SlotIsInVariantOptions<V, S, SlotName, K>
+    | SlotIsInCompoundOption<S, V, CV, SlotName, K>;
+}> &
+  ClassField<ClassValue>;
+
+/**
+ * The parameters accepted by a single slot function.
+ * Since there is only a slot, classes can only be strings, therefore every option targets the base slot
+ */
+type SingleSlotFunctionParams<S extends SingleSlot, V extends Variants<S>> = VariantOptions<V> &
+  ClassField<ClassValue>;
+
+/**
+ * A function that, given props, returns the computed class value for a slot.
+ * Used for both single-slot and multi-slot scenarios.
+ */
+type SlotFunctionParams<
   S extends Slots,
   V extends Variants<S>,
-  Slot extends keyof S,
-> = ExcludeUndefinedKeys<{
-  [VariantName in keyof V]?:
-    | SlotIsInVariantOptions<V, S, Slot, VariantName>
-    | SlotIsInCompoundOption<S, V, CompoundVariants<V, S>, Slot, VariantName>;
-}>;
+  CV extends CompoundVariants<S, V>,
+  SlotName extends keyof S | never = never,
+> = S extends MultiSlot
+  ? MultiSlotFunctionParams<S, V, CV, SlotName>
+  : S extends SingleSlot
+    ? SingleSlotFunctionParams<S, V>
+    : never;
 
-export type VariantsForSlot<S extends Slots, V extends Variants<S>, Slot extends keyof S> =
-// TODO: Uncomment this when SlotIsInCompoundOption is fixed
-  // S extends MultiSlots ? SuggestedVariantsForSlot<S, V, Slot> & ClassAttrib :
-  VariantProps<V, S>;
-
-/**
- * Return type for slot functions
- */
-export type SlotFunction<S extends Slots, V extends Variants<S>, Slot extends keyof S> = (
-  props?: VariantsForSlot<S, V, Slot>,
-) => string;
+type SlotFunction<
+  S extends Slots,
+  V extends Variants<S>,
+  CV extends CompoundVariants<S, V>,
+  SlotName extends keyof S | never = never,
+> = (props: SlotFunctionParams<S, V, CV, SlotName>) => ClassValue;
 
 /**
- * Return type for pv() - a record of slot functions
+ * The configuration object for the variant engine.
+ * Includes variants, compound variants, and default variants.
  */
-export type SlotFunctions<S extends MultiSlots, V extends Variants<S>> = {
-  [K in keyof S]: SlotFunction<S, V, K>;
+type PVOptions<
+  S extends Slots,
+  V extends Variants<S>,
+  CV extends CompoundVariants<S, V>,
+  DV extends DefaultVariants<S, V>,
+> = {
+  variants?: V;
+  compoundVariants?: CV;
+  defaultVariants?: DV;
 };
 
-// ________________________________ ERROR TYPES ________________________________
-
-// Error types for runtime validation
-export class InvalidVariantError extends Error {
-  constructor(variantName: string) {
-    super(`Invalid variant name: ${variantName}`);
-  }
-}
-
-export class InvalidVariantValueError extends Error {
-  constructor(variantName: string, value: string) {
-    super(`Invalid value "${value}" for variant "${variantName}"`);
-  }
-}
-
-export class InvalidConfigError extends Error {
-  constructor(message: string) {
-    super(message);
-  }
-}
+export {
+  // Helper Types
+  ClassValue,
+  StringToBoolean,
+  VariantOptions,
+  // Base Types
+  SingleSlot,
+  MultiSlot,
+  Slots,
+  Variants,
+  DefaultVariants,
+  CompoundVariants,
+  // Function Types
+  PVOptions,
+  SlotFunction,
+  SlotFunctionParams
+};
