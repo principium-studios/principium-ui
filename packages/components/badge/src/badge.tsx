@@ -1,11 +1,11 @@
 import type {PrimitiveProps} from '@principium/primitive';
-import type {VariantProps} from '@principium/variants';
+import type {SlotParams} from '@principium/variants';
 
 import React from 'react';
 import {Primitive} from '@principium/primitive';
 import {badgeVariants} from '@principium/theme';
 
-type BadgeProps = PrimitiveProps<'div'> & Omit<VariantProps<typeof badgeVariants>, 'isOneChar' | 'isDot'>;
+type BadgeProps = PrimitiveProps<'div'> & Omit<SlotParams<typeof badgeVariants>, 'isOneChar' | 'isDot'>;
 const Badge = ({
   variant,
   size,

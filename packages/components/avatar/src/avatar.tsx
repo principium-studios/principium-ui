@@ -1,11 +1,11 @@
 import type {PrimitiveProps} from '@principium/primitive';
-import type {VariantProps} from '@principium/variants';
+import type {SlotParams} from '@principium/variants';
 
 import {Primitive} from '@principium/primitive';
 import {avatarVariants} from '@principium/theme';
 
 // ______________________________________________________ Avatar ______________________________________________________
-type AvatarProps = PrimitiveProps<'span'> & VariantProps<typeof avatarVariants.base>;
+type AvatarProps = PrimitiveProps<'span'> & SlotParams<typeof avatarVariants.base>;
 
 const Avatar = ({className, size, color, isBordered, disabled, radius, ...props}: AvatarProps) => {
   return (

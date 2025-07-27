@@ -1,5 +1,5 @@
 import {pv} from '../utils/pv';
-import { dataFocusVisibleClasses } from '../utils';
+import {dataFocusVisibleClasses} from '../utils';
 
 /**
  * Card **Tailwind Variants** component
@@ -18,9 +18,11 @@ import { dataFocusVisibleClasses } from '../utils';
  */
 const cardVariants = pv(
   {
-    base: ['shadow-border-300/50 border border-border-300 flex flex-col relative overflow-hidden text-background-950 box-border bg-background-100 transition-all', ...dataFocusVisibleClasses],
-    header:
-      'flex p-3 z-10 w-full shrink-0 overflow-inherit color-inherit subpixel-antialiased',
+    base: [
+      'shadow-border-300/50 border border-border-300 flex flex-col relative overflow-hidden text-background-950 box-border bg-background-100 transition-all',
+      ...dataFocusVisibleClasses,
+    ],
+    header: 'flex p-3 z-10 w-full shrink-0 overflow-inherit color-inherit subpixel-antialiased',
     title: 'font-semibold leading-none',
     description: 'text-background-600 text-sm',
     body: 'relative flex w-full p-3 flex-auto flex-col break-words text-left overflow-y-auto subpixel-antialiased',
@@ -30,38 +32,30 @@ const cardVariants = pv(
     variants: {
       shadow: {
         none: {
-          base: "shadow-none",
+          base: 'shadow-none',
         },
         sm: {
-          base: "shadow-small",
+          base: 'shadow-small',
         },
         md: {
-          base: "shadow-medium",
+          base: 'shadow-medium',
         },
         lg: {
-          base: "shadow-large",
+          base: 'shadow-large',
         },
       },
       radius: {
         none: {
-          base: "rounded-none",
-          header: "rounded-none",
-          footer: "rounded-none",
+          base: 'rounded-none',
         },
         sm: {
-          base: "rounded-sm",
-          header: "rounded-t-sm",
-          footer: "rounded-b-sm",
+          base: 'rounded-sm',
         },
         md: {
-          base: "rounded-md",
-          header: "rounded-t-md",
-          footer: "rounded-b-md",
+          base: 'rounded-md',
         },
         lg: {
-          base: "rounded-lg",
-          header: "rounded-t-lg",
-          footer: "rounded-b-lg",
+          base: 'rounded-lg',
         },
       },
       isHoverable: {
@@ -91,7 +85,7 @@ const cardVariants = pv(
     compoundVariants: [
       {
         isPressable: true,
-        class: 'active:scale-97',
+        class: {base: 'active:scale-97'},
       },
     ],
     defaultVariants: {

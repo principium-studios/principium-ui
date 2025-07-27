@@ -111,21 +111,25 @@ type SlotIsInCompoundOption<
   SlotKey extends keyof S,
   VariantKey extends keyof V,
 > = {
-  [I in keyof CV]: 
-    // If the class is a record, it only affects the slot if the slotName is a key of it
-    CV[I]['class' | 'className'] extends Record<string, any> 
-    ? SlotKey extends keyof CV[I]['class' | 'className'] 
-      ? VariantKey extends keyof CV[I]
-        ? StringToBoolean<keyof V[VariantKey]>
+  [I in keyof CV]: CV[I] extends {class?: infer ClassType; className?: infer ClassNameType}
+    ? ClassType extends Record<string, any>
+      ? SlotKey extends keyof ClassType
+        ? VariantKey extends keyof CV[I]
+          ? StringToBoolean<keyof V[VariantKey]>
+          : never
         : never
-      : never
-    // If the class is a string then it affects all slots
-    : CV[I]['class' | 'className'] extends ClassValue
-      ? VariantKey extends keyof CV[I]
-        ? StringToBoolean<keyof V[VariantKey]>
-        : never
-      : never;
+      : ClassNameType extends Record<string, any>
+        ? SlotKey extends keyof ClassNameType
+          ? VariantKey extends keyof CV[I]
+            ? StringToBoolean<keyof V[VariantKey]>
+            : never
+          : never
+        : VariantKey extends keyof CV[I]
+          ? StringToBoolean<keyof V[VariantKey]>
+          : never
+    : never;
 }[number];
+
 
 type MultiSlotFunctionParams<
   S extends MultiSlot,
@@ -166,7 +170,7 @@ type SlotFunction<
   V extends Variants<S>,
   CV extends CompoundVariants<S, V>,
   SlotName extends keyof S | never = never,
-> = (props: SlotFunctionParams<S, V, CV, SlotName>) => ClassValue;
+> = (props: SlotFunctionParams<S, V, CV, SlotName>) => string;
 
 /**
  * The configuration object for the variant engine.

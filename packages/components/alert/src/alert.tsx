@@ -1,21 +1,17 @@
 'use client';
 
-import type {VariantProps} from '@principium/variants';
-
 import React from 'react';
 import {createContext} from '@principium/context';
 import {alertVariants} from '@principium/theme';
 import {Slot} from '@principium/slot';
+import {SlotParams} from '@principium/variants';
 
-type AlertContextType = {
-  variant: VariantProps<typeof alertVariants.base>['variant'];
-  color: VariantProps<typeof alertVariants.base>['color'];
-};
+type AlertContextType = Pick<SlotParams<typeof alertVariants.base>, 'variant' | 'color'>;
 const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
 
 // ________________________ Alert ________________________
-type AlertProps = React.ComponentPropsWithRef<'div'> & VariantProps<typeof alertVariants.base>;
-const Alert = ({className, variant, color,radius, ...props}: AlertProps) => {
+type AlertProps = React.ComponentPropsWithRef<'div'> & SlotParams<typeof alertVariants.base>;
+const Alert = ({className, variant, color, radius, ...props}: AlertProps) => {
   return (
     <AlertProvider color={color} variant={variant}>
       <div className={alertVariants.base({variant, color, className, radius})} {...props} />
@@ -26,9 +22,7 @@ const Alert = ({className, variant, color,radius, ...props}: AlertProps) => {
 // ________________________ AlertTitle ________________________
 type AlertTitleProps = React.ComponentPropsWithRef<'div'>;
 const AlertTitle = ({className, ...props}: AlertTitleProps) => {
-  const {variant, color} = useAlert();
-
-  return <div className={alertVariants.title({variant, color, className})} {...props} />;
+  return <div className={alertVariants.title({className})} {...props} />;
 };
 
 // ________________________ AlertDescription ________________________

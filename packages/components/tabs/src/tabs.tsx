@@ -1,6 +1,6 @@
 'use client';
 
-import {VariantProps} from '@principium/variants';
+import {SlotParams} from '@principium/variants';
 import {tabsVariants} from '@principium/theme';
 import {createContext} from '@principium/context';
 import {useControllableState} from '@principium/use-controllable-state';
@@ -19,10 +19,10 @@ const [TabsProvider, useTabs] = createContext<TabsContextType>('Tabs', {
 });
 
 const [TabsVariantProvider, useTabsVariant] = createContext<
-  VariantProps<typeof tabsVariants.tabList>
+SlotParams<typeof tabsVariants.tabList>
 >('TabsVariant', {});
 
-interface TabsProps extends VariantProps<typeof tabsVariants.tabList> {
+type TabsProps = SlotParams<typeof tabsVariants.tabList> & {
   children?: React.ReactNode;
   value?: string;
   defaultValue: string;

@@ -1,6 +1,6 @@
 'use client';
 
-import type {VariantProps} from '@principium/variants';
+import type {SlotParams} from '@principium/variants';
 import type {PrimitiveProps} from '@principium/primitive';
 
 import React from 'react';
@@ -13,7 +13,7 @@ type CardProps = (
   | ({isPressable: true} & PrimitiveProps<'button'>)
   | ({isPressable?: false | undefined | null} & PrimitiveProps<'div'>)
 ) &
-  (Omit<VariantProps<typeof cardVariants.base>, 'isFooterBlurred'> & {
+  (Omit<SlotParams<typeof cardVariants.base>, 'isFooterBlurred'> & {
     disableRipple?: boolean;
   });
 
@@ -27,6 +27,8 @@ const Card = ({
   className,
   children,
   onClick,
+  radius,
+  shadow,
   asChild,
   ...props
 }: CardProps) => {
@@ -59,7 +61,15 @@ const Card = ({
       {/* @ts-ignore */}
       <Component
         asChild={asChild}
-        className={cardVariants.base({isPressable, disabled, isHoverable, isBlurred, className})}
+        className={cardVariants.base({
+          isPressable,
+          disabled,
+          isHoverable,
+          isBlurred,
+          className,
+          radius,
+          shadow,
+        })}
         onClick={(e) => {
           if (!isPressable) return;
           // @ts-ignore
@@ -101,7 +111,7 @@ const CardContent = ({className, ...props}: CardContentProps) => {
 type CardFooterProps = React.ComponentPropsWithRef<'div'> & {isBlurred?: boolean};
 const CardFooter = ({className, isBlurred, ...props}: CardFooterProps) => {
   return (
-    <div className={cardVariants.footer({isFooterBlurred: isBlurred, className})} {...props} />
+    <div className={cardVariants.footer({className, isFooterBlurred: isBlurred})} {...props} />
   );
 };
 
