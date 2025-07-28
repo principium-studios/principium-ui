@@ -38,7 +38,7 @@ type SlotsClasses<S extends Slots> = Partial<Record<keyof S, ClassValue>>;
 // Slot Types
 type SingleSlot = ClassValue; // a single class value (string, array, etc)
 type MultiSlot = Record<string, ClassValue>; // a map of slot names to class values
-type Slots = SingleSlot | MultiSlot; // union of both
+type Slots = SingleSlot | MultiSlot | undefined; // union of both
 
 // _________________________________________ Variant Types _________________________________________
 
@@ -82,8 +82,8 @@ type CompoundVariants<S extends Slots, V extends Variants<S>> = Array<
  */
 // prettier-ignore
 type SlotIsInVariantOptions<
+S extends Slots,
   V extends Variants<S>,
-  S extends Slots,
   SlotName extends keyof S,
   VariantName extends keyof V,
 > = {
@@ -110,26 +110,30 @@ type SlotIsInCompoundOption<
   CV extends CompoundVariants<S, V>,
   SlotKey extends keyof S,
   VariantKey extends keyof V,
-> = {
-  [I in keyof CV]: CV[I] extends {class?: infer ClassType; className?: infer ClassNameType}
-    ? ClassType extends Record<string, any>
-      ? SlotKey extends keyof ClassType
-        ? VariantKey extends keyof CV[I]
-          ? StringToBoolean<keyof V[VariantKey]>
-          : never
-        : never
-      : ClassNameType extends Record<string, any>
-        ? SlotKey extends keyof ClassNameType
-          ? VariantKey extends keyof CV[I]
-            ? StringToBoolean<keyof V[VariantKey]>
-            : never
-          : never
-        : VariantKey extends keyof CV[I]
-          ? StringToBoolean<keyof V[VariantKey]>
-          : never
-    : never;
-}[number];
-
+> = CV extends never[]
+  ? never
+  : {
+      [I in keyof CV]: 
+      CV[I] extends {class?: infer ClassType; className?: infer ClassNameType}
+        // If the class or class name is a record, it only affects the slot if the slotName is a key of it
+          ? ClassType extends Record<string, any>
+            ? SlotKey extends keyof ClassType
+              ? VariantKey extends keyof CV[I]
+                ? StringToBoolean<keyof V[VariantKey]>
+                : never
+              : never
+            : ClassNameType extends Record<string, any>
+              ? SlotKey extends keyof ClassNameType
+                ? VariantKey extends keyof CV[I]
+                  ? StringToBoolean<keyof V[VariantKey]>
+                  : never
+                : never
+        // If we reach this case it means that class must be a string which affects all slots
+              : VariantKey extends keyof CV[I]
+                ? StringToBoolean<keyof V[VariantKey]>
+                : never
+          : never;
+    }[number];
 
 type MultiSlotFunctionParams<
   S extends MultiSlot,
@@ -138,7 +142,7 @@ type MultiSlotFunctionParams<
   SlotName extends keyof S,
 > = ExcludeUndefinedKeys<{
   [K in keyof V]?:
-    | SlotIsInVariantOptions<V, S, SlotName, K>
+    | SlotIsInVariantOptions<S, V, SlotName, K>
     | SlotIsInCompoundOption<S, V, CV, SlotName, K>;
 }> &
   ClassField<ClassValue>;
@@ -190,7 +194,6 @@ type PVOptions<
 export {
   // Helper Types
   ClassValue,
-  StringToBoolean,
   VariantOptions,
   // Base Types
   SingleSlot,
@@ -200,7 +203,8 @@ export {
   DefaultVariants,
   CompoundVariants,
   // Function Types
+  SlotIsInCompoundOption,
   PVOptions,
   SlotFunction,
-  SlotFunctionParams
+  SlotFunctionParams,
 };

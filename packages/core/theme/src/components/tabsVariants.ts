@@ -73,7 +73,6 @@ const tabsVariants = pv(
     ],
     cursor: ['absolute', 'z-0'],
     panel: [
-
       'outline-hidden',
       // focus ring
       ...dataFocusVisibleClasses,

@@ -9,7 +9,6 @@ import {
   SingleSlot,
   SlotFunction,
   Slots,
-  StringToBoolean,
   VariantOptions,
   Variants,
 } from './types';
@@ -59,7 +58,11 @@ function validateVariantProps<S extends Slots, V extends Variants<S>>(
     // If provided option is not in the variant, throw an error
     const normalizedOption = normalizeVariantValue(variantOption);
 
-    if (normalizedOption && !(normalizedOption in variants[variantName]) && typeof variantOption !== "boolean") {
+    if (
+      normalizedOption &&
+      !(normalizedOption in variants[variantName]) &&
+      typeof variantOption !== 'boolean'
+    ) {
       throw new Error(
         `Provided variant: \`${variantName}\` has no entry named \`${variantOption}\``,
       );
@@ -284,7 +287,7 @@ export function createSlotFunction<
       ...Object.fromEntries(
         Object.entries(pickedVariantsProps || {}).filter(([_, value]) => value !== undefined),
       ),
-    } as Partial<{[K in keyof V]: StringToBoolean<keyof V[K]>}>;
+    } as Partial<VariantOptions<V>>;
 
     const classes: ClassValue[] = [baseClasses];
 
@@ -310,9 +313,9 @@ export function createSlotFunction<
 
 export function pvBase<
   S extends Slots,
-  V extends Variants<S>,
-  CV extends CompoundVariants<S, V>,
-  DV extends DefaultVariants<S, V>,
+  V extends Variants<S> = {},
+  CV extends CompoundVariants<S, V> = [],
+  DV extends DefaultVariants<S, V> = {},
 >(
   twMerge: typeof twMergeFn,
   slots?: S,
@@ -350,12 +353,12 @@ export function pvBase<
 export function createPv(twMerge: typeof twMergeFn) {
   return <
     S extends Slots,
-    V extends Variants<S>,
-    DV extends DefaultVariants<S, V>,
-    CV extends CompoundVariants<S, V>,
+    V extends Variants<S> = {},
+    CV extends CompoundVariants<S, V> = [],
+    DV extends DefaultVariants<S, V> = {},
   >(
-    slots: S,
-    options: PVOptions<S, V, CV, DV>,
+    slots?: S,
+    options?: PVOptions<S, V, CV, DV>,
   ) => pvBase(twMerge, slots, options);
 }
 
