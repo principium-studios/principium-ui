@@ -301,7 +301,7 @@ const alertVariants = pv(
         },
       },
       // bordered & color
-    ],
+    ] as const,
   },
 );
 

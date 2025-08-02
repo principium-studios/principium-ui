@@ -87,7 +87,7 @@ const cardVariants = pv(
         isPressable: true,
         class: {base: 'active:scale-97'},
       },
-    ],
+    ] as const,
     defaultVariants: {
       isHoverable: false,
       isPressable: false,

@@ -158,7 +158,7 @@ const avatarVariants = pv(
           base: 'ring-danger',
         },
       },
-    ],
+    ] as const,
   },
 );
 

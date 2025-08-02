@@ -11,10 +11,13 @@ const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
 
 // ________________________ Alert ________________________
 type AlertProps = React.ComponentPropsWithRef<'div'> & SlotParams<typeof alertVariants.base>;
-const Alert = ({className, variant, color, radius, ...props}: AlertProps) => {
+const Alert = ({className, variant, color, radius, hideIconWrapper, ...props}: AlertProps) => {
   return (
     <AlertProvider color={color} variant={variant}>
-      <div className={alertVariants.base({variant, color, className, radius})} {...props} />
+      <div
+        className={alertVariants.base({variant, color, className, hideIconWrapper, radius})}
+        {...props}
+      />
     </AlertProvider>
   );
 };

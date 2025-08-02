@@ -29,6 +29,7 @@ import {pv} from '../utils/pv';
  */
 const tabsVariants = pv(
   {
+    context: [],
     tabList: [
       'inline-flex',
       'p-1',
@@ -82,6 +83,7 @@ const tabsVariants = pv(
     variants: {
       variant: {
         solid: {
+          context: [],
           cursor: 'inset-0',
         },
         light: {
@@ -98,7 +100,9 @@ const tabsVariants = pv(
         },
       },
       color: {
-        default: {},
+        default: {
+          context: [],
+        },
         primary: {},
         secondary: {},
         success: {},
@@ -107,6 +111,7 @@ const tabsVariants = pv(
       },
       size: {
         sm: {
+          context: [],
           tabList: 'rounded-md',
           tab: 'h-7 text-tiny rounded-sm',
           cursor: 'rounded-sm',
@@ -124,6 +129,7 @@ const tabsVariants = pv(
       },
       radius: {
         none: {
+          context: [],
           tabList: 'rounded-none',
           tab: 'rounded-none',
           cursor: 'rounded-none',
@@ -151,16 +157,19 @@ const tabsVariants = pv(
       },
       fullWidth: {
         true: {
+          context: [],
           tabList: 'w-full',
         },
       },
       isDisabled: {
         true: {
+          context: [],
           tabList: 'opacity-50 pointer-events-none',
         },
       },
       disableAnimation: {
         true: {
+          context: [],
           tab: 'transition-none',
           tabContent: 'transition-none',
         },
@@ -407,7 +416,7 @@ const tabsVariants = pv(
           cursor: 'rounded-none',
         },
       },
-    ],
+    ] as const,
     defaultVariants: {
       color: 'default',
       variant: 'solid',

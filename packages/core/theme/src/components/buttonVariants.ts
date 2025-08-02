@@ -281,7 +281,7 @@ const buttonVariants = pv(
           'hover:bg-danger-400 hover:text-danger-50 dark:hover:bg-danger-600 dark:hover:text-danger-950',
         ],
       },
-    ],
+    ] as const,
     defaultVariants: {
       variant: 'solid',
       size: 'md',

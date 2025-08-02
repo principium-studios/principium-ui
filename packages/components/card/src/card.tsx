@@ -13,7 +13,7 @@ type CardProps = (
   | ({isPressable: true} & PrimitiveProps<'button'>)
   | ({isPressable?: false | undefined | null} & PrimitiveProps<'div'>)
 ) &
-  (Omit<SlotParams<typeof cardVariants.base>, 'isFooterBlurred'> & {
+  (SlotParams<typeof cardVariants.base> & {
     disableRipple?: boolean;
   });
 
@@ -66,9 +66,9 @@ const Card = ({
           disabled,
           isHoverable,
           isBlurred,
-          className,
           radius,
           shadow,
+          className,
         })}
         onClick={(e) => {
           if (!isPressable) return;

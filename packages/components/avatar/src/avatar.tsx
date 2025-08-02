@@ -10,7 +10,7 @@ type AvatarProps = PrimitiveProps<'span'> & SlotParams<typeof avatarVariants.bas
 const Avatar = ({className, size, color, isBordered, disabled, radius, ...props}: AvatarProps) => {
   return (
     <Primitive.span
-      className={avatarVariants.base({size, color, isBordered, disabled, className, radius})}
+      className={avatarVariants.base({size, color, isBordered, disabled, radius, className})}
       {...props}
     />
   );

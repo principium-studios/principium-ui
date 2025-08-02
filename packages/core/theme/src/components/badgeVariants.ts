@@ -261,7 +261,7 @@ const badgeVariants = pv(
         shape: 'circle',
         class: 'bottom-[10%] left-[10%]',
       },
-    ],
+    ] as const,
   },
 );
 

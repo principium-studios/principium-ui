@@ -19,7 +19,7 @@ const [TabsProvider, useTabs] = createContext<TabsContextType>('Tabs', {
 });
 
 const [TabsVariantProvider, useTabsVariant] = createContext<
-SlotParams<typeof tabsVariants.tabList>
+SlotParams<typeof tabsVariants.context>
 >('TabsVariant', {});
 
 type TabsProps = SlotParams<typeof tabsVariants.tabList> & {
@@ -56,7 +56,6 @@ const TabsList = ({children, className, ...props}: TabsListProps) => {
       className={tabsVariants.tabList({
         variant,
         size,
-        color,
         radius,
         fullWidth,
         isDisabled,
