@@ -38,7 +38,7 @@ type SlotsClasses<S extends Slots> = Partial<Record<keyof S, ClassValue>>;
 // Slot Types
 type SingleSlot = ClassValue; // a single class value (string, array, etc)
 type MultiSlot = Record<string, ClassValue>; // a map of slot names to class values
-type Slots = SingleSlot | MultiSlot | undefined; // union of both
+type Slots = SingleSlot | MultiSlot; // union of both
 
 // _________________________________________ Variant Types _________________________________________
 
@@ -103,7 +103,7 @@ S extends Slots,
  * Determines whether a specific slot is targeted by any compound variant's class definition,
  * based on whether that compound variant also defines a specific variant key.
  */
-// prettier-ignore
+
 type SlotIsInCompoundOption<
   S extends Slots,
   V extends Variants<S>,
@@ -113,26 +113,19 @@ type SlotIsInCompoundOption<
 > = CV extends never[]
   ? never
   : {
-      [I in keyof CV]: 
-      CV[I] extends {class?: infer ClassType; className?: infer ClassNameType}
-        // If the class or class name is a record, it only affects the slot if the slotName is a key of it
+      [I in keyof CV]: CV[I] extends {class?: infer ClassType; className?: infer ClassNameType}
+        ? VariantKey extends keyof CV[I]
           ? ClassType extends Record<string, any>
             ? SlotKey extends keyof ClassType
-              ? VariantKey extends keyof CV[I]
-                ? StringToBoolean<keyof V[VariantKey]>
-                : never
+              ? StringToBoolean<keyof V[VariantKey]>
               : never
             : ClassNameType extends Record<string, any>
               ? SlotKey extends keyof ClassNameType
-                ? VariantKey extends keyof CV[I]
-                  ? StringToBoolean<keyof V[VariantKey]>
-                  : never
-                : never
-        // If we reach this case it means that class must be a string which affects all slots
-              : VariantKey extends keyof CV[I]
                 ? StringToBoolean<keyof V[VariantKey]>
                 : never
-          : never;
+              : never
+          : never
+        : never;
     }[number];
 
 type MultiSlotFunctionParams<
