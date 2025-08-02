@@ -56,7 +56,8 @@
   },
   "dependencies": {
     "@principium/ripple": "workspace:*",
-    "@principium/primitive": "workspace:*"
+    "@principium/primitive": "workspace:*",
+    "@principium/use-insert-children": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

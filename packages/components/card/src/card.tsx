@@ -1,12 +1,14 @@
 'use client';
 
+import React from 'react';
+
 import type {SlotParams} from '@principium/variants';
 import type {PrimitiveProps} from '@principium/primitive';
 
-import React from 'react';
 import {Ripple, RippleProvider} from '@principium/ripple';
 import {cardVariants} from '@principium/theme';
 import {Primitive} from '@principium/primitive';
+import {useInsertChildren} from '@principium/use-insert-children';
 
 // ________________________ Card ________________________
 type CardProps = (
@@ -34,27 +36,7 @@ const Card = ({
 }: CardProps) => {
   const Component = isPressable ? Primitive.button : Primitive.div;
 
-  const content = React.useMemo(() => {
-    if (!asChild) {
-      return (
-        <>
-          {children}
-          <Ripple />
-        </>
-      );
-    }
-
-    const child = children as React.ReactElement<{children?: React.ReactNode}>;
-
-    return React.cloneElement(child, {
-      children: (
-        <>
-          {child.props?.children}
-          <Ripple />
-        </>
-      ),
-    });
-  }, [asChild, children]);
+  const content = useInsertChildren(asChild, children, <Ripple />);
 
   return (
     <RippleProvider disableRipple={disableRipple || !isPressable}>

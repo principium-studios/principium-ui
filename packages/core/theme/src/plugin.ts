@@ -105,6 +105,12 @@ export const shadesPlugin = <T extends Themes>(
           fontSize: {
             tiny: '0.625rem',
           },
+          borderRadius: {
+            'sm': 'calc(0.625rem - 4px)',
+            'md': 'calc(0.625rem - 2px)',
+            'lg': 'calc(0.625rem)',
+            'xl': 'calc(0.625rem + 4px)',
+          },
         },
       },
     },

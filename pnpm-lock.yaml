@@ -344,6 +344,9 @@ importers:
       '@principium/theme':
         specifier: workspace:*
         version: link:../../core/theme
+      '@principium/use-insert-children':
+        specifier: workspace:*
+        version: link:../utils/use-insert-children
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -390,6 +393,9 @@ importers:
       '@principium/theme':
         specifier: workspace:*
         version: link:../../core/theme
+      '@principium/use-insert-children':
+        specifier: workspace:*
+        version: link:../utils/use-insert-children
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -418,6 +424,55 @@ importers:
       eslint:
         specifier: ^9.16.0
         version: 9.30.1(jiti@2.4.2)
+      tsup:
+        specifier: ^8.5.0
+        version: 8.5.0(jiti@2.4.2)(postcss@8.5.6)(typescript@5.8.3)(yaml@2.8.0)
+      typescript:
+        specifier: ^5.5.2
+        version: 5.8.3
+
+  packages/components/checkbox:
+    dependencies:
+      '@phosphor-icons/react':
+        specifier: ^2.1.10
+        version: 2.1.10(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@principium/primitive':
+        specifier: workspace:*
+        version: link:../utils/primitive
+      '@principium/theme':
+        specifier: workspace:*
+        version: link:../../core/theme
+      '@principium/use-controllable-state':
+        specifier: workspace:*
+        version: link:../utils/use-controllable-state
+      react:
+        specifier: ^19.0.0
+        version: 19.1.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.1.0(react@19.1.0)
+    devDependencies:
+      '@principium/variants':
+        specifier: workspace:*
+        version: link:../../core/variants
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../../internal/typescript-config
+      '@types/node':
+        specifier: ^24.0.13
+        version: 24.0.13
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.1.6(@types/react@19.1.8)
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint:
+        specifier: ^9.16.0
+        version: 9.31.0(jiti@2.4.2)
       tsup:
         specifier: ^8.5.0
         version: 8.5.0(jiti@2.4.2)(postcss@8.5.6)(typescript@5.8.3)(yaml@2.8.0)
@@ -789,6 +844,40 @@ importers:
         version: 5.8.3
 
   packages/components/utils/use-fuzzy:
+    dependencies:
+      react:
+        specifier: ^19.0.0
+        version: 19.1.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.1.0(react@19.1.0)
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../../../internal/typescript-config
+      '@types/node':
+        specifier: ^24.0.13
+        version: 24.0.13
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.1.6(@types/react@19.1.8)
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint:
+        specifier: ^9.16.0
+        version: 9.31.0(jiti@2.4.2)
+      tsup:
+        specifier: ^8.5.0
+        version: 8.5.0(jiti@2.4.2)(postcss@8.5.6)(typescript@5.8.3)(yaml@2.8.0)
+      typescript:
+        specifier: ^5.5.2
+        version: 5.8.3
+
+  packages/components/utils/use-insert-children:
     dependencies:
       react:
         specifier: ^19.0.0

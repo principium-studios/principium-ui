@@ -1,60 +1,59 @@
 {
-  "name": "@principium/button",
-  "version": "0.0.4",
-  "description": "Buttons allow users to perform actions and choose with a single tap.",
+  "name": "@principium/checkbox",
+  "version": "0.0.1",
+  "description": "",
   "keywords": [
-    "button",
-    "ui",
-    "react",
-    "component",
-    "principium"
+    "checkbox"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",
   "license": "MIT",
-  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/principium-studios/principium",
+    "directory": "packages/components/checkbox"
+  },
   "sideEffects": false,
+  "main": "src/index.ts",
   "files": [
     "dist",
     "!dist/**/*.test.*"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": {
     "url": "https://github.com/principium-studios/principium/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/principium-studios/principium",
-    "directory": "packages/components/button"
   },
   "scripts": {
     "build": "tsup src --dts",
     "build:fast": "tsup src",
     "dev": "pnpm build:fast --watch",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm build",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
+    "@principium/theme": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@principium/theme": "workspace:*"
+    "@phosphor-icons/react": "^2.1.10"
   },
   "devDependencies": {
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
+    "@principium/variants": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^24.0.13",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "clean-package": "^2.2.0",
     "eslint": "^9.16.0",
     "tsup": "^8.5.0",
-    "typescript": "^5.5.2",
-    "clean-package": "^2.2.0",
-    "@principium/variants": "workspace:*"
+    "typescript": "^5.5.2"
   },
   "dependencies": {
     "@principium/primitive": "workspace:*",
-    "@principium/ripple": "workspace:*",
-    "@principium/use-insert-children": "workspace:*"
+    "@principium/use-controllable-state": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

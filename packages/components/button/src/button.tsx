@@ -5,11 +5,12 @@ import type {SlotParams} from '@principium/variants';
 
 import {Primitive} from '@principium/primitive';
 import {Ripple, RippleProvider} from '@principium/ripple';
+import {useInsertChildren} from '@principium/use-insert-children';
 import {buttonVariants} from '@principium/theme';
-import React from 'react';
 
 // ____________________ Button Component ____________________
-type ButtonProps = PrimitiveProps<'button'> & SlotParams<typeof buttonVariants> & {disableRipple?: boolean};
+type ButtonProps = PrimitiveProps<'button'> &
+  SlotParams<typeof buttonVariants> & {disableRipple?: boolean};
 
 const Button = ({
   variant,
@@ -24,27 +25,7 @@ const Button = ({
   radius,
   ...props
 }: ButtonProps) => {
-  const content = React.useMemo(() => {
-    if (!asChild) {
-      return (
-        <>
-          {children}
-          <Ripple />
-        </>
-      );
-    }
-
-    const child = children as React.ReactElement<{children?: React.ReactNode}>;
-
-    return React.cloneElement(child, {
-      children: (
-        <>
-          {child.props?.children}
-          <Ripple />
-        </>
-      ),
-    });
-  }, [asChild, children]);
+  const content = useInsertChildren(asChild, children, <Ripple />);
 
   return (
     <RippleProvider disableRipple={disableRipple || disabled}>

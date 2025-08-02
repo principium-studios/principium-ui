@@ -2,7 +2,7 @@ import {pv} from '../utils/pv';
 import {colorVariants, dataFocusVisibleClasses, translateCenterClasses} from '../utils';
 
 /**
- * Avatar wrapper **Tailwind Variants** component
+ * Avatar
  *
  * @example
  *

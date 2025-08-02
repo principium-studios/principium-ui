@@ -2,7 +2,7 @@ import {pv} from '../utils/pv';
 import {colorVariants, dataFocusVisibleClasses} from '../utils';
 
 /**
- * Badge wrapper **Tailwind Variants** component
+ * Badge
  *
  * @example
  * <div className={badgeVariants.base({...})}>

@@ -2,7 +2,7 @@ import {pv} from '../utils/pv';
 import {colorVariants, dataFocusVisibleClasses} from '../utils';
 
 /**
- * Button **Tailwind Variants** component
+ * Button
  *
  * @example
  * <button className={buttonVariants({...})}>Button</button>

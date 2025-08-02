@@ -2,7 +2,7 @@ import {pv} from '../utils/pv';
 import {dataFocusVisibleClasses} from '../utils';
 
 /**
- * Card **Tailwind Variants** component
+ * Card
  *
  * @example
  * <div className={cardVariants.base({...})}>

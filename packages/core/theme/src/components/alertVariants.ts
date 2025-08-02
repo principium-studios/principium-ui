@@ -2,7 +2,7 @@ import {pv} from '../utils/pv';
 import {colorVariants, dataFocusVisibleClasses} from '../utils';
 
 /**
- * Alert wrapper **Tailwind Variants** component
+ * Alert
  *
  * @example
  * ```js

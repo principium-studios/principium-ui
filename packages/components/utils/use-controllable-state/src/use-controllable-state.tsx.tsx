@@ -79,9 +79,9 @@ function useUncontrolledState<T>({
   defaultProp,
   onChange,
 }: Omit<UseControllableStateParams<T>, 'prop'>): [
-  Value: T,
+  value: T,
   setValue: React.Dispatch<React.SetStateAction<T>>,
-  OnChangeRef: React.RefObject<ChangeHandler<T> | undefined>,
+  onChangeRef: React.RefObject<ChangeHandler<T> | undefined>,
 ] {
   // Create uncontrolled state
   const [value, setValue] = React.useState(defaultProp);
