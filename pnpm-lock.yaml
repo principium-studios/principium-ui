@@ -249,6 +249,9 @@ importers:
 
   packages/components/avatar:
     dependencies:
+      '@principium/compose-refs':
+        specifier: workspace:*
+        version: link:../utils/compose-refs
       '@principium/primitive':
         specifier: workspace:*
         version: link:../utils/primitive

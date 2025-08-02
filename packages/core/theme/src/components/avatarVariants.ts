@@ -8,8 +8,7 @@ import {colorVariants, dataFocusVisibleClasses, translateCenterClasses} from '..
  *
  * <div className={avatarVariants.base({...})}>
  *    <img className={avatarVariants.img({...})} alt="your avatar" />
- *    <div className={avatarVariants.name({...})}>your name</div>
- *    <span className={avatarVariants.icon({...})}>your icon</span>
+ *    <span className={avatarVariants.fallback({...})}>your fallback</span>
  * </div>
  */
 const avatarVariants = pv(
@@ -36,17 +35,14 @@ const avatarVariants = pv(
       '!duration-500',
       'opacity-0',
       'data-[loaded=true]:opacity-100',
+      'peer'
     ],
-    fallback: [...translateCenterClasses, 'flex', 'items-center', 'justify-center'],
-    name: [...translateCenterClasses, 'font-normal', 'text-center', 'text-inherit'],
-    icon: [
+    fallback: [
       ...translateCenterClasses,
       'flex',
       'items-center',
       'justify-center',
-      'text-inherit',
-      'w-full',
-      'h-full',
+      'peer-data-[loaded=true]:hidden',
     ],
   },
   {
@@ -64,16 +60,16 @@ const avatarVariants = pv(
       },
       radius: {
         none: {
-          base: "rounded-none",
+          base: 'rounded-none',
         },
         sm: {
-          base: "rounded-sm",
+          base: 'rounded-sm',
         },
         md: {
-          base: "rounded-md",
+          base: 'rounded-md',
         },
         lg: {
-          base: "rounded-lg",
+          base: 'rounded-lg',
         },
         full: {
           base: 'rounded-full',

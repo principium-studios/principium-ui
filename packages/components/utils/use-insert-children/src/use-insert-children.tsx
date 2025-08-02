@@ -24,6 +24,18 @@ function useInsertChildren<T extends React.ReactNode>(
     // Early return if no inserted content
     if (!inserted) return children;
 
+    // If not asChild, return a fragment with the children and inserted content
+    if (!asChild) {
+      return children ? (
+        <>
+          {children}
+          {inserted}
+        </>
+      ) : (
+        inserted
+      );
+    }
+
     // Validate children when asChild is true
     if (!isReactElement(children)) {
       throw new Error(
@@ -31,21 +43,16 @@ function useInsertChildren<T extends React.ReactNode>(
       );
     }
 
-    // If not asChild, return a fragment with the children and inserted content
-    if (!asChild) {
-      if (!children) return inserted;
-
-      return (
-        <>
-          {children}
-          {inserted}
-        </>
-      );
-    }
-
     // If asChild, clone the child element and insert the inserted content merged with the children of the child element
     return React.cloneElement(children, {
-      children: children.props?.children ? [children.props.children, inserted] : inserted,
+      children: children.props?.children ? (
+        <>
+          {children.props.children}
+          {inserted}
+        </>
+      ) : (
+        inserted
+      ),
     });
   }, [asChild, children, inserted]);
 }

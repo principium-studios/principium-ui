@@ -63,10 +63,10 @@ const routes: Route[] = [
     keywords: 'interface elements, interactive components, UI components, widgets',
     routes: [
       {
-        "key": "overview",
-        "title": "Overview",
-        "keywords": "overview, components, principium",
-        "path": "/docs/components/overview.mdx"
+        key: 'overview',
+        title: 'Overview',
+        keywords: 'overview, components, principium',
+        path: '/docs/components/overview.mdx',
       },
       {
         key: 'alert',
@@ -99,10 +99,22 @@ const routes: Route[] = [
         path: '/docs/components/card.mdx',
       },
       {
+        key: 'checkbox',
+        title: 'Checkbox',
+        keywords: 'checkbox, principium',
+        path: '/docs/components/checkbox.mdx',
+      },
+      {
         key: 'divider',
         title: 'Divider',
         keywords: 'divider, principium',
         path: '/docs/components/divider.mdx',
+      },
+      {
+        key: 'tabs',
+        title: 'Tabs',
+        keywords: 'tabs, principium',
+        path: '/docs/components/tabs.mdx',
       },
     ],
   },

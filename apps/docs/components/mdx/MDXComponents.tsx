@@ -5,6 +5,7 @@ import * as PrincipiumComponents from '@principium/react';
 import Image from 'next/image';
 import ComponentLinks from '../docs/ComponentLinks';
 import PackageManagers from '../docs/PackageManagers';
+import { CodeDemo } from '../demo/CodeDemo';
 
 export interface LinkedHeadingProps {
   as: keyof React.JSX.IntrinsicElements;
@@ -37,6 +38,7 @@ const MDXComponents = {
   Community,
   ComponentLinks,
   PackageManagers,
+  CodeDemo,
   // Primitives
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h1" />,
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h2" />,
