@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import {SlotParams} from '@principium/variants';
 import {tabsVariants} from '@principium/theme';
 import {createContext} from '@principium/context';
@@ -19,7 +20,7 @@ const [TabsProvider, useTabs] = createContext<TabsContextType>('Tabs', {
 });
 
 const [TabsVariantProvider, useTabsVariant] = createContext<
-SlotParams<typeof tabsVariants.context>
+  SlotParams<typeof tabsVariants.context>
 >('TabsVariant', {});
 
 type TabsProps = SlotParams<typeof tabsVariants.tabList> & {
@@ -27,7 +28,7 @@ type TabsProps = SlotParams<typeof tabsVariants.tabList> & {
   value?: string;
   defaultValue: string;
   onChange?: (tab: string) => void;
-}
+};
 const Tabs = ({children, value, defaultValue, onChange, ...variantProps}: TabsProps) => {
   const [activeTab, setActiveTab] = useControllableState({
     prop: value,
@@ -46,25 +47,34 @@ const Tabs = ({children, value, defaultValue, onChange, ...variantProps}: TabsPr
 
 // _______________________________________ TabsList _______________________________________
 
+interface TabsListCtx {
+  cursorId: string;
+}
+const [TabsListProvider, useTabsList] = createContext<TabsListCtx>('TabsList');
+
 interface TabsListProps extends PrimitiveProps<'div'> {
   children: React.ReactNode;
 }
 const TabsList = ({children, className, ...props}: TabsListProps) => {
-  const {variant, size, color, radius, fullWidth, isDisabled} = useTabsVariant();
+  const {variant, size, radius, fullWidth, isDisabled} = useTabsVariant();
+  const id = React.useId();
+
   return (
-    <Primitive.div
-      className={tabsVariants.tabList({
-        variant,
-        size,
-        radius,
-        fullWidth,
-        isDisabled,
-        className,
-      })}
-      {...props}
-    >
-      {children}
-    </Primitive.div>
+    <TabsListProvider cursorId={id}>
+      <Primitive.div
+        className={tabsVariants.tabList({
+          variant,
+          size,
+          radius,
+          fullWidth,
+          isDisabled,
+          className,
+        })}
+        {...props}
+      >
+        {children}
+      </Primitive.div>
+    </TabsListProvider>
   );
 };
 
@@ -76,6 +86,8 @@ interface TabsTriggerProps {
 const TabsTrigger = ({children, value}: TabsTriggerProps) => {
   const {setActiveTab, activeTab} = useTabs();
   const {variant, size, color, radius, disableAnimation} = useTabsVariant();
+  const {cursorId} = useTabsList();
+
   return (
     <button
       data-selected={activeTab === value}
@@ -85,7 +97,7 @@ const TabsTrigger = ({children, value}: TabsTriggerProps) => {
       {activeTab === value && (
         <LazyMotion features={domMax}>
           <m.span
-            layoutId="cursor"
+            layoutId={`cursor-${cursorId}`}
             className={tabsVariants.cursor({variant, size, color, radius})}
             transition={{
               type: 'spring',

@@ -97,12 +97,12 @@ const avatarVariants = pv(
       },
       isBordered: {
         true: {
-          base: 'ring-2 ring-offset-2 ring-offset-background dark:ring-offset-background-dark',
+          base: 'ring-2 ring-offset-2 ring-offset-background-50',
         },
       },
       disabled: {
         true: {
-          base: 'opacity-disabled',
+          base: 'opacity-50',
         },
       },
     },
@@ -116,42 +116,42 @@ const avatarVariants = pv(
         color: 'default',
         isBordered: true,
         class: {
-          base: 'ring-default',
+          base: 'ring-border-300',
         },
       },
       {
         color: 'primary',
         isBordered: true,
         class: {
-          base: 'ring-primary',
+          base: 'ring-primary-400 dark:ring-primary-600',
         },
       },
       {
         color: 'secondary',
         isBordered: true,
         class: {
-          base: 'ring-secondary',
+          base: 'ring-secondary-400 dark:ring-secondary-600',
         },
       },
       {
         color: 'success',
         isBordered: true,
         class: {
-          base: 'ring-success',
+          base: 'ring-success-400 dark:ring-success-600',
         },
       },
       {
         color: 'warning',
         isBordered: true,
         class: {
-          base: 'ring-warning',
+          base: 'ring-warning-400 dark:ring-warning-600',
         },
       },
       {
         color: 'danger',
         isBordered: true,
         class: {
-          base: 'ring-danger',
+          base: 'ring-danger-400 dark:ring-danger-600',
         },
       },
     ] as const,

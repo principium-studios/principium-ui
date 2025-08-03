@@ -14,7 +14,7 @@ function removeImportsExports(code: string) {
     // Remove import statements (complete lines)
     .replace(/^.*import\s+.*?['"].*?;\s*?\n/gm, '')
     // Remove export statements (complete lines)
-    .replace(/^.*export\s+(?:default\s+)?.*?;\s*?\n/gm, '')
+    .replace(/^.*export\s+(?:default\s+)?.*?;\s*\n?/gm, '')
     // Remove export before function/class declarations
     .replace(/export\s+(?:default\s+)?(?=function|class|const|let|var)/g, '')
     // Remove empty lines at start/end and normalize line endings
