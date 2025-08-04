@@ -16,6 +16,9 @@
   body {
     @apply text-background-950 bg-background-50 relative flex min-h-screen flex-col;
   }
+
+
+  /* Shiki Dual Theme */
   html.dark .shiki,
   html.dark .shiki span,
   html.coffee .shiki,

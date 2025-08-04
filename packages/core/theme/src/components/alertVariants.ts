@@ -27,6 +27,7 @@ const alertVariants = pv(
       'text-muted-600 col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed',
     iconWrapper: 'flex-none relative w-9 h-9 rounded-full grid place-items-center',
     alertIcon: 'fill-current w-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+    actions: 'col-start-2',
   },
   {
     variants: {
@@ -92,7 +93,7 @@ const alertVariants = pv(
         color: 'primary',
         class: {
           base: colorVariants.solid.primary,
-          alertIcon: 'stroke-primary-400 dark:stroke-primary-600',
+          alertIcon: 'stroke-primary-400',
         },
       },
       {
@@ -100,7 +101,7 @@ const alertVariants = pv(
         color: 'secondary',
         class: {
           base: colorVariants.solid.secondary,
-          alertIcon: 'stroke-secondary-400 dark:stroke-secondary-600',
+          alertIcon: 'stroke-secondary-400',
         },
       },
       {
@@ -108,7 +109,7 @@ const alertVariants = pv(
         color: 'success',
         class: {
           base: colorVariants.solid.success,
-          alertIcon: 'stroke-success-400 dark:stroke-success-600',
+          alertIcon: 'stroke-success-400',
         },
       },
       {
@@ -116,7 +117,7 @@ const alertVariants = pv(
         color: 'warning',
         class: {
           base: colorVariants.solid.warning,
-          alertIcon: 'stroke-warning-400 dark:stroke-warning-600',
+          alertIcon: 'stroke-warning-400',
         },
       },
       {
@@ -124,7 +125,7 @@ const alertVariants = pv(
         color: 'danger',
         class: {
           base: colorVariants.solid.danger,
-          alertIcon: 'stroke-danger-400 dark:stroke-danger-600',
+          alertIcon: 'stroke-danger-400',
         },
       },
       // flat & faded / color
@@ -132,59 +133,55 @@ const alertVariants = pv(
         variant: ['flat', 'faded'],
         color: 'default',
         class: {
-          base: [
-            colorVariants.flat.default,
-            'bg-background-100 dark:bg-background-50/50',
-            'text-background-950',
-          ],
+          base: [colorVariants.flat.default, 'bg-background-100/50'],
           description: 'text-background-600',
-          iconWrapper: 'bg-border-50 dark:bg-border-100 border-border-200',
-          alertIcon: 'stroke-border-100 dark:stroke-border-200',
+          iconWrapper: 'bg-background-100 border-border-200',
+          alertIcon: 'stroke-border-100',
         },
       },
       {
         variant: ['flat', 'faded'],
         color: 'primary',
         class: {
-          base: [colorVariants.flat.primary, 'bg-primary-50 dark:bg-primary-50/50'],
-          iconWrapper: 'bg-primary-50 dark:bg-primary-100 border-primary-100',
-          alertIcon: 'stroke-primary-100 dark:stroke-primary-200',
+          base: [colorVariants.flat.primary, 'bg-primary-50/50'],
+          iconWrapper: 'bg-primary-50 border-primary-100',
+          alertIcon: 'stroke-primary-100',
         },
       },
       {
         variant: ['flat', 'faded'],
         color: 'secondary',
         class: {
-          base: [colorVariants.flat.secondary, 'bg-secondary-50 dark:bg-secondary-50/50'],
-          iconWrapper: 'bg-secondary-50 dark:bg-secondary-100 border-secondary-100',
-          alertIcon: 'stroke-secondary-100 dark:stroke-secondary-200',
+          base: [colorVariants.flat.secondary, 'bg-secondary-50/50'],
+          iconWrapper: 'bg-secondary-50 border-secondary-100',
+          alertIcon: 'stroke-secondary-100',
         },
       },
       {
         variant: ['flat', 'faded'],
         color: 'success',
         class: {
-          base: [colorVariants.flat.success, 'bg-success-50 dark:bg-success-50/50'],
-          iconWrapper: 'bg-success-50 dark:bg-success-100 border-success-100',
-          alertIcon: 'stroke-success-100 dark:stroke-success-200',
+          base: [colorVariants.flat.success, 'bg-success-50/50'],
+          iconWrapper: 'bg-success-50 border-success-100',
+          alertIcon: 'stroke-success-100',
         },
       },
       {
         variant: ['flat', 'faded'],
         color: 'warning',
         class: {
-          base: [colorVariants.flat.warning, 'bg-warning-50 dark:bg-warning-50/50'],
-          iconWrapper: 'bg-warning-50 dark:bg-warning-100 border-warning-100',
-          alertIcon: 'stroke-warning-100 dark:stroke-warning-200',
+          base: [colorVariants.flat.warning, 'bg-warning-50/50'],
+          iconWrapper: 'bg-warning-50 border-warning-100',
+          alertIcon: 'stroke-warning-100',
         },
       },
       {
         variant: ['flat', 'faded'],
         color: 'danger',
         class: {
-          base: [colorVariants.flat.danger, 'bg-danger-50 dark:bg-danger-50/50'],
-          iconWrapper: 'bg-danger-50 dark:bg-danger-100 border-danger-100',
-          alertIcon: 'stroke-danger-100 dark:stroke-danger-200',
+          base: [colorVariants.flat.danger, 'bg-danger-50/50'],
+          iconWrapper: 'bg-danger-50 border-danger-100',
+          alertIcon: 'stroke-danger-100',
         },
       },
       // faded / color
@@ -192,14 +189,14 @@ const alertVariants = pv(
         variant: 'faded',
         color: 'default',
         class: {
-          base: 'border-border-300 dark:border-border-200',
+          base: 'border-border-300',
         },
       },
       {
         variant: 'faded',
         color: 'primary',
         class: {
-          base: 'border-primary-200 dark:border-primary-100',
+          base: 'border-primary-200',
         },
       },
       {
@@ -213,21 +210,21 @@ const alertVariants = pv(
         variant: 'faded',
         color: 'success',
         class: {
-          base: 'border-success-300 dark:border-success-100',
+          base: 'border-success-300',
         },
       },
       {
         variant: 'faded',
         color: 'warning',
         class: {
-          base: 'border-warning-300 dark:border-warning-100',
+          base: 'border-warning-300',
         },
       },
       {
         variant: 'faded',
         color: 'danger',
         class: {
-          base: 'border-danger-200 dark:border-danger-100',
+          base: 'border-danger-200',
         },
       },
       // bordered / color
@@ -236,9 +233,9 @@ const alertVariants = pv(
         color: 'default',
         class: {
           base: [colorVariants.bordered.default],
-          iconWrapper: 'bg-background-200 dark:bg-background-100',
+          iconWrapper: 'bg-background-200',
           description: 'text-background-600',
-          alertIcon: 'stroke-border-100 dark:stroke-border-200',
+          alertIcon: 'stroke-border-100',
         },
       },
       {
@@ -246,8 +243,8 @@ const alertVariants = pv(
         color: 'primary',
         class: {
           base: [colorVariants.bordered.primary],
-          iconWrapper: 'bg-primary-100 dark:bg-primary-50',
-          alertIcon: 'stroke-primary-100 dark:stroke-primary-200',
+          iconWrapper: 'bg-primary-100',
+          alertIcon: 'stroke-primary-100',
         },
       },
       {
@@ -255,8 +252,8 @@ const alertVariants = pv(
         color: 'secondary',
         class: {
           base: [colorVariants.bordered.secondary],
-          iconWrapper: 'bg-secondary-100 dark:bg-secondary-50',
-          alertIcon: 'stroke-secondary-100 dark:stroke-secondary-200',
+          iconWrapper: 'bg-secondary-100',
+          alertIcon: 'stroke-secondary-100',
         },
       },
       {
@@ -264,8 +261,8 @@ const alertVariants = pv(
         color: 'success',
         class: {
           base: [colorVariants.bordered.success],
-          iconWrapper: 'bg-success-100 dark:bg-success-50',
-          alertIcon: 'stroke-success-100 dark:stroke-success-200',
+          iconWrapper: 'bg-success-100',
+          alertIcon: 'stroke-success-100',
         },
       },
       {
@@ -273,8 +270,8 @@ const alertVariants = pv(
         color: 'warning',
         class: {
           base: [colorVariants.bordered.warning],
-          iconWrapper: 'bg-warning-100 dark:bg-warning-50',
-          alertIcon: 'stroke-warning-100 dark:stroke-warning-200',
+          iconWrapper: 'bg-warning-100',
+          alertIcon: 'stroke-warning-100',
         },
       },
       {
@@ -282,8 +279,8 @@ const alertVariants = pv(
         color: 'danger',
         class: {
           base: [colorVariants.bordered.danger],
-          iconWrapper: 'bg-danger-100 dark:bg-danger-50',
-          alertIcon: 'stroke-danger-100 dark:stroke-danger-200',
+          iconWrapper: 'bg-danger-100',
+          alertIcon: 'stroke-danger-100',
         },
       },
       // flat & bordered & faded

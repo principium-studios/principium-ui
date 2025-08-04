@@ -1,7 +1,9 @@
 ---
 title: Alert
-description: Draws the user's attention to important messages.
+description: A component that displays important information or feedback to users.
 ---
+
+import AlertDemos from '@/content/components/alert';
 
 <ComponentLinks name="Alert" />
 
@@ -10,3 +12,118 @@ description: Draws the user's attention to important messages.
 ## Installation
 
 <PackageManagers packageName="alert" />
+
+## Usage
+
+<CodeDemo code={AlertDemos.usage} />
+
+### Variants
+
+<CodeDemo code={AlertDemos.variants} />
+
+### Colors
+
+<CodeDemo code={AlertDemos.colors} />
+
+### Custom Icons
+
+<CodeDemo code={AlertDemos.customIcons} />
+
+### Without Icons
+
+<CodeDemo code={AlertDemos.withoutIcons} />
+
+### With Actions
+
+<CodeDemo code={AlertDemos.withActions} />
+
+## API
+
+### Alert
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'variant', description: 'The visual style of the alert.'},
+      type: {name: '"solid" | "flat" | "faded" | "bordered"'},
+      default: '"flat"',
+    },
+    {
+      prop: {name: 'color', description: 'Controls the color of the alert.'},
+      type: {name: '"default" | "primary" | "secondary" | "success" | "warning" | "danger"'},
+      default: '"default"',
+    },
+    {
+      prop: {name: 'radius', description: 'Controls the border radius of the alert.'},
+      type: {name: '"none" | "sm" | "md" | "lg"'},
+      default: '"md"',
+    },
+    {
+      prop: {name: 'hideIconWrapper', description: 'Hides the icon wrapper area.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...divProps', description: 'All native div element props.'},
+      type: {name: '-'},
+    },
+  ]}
+/>
+
+### AlertTitle
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...h2Props', description: 'All native h2 element props.'},
+      type: {name: '-'},
+    },
+  ]}
+/>
+
+### AlertDescription
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...pProps', description: 'All native p element props.'},
+      type: {name: '-'},
+    },
+  ]}
+/>
+
+### AlertIcon
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'hideIconWrapper', description: 'Hides the icon wrapper background.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...divProps', description: 'All native div element props.'},
+      type: {name: '-'},
+    },
+  ]}
+/>

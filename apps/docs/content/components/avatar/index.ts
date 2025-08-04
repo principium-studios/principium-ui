@@ -1,17 +1,17 @@
-import UsageDemo from './usage.raw.jsx?raw';
-import DisabledDemo from './disabled.raw.jsx?raw';
-import SizesDemo from './sizes.raw.jsx?raw';
-import RadiusDemo from './radius.raw.jsx?raw';
-import ColorsDemo from './colors.raw.jsx?raw';
-import BorderedDemo from './bordered.raw.jsx?raw';
-import FallbacksDemo from './fallbacks.raw.jsx?raw';
+import usage from './usage.raw.jsx?raw';
+import disabled from './disabled.raw.jsx?raw';
+import sizes from './sizes.raw.jsx?raw';
+import radius from './radius.raw.jsx?raw';
+import colors from './colors.raw.jsx?raw';
+import bordered from './bordered.raw.jsx?raw';
+import fallbacks from './fallbacks.raw.jsx?raw';
 
-export const AvatarDemos = {
-  usage: UsageDemo,
-  disabled: DisabledDemo,
-  sizes: SizesDemo,
-  radius: RadiusDemo,
-  colors: ColorsDemo,
-  bordered: BorderedDemo,
-  fallbacks: FallbacksDemo,
+export default {
+  usage,
+  disabled,
+  sizes,
+  radius,
+  colors,
+  bordered,
+  fallbacks,
 };

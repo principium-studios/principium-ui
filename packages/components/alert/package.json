@@ -57,7 +57,8 @@
   },
   "dependencies": {
     "@principium/context": "workspace:*",
-    "@principium/slot": "workspace:*"
+    "@principium/slot": "workspace:*",
+    "@principium/primitive": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

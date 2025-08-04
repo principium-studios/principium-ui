@@ -13,7 +13,7 @@ const Collapsible = ({category}: {category: Route}) => {
 
   return (
     <div
-      className={`group grid gap-2 transition-[grid-template-rows] duration-300 ${
+      className={`grid gap-2 transition-[grid-template-rows] duration-300 ${
         isOpen ? 'grid-rows-[max-content_1fr]' : 'grid-rows-[max-content_0fr]'
       }`}
     >
@@ -24,7 +24,7 @@ const Collapsible = ({category}: {category: Route}) => {
         />
         {category.title}
       </button>
-      <ul className="group-hover:border-l-background-600 flex flex-col gap-2 overflow-hidden border-l border-l-transparent transition-colors">
+      <ul className="flex flex-col gap-2 overflow-hidden transition-colors">
         {category.routes?.map((route) => {
           const isSelected = pathName == `/docs/${category.key}/${route.key}`;
           return (

@@ -5,16 +5,17 @@ import {createContext} from '@principium/context';
 import {alertVariants} from '@principium/theme';
 import {Slot} from '@principium/slot';
 import {SlotParams} from '@principium/variants';
+import {Primitive, PrimitiveProps} from '@principium/primitive';
 
 type AlertContextType = Pick<SlotParams<typeof alertVariants.base>, 'variant' | 'color'>;
 const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
 
 // ________________________ Alert ________________________
-type AlertProps = React.ComponentPropsWithRef<'div'> & SlotParams<typeof alertVariants.base>;
+type AlertProps = PrimitiveProps<'div'> & SlotParams<typeof alertVariants.base>;
 const Alert = ({className, variant, color, radius, hideIconWrapper, ...props}: AlertProps) => {
   return (
     <AlertProvider color={color} variant={variant}>
-      <div
+      <Primitive.div
         className={alertVariants.base({variant, color, className, hideIconWrapper, radius})}
         {...props}
       />
@@ -23,21 +24,21 @@ const Alert = ({className, variant, color, radius, hideIconWrapper, ...props}: A
 };
 
 // ________________________ AlertTitle ________________________
-type AlertTitleProps = React.ComponentPropsWithRef<'div'>;
+type AlertTitleProps = PrimitiveProps<'h2'>;
 const AlertTitle = ({className, ...props}: AlertTitleProps) => {
-  return <div className={alertVariants.title({className})} {...props} />;
+  return <Primitive.h2 className={alertVariants.title({className})} {...props} />;
 };
 
 // ________________________ AlertDescription ________________________
-type AlertDescriptionProps = React.ComponentPropsWithRef<'div'>;
+type AlertDescriptionProps = PrimitiveProps<'p'>;
 const AlertDescription = ({className, ...props}: AlertDescriptionProps) => {
   const {variant, color} = useAlert();
 
-  return <div className={alertVariants.description({variant, color, className})} {...props} />;
+  return <Primitive.p className={alertVariants.description({variant, color, className})} {...props} />;
 };
 
 // ________________________ AlertIcon ________________________
-type AlertIconProps = React.ComponentPropsWithRef<'div'> & {
+type AlertIconProps = PrimitiveProps<'div'> & {
   hideIconWrapper?: boolean;
 };
 const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconProps) => {
@@ -134,7 +135,7 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
   }, [variant, color]);
 
   return (
-    <div
+    <Primitive.div
       className={alertVariants.iconWrapper({variant, color, hideIconWrapper, className})}
       {...props}
     >
@@ -143,9 +144,15 @@ const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconPr
       ) : (
         defaultAlertIcon
       )}
-    </div>
+    </Primitive.div>
   );
 };
 
-export {Alert, AlertTitle, AlertDescription, AlertIcon};
-export type {AlertProps, AlertTitleProps, AlertDescriptionProps, AlertIconProps};
+// ________________________ AlertActions ________________________
+type AlertActionsProps = PrimitiveProps<'div'>;
+const AlertActions = ({className, ...props}: AlertActionsProps) => {
+  return <Primitive.div className={alertVariants.actions({className})} {...props} />;
+};
+
+export {Alert, AlertTitle, AlertDescription, AlertIcon, AlertActions};
+export type {AlertProps, AlertTitleProps, AlertDescriptionProps, AlertIconProps, AlertActionsProps};

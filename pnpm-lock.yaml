@@ -212,6 +212,9 @@ importers:
       '@principium/context':
         specifier: workspace:*
         version: link:../utils/context
+      '@principium/primitive':
+        specifier: workspace:*
+        version: link:../utils/primitive
       '@principium/slot':
         specifier: workspace:*
         version: link:../utils/slot
