@@ -67,7 +67,7 @@ export default async function DocPage({params}: DocPageProps) {
 
   return (
     <>
-      <article className="prose prose-neutral relative col-span-8 flex max-w-none flex-col items-center [&>*]:w-full [&_*]:max-w-3xl">
+      <article className="prose prose-neutral relative col-span-8 flex max-w-none flex-col items-center [&>*]:w-full [&>*]:max-w-3xl">
         <div className="not-prose mb-4 flex items-center justify-between">
           <h1 className="text-background-950 text-4xl font-bold">{doc.title}</h1>
 

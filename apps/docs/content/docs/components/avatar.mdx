@@ -3,7 +3,7 @@ title: Avatar
 description: A component that displays a user's profile picture.
 ---
 
-import { AvatarDemos } from '@/content/components/avatar';
+import {AvatarDemos} from '@/content/components/avatar';
 
 <ComponentLinks name="Avatar" />
 
@@ -41,5 +41,75 @@ import { AvatarDemos } from '@/content/components/avatar';
 
 <CodeDemo code={AvatarDemos.fallbacks} />
 
+## API
 
+### Avatar
 
+<ApiTable
+  data={[
+    {
+      prop: {name: 'size', description: 'Controls the size of the avatar.'},
+      type: {name: '"sm" | "md" | "lg"'},
+      default: '"md"',
+    },
+    {
+      prop: {name: 'color', description: 'Controls the color of the avatar.'},
+      type: {name: '"default" | "primary" | "secondary" | "success" | "warning" | "danger"'},
+      default: '"default"',
+    },
+    {
+      prop: {name: 'radius', description: 'Controls the border radius of the avatar.'},
+      type: {name: '"none" | "sm" | "md" | "lg" | "full"'},
+      default: '"full"',
+    },
+    {
+      prop: {name: 'isBordered', description: 'Adds a border to the avatar.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'disabled', description: 'Disables the avatar.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...spanProps', description: 'All native span element props.'},
+      type: {name: '-'},
+    },
+  ]}
+/>
+
+### AvatarImage
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...imgProps', description: 'All native img element props.'},
+    },
+  ]}
+/>
+
+### AvatarFallback
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...spanProps', description: 'All native span element props.'},
+    },
+  ]}
+/>

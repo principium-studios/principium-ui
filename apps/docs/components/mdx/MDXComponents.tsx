@@ -5,7 +5,7 @@ import * as PrincipiumComponents from '@principium/react';
 import Image from 'next/image';
 import ComponentLinks from '../docs/ComponentLinks';
 import PackageManagers from '../docs/PackageManagers';
-import { CodeDemo } from '../demo/CodeDemo';
+import {CodeDemo} from '../demo/CodeDemo';
 
 export interface LinkedHeadingProps {
   as: keyof React.JSX.IntrinsicElements;
@@ -24,10 +24,66 @@ const LinkedHeading = ({children, as}: LinkedHeadingProps) => {
 
   const id = encodeURIComponent(slug);
 
+  return <Comp id={id}>{children}</Comp>;
+};
+
+const ApiTable = ({
+  data,
+}: {
+  data: {
+    prop: {
+      name: string;
+      description?: string;
+    };
+    type?: {
+      name: string;
+      description?: string;
+    };
+    default?: string;
+  }[];
+}) => {
   return (
-    <Comp id={id}>
-      {children}
-    </Comp>
+        <div className="not-prose border-border-200 overflow-hidden rounded-lg border">
+        <table className="w-full table-fixed">
+          <thead className="bg-background-100 border-border-200 border-b">
+            <tr className="flex">
+              <th
+                scope="col"
+                className="flex-1 text-background-950 px-4 py-3.5 text-left text-sm font-medium"
+              >
+                Prop
+              </th>
+              <th
+                scope="col"
+                className="flex-1 text-background-950 px-4 py-3.5 text-left text-sm font-medium"
+              >
+                Type
+              </th>
+              <th
+                scope="col"
+                className="flex-1 text-background-950 px-4 py-3.5 text-left text-sm font-medium"
+              >
+                Default
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-border-200 divide-y">
+            {data.map((item) => (
+              <tr key={item.prop.name} className="flex hover:bg-background-100/50">
+                <td className="flex-1 text-background-950 px-3 py-2.5 text-sm font-medium">
+                  <code className="bg-background-100 rounded-md px-1.5 py-0.5 block break-words w-fit">{item.prop.name}</code>
+                </td>
+                <td className="flex-1 text-background-600 px-3 py-2.5 text-sm">
+                  <span className="block break-words">{item.type?.name || '-'}</span>
+                </td>
+                <td className="flex-1 text-background-600 px-3 py-2.5 text-sm">
+                  <span className="block break-words">{item.default || '-'}</span>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
@@ -39,12 +95,15 @@ const MDXComponents = {
   ComponentLinks,
   PackageManagers,
   CodeDemo,
+  ApiTable,
   // Primitives
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h1" />,
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h2" />,
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h3" />,
   h4: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h4" />,
-  hr: (props: React.HTMLAttributes<HTMLHRElement>) => <PrincipiumComponents.Divider {...props} className="not-prose my-6"/>
+  hr: (props: React.HTMLAttributes<HTMLHRElement>) => (
+    <PrincipiumComponents.Divider {...props} className="not-prose my-6" />
+  ),
 };
 
 export default MDXComponents;
