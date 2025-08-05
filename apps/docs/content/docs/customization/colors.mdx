@@ -1,0 +1,322 @@
+---
+title: Colors
+description: Learn how to customize colors in your Principium UI theme.
+---
+
+## Color System
+
+Principium UI uses a sophisticated color system based on **HSL (Hue, Saturation, Lightness)** that automatically generates consistent color scales. Instead of defining individual color values, you specify hue and saturation, and the system creates a complete range of shades.
+
+## Understanding HSL
+
+### Hue (0-360)
+
+The hue represents the color's position on the color wheel:
+
+- `0` / `360` - Red
+- `60` - Yellow
+- `120` - Green
+- `180` - Cyan
+- `240` - Blue
+- `300` - Magenta
+
+### Saturation (0-100)
+
+The saturation controls color intensity:
+
+- `0` - Grayscale (no color)
+- `50` - Muted colors
+- `100` - Vivid colors
+
+### Lightness (Generated)
+
+Lightness values are automatically generated to create the color scale from 50 (lightest) to 950 (darkest).
+
+## Default Color Palette
+
+Here are the default colors with their HSL values:
+
+<SyntaxHighlighter
+  className="bg-background-100"
+  language="typescript"
+  code={`const defaultColors = {
+  // Neutral colors
+  background: { hue: 0, saturation: 0 },     // Pure gray
+  border: { hue: 240, saturation: 10 },      // Cool gray
+  
+  // Brand colors
+  primary: { hue: 212, saturation: 100 },    // Blue
+  secondary: { hue: 270, saturation: 67 },   // Purple
+  
+  // State colors
+  success: { hue: 146, saturation: 55 },     // Green
+  warning: { hue: 37, saturation: 90 },      // Orange
+  danger: { hue: 339, saturation: 90 },      // Red
+  
+  // Utility
+  outline: { hue: 212, saturation: 100 },    // Focus outline
+};`}
+/>
+
+## Customizing Colors
+
+### Basic Customization
+
+To customize colors, modify the theme configuration in your `tailwind.config.ts`:
+
+<SyntaxHighlighter className="bg-background-100" language="typescript" code={`import {shadesPlugin} from '@principium/theme';
+
+const config = {
+plugins: [
+shadesPlugin({
+defaultTheme: 'light',
+themes: {
+light: {
+colors: {
+// Brand colors
+primary: { hue: 220, saturation: 85 }, // Custom blue
+secondary: { hue: 280, saturation: 70 }, // Custom purple
+
+            // Custom brand color
+            brand: { hue: 350, saturation: 80 },     // Custom red
+
+            // Neutral adjustments
+            background: { hue: 210, saturation: 5 }, // Slightly cool gray
+          },
+        },
+      },
+    }),
+
+],
+};`} />
+
+### Popular Color Combinations
+
+#### Warm Theme
+
+<SyntaxHighlighter
+  className="bg-background-100"
+  language="typescript"
+  code={`colors: {
+  primary: { hue: 25, saturation: 85 },    // Warm orange
+  secondary: { hue: 45, saturation: 70 },  // Golden yellow
+  background: { hue: 30, saturation: 3 },  // Warm gray
+  border: { hue: 25, saturation: 8 },      // Warm border
+}`}
+/>
+
+#### Cool Theme
+
+<SyntaxHighlighter
+  className="bg-background-100"
+  language="typescript"
+  code={`colors: {
+  primary: { hue: 200, saturation: 85 },   // Cool blue
+  secondary: { hue: 180, saturation: 60 }, // Teal
+  background: { hue: 210, saturation: 5 }, // Cool gray
+  border: { hue: 215, saturation: 10 },    // Cool border
+}`}
+/>
+
+#### Nature Theme
+
+<SyntaxHighlighter
+  className="bg-background-100"
+  language="typescript"
+  code={`colors: {
+  primary: { hue: 120, saturation: 70 },   // Forest green
+  secondary: { hue: 85, saturation: 60 },  // Sage green
+  success: { hue: 140, saturation: 65 },   // Bright green
+  background: { hue: 100, saturation: 8 }, // Green-tinted gray
+}`}
+/>
+
+## Color Usage Examples
+
+### Generated Color Scales
+
+Each color automatically generates a complete scale:
+
+<SyntaxHighlighter
+  className="bg-background-100"
+  language="css"
+  code={`/* Primary color scale (hue: 212, saturation: 100) */
+.text-primary-50   /* Very light blue */
+.text-primary-100  /* Light blue */
+.text-primary-200  /* ... */
+.text-primary-500  /* Base blue */
+.text-primary-600  /* Darker blue */
+.text-primary-900  /* Very dark blue */
+.text-primary-950  /* Darkest blue */`}
+/>
+
+### Component Usage
+
+<SyntaxHighlighter className="bg-background-100" language="tsx" code={`// Button with custom colors
+<Button 
+  className="bg-primary-500 hover:bg-primary-600 text-white"
+>
+  Primary Action
+</Button>
+
+// Card with custom background
+
+<Card className="bg-background-50 border-border-200">
+  <div className="text-background-900">Content with theme-aware text</div>
+</Card>
+
+// Alert with custom intent color
+
+<Alert className="bg-success-100 border-success-300 text-success-800">Success message</Alert>`} />
+
+## Adding Custom Colors
+
+You can add completely new colors to your theme:
+
+<SyntaxHighlighter
+  className="bg-background-100"
+  language="typescript"
+  code={`colors: {
+  // Existing colors
+  primary: { hue: 212, saturation: 100 },
+  
+  // Custom colors
+  accent: { hue: 290, saturation: 85 },     // Purple accent
+  info: { hue: 195, saturation: 75 },       // Info blue
+  neutral: { hue: 45, saturation: 5 },      // Warm neutral
+  brand: { hue: 15, saturation: 90 },       // Brand orange
+}`}
+/>
+
+Use custom colors in your components:
+
+<SyntaxHighlighter className="bg-background-100" language="tsx" code={`<div className="bg-accent-100 text-accent-800 border-accent-300">
+  Custom accent color
+</div>
+
+<Button className="bg-brand-500 hover:bg-brand-600">Brand Button</Button>`} />
+
+## Dark Theme Colors
+
+Colors in dark themes often need different saturation levels:
+
+<SyntaxHighlighter
+  className="bg-background-100"
+  language="typescript"
+  code={`themes: {
+  light: {
+    colors: {
+      primary: { hue: 212, saturation: 100 },
+      background: { hue: 0, saturation: 0 },
+    },
+  },
+  dark: {
+    isDarkTheme: true,
+    colors: {
+      primary: { hue: 212, saturation: 85 },   // Slightly less saturated
+      background: { hue: 220, saturation: 15 }, // Tinted dark background
+    },
+  },
+}`}
+/>
+
+## Color Accessibility
+
+### Contrast Considerations
+
+The automatic color scale generation ensures good contrast ratios, but consider these guidelines:
+
+- Use `*-50` to `*-200` for light backgrounds
+- Use `*-700` to `*-950` for dark text
+- Use `*-500` to `*-600` for medium contrast elements
+
+### Testing Colors
+
+<SyntaxHighlighter className="bg-background-100" language="tsx" code={`// Good contrast examples
+<div className="bg-background-100 text-background-900">High contrast text</div>
+<div className="bg-primary-500 text-white">White on primary</div>
+<div className="bg-success-100 text-success-800">Success message</div>
+
+// Check these combinations for accessibility
+
+<div className="bg-primary-100 text-primary-600">Medium contrast</div>`} />
+
+## Best Practices
+
+### 1. Maintain Consistency
+
+Stick to your defined color palette across your application:
+
+<SyntaxHighlighter className="bg-background-100"  language="tsx" code={`// ✅ Consistent with theme
+<Button variant="primary">Primary</Button>
+<Link className="text-primary-600">Link</Link>
+
+// ❌ Inconsistent colors
+
+<Button className="bg-blue-500">Button</Button>
+<Link className="text-indigo-600">Link</Link>`} />
+
+### 2. Use Semantic Names
+
+Prefer semantic color names over specific hues:
+
+<SyntaxHighlighter className="bg-background-100" language="typescript" code={`// ✅ Semantic names
+colors: {
+  primary: { hue: 212, saturation: 100 },
+  brand: { hue: 350, saturation: 85 },
+  accent: { hue: 280, saturation: 70 },
+}
+
+// ❌ Specific hue names
+colors: {
+blue: { hue: 212, saturation: 100 },
+red: { hue: 350, saturation: 85 },
+purple: { hue: 280, saturation: 70 },
+}`} />
+
+### 3. Consider Color Psychology
+
+Choose hues that align with your brand and purpose:
+
+- **Blue (200-240)**: Trust, stability, professionalism
+- **Green (120-160)**: Growth, success, nature
+- **Red (340-20)**: Energy, urgency, passion
+- **Purple (260-300)**: Creativity, luxury, innovation
+- **Orange (20-60)**: Enthusiasm, warmth, attention
+
+## Color Tools
+
+### HSL Color Picker
+
+Use online HSL color pickers to find the perfect hue and saturation values:
+
+- [HSL Color Picker](https://hslpicker.com/)
+- [Coolors.co](https://coolors.co/)
+
+### Testing Your Colors
+
+Create a color preview component to test your theme:
+
+<SyntaxHighlighter className="bg-background-100" language="tsx" code={`const ColorPreview = ({ colorName }: { colorName: string }) => (
+  <div className="grid grid-cols-10 gap-1">
+    {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map(shade => (
+      <div
+        key={shade}
+        className={\`h-8 rounded bg-\${colorName}-\${shade}\`}
+        title={\`\${colorName}-\${shade}\`}
+      />
+    ))}
+  </div>
+);
+
+// Usage
+
+<ColorPreview colorName="primary" />
+<ColorPreview colorName="success" />
+`} />
+
+## Next Steps
+
+- Learn about [dark mode](/docs/customization/dark-mode) implementation
+- Explore [theme customization](/docs/customization/customize-theme) for advanced scenarios
+- See [layout customization](/docs/customization/layout) for spacing and typography

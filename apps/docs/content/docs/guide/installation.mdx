@@ -1,0 +1,78 @@
+---
+title: Installation
+description: How to set up Principium UI with the CLI and scaffold your own components.
+---
+
+## 1. Install the CLI
+
+Run the following command to get started:
+
+<SyntaxHighlighter className="bg-background-100" language="bash" code={`npx create-principium@latest`} />
+
+## 2. Scaffold Your First Component
+
+To add a Button component to your project:
+
+<SyntaxHighlighter className="bg-background-100" language="bash" code={`npx create-principium add button`} />
+
+This will create:
+
+- `src/components/principium/Button.tsx`
+- `src/components/principium/variants/button.ts`
+
+## 3. Set Up the Theme
+
+Add the Principium theme plugin to your `tailwind.config.ts`:
+
+<SyntaxHighlighter className="bg-background-100" language="typescript" code={`import { shadesPlugin } from '@principium/theme';
+
+export default {
+  plugins: [
+    shadesPlugin({
+      // your theme config here
+    }),
+  ],
+};`} />
+
+## 4. Use Your Component
+
+Import and use the generated component in your app:
+
+<SyntaxHighlighter className="bg-background-100" language="tsx" code={`import { Button } from '@/components/principium/Button';
+
+export default function Example() {
+  return <Button variant="primary">Click me</Button>;
+}`} />
+
+## 5. Customize Freely
+
+Edit the generated files to change styles, add variants, or adapt to your needs. You own the code!
+
+## 6. Update or Add More Components
+
+To update a component or add new ones, just re-run the CLI:
+
+<SyntaxHighlighter className="bg-background-100" language="bash" code={`npx create-principium add card`} />
+
+## 7. Peer Dependencies
+
+Make sure you have these installed:
+
+<SyntaxHighlighter className="bg-background-100" language="bash" code={`npm install react@^19.0.0 tailwindcss@^4.0.0`} />
+
+---
+
+## Why This Approach?
+
+- **Full control:** You own and edit every component.
+- **No lock-in:** No runtime dependency on Principium packages.
+- **Minimal bundle:** Only the code you use is included.
+- **Easy theming:** Tailwind classes are right in your code.
+
+---
+
+## Next Steps
+
+- [See all available components](/docs/guide/components)
+- [Learn about theming and color customization](/docs/customization/theme)
+- [How to update components](/docs/guide/update)

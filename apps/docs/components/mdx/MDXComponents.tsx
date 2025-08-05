@@ -6,6 +6,8 @@ import Image from 'next/image';
 import ComponentLinks from '../docs/ComponentLinks';
 import PackageManagers from '../docs/PackageManagers';
 import {CodeDemo} from '../demo/CodeDemo';
+import SyntaxHighlighter from '../demo/SyntaxHighlighter';
+
 
 export interface LinkedHeadingProps {
   as: keyof React.JSX.IntrinsicElements;
@@ -96,6 +98,7 @@ const MDXComponents = {
   PackageManagers,
   CodeDemo,
   ApiTable,
+  SyntaxHighlighter,
   // Primitives
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h1" />,
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => <LinkedHeading {...props} as="h2" />,

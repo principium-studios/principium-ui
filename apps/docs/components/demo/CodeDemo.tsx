@@ -58,7 +58,7 @@ const CodeDemo = React.memo(({code}: CodeDemoProps) => {
             </Button>
           </div>
           <div className="overflow-auto p-4 h-full">
-            <SyntaxHighlighter code={code} />
+            <SyntaxHighlighter code={code} language="jsx" showClipboard={false} />
           </div>
         </TabsContent>
       </div>

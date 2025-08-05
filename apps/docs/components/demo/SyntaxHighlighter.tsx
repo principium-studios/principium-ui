@@ -3,31 +3,70 @@ import {createJavaScriptRegexEngine} from 'shiki/engine/javascript';
 import {Fragment, jsxs, jsx} from 'react/jsx-runtime';
 import {toJsxRuntime} from 'hast-util-to-jsx-runtime';
 import React from 'react';
+import {Button} from '@principium/react';
+import {ClipboardIcon} from '@phosphor-icons/react/dist/ssr';
 
 const highlighter = await createHighlighterCore({
-  langs: [import('shiki/langs/jsx.mjs')],
+  langs: [
+    import('shiki/langs/jsx.mjs'),
+    import('shiki/langs/tsx.mjs'),
+    import('shiki/langs/typescript.mjs'),
+    import('shiki/langs/javascript.mjs'),
+    import('shiki/langs/css.mjs'),
+    import('shiki/langs/bash.mjs'),
+    import('shiki/langs/json.mjs'),
+  ],
   engine: createJavaScriptRegexEngine(),
   themes: [import('shiki/themes/github-dark.mjs'), import('shiki/themes/github-light.mjs')],
 });
 
-const SyntaxHighlighter = React.memo(({code}: {code: string}) => {
-  const editorContent = React.useMemo(() => {
-    const syntax = highlighter.codeToHast(code, {
-      lang: 'jsx',
-      themes: {dark: 'github-dark', light: 'github-light'},
-    });
+interface SyntaxHighlighterProps extends React.HTMLAttributes<HTMLPreElement> {
+  code: string;
+  language?: string;
+  showClipboard?: boolean;
+}
 
-    return toJsxRuntime(syntax, {
-      Fragment,
-      jsx,
-      jsxs,
-      components: {
-        pre: ({style, ...props}) => <pre {...props} />,
-      },
-    });
-  }, [code]);
+const SyntaxHighlighter = React.memo(
+  ({
+    code,
+    language = 'jsx',
+    className: classNameProp,
+    showClipboard = true,
+  }: SyntaxHighlighterProps) => {
+    const editorContent = React.useMemo(() => {
+      const syntax = highlighter.codeToHast(code, {
+        lang: language,
+        themes: {dark: 'github-dark', light: 'github-light'},
+      });
 
-  return <>{editorContent}</>;
-});
+      return toJsxRuntime(syntax, {
+        Fragment,
+        jsx,
+        jsxs,
+        components: {
+          pre: ({className, style, children, ...props}) => (
+            <pre {...props} className={className + ' group relative ' + classNameProp}>
+              {children}
+              {showClipboard && (
+                <Button
+                  size="icon"
+                  variant="light"
+                  onClick={() => {
+                    navigator.clipboard.writeText(code);
+                  }}
+                  className="absolute right-2 top-2 opacity-0 group-hover:opacity-100"
+                >
+                  <ClipboardIcon size={16} />
+                </Button>
+              )}
+            </pre>
+          ),
+        },
+      });
+    }, [code, language]);
+
+    return <>{editorContent}</>;
+  },
+);
 
 export default SyntaxHighlighter;

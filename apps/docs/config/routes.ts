@@ -23,7 +23,7 @@ const routes: Route[] = [
   {
     key: 'customization',
     title: 'Customization',
-    keywords: 'customization, principium, themes, colors, dark mode, override styles',
+    keywords: 'customization, principium, themes, colors, dark mode',
     routes: [
       {
         key: 'theme',
@@ -32,22 +32,10 @@ const routes: Route[] = [
         path: '/docs/customization/theme.mdx',
       },
       {
-        key: 'layout',
-        title: 'Layout',
-        keywords: 'layout, principium',
-        path: '/docs/customization/layout.mdx',
-      },
-      {
         key: 'colors',
         title: 'Colors',
         keywords: 'colors, principium',
         path: '/docs/customization/colors.mdx',
-      },
-      {
-        key: 'customize-theme',
-        title: 'Customize theme',
-        keywords: 'customize theme, principium',
-        path: '/docs/customization/customize-theme.mdx',
       },
       {
         key: 'dark-mode',
