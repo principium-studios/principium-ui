@@ -11,6 +11,7 @@ A powerful and flexible variant system for building component libraries with Typ
 - 🎭 **Boolean variants**: Support for toggled variants
 - 🔍 **Default variants**: Set default values for variants
 - 🛡️ **Runtime validation**: Catch invalid variant usage early
+- 🎪 **Slot-aware types**: Helper types that suggest only variants affecting specific slots
 
 ### Installation
 
@@ -34,19 +35,19 @@ pnpm add @principium/variants
 
 ### `createPv`
 
-| Props     | Description                            |
-| --------- | -------------------------------------- |
+| Props       | Description                            |
+| ----------- | -------------------------------------- |
 | **twMerge** | The twMerge instance for the component |
 
 ### `pv`
 
-| Component Type | Description                                                                                                                                                               |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Single-slot**    | For single-slot components, pass a string. The return type of pv will be a slot function.                                                                                 |
-| **Multi-slot**     | For multi-slot components, pass an object with the slots as keys and the base classes as values. The return type of pv will be an object with the slot functions as keys. |
+| Component Type  | Description                                                                                                                                                               |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Single-slot** | For single-slot components, pass a string. The return type of pv will be a slot function.                                                                                 |
+| **Multi-slot**  | For multi-slot components, pass an object with the slots as keys and the base classes as values. The return type of pv will be an object with the slot functions as keys. |
 
-| Props              | Description                             |
-| ------------------ | --------------------------------------- |
+| Props                | Description                             |
+| -------------------- | --------------------------------------- |
 | **variants**         | The variants for the component          |
 | **compoundVariants** | The compound variants for the component |
 | **defaultVariants**  | The default variants for the component  |
@@ -141,7 +142,7 @@ function Card({ color, className, children, ...props }: CardProps) {
 }
 ```
 
-## Compound Variants
+## Compound Variants and Type Safety
 
 ```typescript
 import {pv, type ComponentVariantProps} from '@principium/variants';
@@ -165,23 +166,23 @@ const button = pv('btn', {
         base: ['border-red-500', ['hover:bg-red-50']],
       },
     },
-  ],
+  ] as const, // 👈 Important! This ensures proper type inference
 });
-```
 
-## Type Safety
-
-```typescript
-import { type ComponentVariantProps } from '@principium/variants';
-
-type ButtonVariants = ComponentVariantProps<typeof button>;
-
-type ButtonProps = ButtonVariants & React.ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = ComponentVariantProps<typeof button> & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 function Button({ size, color, outlined, className, ...props }: ButtonProps) {
   return <button className={button({ size, color, outlined, className })} {...props} />;
 }
 ```
+
+### Why `as const`?
+
+The `as const` assertion in compound variants is crucial for proper TypeScript type inference. Without it:
+
+1. TypeScript will widen the types of class values in compound variants, making them less specific.
+2. This affects the `suggestedParamsForSlot` helper type, which helps you by only suggesting variants that actually affect a specific slot.
+3. For example, without `as const`, TypeScript might infer a class value as `Record<"otherSlot", string[]>` in a scenario where the class value is empty, losing information about which slots are affected.
 
 ## Runtime Validation
 

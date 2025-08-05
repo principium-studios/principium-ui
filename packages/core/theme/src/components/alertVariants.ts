@@ -24,7 +24,7 @@ const alertVariants = pv(
     ],
     title: 'col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight',
     description:
-      'text-muted-600 col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed',
+      'col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed',
     iconWrapper: 'flex-none relative w-9 h-9 rounded-full grid place-items-center',
     alertIcon: 'fill-current w-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
     actions: 'col-start-2',
@@ -93,7 +93,7 @@ const alertVariants = pv(
         color: 'primary',
         class: {
           base: colorVariants.solid.primary,
-          alertIcon: 'stroke-primary-400',
+          alertIcon: 'stroke-primary',
         },
       },
       {
@@ -101,7 +101,7 @@ const alertVariants = pv(
         color: 'secondary',
         class: {
           base: colorVariants.solid.secondary,
-          alertIcon: 'stroke-secondary-400',
+          alertIcon: 'stroke-secondary',
         },
       },
       {
@@ -109,7 +109,7 @@ const alertVariants = pv(
         color: 'success',
         class: {
           base: colorVariants.solid.success,
-          alertIcon: 'stroke-success-400',
+          alertIcon: 'stroke-success',
         },
       },
       {
@@ -117,7 +117,7 @@ const alertVariants = pv(
         color: 'warning',
         class: {
           base: colorVariants.solid.warning,
-          alertIcon: 'stroke-warning-400',
+          alertIcon: 'stroke-warning',
         },
       },
       {
@@ -125,7 +125,7 @@ const alertVariants = pv(
         color: 'danger',
         class: {
           base: colorVariants.solid.danger,
-          alertIcon: 'stroke-danger-400',
+          alertIcon: 'stroke-danger',
         },
       },
       // flat & faded / color
@@ -133,10 +133,10 @@ const alertVariants = pv(
         variant: ['flat', 'faded'],
         color: 'default',
         class: {
-          base: [colorVariants.flat.default, 'bg-background-100/50'],
-          description: 'text-background-600',
-          iconWrapper: 'bg-background-100 border-border-200',
-          alertIcon: 'stroke-border-100',
+          base: colorVariants.flat.default,
+          description: 'text-muted',
+          iconWrapper: 'border-border',
+          alertIcon: 'stroke-border',
         },
       },
       {
@@ -189,7 +189,7 @@ const alertVariants = pv(
         variant: 'faded',
         color: 'default',
         class: {
-          base: 'border-border-300',
+          base: 'border-border',
         },
       },
       {
@@ -233,9 +233,9 @@ const alertVariants = pv(
         color: 'default',
         class: {
           base: [colorVariants.bordered.default],
-          iconWrapper: 'bg-background-200',
-          description: 'text-background-600',
-          alertIcon: 'stroke-border-100',
+          iconWrapper: 'bg-border',
+          description: 'text-muted',
+          alertIcon: 'stroke-border',
         },
       },
       {

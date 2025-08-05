@@ -8,7 +8,7 @@ const solid = {
 };
 
 const shadow = {
-  default: `shadow-lg shadow-border/50 ${solid.default}`,
+  default: `shadow-lg shadow-border-200/50 ${solid.default}`,
   primary: `shadow-lg shadow-primary/40 ${solid.primary}`,
   secondary: `shadow-lg shadow-secondary/40 ${solid.secondary}`,
   success: `shadow-lg shadow-success/40 ${solid.success}`,
@@ -26,11 +26,11 @@ const bordered = {
 };
 
 const flat = {
-  default: 'bg-border-200/40 text-foreground',
+  default: 'bg-border/40 text-foreground',
   primary: 'bg-primary/20 text-primary',
   secondary: 'bg-secondary/20 text-secondary',
   success: 'bg-success/20 text-success-800 dark:text-success',
-  warning: 'bg-warning/20 text-warning-800 dark:text-warning',
+  warning: 'bg-warning/20 text-warning-600 dark:text-warning',
   danger: 'bg-danger/20 text-danger',
 };
 

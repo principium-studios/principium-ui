@@ -2,7 +2,7 @@
 
 /* Make Principium Theme available to Tailwind */
 @config "../tailwind.config.ts";
-@custom-variant dark (&:is(.dark *, .coffee *));
+@custom-variant dark (&:is(.dark *));
 
 /* For MDX */
 @plugin '@tailwindcss/typography';

@@ -1,50 +1,68 @@
-# Principium React Component Library
+# Principium UI
 
-A collection of reusable, accessible and customizable React components.
+A modern React component library with a focus on flexibility, accessibility, and developer experience. Inspired by shadcn/ui's approach of giving you full control over your components.
 
-## Components
+## Features
 
-| Component                                          | Description                                         |
-| -------------------------------------------------- | --------------------------------------------------- |
-| [Alert](./packages/components/alert)               | Primitive for alert / call-out messages             |
-| [Badge](./packages/components/badge)               | Small status label to highlight information         |
-| [Button](./packages/components/button)             | Accessible button with configurable variants        |
-| [Card](./packages/components/card)                 | Surface container with header / body / footer slots |
-| [Divider](./packages/components/divider)           | Horizontal / vertical separator                     |
+- 🎨 **Standalone Plugins**:
+  - [`@principium/variants`](./packages/core/variants): A powerful variant system for building component libraries, with multi-slot support and type safety
+  - [`@principium/shades`](./packages/core/shades): A Tailwind plugin for creating dynamic, HSL-based color systems with theme support
+- 🧩 **Component Library**:
+  - CLI-based installation - you own the code
+  - Full TypeScript support
+  - Accessible by default
+  - Customizable with Tailwind CSS
+- 📚 **Documentation & Examples**:
+  - [principium.dev](https://principium.dev) - comprehensive docs and examples
+  - Base components with source code
+  - Pre-built compositions showing real-world usage
+  - Live component playground
 
-| Helper Component                                   | Description                                         |
-| -------------------------------------------------- | --------------------------------------------------- |
-| [Primitive](./packages/components/utils/primitive) | Helper that adds `asChild` support to any element   |
-| [Slot](./packages/components/utils/slot)           | Utility for slot-based composition                  |
+## Getting Started
+
+Visit [principium.dev](https://principium.dev) to:
+- Browse available components
+- See example compositions
+- Read the installation guide
+- Explore customization options
+- Try components in the playground
 
 ## Contributing
 
 Contributions are always welcome!
 
-### 1. Creating a new component
+### Development
 
-- You can create a new component via the `pnpm run create:comp` command.
-- The starter template includes a shared **tsup.config.ts** and **tsconfig.json**, so you don't need to configure them yourself. It also contains a **package.json** with all the necessary scripts and minimal dependencies.
+1. Clone the repo
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Start the development environment:
+   ```bash
+   pnpm run docs
+   ```
 
-### 2. Making a component
+This will start:
+- Documentation site at `http://localhost:3000`
+- Contentlayer concurrent server which generates all the docs
 
-- The components in this project are built to be used like shadcn components and styled to resemble HeroUI.
-- Naming should be in the format of `[component-name]`, `[component-name]Trigger`, `[component-name]Content` or other variants.
-- Styling should be done using Tailwind CSS. For components that provide variants and colors you can use the `class-variance-authority` package alongside the [colorVariants](./packages/components/utils/shared/src/colorVariants.ts) helper to match each case.
+### Building
 
-### 3. Building the components
+- `pnpm build` - Build all packages
+- `pnpm build:fast` - Build without typechecking
+- `pnpm typecheck` - Run type checks
 
-- To build the components run `pnpm run build` or `pnpm run build:fast` to build the components without typechecking.
-- To typecheck the components run `pnpm run typecheck`.
+### Testing
 
-### 4. Testing the components
+- `pnpm test` - Run tests
+- `pnpm test:ui` - Run tests with UI
 
-- To test the components run `pnpm run test` or `pnpm run test:ui` to test the components with vitest or vitest ui.
+### Formatting
 
-### 5. Formatting the components
+- `pnpm format:check` - Check formatting
+- `pnpm format:write` - Fix formatting
 
-- To format the components run `pnpm run format:check` to check if the components are formatted correctly or `pnpm run format:write` to format the components.
+## License
 
-### 6. Development
-
-- Run `pnpm run sb` to start the custom "storybook" server.
+MIT
