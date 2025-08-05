@@ -12,6 +12,7 @@
     "@phosphor-icons/react": "^2.1.10",
     "@principium/react": "workspace:*",
     "@principium/theme": "workspace:*",
+    "@principium/shades": "workspace:*",
     "@principium/use-fuzzy": "workspace:*",
     "@principium/use-layout-effect": "workspace:*",
     "concurrently": "^9.2.0",
