@@ -10,7 +10,7 @@ import {
   
   const ExploreComponentsCard = () => {
     return (
-      <Card className="bg-background-50">
+      <Card>
         <CardHeader className='flex-col gap-3'>
           <CardTitle className="text-lg">Explore Components</CardTitle>
           <CardDescription>

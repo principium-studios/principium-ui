@@ -25,16 +25,16 @@ const Navbar = () => {
           {/* Links to Docs, Components, Blog, */}
           <ul className="flex items-center gap-4">
             <li>
-              <Link href="/docs/guide/introduction" className={isDocs ? 'text-primary-400 dark:text-primary-600' : ''}>Docs</Link>
+              <Link href="/docs/guide/introduction" className={isDocs ? 'text-primary' : ''}>Docs</Link>
             </li>
             <li>
-              <Link href="/components" className={isComponents ? 'text-primary-400 dark:text-primary-600' : ''}>Components</Link>
+              <Link href="/components" className={isComponents ? 'text-primary' : ''}>Components</Link>
             </li>
             <li>
-              <Link href="/blog" className={isBlog ? 'text-primary-400 dark:text-primary-600' : ''}>Blog</Link>
+              <Link href="/blog" className={isBlog ? 'text-primary' : ''}>Blog</Link>
             </li>
             <li>
-              <Link href="/playground" className={isPlayground ? 'text-primary-400 dark:text-primary-600' : ''}>Playground</Link>
+              <Link href="/playground" className={isPlayground ? 'text-primary' : ''}>Playground</Link>
             </li>
           </ul>
           <Divider className="h-7" orientation="vertical" />

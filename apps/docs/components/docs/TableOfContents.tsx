@@ -26,7 +26,7 @@ const TableOfContents = ({headings}: {headings: Heading[]}) => {
         {headings.map((heading) => (
           <li
             key={heading.id}
-            className="text-background-600 data-[active=true]:text-background-950 text-sm"
+            className="text-muted data-[active=true]:text-foreground text-sm"
             style={{marginLeft: `${(heading.level - 2) * 16}px`}}
             data-active={activeId === heading.id}
             onClick={() => setActiveId(heading.id)}

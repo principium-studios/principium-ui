@@ -38,13 +38,13 @@ const CodeDemo = React.memo(({code}: CodeDemoProps) => {
         </TabsList>
         <TabsContent
           value="preview"
-          className="border-border-200 bg-background-50 min-h-64 h-fit flex items-center justify-center rounded-lg border p-4"
+          className="border-border bg-border/10 min-h-64 h-fit flex items-center justify-center rounded-lg border p-4"
         >
           <LiveCodePreview code={cleanCode} />
         </TabsContent>
         <TabsContent
           value="code"
-          className="bg-border-100 h-110 relative overflow-hidden rounded-lg border border-transparent"
+          className="bg-border h-110 relative overflow-hidden rounded-lg border border-transparent"
         >
           <div className="absolute right-2 top-2 z-20 hidden items-center justify-center gap-0 bg-transparent opacity-0 transition-opacity group-hover:opacity-100 md:flex">
             <Button

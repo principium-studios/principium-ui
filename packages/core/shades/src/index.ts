@@ -36,21 +36,22 @@ const PRINCIPIUM_DEFAULTS: Themes = {
     mode: 'normal',
     colors: {
       // Core colors
-      background: {hue: 0, saturation: 0, lightness: 100, foreground: {lightness: 5}},
-      muted: {hue: 0, saturation: 0, lightness: 25, generateShades: false},
+      background: {hue: 0, saturation: 0, lightness: 99, foreground: {lightness: 5}},
+      card: {hue: 0, saturation: 0, lightness: 96, foreground: {lightness: 5}},
+      muted: {hue: 0, saturation: 0, lightness: 50, generateShades: false},
 
       // Brand colors
-      primary: {hue: 212, saturation: 90, lightness: 60, foreground: {lightness: 95}},
-      secondary: {hue: 270, saturation: 90, lightness: 60, foreground: {lightness: 95}},
+      primary: {hue: 212, saturation: 90, lightness: 60, foreground: {lightness: 98}},
+      secondary: {hue: 270, saturation: 90, lightness: 60, foreground: {lightness: 98}},
 
       // State colors
-      danger: {hue: 339, saturation: 90, lightness: 60, foreground: {lightness: 95}},
-      success: {hue: 146, saturation: 90, lightness: 60, foreground: {lightness: 95}},
-      warning: {hue: 37, saturation: 90, lightness: 60, foreground: {lightness: 95}},
+      danger: {hue: 339, saturation: 90, lightness: 60, foreground: {lightness: 98}},
+      success: {hue: 146, saturation: 90, lightness: 60, foreground: {lightness: 5}},
+      warning: {hue: 37, saturation: 90, lightness: 60, foreground: {lightness: 5}},
 
       // Utility colors
-      border: {hue: 0, saturation: 0, lightness: 90, foreground: {lightness: 95}},
-      ring: {hue: 212, saturation: 90, lightness: 60, foreground: {lightness: 95}, generateShades: false},
+      border: {hue: 0, saturation: 0, lightness: 95},
+      ring: {hue: 212, saturation: 90, lightness: 60, generateShades: false},
     },
   },
   dark: {
@@ -58,7 +59,8 @@ const PRINCIPIUM_DEFAULTS: Themes = {
     colors: {
       // Core colors
       background: {hue: 220, saturation: 15, lightness: 5, foreground: {lightness: 95}},
-      muted: {hue: 220, saturation: 15, lightness: 75, generateShades: false},
+      card: {hue: 220, saturation: 15, lightness: 10, foreground: {lightness: 95}},
+      muted: {hue: 220, saturation: 15, lightness: 50, generateShades: false},
 
       // Brand colors
       primary: {hue: 212, saturation: 90, lightness: 60, foreground: {lightness: 95}},
@@ -70,8 +72,8 @@ const PRINCIPIUM_DEFAULTS: Themes = {
       warning: {hue: 37, saturation: 90, lightness: 60, foreground: {lightness: 5}},
 
       // Utility colors
-      border: {hue: 220, saturation: 15, lightness: 15, foreground: {lightness: 95}},
-      ring: {hue: 212, saturation: 90, lightness: 60, foreground: {lightness: 95}, generateShades: false},
+      border: {hue: 220, saturation: 15, lightness: 15},
+      ring: {hue: 212, saturation: 90, lightness: 60, generateShades: false},
     },
   },
 };
@@ -144,11 +146,13 @@ export const shadesPlugin = <T extends Themes>(opts: {
   const baseVars: Record<string, Record<string, string>> = {};
 
   /**
-   * The pallete is for tailwind to generate the custom classes for the colors
-   * palette will look something like this
+   * The colorsExtend is for tailwind to generate the custom classes for the colors
+   * colorsExtend will look something like this
    *
    *  {
    *    'background': {
+   *      'foreground': 'var(--foreground)',
+   *      'DEFAULT': 'var(--background)',
    *      '50': 'var(--background-50)',
    *      '100': 'var(--background-100)',
    *      ...
@@ -156,7 +160,7 @@ export const shadesPlugin = <T extends Themes>(opts: {
    *    ...
    *  }
    */
-  const palette: Record<string, Record<string, string>> = {};
+  const colorsExtend: Record<string, Record<string, string> | string> = {};
 
   // Go through each theme and generate the CSS variables and utility classes
   for (const [themeName, themeDef] of Object.entries(finalThemes)) {
@@ -181,7 +185,7 @@ export const shadesPlugin = <T extends Themes>(opts: {
       } = colorDef;
 
       // Initialize the palette for the color
-      palette[colorName] = {};
+      colorsExtend[colorName] = {};
 
       // Generate the base color if lightness is provided
       if (baseLightness) {
@@ -192,7 +196,7 @@ export const shadesPlugin = <T extends Themes>(opts: {
         baseVars[cssSelector][varName] = varValue;
 
         // Add the variable to the palette
-        palette[colorName]['base'] = `var(${varName})`;
+        colorsExtend[colorName]['DEFAULT'] = `var(${varName})`;
       }
 
       // Generate the foreground color if specified
@@ -208,7 +212,11 @@ export const shadesPlugin = <T extends Themes>(opts: {
         baseVars[cssSelector][foregroundVarName] = foregroundVarValue;
 
         // Add the variable to the palette
-        palette[colorName]['foreground'] = `var(${foregroundVarName})`;
+        if (colorName === 'background') {
+          colorsExtend['foreground'] = `var(${foregroundVarName})`;
+        } else {
+          colorsExtend[colorName]['foreground'] = `var(${foregroundVarName})`;
+        }
       }
 
       // Generate the shades if enabled
@@ -223,7 +231,7 @@ export const shadesPlugin = <T extends Themes>(opts: {
           baseVars[cssSelector][varName] = varValue;
 
           // Add the variable to the palette
-          palette[colorName][shadeKey] = `var(${varName})`;
+          colorsExtend[colorName][shadeKey] = `var(${varName})`;
         }
       }
     }
@@ -240,7 +248,7 @@ export const shadesPlugin = <T extends Themes>(opts: {
           transitionTimingFunction: {
             'soft-spring': 'cubic-bezier(0.155, 1.105, 0.295, 1.12)',
           },
-          colors: palette,
+          colors: colorsExtend,
           fontSize: {
             tiny: '0.625rem',
           },
@@ -249,6 +257,9 @@ export const shadesPlugin = <T extends Themes>(opts: {
             md: 'calc(0.625rem - 2px)',
             lg: 'calc(0.625rem)',
             xl: 'calc(0.625rem + 4px)',
+          },
+          opacity: {
+            disabled: 0.5,
           },
         },
       },

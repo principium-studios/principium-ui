@@ -7,10 +7,10 @@ const Hero = () => {
       {/* Main Content */}
       <div className="mx-auto flex flex-col items-center gap-4 text-center">
         <h1 className="text-3xl font-bold sm:text-4xl">
-          The <span className="text-secondary-400">fastest way</span>
+          The <span className="text-secondary">fastest way</span>
           <br /> to start your next React project.
         </h1>
-        <p className="text-background-400 dark:text-background-600 mx-auto max-w-md text-base sm:max-w-lg sm:text-lg lg:max-w-2xl lg:text-xl">
+        <p className="text-muted mx-auto max-w-md text-base sm:max-w-lg sm:text-lg lg:max-w-2xl lg:text-xl">
           Principium is a modern, accessible React component library, built for speed, styled with
           Tailwind, and designed to scale.
         </p>

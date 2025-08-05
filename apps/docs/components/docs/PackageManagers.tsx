@@ -15,9 +15,9 @@ const InstallBlock = ({
   packageName: string;
 }) => {
   return (
-    <pre className="bg-border-100 relative rounded-lg px-4 py-2">
+    <pre className="bg-border relative rounded-lg px-4 py-2">
       <code>
-        {manager} <span className="text-primary-400 dark:text-primary-600">{command}</span>{' '}
+        {manager} <span className="text-primary">{command}</span>{' '}
         @principium/{packageName}
       </code>
       <Button

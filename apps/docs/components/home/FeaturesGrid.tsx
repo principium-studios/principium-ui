@@ -40,7 +40,7 @@ const FeaturesGrid = ({features}: {features: Feature[]}) => {
             <CardTitle>{feature.title}</CardTitle>
           </CardHeader>
           {feature.description && (
-            <CardContent className="text-background-600 pt-1 text-sm">
+            <CardContent className="text-muted pt-1 text-sm">
               {feature.description}
             </CardContent>
           )}
