@@ -11,7 +11,26 @@ import {colorVariants, dataFocusVisibleClasses} from '../utils';
  * </div>
  */
 const badgeVariants = pv(
-  ['flex z-10 flex-wrap absolute box-border rounded-full whitespace-nowrap justify-center origin-center items-center text-inherit select-none font-regular scale-100 opacity-100 subpixel-antialiased data-[invisible=true]:scale-0 data-[invisible=true]:opacity-0', ...dataFocusVisibleClasses],
+  [
+    'flex',
+    'z-10',
+    'absolute',
+    'box-border',
+    'rounded-full',
+    'whitespace-nowrap',
+    'justify-center',
+    'origin-center',
+    'items-center',
+    'text-inherit',
+    'select-none',
+    'font-normal',
+    'scale-100',
+    'opacity-100',
+    'subpixel-antialiased',
+    'data-[invisible=true]:scale-0',
+    'data-[invisible=true]:opacity-0',
+    ...dataFocusVisibleClasses,
+  ],
   {
     variants: {
       variant: {
@@ -30,8 +49,8 @@ const badgeVariants = pv(
       },
       size: {
         sm: 'px-1 text-tiny',
-        md: 'px-1 text-small',
-        lg: 'px-1 text-small',
+        md: 'px-1 text-xs',
+        lg: 'px-1 text-sm',
       },
       placement: {
         'top-right': 'translate-x-1/2 -translate-y-1/2',
@@ -50,7 +69,7 @@ const badgeVariants = pv(
         true: '',
       },
       showOutline: {
-        true: 'border-background-50 border-2',
+        true: 'border-background border-2',
         false: 'border-0 border-transparent',
       },
     },

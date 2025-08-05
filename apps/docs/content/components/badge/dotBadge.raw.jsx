@@ -1,32 +1,32 @@
-import { Badge } from '@principium/react';
+import {Avatar, AvatarFallback, Badge} from '@principium/react';
 
 function App() {
   return (
-    <div className="flex flex-wrap gap-6 items-center">
-      <div className="relative">
-        <div className="bg-neutral-200 rounded-lg p-4">
-          <span>Default</span>
-        </div>
+    <div className="flex flex-wrap items-center gap-6">
+      <Avatar>
+        <AvatarFallback>Default</AvatarFallback>
         <Badge></Badge>
-      </div>
-      <div className="relative">
-        <div className="bg-neutral-200 rounded-lg p-4">
-          <span>Primary</span>
-        </div>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>Primary</AvatarFallback>
         <Badge color="primary"></Badge>
-      </div>
-      <div className="relative">
-        <div className="bg-neutral-200 rounded-lg p-4">
-          <span>Success</span>
-        </div>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>Secondary</AvatarFallback>
+        <Badge color="secondary"></Badge>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>Success</AvatarFallback>
         <Badge color="success"></Badge>
-      </div>
-      <div className="relative">
-        <div className="bg-neutral-200 rounded-lg p-4">
-          <span>Danger</span>
-        </div>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>Warning</AvatarFallback>
+        <Badge color="warning"></Badge>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>Danger</AvatarFallback>
         <Badge color="danger"></Badge>
-      </div>
+      </Avatar>
     </div>
   );
 }

@@ -55,7 +55,8 @@
   },
   "dependencies": {
     "@principium/primitive": "workspace:*",
-    "@principium/compose-refs": "workspace:*"
+    "@principium/compose-refs": "workspace:*",
+    "@principium/context": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

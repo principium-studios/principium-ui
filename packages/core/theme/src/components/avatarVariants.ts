@@ -19,9 +19,8 @@ const avatarVariants = pv(
       'justify-center',
       'items-center',
       'box-border',
-      'overflow-hidden',
       'align-middle',
-      'text-background-950',
+      'text-foreground',
       'z-0',
       // focus ring
       ...dataFocusVisibleClasses,
@@ -40,10 +39,15 @@ const avatarVariants = pv(
     fallback: [
       ...translateCenterClasses,
       'flex',
+      'w-full',
+      'h-full',
       'items-center',
       'justify-center',
       'peer-data-[loaded=true]:hidden',
+      'overflow-hidden',
+      'text-center',
     ],
+    context: ''
   },
   {
     variants: {
@@ -61,18 +65,29 @@ const avatarVariants = pv(
       radius: {
         none: {
           base: 'rounded-none',
+          img: 'rounded-none',
+          fallback: 'rounded-none',
+          context: [],
         },
         sm: {
           base: 'rounded-sm',
+          img: 'rounded-sm',
+          fallback: 'rounded-sm',
         },
         md: {
           base: 'rounded-md',
+          img: 'rounded-md',
+          fallback: 'rounded-md',
         },
         lg: {
           base: 'rounded-lg',
+          img: 'rounded-lg',
+          fallback: 'rounded-lg',
         },
         full: {
           base: 'rounded-full',
+          img: 'rounded-full',
+          fallback: 'rounded-full',
         },
       },
       color: {
@@ -97,7 +112,7 @@ const avatarVariants = pv(
       },
       isBordered: {
         true: {
-          base: 'ring-2 ring-offset-2 ring-offset-background-50',
+          base: 'ring-2 ring-offset-2 ring-offset-background',
         },
       },
       disabled: {
@@ -116,42 +131,42 @@ const avatarVariants = pv(
         color: 'default',
         isBordered: true,
         class: {
-          base: 'ring-border-300',
+          base: 'ring-border',
         },
       },
       {
         color: 'primary',
         isBordered: true,
         class: {
-          base: 'ring-primary-400 dark:ring-primary-600',
+          base: 'ring-primary',
         },
       },
       {
         color: 'secondary',
         isBordered: true,
         class: {
-          base: 'ring-secondary-400 dark:ring-secondary-600',
+          base: 'ring-secondary',
         },
       },
       {
         color: 'success',
         isBordered: true,
         class: {
-          base: 'ring-success-400 dark:ring-success-600',
+          base: 'ring-success',
         },
       },
       {
         color: 'warning',
         isBordered: true,
         class: {
-          base: 'ring-warning-400 dark:ring-warning-600',
+          base: 'ring-warning',
         },
       },
       {
         color: 'danger',
         isBordered: true,
         class: {
-          base: 'ring-danger-400 dark:ring-danger-600',
+          base: 'ring-danger',
         },
       },
     ] as const,

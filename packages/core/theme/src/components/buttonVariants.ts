@@ -208,45 +208,45 @@ const buttonVariants = pv(
       {
         variant: 'light',
         color: 'default',
-        class: [colorVariants.light.default, 'hover:bg-border-300/40'],
+        class: [colorVariants.light.default, 'hover:bg-border-100/40'],
       },
       {
         variant: 'light',
         color: 'primary',
-        class: [colorVariants.light.primary, 'hover:bg-primary-600/20'],
+        class: [colorVariants.light.primary, 'hover:bg-primary-100/20'],
       },
       {
         variant: 'light',
         color: 'secondary',
-        class: [colorVariants.light.secondary, 'hover:bg-secondary-600/20'],
+        class: [colorVariants.light.secondary, 'hover:bg-secondary-100/20'],
       },
       {
         variant: 'light',
         color: 'success',
-        class: [colorVariants.light.success, 'hover:bg-success-600/20'],
+        class: [colorVariants.light.success, 'hover:bg-success-100/20'],
       },
       {
         variant: 'light',
         color: 'warning',
-        class: [colorVariants.light.warning, 'hover:bg-warning-600/20'],
+        class: [colorVariants.light.warning, 'hover:bg-warning-100/20'],
       },
       {
         variant: 'light',
         color: 'danger',
-        class: [colorVariants.light.danger, 'hover:bg-danger-600/20'],
+        class: [colorVariants.light.danger, 'hover:bg-danger-100/20'],
       },
       // ghost / color
       {
         variant: 'ghost',
         color: 'default',
-        class: [colorVariants.ghost.default, 'hover:bg-border-300'],
+        class: [colorVariants.ghost.default, 'hover:bg-border'],
       },
       {
         variant: 'ghost',
         color: 'primary',
         class: [
           colorVariants.ghost.primary,
-          'hover:bg-primary-400 hover:text-primary-50 dark:hover:bg-primary-600 dark:hover:text-primary-950',
+          'hover:bg-primary hover:text-primary-foreground',
         ],
       },
       {
@@ -254,7 +254,7 @@ const buttonVariants = pv(
         color: 'secondary',
         class: [
           colorVariants.ghost.secondary,
-          'hover:bg-secondary-400 hover:text-secondary-50 dark:hover:bg-secondary-600 dark:hover:text-secondary-950',
+          'hover:bg-secondary hover:text-secondary-foreground',
         ],
       },
       {
@@ -262,7 +262,7 @@ const buttonVariants = pv(
         color: 'success',
         class: [
           colorVariants.ghost.success,
-          'hover:bg-success-400 hover:text-success-950 dark:hover:bg-success-600 dark:hover:text-success-50',
+          'hover:bg-success hover:text-success-foreground',
         ],
       },
       {
@@ -270,7 +270,7 @@ const buttonVariants = pv(
         color: 'warning',
         class: [
           colorVariants.ghost.warning,
-          'hover:bg-warning-400 hover:text-warning-950 dark:hover:bg-warning-600 dark:hover:text-warning-50',
+          'hover:bg-warning hover:text-warning-foreground',
         ],
       },
       {
@@ -278,7 +278,7 @@ const buttonVariants = pv(
         color: 'danger',
         class: [
           colorVariants.ghost.danger,
-          'hover:bg-danger-400 hover:text-danger-50 dark:hover:bg-danger-600 dark:hover:text-danger-950',
+          'hover:bg-danger hover:text-danger-foreground',
         ],
       },
     ] as const,

@@ -35,12 +35,12 @@ const flat = {
 };
 
 const faded = {
-  default: 'border-border bg-border text-foreground',
-  primary: 'border-border bg-border text-primary',
-  secondary: 'border-border bg-border text-secondary',
-  success: 'border-border bg-border text-success',
-  warning: 'border-border bg-border text-warning',
-  danger: 'border-border bg-border text-danger',
+  default: 'border-border bg-border-100 text-foreground',
+  primary: 'border-border bg-border-100 text-primary',
+  secondary: 'border-border bg-border-100 text-secondary',
+  success: 'border-border bg-border-100 text-success',
+  warning: 'border-border bg-border-100 text-warning',
+  danger: 'border-border bg-border-100 text-danger',
 };
 
 const light = {

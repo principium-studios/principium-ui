@@ -18,7 +18,7 @@ const Badge = ({
   ...props
 }: BadgeProps) => {
   const isOneChar = React.useMemo(() => String(children)?.length === 1, [children]);
-  const isDot = React.useMemo(() => String(children)?.length === 0, [children]);
+  const isDot = React.useMemo(() => String(children)?.length === 0 || !children, [children]);
 
   return (
     <Primitive.span
