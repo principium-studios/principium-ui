@@ -6,3 +6,4 @@ export * from './dividerVariants';
 export * from './avatarVariants';
 export * from './tabsVariants';
 export * from './checkboxVariants';
+export * from './labelVariants';

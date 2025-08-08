@@ -9,7 +9,7 @@ import {colorVariants, dataFocusVisibleClasses} from '../utils';
  */
 const buttonVariants = pv(
   [
-    'transition-[background-color, border-color, color, transform, opacity] hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap text-sm font-medium duration-300 [&_svg]:shrink-0',
+    'transition-transform-colors-opacity hover:opacity-97 active:scale-97 relative box-border inline-flex shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap text-sm font-medium [&_svg]:shrink-0',
     ...dataFocusVisibleClasses,
   ],
   {
@@ -46,6 +46,10 @@ const buttonVariants = pv(
       },
       disabled: {
         true: 'pointer-events-none cursor-not-allowed opacity-50',
+      },
+      disableAnimation: {
+        true: ['transition-none', 'data-[pressed=true]:scale-100'],
+        false: ['transition-transform-colors-opacity', 'motion-reduce:transition-none'],
       },
     },
     compoundVariants: [
@@ -244,10 +248,7 @@ const buttonVariants = pv(
       {
         variant: 'ghost',
         color: 'primary',
-        class: [
-          colorVariants.ghost.primary,
-          'hover:bg-primary hover:text-primary-foreground',
-        ],
+        class: [colorVariants.ghost.primary, 'hover:bg-primary hover:text-primary-foreground'],
       },
       {
         variant: 'ghost',
@@ -260,26 +261,17 @@ const buttonVariants = pv(
       {
         variant: 'ghost',
         color: 'success',
-        class: [
-          colorVariants.ghost.success,
-          'hover:bg-success hover:text-success-foreground',
-        ],
+        class: [colorVariants.ghost.success, 'hover:bg-success hover:text-success-foreground'],
       },
       {
         variant: 'ghost',
         color: 'warning',
-        class: [
-          colorVariants.ghost.warning,
-          'hover:bg-warning hover:text-warning-foreground',
-        ],
+        class: [colorVariants.ghost.warning, 'hover:bg-warning hover:text-warning-foreground'],
       },
       {
         variant: 'ghost',
         color: 'danger',
-        class: [
-          colorVariants.ghost.danger,
-          'hover:bg-danger hover:text-danger-foreground',
-        ],
+        class: [colorVariants.ghost.danger, 'hover:bg-danger hover:text-danger-foreground'],
       },
     ] as const,
     defaultVariants: {
@@ -288,6 +280,7 @@ const buttonVariants = pv(
       color: 'default',
       disabled: false,
       radius: 'md',
+      disableAnimation: false,
     },
   },
 );

@@ -1,7 +1,9 @@
 ---
-title: Button
-description: A component that displays a button that allows users to trigger an action.
+title: Divider
+description: A thin line used to separate content in lists and layouts.
 ---
+
+import DividerDemos from '@/content/components/divider';
 
 <ComponentLinks name="Divider" />
 
@@ -10,3 +12,42 @@ description: A component that displays a button that allows users to trigger an 
 ## Installation
 
 <PackageManagers packageName="divider" />
+
+## Usage
+
+<CodeDemo code={DividerDemos.usage} />
+
+## API
+
+<ApiTable
+  data={[
+    {
+      prop: {
+        name: 'orientation',
+        description: 'The orientation of the divider.',
+      },
+      type: {
+        name: 'horizontal | vertical',
+      },
+    },
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {
+        name: '...hrProps',
+        description: 'All native hr element props. (when orientation is horizontal)',
+      },
+      type: {name: '-'},
+    },
+    {
+      prop: {
+        name: '...divProps',
+        description: 'All native div element props. (when orientation is vertical)',
+      },
+      type: {name: '-'},
+    },
+  ]}
+/>

@@ -41,7 +41,9 @@
     "@principium/button": "workspace:*",
     "@principium/card": "workspace:*",
     "@principium/divider": "workspace:*",
-    "@principium/tabs": "workspace:*"
+    "@principium/tabs": "workspace:*",
+    "@principium/checkbox": "workspace:*",
+    "@principium/label": "workspace:*"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",

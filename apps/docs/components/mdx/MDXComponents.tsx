@@ -47,23 +47,23 @@ const ApiTable = ({
   return (
         <div className="not-prose border-border overflow-hidden rounded-lg border">
         <table className="w-full table-fixed">
-          <thead className="bg-card border-border border-b">
+          <thead className="bg-background-50 border-border border-b">
             <tr className="flex">
               <th
                 scope="col"
-                className="flex-1 text-foreground px-4 py-3.5 text-left text-sm font-medium"
+                className="flex-1 text-foreground px-3 py-3.5 text-left text-sm font-medium"
               >
                 Prop
               </th>
               <th
                 scope="col"
-                className="flex-1 text-foreground px-4 py-3.5 text-left text-sm font-medium"
+                className="flex-1 text-foreground px-3 py-3.5 text-left text-sm font-medium"
               >
                 Type
               </th>
               <th
                 scope="col"
-                className="flex-1 text-foreground px-4 py-3.5 text-left text-sm font-medium"
+                className="flex-1 text-foreground px-3 py-3.5 text-left text-sm font-medium"
               >
                 Default
               </th>
@@ -71,9 +71,9 @@ const ApiTable = ({
           </thead>
           <tbody className="divide-border divide-y">
             {data.map((item) => (
-              <tr key={item.prop.name} className="flex hover:bg-card/50">
+              <tr key={item.prop.name} className="flex hover:bg-background-50/50">
                 <td className="flex-1 text-foreground px-3 py-2.5 text-sm font-medium">
-                  <code className="bg-card rounded-md px-1.5 py-0.5 block break-words w-fit">{item.prop.name}</code>
+                  <code className="bg-background-50 rounded-md px-1.5 py-0.5 block break-words w-fit">{item.prop.name}</code>
                 </td>
                 <td className="flex-1 text-muted px-3 py-2.5 text-sm">
                   <span className="block break-words">{item.type?.name || '-'}</span>

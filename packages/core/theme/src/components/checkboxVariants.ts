@@ -14,12 +14,14 @@ import {pv} from '../utils/pv';
 const checkboxVariants = pv(
   {
     base: [
+      'group',
       'relative',
       'inline-flex',
       'items-center',
       'justify-center',
       'shrink-0',
       'overflow-hidden',
+      'cursor-pointer',
       // before
       "before:content-['']",
       'before:absolute',
@@ -27,7 +29,7 @@ const checkboxVariants = pv(
       'before:border-solid',
       'before:border-2',
       'before:box-border',
-      'before:border-default',
+      'before:border-border',
       // after
       "after:content-['']",
       'after:absolute',
@@ -35,35 +37,35 @@ const checkboxVariants = pv(
       'after:scale-50',
       'after:opacity-0',
       'after:origin-center',
-      'group-data-[selected=true]:after:scale-100',
-      'group-data-[selected=true]:after:opacity-100',
+      'data-[selected=true]:after:scale-100',
+      'data-[selected=true]:after:opacity-100',
       // hover
-      'group-hover:before:bg-border-100',
+      'hover:before:bg-border-100',
       // focus ring
       ...dataFocusVisibleClasses,
     ],
-    icon: 'z-10 w-4 h-3 opacity-0 group-data-[selected=true]:opacity-100 pointer-events-none',
+    icon: 'z-10 w-4 h-3 opacity-0 group-data-[selected=true]:opacity-100 pointer-events-none subpixel-antialiased',
   },
   {
     variants: {
       color: {
         default: {
-          base: 'after:bg-border-100 after:text-background-950 text-background-950',
+          base: 'after:bg-border after:text-foreground text-foreground',
         },
         primary: {
-          base: 'after:bg-primary-400 dark:after:bg-primary-600 after:text-primary-950 text-primary-950',
+          base: 'after:bg-primary after:text-primary-foreground text-primary-foreground',
         },
         secondary: {
-          base: 'after:bg-secondary-400 dark:after:bg-secondary-600 after:text-secondary-950 text-secondary-950',
+          base: 'after:bg-secondary after:text-secondary-foreground text-secondary-foreground',
         },
         success: {
-          base: 'after:bg-success-400 dark:after:bg-success-600 after:text-success-950 text-success-950',
+          base: 'after:bg-success after:text-success-foreground text-success-foreground',
         },
         warning: {
-          base: 'after:bg-warning-400 dark:after:bg-warning-600 after:text-warning-950 text-warning-950',
+          base: 'after:bg-warning after:text-warning-foreground text-warning-foreground',
         },
         danger: {
-          base: 'after:bg-danger-400 dark:after:bg-danger-600 after:text-danger-950 text-danger-950',
+          base: 'after:bg-danger after:text-danger-foreground text-danger-foreground',
         },
       },
       size: {
@@ -110,7 +112,7 @@ const checkboxVariants = pv(
         false: {
           base: [
             'before:transition-colors',
-            'group-active:scale-95',
+            'group-data-[disabled=false]:group-active:scale-95',
             'transition-transform',
             'after:transition-transform-opacity',
             'after:ease-linear',
@@ -125,6 +127,7 @@ const checkboxVariants = pv(
       color: 'primary',
       size: 'md',
       isDisabled: false,
+      disableAnimation: false,
     },
   },
 );

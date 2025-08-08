@@ -3,6 +3,8 @@ title: Checkbox
 description: A control that allows the user to select options.
 ---
 
+import CheckboxDemos from '@/content/components/checkbox';
+
 <ComponentLinks name="Checkbox" />
 
 ---
@@ -10,4 +12,82 @@ description: A control that allows the user to select options.
 ## Installation 
 
 <PackageManagers packageName="checkbox" />
+
+## Usage
+
+<CodeDemo code={CheckboxDemos.usage} />
+
+### Disabled
+
+<CodeDemo code={CheckboxDemos.disabled} />
+
+### Sizes
+
+<CodeDemo code={CheckboxDemos.sizes} />
+
+### Colors
+
+<CodeDemo code={CheckboxDemos.colors} />
+
+### Radius
+
+<CodeDemo code={CheckboxDemos.radius} />
+
+### Controlled
+
+<CodeDemo code={CheckboxDemos.controlled} />
+
+## API
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'checked', description: 'Controls the selected state of the checkbox.'},
+      type: {name: 'boolean'},
+    },
+    {
+      prop: {name: 'defaultChecked', description: 'Initial selected state when uncontrolled.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'onCheckedChange', description: 'Handler called when the checked state changes.'},
+      type: {name: '(checked: boolean) => void'},
+    },
+    {
+      prop: {name: 'disabled', description: 'Disables the checkbox.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'disableAnimation', description: 'Disables the built-in animations.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'color', description: 'Controls the color of the checkbox.'},
+      type: {name: "'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'"},
+      default: 'primary',
+    },
+    {
+      prop: {name: 'size', description: 'Controls the size of the checkbox.'},
+      type: {name: "'sm' | 'md' | 'lg'"},
+      default: 'md',
+    },
+    {
+      prop: {name: 'radius', description: 'Controls the border radius of the checkbox.'},
+      type: {name: "'none' | 'sm' | 'md' | 'lg' | 'full'"},
+      default: 'md',
+    },
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...buttonProps', description: 'All native button element props.'},
+      type: {name: '-'},
+    },
+  ]}
+/>
 

@@ -1,5 +1,8 @@
 import type {Themes} from './types';
 
+import {DEFAULT_TRANSITION_DURATION} from './utils';
+import transition from './utils/transition';
+
 import plugin from 'tailwindcss/plugin.js';
 
 // lightness maps for the shades
@@ -58,8 +61,8 @@ const PRINCIPIUM_DEFAULTS: Themes = {
     mode: 'flipped',
     colors: {
       // Core colors
-      background: {hue: 220, saturation: 15, lightness: 5, foreground: {lightness: 95}},
-      card: {hue: 220, saturation: 15, lightness: 10, foreground: {lightness: 95}},
+      background: {hue: 220, saturation: 15, lightness: 2, foreground: {lightness: 95}},
+      card: {hue: 220, saturation: 15, lightness: 6, foreground: {lightness: 95}},
       muted: {hue: 220, saturation: 15, lightness: 50, generateShades: false},
 
       // Brand colors
@@ -238,9 +241,12 @@ export const shadesPlugin = <T extends Themes>(opts: {
   }
 
   return plugin(
-    ({addBase}) => {
+    ({addBase, addUtilities}) => {
       // Add the baseVars to the CSS
       addBase(baseVars);
+
+      // Add the transition utilities
+      addUtilities(transition);
     },
     {
       theme: {
@@ -260,6 +266,12 @@ export const shadesPlugin = <T extends Themes>(opts: {
           },
           opacity: {
             disabled: 0.5,
+          },
+          transitionDuration: {
+            0: '0ms',
+            250: '250ms',
+            400: '400ms',
+            DEFAULT: DEFAULT_TRANSITION_DURATION,
           },
         },
       },

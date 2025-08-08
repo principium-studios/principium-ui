@@ -23,6 +23,7 @@ const Button = ({
   disabled,
   asChild,
   radius,
+  disableAnimation,
   ...props
 }: ButtonProps) => {
   const content = useInsertChildren(asChild, children, <Ripple />);
@@ -33,7 +34,15 @@ const Button = ({
         {...props}
         aria-disabled={disabled}
         asChild={asChild}
-        className={buttonVariants({variant, size, color, disabled, className, radius})}
+        className={buttonVariants({
+          variant,
+          size,
+          color,
+          disabled,
+          className,
+          radius,
+          disableAnimation,
+        })}
         disabled={disabled}
         onClick={(e) => {
           if (disabled) return;
