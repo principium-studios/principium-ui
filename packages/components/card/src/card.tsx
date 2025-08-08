@@ -86,7 +86,7 @@ const CardDescription = ({className, ...props}: CardDescriptionProps) => {
 // ________________________ CardContent ________________________
 type CardContentProps = React.ComponentPropsWithRef<'div'>;
 const CardContent = ({className, ...props}: CardContentProps) => {
-  return <div className={cardVariants.body({className})} {...props} />;
+  return <div className={cardVariants.content({className})} {...props} />;
 };
 
 // ________________________ CardFooter ________________________

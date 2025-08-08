@@ -1,16 +1,19 @@
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@principium/react';
+import {Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter} from '@principium/react';
 
 function App() {
   return (
-    <div className="max-w-md">
+    <div className="w-full max-w-sm">
       <Card>
         <CardHeader>
           <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card description goes here</CardDescription>
+          <CardDescription>Card Description</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This is the card content. You can put any content here.</p>
+          <p>Card Content</p>
         </CardContent>
+        <CardFooter>
+          <p>Card Footer</p>
+        </CardFooter>
       </Card>
     </div>
   );

@@ -17,33 +17,33 @@ import CardDemos from '@/content/components/card';
 
 <CodeDemo code={CardDemos.usage} />
 
-### Shadows
+### With Divider
 
-<CodeDemo code={CardDemos.shadows} />
+<CodeDemo code={CardDemos.withDivider} />
 
-### Radius
+### With Image
 
-<CodeDemo code={CardDemos.radius} />
+<CodeDemo code={CardDemos.withImage} />
 
-### Pressable
+### Blurred Footer
 
-<CodeDemo code={CardDemos.pressable} />
+You can pass the `isBlurred` prop to the footer to blur it.
 
-### Hoverable
+<CodeDemo code={CardDemos.blurredFooter} />
 
-<CodeDemo code={CardDemos.hoverable} />
+### Composition
 
-### Blurred
+<CodeDemo code={CardDemos.composition} />
 
-<CodeDemo code={CardDemos.blurred} />
+### Primary Action
 
-### With Footer
+If you pass the `isPressable` prop to the card, it will be rendered as a button.
 
-<CodeDemo code={CardDemos.withFooter} />
+<CodeDemo code={CardDemos.primaryAction} />
 
-### Complex Example
+### Cover Image
 
-<CodeDemo code={CardDemos.complex} />
+<CodeDemo code={CardDemos.coverImage} />
 
 ## API
 
@@ -52,92 +52,155 @@ import CardDemos from '@/content/components/card';
 <ApiTable
   data={[
     {
-      prop: { name: 'shadow', description: 'Controls the shadow level of the card.' },
-      type: { name: '"none" | "sm" | "md" | "lg"' },
+      prop: {name: 'shadow', description: 'Controls the shadow level of the card.'},
+      type: {name: '"none" | "sm" | "md" | "lg"'},
       default: '"sm"',
     },
     {
-      prop: { name: 'radius', description: 'Controls the border radius of the card.' },
-      type: { name: '"none" | "sm" | "md" | "lg"' },
+      prop: {name: 'radius', description: 'Controls the border radius of the card.'},
+      type: {name: '"none" | "sm" | "md" | "lg"'},
       default: '"md"',
     },
     {
-      prop: { name: 'isPressable', description: 'Makes the card pressable and adds cursor pointer.' },
-      type: { name: 'boolean' },
+      prop: {name: 'isPressable', description: 'Makes the card pressable and adds cursor pointer.'},
+      type: {name: 'boolean'},
       default: 'false',
     },
     {
-      prop: { name: 'isHoverable', description: 'Adds hover effects to the card.' },
-      type: { name: 'boolean' },
+      prop: {name: 'isHoverable', description: 'Adds hover effects to the card.'},
+      type: {name: 'boolean'},
       default: 'false',
     },
     {
-      prop: { name: 'isBlurred', description: 'Adds a blur backdrop effect to the card.' },
-      type: { name: 'boolean' },
+      prop: {name: 'isBlurred', description: 'Adds a blur backdrop effect to the card.'},
+      type: {name: 'boolean'},
       default: 'false',
     },
     {
-      prop: { name: 'disabled', description: 'Disables the card (when pressable).' },
-      type: { name: 'boolean' },
+      prop: {name: 'disabled', description: 'Disables the card (when pressable).'},
+      type: {name: 'boolean'},
       default: 'false',
     },
     {
-      prop: { name: 'disableRipple', description: 'Disables the ripple effect (when pressable).' },
-      type: { name: 'boolean' },
+      prop: {name: 'disableRipple', description: 'Disables the ripple effect (when pressable).'},
+      type: {name: 'boolean'},
       default: 'false',
     },
     {
-      prop: { name: 'asChild', description: 'Renders the component as a child element.' },
-      type: { name: 'boolean' },
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
       default: 'false',
     },
     {
-      prop: { name: '...divProps', description: 'All native div element props (when not pressable).' },
-      type: { name: '-' },
+      prop: {
+        name: '...divProps',
+        description: 'All native div element props (when not pressable).',
+      },
+      type: {name: '-'},
     },
     {
-      prop: { name: '...buttonProps', description: 'All native button element props (when pressable).' },
-      type: { name: '-' },
+      prop: {
+        name: '...buttonProps',
+        description: 'All native button element props (when pressable).',
+      },
+      type: {name: '-'},
     },
   ]}
 />
 
 ### CardHeader
 
-This is a primitive div element that accepts:
-
-- All native `div` element props
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {
+        name: '...divProps',
+        description: 'All native div element props (when not pressable).',
+      },
+      type: {name: '-'},
+    },
+  ]}
+/>
 
 ### CardTitle
 
-This is a primitive div element that accepts:
-
-- All native `div` element props
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {
+        name: '...divProps',
+        description: 'All native div element props (when not pressable).',
+      },
+      type: {name: '-'},
+    },
+  ]}
+/>
 
 ### CardDescription
 
-This is a primitive div element that accepts:
-
-- All native `div` element props
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {
+        name: '...divProps',
+        description: 'All native div element props (when not pressable).',
+      },
+      type: {name: '-'},
+    },
+  ]}
+/>
 
 ### CardContent
 
-This is a primitive div element that accepts:
-
-- All native `div` element props
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {
+        name: '...divProps',
+        description: 'All native div element props (when not pressable).',
+      },
+      type: {name: '-'},
+    },
+  ]}
+/>
 
 ### CardFooter
 
 <ApiTable
   data={[
     {
-      prop: { name: 'isBlurred', description: 'Adds a blur backdrop effect to the footer.' },
-      type: { name: 'boolean' },
+      prop: {name: 'isBlurred', description: 'Adds a blur backdrop effect to the footer.'},
+      type: {name: 'boolean'},
       default: 'false',
     },
     {
-      prop: { name: '...divProps', description: 'All native div element props.' },
-      type: { name: '-' },
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...divProps', description: 'All native div element props.'},
+      type: {name: '-'},
     },
   ]}
 />

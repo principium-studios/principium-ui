@@ -1,19 +1,17 @@
 import usage from './usage.raw.jsx?raw';
-import shadows from './shadows.raw.jsx?raw';
-import radius from './radius.raw.jsx?raw';
-import pressable from './pressable.raw.jsx?raw';
-import hoverable from './hoverable.raw.jsx?raw';
-import blurred from './blurred.raw.jsx?raw';
-import withFooter from './withFooter.raw.jsx?raw';
-import complex from './complex.raw.jsx?raw';
+import withDivider from './withDivider.jsx?raw';
+import withImage from './withImage.raw.jsx?raw';
+import blurredFooter from './blurredFooter.raw.jsx?raw';
+import composition from './composition.raw.jsx?raw';
+import primaryAction from './primaryAction.raw.jsx?raw';
+import coverImage from './coverImage.raw.jsx?raw';
 
 export default {
   usage,
-  shadows,
-  radius,
-  pressable,
-  hoverable,
-  blurred,
-  withFooter,
-  complex,
+  withDivider,
+  withImage,
+  blurredFooter,
+  composition,
+  primaryAction,
+  coverImage,
 };

@@ -10,7 +10,7 @@ import {dataFocusVisibleClasses} from '../utils';
  *      <div className={cardVariants.title({...})}>Title</div>
  *      <div className={cardVariants.description({...})}>Description</div>
  *    </div>
- *    <div className={cardVariants.body({...})}>Body</div>
+ *    <div className={cardVariants.content({...})}>Content</div>
  *    <div className={cardVariants.footer({...})}>
  *      Footer
  *    </div>
@@ -19,14 +19,14 @@ import {dataFocusVisibleClasses} from '../utils';
 const cardVariants = pv(
   {
     base: [
-      'shadow-border-300/50 border border-border-300 flex flex-col relative overflow-hidden text-background-950 box-border bg-background-100 transition-all',
+      'shadow-border-200/50 border border-border flex flex-col relative overflow-hidden text-foreground box-border bg-card transition-all',
       ...dataFocusVisibleClasses,
     ],
-    header: 'flex p-3 z-10 w-full shrink-0 overflow-inherit color-inherit subpixel-antialiased',
-    title: 'font-semibold leading-none',
-    description: 'text-background-600 text-sm',
-    body: 'relative flex w-full p-3 flex-auto flex-col break-words text-left overflow-y-auto subpixel-antialiased',
+    header: 'flex flex-col gap-1.5 p-3 z-10 w-full shrink-0 overflow-inherit color-inherit subpixel-antialiased',
+    content: 'relative p-3 flex-col break-words subpixel-antialiased',
     footer: 'p-3 flex w-full items-center overflow-hidden color-inherit subpixel-antialiased',
+    title: 'font-semibold leading-none',
+    description: 'text-muted text-sm',
   },
   {
     variants: {
@@ -35,13 +35,13 @@ const cardVariants = pv(
           base: 'shadow-none',
         },
         sm: {
-          base: 'shadow-small',
+          base: 'shadow-sm',
         },
         md: {
-          base: 'shadow-medium',
+          base: 'shadow-md',
         },
         lg: {
-          base: 'shadow-large',
+          base: 'shadow-lg',
         },
       },
       radius: {
@@ -60,7 +60,7 @@ const cardVariants = pv(
       },
       isHoverable: {
         true: {
-          base: 'hover:bg-background-200 dark:hover:bg-background-800',
+          base: 'hover:bg-card-100',
         },
       },
       isPressable: {
@@ -68,12 +68,12 @@ const cardVariants = pv(
       },
       isBlurred: {
         true: {
-          base: 'bg-background-100/80 dark:bg-background-100/20 backdrop-blur-md backdrop-saturate-150',
+          base: 'bg-card-100/80 backdrop-blur-md backdrop-saturate-150',
         },
       },
       isFooterBlurred: {
         true: {
-          footer: 'bg-background-100/10 backdrop-blur backdrop-saturate-150',
+          footer: 'bg-card-100/10 backdrop-blur backdrop-saturate-150',
         },
       },
       disabled: {

@@ -33,7 +33,7 @@ const FeaturesGrid = ({features}: {features: Feature[]}) => {
           onClick={() => handleClick(feature)}
       
         >
-          <CardHeader className="gap-2 items-center">
+          <CardHeader className="gap-2 items-center flex-row">
             <div className="bg-secondary-100 flex items-center justify-center rounded-full p-2">
               {feature.icon}
             </div>

@@ -6,7 +6,7 @@ import {pv} from '../utils/pv';
  * @example
  * <hr className={dividerVariants({...})} />
  */
-const dividerVariants = pv('bg-border-300 shrink-0 border-none', {
+const dividerVariants = pv('bg-border shrink-0 border-none', {
   variants: {
     orientation: {
       horizontal: 'h-px w-full',
