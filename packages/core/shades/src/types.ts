@@ -1,25 +1,3 @@
-type ColorKey =
-  // Core colors
-  | 'background'
-  | 'foreground'
-  | 'card'
-  | 'popover'
-  | 'muted'
-
-  // Brand colors
-  | 'primary'
-  | 'secondary'
-
-  // State colors
-  | 'destructive'
-  | 'success'
-  | 'warning'
-
-  // Utility colors
-  | 'border'
-  | 'input'
-  | 'ring';
-
 interface ForegroundColor {
   lightness: number;
 }

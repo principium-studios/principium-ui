@@ -4,6 +4,8 @@ import {clsx} from 'clsx';
 
 import {twMerge} from './twMerge';
 
-export function cn(...args: ClassValue[]) {
+function cn(...args: ClassValue[]) {
   return twMerge(clsx(args));
 }
+
+export {cn};

@@ -1,11 +1,13 @@
 'use client';
 
+import type {SlotParams} from '@principium/variants';
+import type {PrimitiveProps} from '@principium/primitive';
+
 import React from 'react';
 import {createContext} from '@principium/context';
 import {alertVariants} from '@principium/theme';
 import {Slot} from '@principium/slot';
-import {SlotParams} from '@principium/variants';
-import {Primitive, PrimitiveProps} from '@principium/primitive';
+import {Primitive} from '@principium/primitive';
 
 type AlertContextType = Pick<SlotParams<typeof alertVariants.base>, 'variant' | 'color'>;
 const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
@@ -34,7 +36,9 @@ type AlertDescriptionProps = PrimitiveProps<'p'>;
 const AlertDescription = ({className, ...props}: AlertDescriptionProps) => {
   const {variant, color} = useAlert();
 
-  return <Primitive.p className={alertVariants.description({variant, color, className})} {...props} />;
+  return (
+    <Primitive.p className={alertVariants.description({variant, color, className})} {...props} />
+  );
 };
 
 // ________________________ AlertIcon ________________________

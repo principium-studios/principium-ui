@@ -27,11 +27,9 @@ const Portal = ({container: containerProp, ...props}: PortalProps) => {
 
   // If no containerProp is provided, we use the document.body
   const container = containerProp || (mounted && globalThis?.document?.body);
+
   return container ? createPortal(<Primitive.div {...props} />, container) : null;
 };
 
-export {
-  Portal,
-  //
-  PortalProps,
-};
+export {Portal};
+export type {PortalProps};

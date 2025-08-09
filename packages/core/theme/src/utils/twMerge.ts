@@ -6,4 +6,6 @@ const twMergeConfig = {
   },
 };
 
-export const twMerge = extendTailwindMerge({extend: twMergeConfig});
+const twMerge = extendTailwindMerge({extend: twMergeConfig});
+
+export {twMerge};

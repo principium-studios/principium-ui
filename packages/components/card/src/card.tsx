@@ -1,10 +1,9 @@
 'use client';
 
-import React from 'react';
-
 import type {SlotParams} from '@principium/variants';
 import type {PrimitiveProps} from '@principium/primitive';
 
+import React from 'react';
 import {Ripple, RippleProvider} from '@principium/ripple';
 import {cardVariants} from '@principium/theme';
 import {Primitive} from '@principium/primitive';
@@ -97,14 +96,8 @@ const CardFooter = ({className, isBlurred, ...props}: CardFooterProps) => {
   );
 };
 
-export {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-  //
+export {Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter};
+export type {
   CardProps,
   CardHeaderProps,
   CardTitleProps,

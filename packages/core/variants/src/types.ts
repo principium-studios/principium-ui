@@ -184,7 +184,7 @@ type PVOptions<
   defaultVariants?: DV;
 };
 
-export {
+export type {
   // Helper Types
   ClassValue,
   VariantOptions,

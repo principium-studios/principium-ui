@@ -1,5 +1,6 @@
-import {shadesPlugin} from '@principium/shades';
 import type {Config} from 'tailwindcss';
+
+import {shadesPlugin} from '@principium/shades';
 
 const config: Config = {
   content: ['./node_modules/@principium/theme/dist/**/*.{js,ts,jsx,tsx}'],

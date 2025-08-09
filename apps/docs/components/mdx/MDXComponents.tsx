@@ -1,13 +1,14 @@
 import React from 'react';
-import Community from '../marketing/Community';
-import Overview from '@/content/components/overview';
 import * as PrincipiumComponents from '@principium/react';
 import Image from 'next/image';
+
+import Community from '../marketing/Community';
 import ComponentLinks from '../docs/ComponentLinks';
 import PackageManagers from '../docs/PackageManagers';
 import {CodeDemo} from '../demo/CodeDemo';
 import SyntaxHighlighter from '../demo/SyntaxHighlighter';
 
+import Overview from '@/content/components/overview';
 
 export interface LinkedHeadingProps {
   as: keyof React.JSX.IntrinsicElements;
@@ -45,44 +46,46 @@ const ApiTable = ({
   }[];
 }) => {
   return (
-        <div className="not-prose border-border overflow-hidden rounded-lg border">
-        <table className="w-full table-fixed">
-          <thead className="bg-background-50 border-border border-b">
-            <tr className="flex">
-              <th
-                scope="col"
-                className="flex-1 text-foreground px-3 py-3.5 text-left text-sm font-medium"
-              >
-                Prop
-              </th>
-              <th
-                scope="col"
-                className="flex-1 text-foreground px-3 py-3.5 text-left text-sm font-medium"
-              >
-                Type
-              </th>
-              <th
-                scope="col"
-                className="flex-1 text-foreground px-3 py-3.5 text-left text-sm font-medium"
-              >
-                Default
-              </th>
+    <div className="not-prose border-border overflow-hidden rounded-lg border">
+      <table className="w-full table-fixed">
+        <thead className="bg-background-50 border-border border-b">
+          <tr className="flex">
+            <th
+              className="text-foreground flex-1 px-3 py-3.5 text-left text-sm font-medium"
+              scope="col"
+            >
+              Prop
+            </th>
+            <th
+              className="text-foreground flex-1 px-3 py-3.5 text-left text-sm font-medium"
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              className="text-foreground flex-1 px-3 py-3.5 text-left text-sm font-medium"
+              scope="col"
+            >
+              Default
+            </th>
+          </tr>
+        </thead>
+        <tbody className="divide-border divide-y">
+          {data.map((item) => (
+            <tr key={item.prop.name} className="hover:bg-background-50/50 flex">
+              <td className="text-foreground flex-1 px-3 py-2.5 text-sm font-medium">
+                <code className="bg-background-50 block w-fit break-words rounded-md px-1.5 py-0.5">
+                  {item.prop.name}
+                </code>
+              </td>
+              <td className="text-muted flex-1 px-3 py-2.5 text-sm">
+                <span className="block break-words">{item.type?.name || '-'}</span>
+              </td>
+              <td className="text-muted flex-1 px-3 py-2.5 text-sm">
+                <span className="block break-words">{item.default || '-'}</span>
+              </td>
             </tr>
-          </thead>
-          <tbody className="divide-border divide-y">
-            {data.map((item) => (
-              <tr key={item.prop.name} className="flex hover:bg-background-50/50">
-                <td className="flex-1 text-foreground px-3 py-2.5 text-sm font-medium">
-                  <code className="bg-background-50 rounded-md px-1.5 py-0.5 block break-words w-fit">{item.prop.name}</code>
-                </td>
-                <td className="flex-1 text-muted px-3 py-2.5 text-sm">
-                  <span className="block break-words">{item.type?.name || '-'}</span>
-                </td>
-                <td className="flex-1 text-muted px-3 py-2.5 text-sm">
-                  <span className="block break-words">{item.default || '-'}</span>
-                </td>
-              </tr>
-            ))}
+          ))}
         </tbody>
       </table>
     </div>

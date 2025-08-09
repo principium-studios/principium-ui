@@ -1,11 +1,14 @@
 'use client';
 
+import type {LinkProps} from 'next/link';
+
 import {Card, CardHeader, CardTitle, CardContent, Divider} from '@principium/react';
 import Image from 'next/image';
 import React from 'react';
-import Link, {LinkProps} from 'next/link';
-import {useOverviewGroup} from './Group';
+import Link from 'next/link';
 import {useLayoutEffect} from '@principium/use-layout-effect';
+
+import {useOverviewGroup} from './Group';
 import {useQueryCtx} from './Wrapper';
 
 export default function OverviewComponent({
@@ -21,7 +24,9 @@ export default function OverviewComponent({
 
   useLayoutEffect(() => {
     const setIsVisibleItem = subscribeItem(itemId);
+
     setIsVisible.current = setIsVisibleItem;
+
     return () => {
       setIsVisibleItem(false);
       setIsVisible.current = null;
@@ -37,7 +42,7 @@ export default function OverviewComponent({
   const isVisible = fuzzyRegex.test(title);
 
   return (
-    <Card asChild isPressable={true} className={isVisible ? '' : 'hidden'}>
+    <Card asChild className={isVisible ? '' : 'hidden'} isPressable={true}>
       <Link {...props}>
         <CardHeader className="py-2">
           <CardTitle className="text-background-800 text-sm font-normal">{title}</CardTitle>
@@ -45,11 +50,11 @@ export default function OverviewComponent({
         <Divider />
         <CardContent className="relative flex items-center justify-center text-xs">
           <Image
-            src={img}
             alt={title}
-            width={100}
-            height={75}
             className="before:-translate-1/2 before:absolute before:left-1/2 before:top-1/2"
+            height={75}
+            src={img}
+            width={100}
           />
         </CardContent>
       </Link>

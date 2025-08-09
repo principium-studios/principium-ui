@@ -1,6 +1,4 @@
-import {twMerge as twMergeFn} from 'tailwind-merge';
-import {clsx} from 'clsx';
-import {
+import type {
   ClassValue,
   CompoundVariants,
   DefaultVariants,
@@ -12,6 +10,9 @@ import {
   VariantOptions,
   Variants,
 } from './types';
+
+import {twMerge as twMergeFn} from 'tailwind-merge';
+import {clsx} from 'clsx';
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- Helper Functions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 function isSingleSlot(slots: Slots): slots is SingleSlot {
@@ -29,7 +30,7 @@ function normalizeVariantValue(value: unknown): string | undefined {
 /**
  * Checks if compound Variant is a list and not a map
  */
-export function validateOptions<
+function validateOptions<
   S extends Slots,
   V extends Variants<S>,
   DV extends DefaultVariants<S, V>,
@@ -74,7 +75,7 @@ function validateVariantProps<S extends Slots, V extends Variants<S>>(
  * Evaluates which compound variant classes should apply based on the selected variants
  * and the current rendering slot
  */
-export function evaluateCompoundVariants<
+function evaluateCompoundVariants<
   S extends Slots,
   V extends Variants<S>,
   CV extends CompoundVariants<S, V>,
@@ -122,7 +123,7 @@ export function evaluateCompoundVariants<
 /**
  * Gets the variant class for a specific slot
  */
-export function getVariantClass<S extends Slots>(
+function getVariantClass<S extends Slots>(
   slotName: keyof S | null,
   variantValue: unknown,
 ): ClassValue {
@@ -141,7 +142,7 @@ export function getVariantClass<S extends Slots>(
 /**
  * Evaluates and collects the classes for the currently picked variant options for a specific slot.
  */
-export function evaluateVariantClasses<S extends Slots, V extends Variants<S>>(
+function evaluateVariantClasses<S extends Slots, V extends Variants<S>>(
   pickedVariants: VariantOptions<V>,
   variants: V,
   slotName: keyof S | null,
@@ -172,7 +173,7 @@ export function evaluateVariantClasses<S extends Slots, V extends Variants<S>>(
 /**
  * Creates a slot function
  */
-export function createSlotFunction<
+function createSlotFunction<
   S extends Slots,
   V extends Variants<S>,
   CV extends CompoundVariants<S, V>,
@@ -199,6 +200,7 @@ export function createSlotFunction<
 
     if (options.variants) {
       const variantClasses = evaluateVariantClasses(pickedVariants, options.variants, slotName);
+
       classes.push(variantClasses);
     }
 
@@ -208,6 +210,7 @@ export function createSlotFunction<
         options.compoundVariants,
         slotName,
       );
+
       classes.push(compoundClasses);
     }
 
@@ -217,7 +220,7 @@ export function createSlotFunction<
 
 // _________________________________________ Overloads _________________________________________
 
-export function pvBase<
+function pvBase<
   S extends Slots,
   V extends Variants<S>,
   CV extends CompoundVariants<S, V>,
@@ -256,7 +259,7 @@ export function pvBase<
   return slotFunctions as any;
 }
 
-export function createPv(twMerge: typeof twMergeFn) {
+function createPv(twMerge: typeof twMergeFn) {
   return <
     S extends Slots = undefined,
     V extends Variants<S> = {},
@@ -268,4 +271,6 @@ export function createPv(twMerge: typeof twMergeFn) {
   ) => pvBase(twMerge, slots, options);
 }
 
-export const pv = createPv(twMergeFn);
+const pv = createPv(twMergeFn);
+
+export {pv, createPv, evaluateCompoundVariants, evaluateVariantClasses,getVariantClass};

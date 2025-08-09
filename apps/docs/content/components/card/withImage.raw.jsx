@@ -3,18 +3,18 @@ import {Card, CardHeader, CardTitle, CardDescription, CardContent} from '@princi
 function App() {
   return (
     <Card className="py-4">
-      <CardHeader className="pb-0 pt-2 px-4 items-start gap-0.5">
-        <p className="text-xs uppercase font-bold text-foreground">Daily Mix</p>
+      <CardHeader className="items-start gap-0.5 px-4 pb-0 pt-2">
+        <p className="text-foreground text-xs font-bold uppercase">Daily Mix</p>
         <CardDescription>12 Tracks</CardDescription>
-        <CardTitle className="font-bold text-large">Frontend Radio</CardTitle>
+        <CardTitle className="text-large font-bold">Frontend Radio</CardTitle>
       </CardHeader>
       <CardContent className="overflow-visible py-2">
         <img
           alt="Card artwork"
-          className="object-cover rounded-xl"
+          className="rounded-xl object-cover"
+          height={180}
           src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=540&auto=format&fit=crop&q=60"
           width={270}
-          height={180}
         />
       </CardContent>
     </Card>
@@ -22,5 +22,3 @@ function App() {
 }
 
 export default App;
-
-

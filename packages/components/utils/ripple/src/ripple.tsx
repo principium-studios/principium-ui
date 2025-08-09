@@ -91,9 +91,5 @@ const Ripple = ({className, color = 'currentColor', style, motionProps}: RippleP
   );
 };
 
-export {
-  Ripple,
-  RippleProvider,
-  //
-  RippleProps,
-};
+export {Ripple, RippleProvider};
+export type {RippleProps};

@@ -43,22 +43,22 @@ const AvatarImage = ({
 
   return (
     <Primitive.img
+      ref={ref}
       alt={alt}
       className={avatarVariants.img({className, radius})}
       src={src}
-      onLoad={(e) => {
-        if (imgRef.current) {
-          imgRef.current.setAttribute('data-loaded', 'true');
-        }
-        onLoad?.(e);
-      }}
       onError={(e) => {
         if (imgRef.current) {
           imgRef.current.setAttribute('data-loaded', 'false');
         }
         onError?.(e);
       }}
-      ref={ref}
+      onLoad={(e) => {
+        if (imgRef.current) {
+          imgRef.current.setAttribute('data-loaded', 'true');
+        }
+        onLoad?.(e);
+      }}
       {...props}
     />
   );
@@ -68,7 +68,9 @@ const AvatarImage = ({
 type AvatarFallbackProps = PrimitiveProps<'span'>;
 const AvatarFallback = ({className, ...props}: AvatarFallbackProps) => {
   const {radius} = useAvatarVariant();
+
   return <Primitive.span className={avatarVariants.fallback({className, radius})} {...props} />;
 };
 
 export {Avatar, AvatarImage, AvatarFallback};
+export type {AvatarProps, AvatarImageProps, AvatarFallbackProps};

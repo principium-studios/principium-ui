@@ -1,8 +1,8 @@
-import { Button } from '@principium/react';
+import {Button} from '@principium/react';
 
 function App() {
   return (
-    <div className="flex gap-3 items-center">
+    <div className="flex items-center gap-3">
       <Button>Button</Button>
     </div>
   );

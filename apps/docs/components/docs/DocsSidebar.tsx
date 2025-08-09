@@ -1,6 +1,7 @@
 'use client';
 
-import {Route} from '@/types';
+import type {Route} from '@/types';
+
 import {CaretDownIcon} from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
@@ -17,23 +18,24 @@ const Collapsible = ({category}: {category: Route}) => {
         isOpen ? 'grid-rows-[max-content_1fr]' : 'grid-rows-[max-content_0fr]'
       }`}
     >
-      <button onClick={() => setIsOpen(!isOpen)} className="flex cursor-pointer items-center gap-2">
+      <button className="flex cursor-pointer items-center gap-2" onClick={() => setIsOpen(!isOpen)}>
         <CaretDownIcon
-          size={16}
           className={`transition-transform duration-150 ${isOpen ? '' : '-rotate-90'}`}
+          size={16}
         />
         {category.title}
       </button>
       <ul className="flex flex-col gap-2 overflow-hidden transition-colors">
         {category.routes?.map((route) => {
           const isSelected = pathName == `/docs/${category.key}/${route.key}`;
+
           return (
             <li
               key={route.key}
               className={`${isSelected ? 'text-primary' : 'text-muted'} ml-8 flex items-center gap-6 transition-all active:opacity-75`}
             >
               {route.key !== 'overview' && (
-                <span className="bg-muted h-1 w-1 shrink-0 rounded-full"></span>
+                <span className="bg-muted h-1 w-1 shrink-0 rounded-full" />
               )}
               <Link href={`/docs/${category.key}/${route.key}`}>{route.title}</Link>
             </li>
@@ -56,7 +58,9 @@ const DocsSidebar = ({routes}: {routes: Route[]}) => {
               route.key === 'components'
                 ? [
                     route.routes?.[0]!,
-                    ...(route.routes?.slice(1).toSorted((a, b) => a.title?.localeCompare(b.title ?? '') ?? 0) ?? []),
+                    ...(route.routes
+                      ?.slice(1)
+                      .toSorted((a, b) => a.title?.localeCompare(b.title ?? '') ?? 0) ?? []),
                   ]
                 : route.routes,
           }}

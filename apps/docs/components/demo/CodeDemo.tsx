@@ -2,9 +2,10 @@
 
 import {Tabs, TabsList, TabsTrigger, TabsContent, Button} from '@principium/react';
 import React from 'react';
+import {ClipboardIcon} from '@phosphor-icons/react/dist/ssr';
+
 import LiveCodePreview from './LiveCodePreview';
 import SyntaxHighlighter from './SyntaxHighlighter';
-import {ClipboardIcon} from '@phosphor-icons/react/dist/ssr';
 
 const IMPORTS_EXPORTS_REGEX = {
   // This regex matches single-line and multi-line (wrapped) import statements.
@@ -33,20 +34,20 @@ const CodeDemo = React.memo(({code}: CodeDemoProps) => {
 
   return (
     <Tabs defaultValue="preview" variant="underlined">
-      <div className="not-prose flex flex-col gap-2 group">
+      <div className="not-prose group flex flex-col gap-2">
         <TabsList className="w-fit">
           <TabsTrigger value="preview">Preview</TabsTrigger>
           <TabsTrigger value="code">Code</TabsTrigger>
         </TabsList>
         <TabsContent
+          className="border-border bg-border/10 flex h-fit min-h-64 items-center justify-center rounded-lg border p-4"
           value="preview"
-          className="border-border bg-border/10 min-h-64 h-fit flex items-center justify-center rounded-lg border p-4"
         >
           <LiveCodePreview code={cleanCode} />
         </TabsContent>
         <TabsContent
-          value="code"
           className="bg-border h-110 relative overflow-hidden rounded-lg border border-transparent"
+          value="code"
         >
           <div className="absolute right-2 top-2 z-20 hidden items-center justify-center gap-0 bg-transparent opacity-0 transition-opacity group-hover:opacity-100 md:flex">
             <Button
@@ -59,7 +60,7 @@ const CodeDemo = React.memo(({code}: CodeDemoProps) => {
               <ClipboardIcon size={16} />
             </Button>
           </div>
-          <div className="overflow-auto p-4 h-full">
+          <div className="h-full overflow-auto p-4">
             <SyntaxHighlighter code={cleanCode} language="jsx" showClipboard={false} />
           </div>
         </TabsContent>
@@ -67,5 +68,7 @@ const CodeDemo = React.memo(({code}: CodeDemoProps) => {
     </Tabs>
   );
 });
+
+CodeDemo.displayName = 'CodeDemo';
 
 export {CodeDemo};

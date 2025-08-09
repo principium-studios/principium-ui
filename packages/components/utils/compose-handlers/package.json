@@ -48,5 +48,5 @@
     "typescript": "^5.5.2",
     "clean-package": "^2.2.0"
   },
-  "clean-package": "../../../clean-package.config.json"
+  "clean-package": "../../../../clean-package.config.json"
 }

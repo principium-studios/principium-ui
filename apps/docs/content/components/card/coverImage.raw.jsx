@@ -55,7 +55,7 @@ export default function App() {
           className="z-0 h-full w-full object-cover"
           src="https://i.kym-cdn.com/entries/icons/mobile/000/046/685/1.jpg"
         />
-        <CardFooter className="absolute bottom-0 z-10 justify-between" isBlurred>
+        <CardFooter isBlurred className="absolute bottom-0 z-10 justify-between">
           <div>
             <p className="text-tiny text-white">Available soon.</p>
             <p className="text-tiny text-white">Get notified.</p>
@@ -75,7 +75,7 @@ export default function App() {
           className="z-0 h-full w-full object-cover"
           src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&auto=format&fit=crop&q=60"
         />
-        <CardFooter className="absolute bottom-0 z-10 justify-between" isBlurred>
+        <CardFooter isBlurred className="absolute bottom-0 z-10 justify-between">
           <div className="flex grow items-center gap-2">
             <Avatar className="rounded-full">
               <AvatarFallback>
@@ -88,7 +88,7 @@ export default function App() {
             </Avatar>
             <div className="flex flex-col">
               <p className="text-tiny text-white/80">Breathing App</p>
-              <p className="text-tiny text-white/80">Get a good night's sleep.</p>
+              <p className="text-tiny text-white/80">Get a good night&apos;s sleep.</p>
             </div>
           </div>
           <Button radius="full" size="sm">

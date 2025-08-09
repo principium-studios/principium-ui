@@ -1,21 +1,23 @@
-import { Alert, AlertTitle, AlertDescription } from '@principium/react';
+import {Alert, AlertTitle, AlertDescription} from '@principium/react';
 
 function App() {
   return (
-    <div className="space-y-4 w-full">
-      <Alert color="primary" hideIconWrapper>
+    <div className="w-full space-y-4">
+      <Alert hideIconWrapper color="primary">
         <AlertTitle>Simple Alert</AlertTitle>
-        <AlertDescription>This alert doesn't have an icon.</AlertDescription>
+        <AlertDescription>This alert doesn&apos;t have an icon.</AlertDescription>
       </Alert>
-      
-      <Alert color="success" hideIconWrapper>
+
+      <Alert hideIconWrapper color="success">
         <AlertTitle>Success Message</AlertTitle>
         <AlertDescription>Your changes have been saved successfully.</AlertDescription>
       </Alert>
-      
-      <Alert color="warning" hideIconWrapper>
+
+      <Alert hideIconWrapper color="warning">
         <AlertTitle>Important Notice</AlertTitle>
-        <AlertDescription>Please review the terms and conditions before proceeding.</AlertDescription>
+        <AlertDescription>
+          Please review the terms and conditions before proceeding.
+        </AlertDescription>
       </Alert>
     </div>
   );

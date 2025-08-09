@@ -21,20 +21,27 @@ function OverviewWrapper({children}: {children?: React.ReactNode}) {
   const subscribeGroup = React.useCallback((groupId: string) => {
     setVisibleGroups((prev) => {
       const newGroups = new Set(prev);
+
       newGroups.add(groupId);
+
       return newGroups;
     });
+
     return (isVisible: boolean) => {
       if (isVisible) {
         setVisibleGroups((prev) => {
           const newGroups = new Set(prev);
+
           newGroups.add(groupId);
+
           return newGroups;
         });
       } else {
         setVisibleGroups((prev) => {
           const newGroups = new Set(prev);
+
           newGroups.delete(groupId);
+
           return newGroups;
         });
       }
@@ -49,9 +56,9 @@ function OverviewWrapper({children}: {children?: React.ReactNode}) {
         <div className="not-prose mt-3">
           <Divider />
           <input
-            type="text"
             className="w-full py-4 outline-none"
             placeholder="Search"
+            type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -66,13 +73,17 @@ function OverviewWrapper({children}: {children?: React.ReactNode}) {
 
 export function useQueryCtx() {
   const context = React.useContext(CmdkCtx);
+
   if (!context) throw new Error('useQueryCtx must be used within an OverviewWrapper');
+
   return context;
 }
 
 export function useStateCtx() {
   const context = React.useContext(StateCtx);
+
   if (!context) throw new Error('useStateCtx must be used within an OverviewWrapper');
+
   return context;
 }
 

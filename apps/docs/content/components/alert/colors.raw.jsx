@@ -1,14 +1,14 @@
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@principium/react';
+import {Alert, AlertIcon, AlertTitle, AlertDescription} from '@principium/react';
 
 function App() {
   return (
-    <div className="space-y-4 w-full">
+    <div className="w-full space-y-4">
       <Alert color="default">
         <AlertIcon />
         <AlertTitle>Default</AlertTitle>
         <AlertDescription>This is a default alert message.</AlertDescription>
       </Alert>
-      
+
       <Alert color="primary">
         <AlertIcon />
         <AlertTitle>Information</AlertTitle>
@@ -20,19 +20,19 @@ function App() {
         <AlertTitle>Secondary</AlertTitle>
         <AlertDescription>This is a secondary alert message.</AlertDescription>
       </Alert>
-      
+
       <Alert color="success">
         <AlertIcon />
         <AlertTitle>Success</AlertTitle>
         <AlertDescription>Your action was completed successfully.</AlertDescription>
       </Alert>
-      
+
       <Alert color="warning">
         <AlertIcon />
         <AlertTitle>Warning</AlertTitle>
         <AlertDescription>Please check your input before proceeding.</AlertDescription>
       </Alert>
-      
+
       <Alert color="danger">
         <AlertIcon />
         <AlertTitle>Error</AlertTitle>

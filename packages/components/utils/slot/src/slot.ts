@@ -1,9 +1,9 @@
 import type {AnyProps} from './combineProps';
 
 import React from 'react';
+import {composeRefs} from '@principium/compose-refs';
 
 import {combineProps} from './combineProps';
-import {composeRefs} from '@principium/compose-refs';
 
 interface SlotProps extends React.HTMLAttributes<HTMLElement> {
   ref?: React.Ref<HTMLElement>;

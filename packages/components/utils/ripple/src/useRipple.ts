@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface RippleItem {
+interface RippleItem {
   id: number;
   x: number;
   y: number;
@@ -37,3 +37,4 @@ const useRipple = () => {
 };
 
 export {useRipple};
+export type {RippleItem};

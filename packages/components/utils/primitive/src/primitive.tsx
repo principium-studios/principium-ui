@@ -53,8 +53,5 @@ const Primitive = PRIMITIVE_NODES.reduce((primitive, node) => {
   };
 }, {} as Primitives);
 
-export {
-  Primitive,
-  //
-  PrimitiveProps,
-};
+export {Primitive};
+export type {PrimitiveProps};

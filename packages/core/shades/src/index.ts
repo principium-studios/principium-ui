@@ -1,9 +1,9 @@
 import type {Themes} from './types';
 
+import plugin from 'tailwindcss/plugin.js';
+
 import {DEFAULT_TRANSITION_DURATION} from './utils';
 import transition from './utils/transition';
-
-import plugin from 'tailwindcss/plugin.js';
 
 // lightness maps for the shades
 const LIGHTNESS = {
@@ -81,7 +81,7 @@ const PRINCIPIUM_DEFAULTS: Themes = {
   },
 };
 
-export const shadesPlugin = <T extends Themes>(opts: {
+const shadesPlugin = <T extends Themes>(opts: {
   themes?: T;
   defaultTheme?: keyof T;
   defaults?: boolean;
@@ -93,6 +93,7 @@ export const shadesPlugin = <T extends Themes>(opts: {
    * Otherwise, use the default theme (assume user provided one of his own themes)
    */
   let actualDefaultTheme;
+
   if (defaults && !defaultTheme) {
     actualDefaultTheme = 'light';
   } else {
@@ -101,6 +102,7 @@ export const shadesPlugin = <T extends Themes>(opts: {
 
   // Merge themes with defaults if requested
   let finalThemes: Themes = {};
+
   if (defaults) {
     finalThemes = {
       // Start with user themes
@@ -278,3 +280,5 @@ export const shadesPlugin = <T extends Themes>(opts: {
     },
   );
 };
+
+export {shadesPlugin};

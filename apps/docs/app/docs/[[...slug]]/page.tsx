@@ -1,14 +1,16 @@
-import ExploreComponentsCard from '@/components/docs/ExploreComponentsCard';
-import TableOfContents from '@/components/docs/TableOfContents';
-import {MDXContent} from '@/components/mdx/MDXContent';
-import {siteConfig} from '@/config/site';
-import {getHeadings} from '@/lib/getHeadings';
-import {ArrowSquareOutIcon, PenIcon} from '@phosphor-icons/react/dist/ssr';
+import type {Metadata} from 'next';
+
+import {ArrowSquareOutIcon} from '@phosphor-icons/react/dist/ssr';
 import {Button} from '@principium/react';
 import {allDocs} from 'contentlayer/generated';
-import {Metadata} from 'next';
 import Link from 'next/link';
 import {notFound} from 'next/navigation';
+
+import {getHeadings} from '@/lib/getHeadings';
+import {siteConfig} from '@/config/site';
+import {MDXContent} from '@/components/mdx/MDXContent';
+import TableOfContents from '@/components/docs/TableOfContents';
+import ExploreComponentsCard from '@/components/docs/ExploreComponentsCard';
 
 interface DocPageProps {
   params: Promise<{slug: string[]}>;
@@ -41,7 +43,7 @@ export async function generateMetadata({params}: DocPageProps): Promise<Metadata
       url: doc.url,
       images: [
         {
-          url: siteConfig.ogImage,
+          url: siteConfig.ogImage ?? '',
           width: 1200,
           height: 630,
           alt: siteConfig.name,
@@ -52,7 +54,7 @@ export async function generateMetadata({params}: DocPageProps): Promise<Metadata
       card: 'summary_large_image',
       title: doc.title,
       description: doc.description,
-      images: [siteConfig.ogImage],
+      images: [siteConfig.ogImage ?? ''],
       creator: siteConfig.creator,
     },
   };
@@ -94,3 +96,9 @@ export default async function DocPage({params}: DocPageProps) {
     </>
   );
 }
+
+export function generateStaticParams() {
+  return allDocs.map((d) => ({slug: d.slugAsParams.split('/')}));
+}
+
+export const dynamicParams = false;

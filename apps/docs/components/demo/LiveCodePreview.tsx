@@ -6,11 +6,13 @@ import Image from 'next/image';
 
 const LiveCodePreview = React.memo(({code}: {code: string}) => {
   return (
-    <LiveProvider code={code} scope={{...PrincipiumComponents, ...PhosphorIcons, NextImage: Image}}>
+    <LiveProvider code={code} scope={{...PrincipiumComponents, ...PhosphorIcons, Image}}>
       <LivePreview className="flex h-full w-full items-center justify-center" />
       <LiveError className="mt-2 rounded bg-red-100 p-2 text-red-800" />
     </LiveProvider>
   );
 });
+
+LiveCodePreview.displayName = 'LiveCodePreview';
 
 export default LiveCodePreview;

@@ -34,7 +34,7 @@ const avatarVariants = pv(
       '!duration-500',
       'opacity-0',
       'data-[loaded=true]:opacity-100',
-      'peer'
+      'peer',
     ],
     fallback: [
       ...translateCenterClasses,
@@ -47,7 +47,7 @@ const avatarVariants = pv(
       'overflow-hidden',
       'text-center',
     ],
-    context: ''
+    context: '',
   },
   {
     variants: {

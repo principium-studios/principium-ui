@@ -1,8 +1,8 @@
-import { Avatar, AvatarFallback, Badge } from '@principium/react';
+import {Avatar, AvatarFallback, Badge} from '@principium/react';
 
 function App() {
   return (
-    <div className="flex flex-wrap gap-6 items-center">
+    <div className="flex flex-wrap items-center gap-6">
       <Avatar radius="sm">
         <AvatarFallback>Rectangle</AvatarFallback>
         <Badge shape="rectangle">5</Badge>

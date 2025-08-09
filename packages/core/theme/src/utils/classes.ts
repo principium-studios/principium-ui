@@ -20,33 +20,33 @@ const translateCenterClasses = [
 
 const hiddenInputClasses = [
   // Font styles
-  "font-inherit",
-  "text-[100%]",
-  "leading-[1.15]",
+  'font-inherit',
+  'text-[100%]',
+  'leading-[1.15]',
 
   // Reset margins and padding
-  "m-0",
-  "p-0",
+  'm-0',
+  'p-0',
 
   // Overflow and box-sizing
-  "overflow-visible",
-  "box-border",
+  'overflow-visible',
+  'box-border',
 
   // Positioning & Hit area
-  "absolute",
-  "top-0",
-  "w-full",
-  "h-full",
+  'absolute',
+  'top-0',
+  'w-full',
+  'h-full',
 
   // Opacity and z-index
-  "opacity-[0.0001]",
-  "z-[1]",
+  'opacity-[0.0001]',
+  'z-[1]',
 
   // Cursor
-  "cursor-pointer",
+  'cursor-pointer',
 
   // Disabled state
-  "disabled:cursor-default",
+  'disabled:cursor-default',
 ];
 
 export {focusVisibleClasses, dataFocusVisibleClasses, translateCenterClasses, hiddenInputClasses};

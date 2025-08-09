@@ -33,8 +33,9 @@ function App() {
       <CardFooter>
         <a
           className="text-primary flex items-center gap-2"
-          target="_blank"
           href="https://github.com/principium-studios/principium"
+          rel="noreferrer"
+          target="_blank"
         >
           Visit source code on GitHub. <ArrowSquareOutIcon size={16} />
         </a>

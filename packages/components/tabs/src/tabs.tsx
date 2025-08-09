@@ -1,12 +1,14 @@
 'use client';
 
+import type {SlotParams} from '@principium/variants';
+import type {PrimitiveProps} from '@principium/primitive';
+
 import React from 'react';
-import {SlotParams} from '@principium/variants';
 import {tabsVariants} from '@principium/theme';
 import {createContext} from '@principium/context';
 import {useControllableState} from '@principium/use-controllable-state';
 import {LazyMotion, domMax, m} from 'motion/react';
-import {Primitive, PrimitiveProps} from '@principium/primitive';
+import {Primitive} from '@principium/primitive';
 
 // _______________________________________ Tabs _______________________________________
 interface TabsContextType {
@@ -23,13 +25,24 @@ const [TabsVariantProvider, useTabsVariant] = createContext<
   SlotParams<typeof tabsVariants.context>
 >('TabsVariant', {});
 
-type TabsProps = SlotParams<typeof tabsVariants.tabList> & {
+type TabsProps = SlotParams<typeof tabsVariants.context> & {
   children?: React.ReactNode;
   value?: string;
   defaultValue: string;
   onChange?: (tab: string) => void;
 };
-const Tabs = ({children, value, defaultValue, onChange, ...variantProps}: TabsProps) => {
+const Tabs = ({
+  children,
+  value,
+  defaultValue,
+  onChange,
+  variant,
+  size,
+  color,
+  radius,
+  fullWidth,
+  isDisabled,
+}: TabsProps) => {
   const [activeTab, setActiveTab] = useControllableState({
     prop: value,
     defaultProp: defaultValue,
@@ -37,7 +50,14 @@ const Tabs = ({children, value, defaultValue, onChange, ...variantProps}: TabsPr
   });
 
   return (
-    <TabsVariantProvider {...variantProps}>
+    <TabsVariantProvider
+      variant={variant}
+      size={size}
+      color={color}
+      radius={radius}
+      fullWidth={fullWidth}
+      isDisabled={isDisabled}
+    >
       <TabsProvider activeTab={activeTab} setActiveTab={setActiveTab}>
         {children}
       </TabsProvider>
@@ -90,15 +110,15 @@ const TabsTrigger = ({children, value}: TabsTriggerProps) => {
 
   return (
     <button
-      data-selected={activeTab === value}
       className={tabsVariants.tab({variant, size, color, radius, disableAnimation})}
+      data-selected={activeTab === value}
       onClick={() => setActiveTab(value)}
     >
       {activeTab === value && (
         <LazyMotion features={domMax}>
           <m.span
-            layoutId={`cursor-${cursorId}`}
             className={tabsVariants.cursor({variant, size, color, radius})}
+            layoutId={`cursor-${cursorId}`}
             transition={{
               type: 'spring',
               bounce: 0.15,

@@ -1,7 +1,8 @@
-import {siteConfig} from '@/config/site';
 import {FileCssIcon, FileTsxIcon, PackageIcon} from '@phosphor-icons/react/dist/ssr';
 import {Button} from '@principium/react';
 import Link from 'next/link';
+
+import {siteConfig} from '@/config/site';
 
 interface ComponentLinksProps {
   name: string;

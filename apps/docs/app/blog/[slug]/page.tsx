@@ -1,9 +1,9 @@
-export default function BlogPost({params}: {params: {slug: string}}) {
-  const {slug} = params;
+export default async function BlogPost({params}: {params: Promise<{slug: string}>}) {
+  const {slug} = await params;
 
   return (
     <div>
-      <h1>Blog Post - Coming Soon</h1>
+      <h1>Blog Post - Coming Soon {slug}</h1>
     </div>
   );
 }

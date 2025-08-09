@@ -1,4 +1,5 @@
-import { Feature } from '@/components/home/FeaturesGrid';
+import type {Feature} from '@/components/home/FeaturesGrid';
+
 import {LightningIcon, MagicWandIcon, MoonIcon} from '@phosphor-icons/react/dist/ssr';
 
 const features: Feature[] = [

@@ -1,4 +1,6 @@
-import {ComputedFields, makeSource, defineDocumentType} from 'contentlayer2/source-files';
+import type {ComputedFields} from 'contentlayer2/source-files';
+
+import {makeSource, defineDocumentType} from 'contentlayer2/source-files';
 import RawPlugin from 'esbuild-plugin-raw';
 
 const computedFields: ComputedFields = {
@@ -30,6 +32,6 @@ export default makeSource({
       options.plugins.unshift(RawPlugin());
 
       return options;
-    }
-  }
+    },
+  },
 });

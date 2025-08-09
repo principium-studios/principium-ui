@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
 import {Button, Divider} from '@principium/react';
 import Link from 'next/link';
 import {GithubLogoIcon} from '@phosphor-icons/react/dist/ssr';
+import {usePathname} from 'next/navigation';
 
 import {ThemeToggle} from './ThemeToggle';
-import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -13,9 +13,10 @@ const Navbar = () => {
   const isComponents = pathname.startsWith('/components');
   const isBlog = pathname.startsWith('/blog');
   const isPlayground = pathname.startsWith('/playground');
+
   return (
     <nav className="sticky top-0 z-40 flex h-16 items-center backdrop-blur-xl backdrop-saturate-150">
-      <header className="relative flex flex-1 items-center justify-between gap-4 px-6 max-w-8xl mx-auto">
+      <header className="max-w-8xl relative mx-auto flex flex-1 items-center justify-between gap-4 px-6">
         {/* Link to Home Page  */}
         <div className="flex items-center gap-2 text-xl">
           <Link href="/">Principium UI</Link>
@@ -25,16 +26,24 @@ const Navbar = () => {
           {/* Links to Docs, Components, Blog, */}
           <ul className="flex items-center gap-4">
             <li>
-              <Link href="/docs/guide/introduction" className={isDocs ? 'text-primary' : ''}>Docs</Link>
+              <Link className={isDocs ? 'text-primary' : ''} href="/docs/guide/introduction">
+                Docs
+              </Link>
             </li>
             <li>
-              <Link href="/components" className={isComponents ? 'text-primary' : ''}>Components</Link>
+              <Link className={isComponents ? 'text-primary' : ''} href="/components">
+                Components
+              </Link>
             </li>
             <li>
-              <Link href="/blog" className={isBlog ? 'text-primary' : ''}>Blog</Link>
+              <Link className={isBlog ? 'text-primary' : ''} href="/blog">
+                Blog
+              </Link>
             </li>
             <li>
-              <Link href="/playground" className={isPlayground ? 'text-primary' : ''}>Playground</Link>
+              <Link className={isPlayground ? 'text-primary' : ''} href="/playground">
+                Playground
+              </Link>
             </li>
           </ul>
           <Divider className="h-7" orientation="vertical" />

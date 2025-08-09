@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {useLayoutEffect} from '@principium/use-layout-effect';
+
 import {useStateCtx} from './Wrapper';
 
 // Context to keep track of visible items in group
@@ -14,9 +15,12 @@ function OverviewGroup({children, title}: {children?: React.ReactNode; title: st
   // Tell wrapper when group is visible
   const setIsVisible = React.useRef<((isVisible: boolean) => void) | null>(null);
   const subscribeGroup = useStateCtx();
+
   useLayoutEffect(() => {
     const setIsVisibleGroup = subscribeGroup(groupId);
+
     setIsVisible.current = setIsVisibleGroup;
+
     return () => {
       setIsVisibleGroup(false);
       setIsVisible.current = null;
@@ -28,20 +32,27 @@ function OverviewGroup({children, title}: {children?: React.ReactNode; title: st
   const subscribeItem = React.useCallback((itemId: string) => {
     setVisibleItems((prev) => {
       const newItems = new Set(prev);
+
       newItems.add(itemId);
+
       return newItems;
     });
+
     return (isVisible: boolean) => {
       if (isVisible) {
         setVisibleItems((prev) => {
           const newItems = new Set(prev);
+
           newItems.add(itemId);
+
           return newItems;
         });
       } else {
         setVisibleItems((prev) => {
           const newItems = new Set(prev);
+
           newItems.delete(itemId);
+
           return newItems;
         });
       }
@@ -66,11 +77,11 @@ function OverviewGroup({children, title}: {children?: React.ReactNode; title: st
           </span>
         </div>
         <div
+          className="mb-8 grid gap-2"
           style={{
             gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
             gridAutoRows: 'max-content',
           }}
-          className="mb-8 grid gap-2"
         >
           {children}
         </div>
@@ -81,7 +92,9 @@ function OverviewGroup({children, title}: {children?: React.ReactNode; title: st
 
 export function useOverviewGroup() {
   const context = React.useContext(OverviewGroupContext);
+
   if (!context) throw new Error('useOverviewGroup must be used within an OverviewGroup');
+
   return context;
 }
 

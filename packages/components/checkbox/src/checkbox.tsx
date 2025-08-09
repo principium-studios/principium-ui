@@ -1,10 +1,12 @@
 'use client';
 
+import type {PrimitiveProps} from '@principium/primitive';
+import type {SlotParams} from '@principium/variants';
+
 import {CheckIcon} from '@phosphor-icons/react';
-import {Primitive, PrimitiveProps} from '@principium/primitive';
+import {Primitive} from '@principium/primitive';
 import {checkboxVariants} from '@principium/theme';
 import {useControllableState} from '@principium/use-controllable-state';
-import {SlotParams} from '@principium/variants';
 import {composeHandlers} from '@principium/compose-handlers';
 
 type CheckboxProps = PrimitiveProps<'button'> &
@@ -33,13 +35,11 @@ const Checkbox = ({
     onChange: onCheckedChange,
     prop: checked,
   });
+
   return (
     <Primitive.button
-      role="checkbox"
       aria-checked={isChecked}
-      data-state={isChecked ? 'checked' : 'unchecked'}
-      data-selected={isChecked}
-      data-disabled={disabled}
+      asChild={asChild}
       className={checkboxVariants.base({
         color,
         size,
@@ -48,13 +48,14 @@ const Checkbox = ({
         disableAnimation,
         className,
       })}
-      asChild={asChild}
+      data-disabled={disabled}
+      data-selected={isChecked}
+      data-state={isChecked ? 'checked' : 'unchecked'}
+      role="checkbox"
       onClick={composeHandlers(onClick, () => setIsChecked(!isChecked))}
       {...props}
     >
-      <CheckIcon
-        className={checkboxVariants.icon({disableAnimation, size})}
-      />
+      <CheckIcon className={checkboxVariants.icon({disableAnimation, size})} />
     </Primitive.button>
   );
 };

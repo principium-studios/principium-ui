@@ -1,5 +1,5 @@
-export default function PatternPage({params}: {params: {slug: string}}) {
-  const {slug} = params;
+export default async function PatternPage({params}: {params: Promise<{slug: string}>}) {
+  const {slug} = await params;
 
   return (
     <div>

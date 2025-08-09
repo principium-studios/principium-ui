@@ -17,8 +17,7 @@ const InstallBlock = ({
   return (
     <pre className="bg-border relative rounded-lg px-4 py-2">
       <code>
-        {manager} <span className="text-primary">{command}</span>{' '}
-        @principium/{packageName}
+        {manager} <span className="text-primary">{command}</span> @principium/{packageName}
       </code>
       <Button
         className="absolute right-4 top-1/2 -translate-y-1/2"
@@ -37,20 +36,20 @@ const InstallBlock = ({
 const PackageManagers = ({packageName}: PackageManagersProps) => {
   return (
     <div className="not-prose flex flex-col gap-2">
-      <Tabs variant="underlined" defaultValue="npm">
+      <Tabs defaultValue="npm" variant="underlined">
         <TabsList className="w-fit">
           <TabsTrigger value="npm">npm</TabsTrigger>
           <TabsTrigger value="yarn">yarn</TabsTrigger>
           <TabsTrigger value="pnpm">pnpm</TabsTrigger>
         </TabsList>
         <TabsContent value="npm">
-          <InstallBlock manager="npm" command="install" packageName={packageName} />
+          <InstallBlock command="install" manager="npm" packageName={packageName} />
         </TabsContent>
         <TabsContent value="yarn">
-          <InstallBlock manager="yarn" command="add" packageName={packageName} />
+          <InstallBlock command="add" manager="yarn" packageName={packageName} />
         </TabsContent>
         <TabsContent value="pnpm">
-          <InstallBlock manager="pnpm" command="add" packageName={packageName} />
+          <InstallBlock command="add" manager="pnpm" packageName={packageName} />
         </TabsContent>
       </Tabs>
     </div>

@@ -1,9 +1,9 @@
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@principium/react';
-import {StarIcon, CheckIcon, WarningIcon} from "@phosphor-icons/react";
+import {Alert, AlertIcon, AlertTitle, AlertDescription} from '@principium/react';
+import {StarIcon, CheckIcon, WarningIcon} from '@phosphor-icons/react';
 
 function App() {
   return (
-    <div className="space-y-4 w-full">
+    <div className="w-full space-y-4">
       <Alert color="primary">
         <AlertIcon>
           <StarIcon weight="fill" />
@@ -11,7 +11,7 @@ function App() {
         <AlertTitle>Featured Content</AlertTitle>
         <AlertDescription>This content has been marked as featured.</AlertDescription>
       </Alert>
-      
+
       <Alert color="success">
         <AlertIcon>
           <CheckIcon weight="fill" />
@@ -19,13 +19,13 @@ function App() {
         <AlertTitle>Task Completed</AlertTitle>
         <AlertDescription>Your task has been completed successfully.</AlertDescription>
       </Alert>
-      
+
       <Alert color="warning">
         <AlertIcon>
           <WarningIcon weight="fill" />
         </AlertIcon>
-          <AlertTitle>Storage Almost Full</AlertTitle>
-          <AlertDescription>You have used 90% of your storage quota.</AlertDescription>
+        <AlertTitle>Storage Almost Full</AlertTitle>
+        <AlertDescription>You have used 90% of your storage quota.</AlertDescription>
       </Alert>
     </div>
   );

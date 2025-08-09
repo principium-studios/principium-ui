@@ -1,7 +1,7 @@
-"use client";
-
 import {DiscordLogoIcon, GithubLogoIcon} from '@phosphor-icons/react/dist/ssr';
+
 import FeaturesGrid from '../home/FeaturesGrid';
+
 import {siteConfig} from '@/config/site';
 
 const Community = () => {

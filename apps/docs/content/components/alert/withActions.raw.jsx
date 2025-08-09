@@ -1,4 +1,11 @@
-import {Alert, AlertIcon, AlertTitle, AlertDescription, Button} from '@principium/react';
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  Button,
+  AlertActions,
+} from '@principium/react';
 
 function App() {
   return (
@@ -10,7 +17,7 @@ function App() {
           A new version of the application is ready to install.
         </AlertDescription>
         <AlertActions className="flex gap-2">
-          <Button size="sm" color="primary">
+          <Button color="primary" size="sm">
             Update Now
           </Button>
           <Button size="sm" variant="light">
@@ -26,7 +33,7 @@ function App() {
           Your subscription will expire in 3 days. Renew now to avoid service interruption.
         </AlertDescription>
         <AlertActions className="flex gap-2">
-          <Button size="sm" color="warning">
+          <Button color="warning" size="sm">
             Renew Subscription
           </Button>
           <Button size="sm" variant="light">

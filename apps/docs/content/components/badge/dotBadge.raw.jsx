@@ -5,27 +5,27 @@ function App() {
     <div className="flex flex-wrap items-center gap-6">
       <Avatar>
         <AvatarFallback>Default</AvatarFallback>
-        <Badge></Badge>
+        <Badge />
       </Avatar>
       <Avatar>
         <AvatarFallback>Primary</AvatarFallback>
-        <Badge color="primary"></Badge>
+        <Badge color="primary" />
       </Avatar>
       <Avatar>
         <AvatarFallback>Secondary</AvatarFallback>
-        <Badge color="secondary"></Badge>
+        <Badge color="secondary" />
       </Avatar>
       <Avatar>
         <AvatarFallback>Success</AvatarFallback>
-        <Badge color="success"></Badge>
+        <Badge color="success" />
       </Avatar>
       <Avatar>
         <AvatarFallback>Warning</AvatarFallback>
-        <Badge color="warning"></Badge>
+        <Badge color="warning" />
       </Avatar>
       <Avatar>
         <AvatarFallback>Danger</AvatarFallback>
-        <Badge color="danger"></Badge>
+        <Badge color="danger" />
       </Avatar>
     </div>
   );

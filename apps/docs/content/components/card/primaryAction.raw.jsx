@@ -1,5 +1,5 @@
-import {Card, CardContent, CardFooter} from '@principium/react';
-  
+import {Card, CardContent, CardFooter, Image} from '@principium/react';
+
 export default function App() {
   const list = [
     {title: 'Lemon', img: '/fruits/lemon.jpg', price: '$5.50'},
@@ -13,16 +13,16 @@ export default function App() {
   ];
 
   return (
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+    <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
       {list.map((item, index) => (
-        <Card key={index} isPressable shadow="sm" onClick={() => console.log('item pressed')}>
+        <Card key={index} isPressable shadow="sm">
           <CardContent className="overflow-visible p-0">
-            <NextImage
+            <Image
               alt={item.title}
-              width={200}
+              className="relative z-10 h-[140px] w-full rounded-b-xl object-cover"
               height={140}
-              className="w-full object-cover h-[140px] relative z-10 rounded-b-xl"
               src={item.img}
+              width={200}
             />
           </CardContent>
           <CardFooter className="text-small justify-between">
@@ -34,5 +34,3 @@ export default function App() {
     </div>
   );
 }
-
-

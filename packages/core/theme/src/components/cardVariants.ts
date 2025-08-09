@@ -22,7 +22,8 @@ const cardVariants = pv(
       'shadow-border-200/50 border border-border flex flex-col relative overflow-hidden text-foreground box-border bg-card transition-all',
       ...dataFocusVisibleClasses,
     ],
-    header: 'flex flex-col gap-1.5 p-3 z-10 w-full shrink-0 overflow-inherit color-inherit subpixel-antialiased',
+    header:
+      'flex flex-col gap-1.5 p-3 z-10 w-full shrink-0 overflow-inherit color-inherit subpixel-antialiased',
     content: 'relative p-3 flex-col break-words subpixel-antialiased',
     footer: 'p-3 flex w-full items-center overflow-hidden color-inherit subpixel-antialiased',
     title: 'font-semibold leading-none',
@@ -60,7 +61,7 @@ const cardVariants = pv(
       },
       isHoverable: {
         true: {
-          base: 'hover:bg-card-100',
+          base: 'hover:bg-card',
         },
       },
       isPressable: {
@@ -68,12 +69,12 @@ const cardVariants = pv(
       },
       isBlurred: {
         true: {
-          base: 'bg-card-100/80 backdrop-blur-md backdrop-saturate-150',
+          base: 'bg-card/80 backdrop-blur-md backdrop-saturate-150',
         },
       },
       isFooterBlurred: {
         true: {
-          footer: 'bg-card-100/10 backdrop-blur backdrop-saturate-150',
+          footer: 'bg-card/10 backdrop-blur backdrop-saturate-150',
         },
       },
       disabled: {

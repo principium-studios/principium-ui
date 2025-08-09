@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, Badge } from '@principium/react';
+import {Avatar, AvatarFallback, Badge} from '@principium/react';
 
 function App() {
   return (
