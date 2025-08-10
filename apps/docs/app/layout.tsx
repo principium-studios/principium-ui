@@ -8,6 +8,8 @@ import {Providers} from './providers';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+export const runtime = 'edge';
+
 const outfit = Outfit({
   variable: '--font-outfit',
   subsets: ['latin'],

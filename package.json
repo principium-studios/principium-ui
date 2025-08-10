@@ -6,6 +6,7 @@
   "packageManager": "pnpm@10.14.0",
   "scripts": {
     "docs": "pnpm --filter @principium/docs dev",
+    "docs:build": "pnpm --filter @principium/docs pages:build",
     "dev:comp": "turbo run dev",
     "build": "turbo run build --filter=!@principium/docs",
     "build:fast": "turbo run build:fast --filter=!@principium/docs",
