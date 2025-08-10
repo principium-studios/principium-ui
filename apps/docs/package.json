@@ -7,7 +7,7 @@
     "build": "contentlayer2 build && next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "npx @cloudflare/next-on-pages"
+    "pages:build": "contentlayer2 build && npx @cloudflare/next-on-pages"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

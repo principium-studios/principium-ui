@@ -11,7 +11,7 @@ const IMPORTS_EXPORTS_REGEX = {
   // This regex matches single-line and multi-line (wrapped) import statements.
   // It matches from 'import' up to the ending semicolon, including newlines.
   imports: /^import[\s\S]*?;\s*$/gm,
-  exports: /^.*export\s+(?:default\s+)?.*?;\s*\n?/gm,
+  exports: /^.*export\s+(?:default\s+)?.*?;\s*\n?/gm,     
   exportDeclarations: /export\s+(?:default\s+)?(?=function|class|const|let|var)/g,
   lineEndings: /\r\n/g,
 } as const;
