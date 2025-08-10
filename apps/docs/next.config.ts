@@ -1,7 +1,6 @@
-import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
-
 import type {NextConfig} from 'next';
 
+import {setupDevPlatform} from '@cloudflare/next-on-pages/next-dev';
 import {withContentlayer} from 'next-contentlayer2';
 
 import redirects from './next-redirect';

@@ -1,10 +1,6 @@
 import {describe, test, expect} from 'vitest';
 
-import {
-  evaluateCompoundVariants,
-  evaluateVariantClasses,
-  getVariantClass,
-} from '../src/pv';
+import {evaluateCompoundVariants, evaluateVariantClasses, getVariantClass} from '../src/pv';
 
 describe('Principium Variants (PV) - Unit Tests', () => {
   describe('evaluateCompoundVariants', () => {

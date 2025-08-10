@@ -273,4 +273,4 @@ function createPv(twMerge: typeof twMergeFn) {
 
 const pv = createPv(twMergeFn);
 
-export {pv, createPv, evaluateCompoundVariants, evaluateVariantClasses,getVariantClass};
+export {pv, createPv, evaluateCompoundVariants, evaluateVariantClasses, getVariantClass};

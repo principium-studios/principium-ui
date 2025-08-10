@@ -1,4 +1,3 @@
-
 export default async function PatternPage({params}: {params: Promise<{slug: string}>}) {
   const {slug} = await params;
 

@@ -51,12 +51,12 @@ const Tabs = ({
 
   return (
     <TabsVariantProvider
-      variant={variant}
-      size={size}
       color={color}
-      radius={radius}
       fullWidth={fullWidth}
       isDisabled={isDisabled}
+      radius={radius}
+      size={size}
+      variant={variant}
     >
       <TabsProvider activeTab={activeTab} setActiveTab={setActiveTab}>
         {children}

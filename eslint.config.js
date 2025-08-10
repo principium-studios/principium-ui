@@ -31,6 +31,7 @@ export default defineConfig([
     '**/coverage',
     '**/.next',
     '**/build',
+    '**/.vercel',
     '**/.turbo',
     '**/.vscode',
     '!**/plopfile.js',
