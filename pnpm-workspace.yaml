@@ -1,4 +1,13 @@
 packages:
-  - 'packages/**'
-  - 'internal/**'
-  - 'apps/**'
+  - packages/**
+  - internal/**
+  - apps/**
+
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - contentlayer2
+  - esbuild
+  - protobufjs
+  - sharp
+  - unrs-resolver
+  - workerd

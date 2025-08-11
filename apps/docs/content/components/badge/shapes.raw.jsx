@@ -1,6 +1,6 @@
 import {Avatar, AvatarFallback, Badge} from '@principium/react';
 
-function App() {
+function ShapesDemo() {
   return (
     <div className="flex flex-wrap items-center gap-6">
       <Avatar radius="sm">
@@ -15,4 +15,4 @@ function App() {
   );
 }
 
-export default App;
+export default ShapesDemo;

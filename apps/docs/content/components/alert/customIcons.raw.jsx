@@ -1,7 +1,7 @@
 import {Alert, AlertIcon, AlertTitle, AlertDescription} from '@principium/react';
 import {StarIcon, CheckIcon, WarningIcon} from '@phosphor-icons/react';
 
-function App() {
+function CustomIconsDemo() {
   return (
     <div className="w-full space-y-4">
       <Alert color="primary">
@@ -31,4 +31,4 @@ function App() {
   );
 }
 
-export default App;
+export default CustomIconsDemo;

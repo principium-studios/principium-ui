@@ -7,7 +7,7 @@ import {
   AlertActions,
 } from '@principium/react';
 
-function App() {
+function WithActionsDemo() {
   return (
     <div className="w-full space-y-4">
       <Alert color="primary">
@@ -45,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default WithActionsDemo;

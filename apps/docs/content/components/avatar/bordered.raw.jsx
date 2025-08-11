@@ -1,6 +1,6 @@
 import {Avatar, AvatarImage} from '@principium/react';
 
-function App() {
+function BorderedDemo() {
   return (
     <div className="flex gap-4">
       <Avatar isBordered>
@@ -19,4 +19,4 @@ function App() {
   );
 }
 
-export default App;
+export default BorderedDemo;

@@ -1,6 +1,6 @@
 import {Alert, AlertIcon, AlertTitle, AlertDescription} from '@principium/react';
 
-function App() {
+function UsageDemo() {
   return (
     <div className="w-full">
       <Alert>
@@ -14,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default UsageDemo;

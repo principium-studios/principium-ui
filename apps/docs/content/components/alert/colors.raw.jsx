@@ -1,6 +1,6 @@
 import {Alert, AlertIcon, AlertTitle, AlertDescription} from '@principium/react';
 
-function App() {
+function ColorsDemo() {
   return (
     <div className="w-full space-y-4">
       <Alert color="default">
@@ -42,4 +42,4 @@ function App() {
   );
 }
 
-export default App;
+export default ColorsDemo;
