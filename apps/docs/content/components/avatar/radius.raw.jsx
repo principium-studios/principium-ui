@@ -1,6 +1,6 @@
 import {Avatar, AvatarImage} from '@principium/react';
 
-function RadiusDemo() {
+function App() {
   return (
     <div className="flex gap-4">
       <Avatar isBordered radius="none">
@@ -22,4 +22,4 @@ function RadiusDemo() {
   );
 }
 
-export default RadiusDemo;
+export default App;

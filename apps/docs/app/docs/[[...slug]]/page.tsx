@@ -82,7 +82,7 @@ export default async function DocPage({params}: DocPageProps) {
             </Link>
           </Button>
         </div>
-        {doc.displayDescription === 'true' && (
+        {doc.displayDescription === 'yes' && (
           <p className="text-background-800 not-prose mb-4">{doc.description}</p>
         )}
         <MDXContent code={doc.body.code} />

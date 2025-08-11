@@ -1,6 +1,6 @@
 import {Avatar, AvatarFallback, AvatarImage} from '@principium/react';
 
-function SizesDemo() {
+function App() {
   return (
     <div className="flex items-center gap-4">
       <Avatar size="sm">
@@ -19,4 +19,4 @@ function SizesDemo() {
   );
 }
 
-export default SizesDemo;
+export default App;

@@ -12,8 +12,8 @@ const IMPORTS_EXPORTS_REGEX = {
   // It matches from 'import' up to the ending semicolon, including newlines.
   imports: /^import[\s\S]*?;\s*$/gm,
   exports: /^.*export\s+(?:default\s+)?.*?;\s*\n?/gm,     
-  exportDeclarations: /export\s+(?:default\s+)?(?=function|class|const|let|var)/g,
   lineEndings: /\r\n/g,
+  returnStatements: /^return[\s\S]*?;\s*$/g,
 } as const;
 
 interface CodeDemoProps {
@@ -24,7 +24,7 @@ function removeImportsExports(code: string): string {
   return code
     .replace(IMPORTS_EXPORTS_REGEX.imports, '')
     .replace(IMPORTS_EXPORTS_REGEX.exports, '')
-    .replace(IMPORTS_EXPORTS_REGEX.exportDeclarations, '')
+    .replace(IMPORTS_EXPORTS_REGEX.returnStatements, '')
     .trim()
     .replace(IMPORTS_EXPORTS_REGEX.lineEndings, '\n');
 }

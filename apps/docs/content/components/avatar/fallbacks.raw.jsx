@@ -1,6 +1,6 @@
 import {Avatar, AvatarFallback, AvatarImage} from '@principium/react';
 
-function FallbacksDemo() {
+function App() {
   return (
     <div className="flex gap-4">
       <Avatar>
@@ -40,4 +40,4 @@ function FallbacksDemo() {
   );
 }
 
-export default FallbacksDemo;
+export default App;

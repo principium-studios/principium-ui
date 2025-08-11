@@ -1,6 +1,6 @@
 import {Avatar, AvatarFallback, AvatarImage} from '@principium/react';
 
-function DisabledDemo() {
+function App() {
   return (
     <div className="flex gap-4">
       <Avatar disabled>
@@ -23,4 +23,4 @@ function DisabledDemo() {
   );
 }
 
-export default DisabledDemo;
+export default App;

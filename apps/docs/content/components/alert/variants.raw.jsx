@@ -1,6 +1,6 @@
 import {Alert, AlertIcon, AlertTitle, AlertDescription} from '@principium/react';
 
-function VariantsDemo() {
+function App() {
   return (
     <div className="w-full space-y-4">
       <Alert color="primary" variant="solid">
@@ -30,4 +30,4 @@ function VariantsDemo() {
   );
 }
 
-export default VariantsDemo;
+export default App;
