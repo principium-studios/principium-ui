@@ -13,7 +13,6 @@ const IMPORTS_EXPORTS_REGEX = {
   imports: /^import[\s\S]*?;\s*$/gm,
   exports: /^.*export\s+(?:default\s+)?.*?;\s*\n?/gm,     
   lineEndings: /\r\n/g,
-  returnStatements: /^return[\s\S]*?;\s*$/g,
 } as const;
 
 interface CodeDemoProps {
@@ -24,7 +23,6 @@ function removeImportsExports(code: string): string {
   return code
     .replace(IMPORTS_EXPORTS_REGEX.imports, '')
     .replace(IMPORTS_EXPORTS_REGEX.exports, '')
-    .replace(IMPORTS_EXPORTS_REGEX.returnStatements, '')
     .trim()
     .replace(IMPORTS_EXPORTS_REGEX.lineEndings, '\n');
 }
@@ -61,7 +59,7 @@ const CodeDemo = React.memo(({code}: CodeDemoProps) => {
             </Button>
           </div>
           <div className="h-full overflow-auto p-4">
-            <SyntaxHighlighter code={cleanCode} language="jsx" showClipboard={false} />
+            <SyntaxHighlighter code={code} language="jsx" showClipboard={false} />
           </div>
         </TabsContent>
       </div>

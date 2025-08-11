@@ -1,6 +1,6 @@
 import {Alert, AlertTitle, AlertDescription} from '@principium/react';
 
-function pp() {
+function App() {
   return (
     <div className="w-full space-y-4">
       <Alert hideIconWrapper color="primary">
