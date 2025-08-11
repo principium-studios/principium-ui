@@ -1,6 +1,6 @@
 import {Divider} from '@principium/react';
 
-export default function App() {
+function App() {
   return (
     <div className="max-w-md">
       <div className="space-y-1">
@@ -18,3 +18,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;

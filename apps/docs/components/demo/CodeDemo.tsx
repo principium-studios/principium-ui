@@ -15,6 +15,8 @@ const IMPORTS_EXPORTS_REGEX = {
   lineEndings: /\r\n/g,
   // This regex matches single-line or multi-line return statements that only contain alphanumeric characters (and tabs/spaces).
   // It matches 'return' followed by any number of tabs/spaces/alphanumerics (including newlines), ending with a semicolon.
+  // This isn't to replace our return statements, for some reason when building with @cloudflare/next-on-pages
+  // it replaces the "export default" with "return" from some reason.
   returnStatements: /^return[\t A-Za-z0-9\r\n]*;\s*$/gm,
 } as const;
 
@@ -63,7 +65,7 @@ const CodeDemo = React.memo(({code}: CodeDemoProps) => {
             </Button>
           </div>
           <div className="h-full overflow-auto p-4">
-            <SyntaxHighlighter code={cleanCode} language="jsx" showClipboard={false} />
+            <SyntaxHighlighter code={code} language="jsx" showClipboard={false} />
           </div>
         </TabsContent>
       </div>
