@@ -1,6 +1,6 @@
 import {Card, CardContent, CardFooter, Image} from '@principium/react';
 
-export default function App() {
+function App() {
   const list = [
     {title: 'Lemon', img: '/fruits/lemon.jpg', price: '$5.50'},
     {title: 'Tangerine', img: '/fruits/tangerine.jpg', price: '$3.00'},
@@ -34,3 +34,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;

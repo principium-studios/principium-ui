@@ -9,7 +9,7 @@ import {
   AvatarImage,
 } from '@principium/react';
 
-export default function App() {
+function App() {
   return (
     <div className="grid max-w-[900px] grid-cols-12 grid-rows-2 gap-2 px-8">
       <Card className="relative col-span-12 h-[300px] overflow-hidden sm:col-span-4">
@@ -99,3 +99,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;

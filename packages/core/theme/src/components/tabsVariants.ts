@@ -41,7 +41,9 @@ const tabsVariants = pv(
       '[&::-webkit-scrollbar]:hidden',
       '[-ms-overflow-style:none]',
       '[scrollbar-width:none]',
-      'bg-border-100',
+      'bg-border',
+      'data-[disabled=true]:opacity-50',
+      'data-[disabled=true]:pointer-events-none',
     ],
     tab: [
       'z-0',
@@ -58,8 +60,8 @@ const tabsVariants = pv(
       'transition-opacity',
       'data-[disabled=true]:cursor-not-allowed',
       'data-[disabled=true]:opacity-50',
-      'hover:[&:not([data-selected=true])]:opacity-90',
-      'active:[&:not([data-selected=true])]:opacity-50',
+      'hover:[&:not([data-selected=true]):not([data-disabled=true])]:opacity-90',
+      'active:[&:not([data-selected=true]):not([data-disabled=true])]:opacity-50',
       // focus ring
       ...dataFocusVisibleClasses,
     ],
@@ -157,14 +159,10 @@ const tabsVariants = pv(
       },
       fullWidth: {
         true: {
-          context: [],
           tabList: 'w-full',
         },
-      },
-      isDisabled: {
-        true: {
-          context: [],
-          tabList: 'opacity-50 pointer-events-none',
+        false: {
+          tabList: 'w-fit',
         },
       },
       disableAnimation: {
@@ -179,7 +177,7 @@ const tabsVariants = pv(
       {
         variant: 'bordered',
         class: {
-          cursor: ['bg-background-100', 'shadow-sm'],
+          cursor: ['bg-border-100', 'shadow-sm'],
         },
       },
       /**
@@ -190,8 +188,8 @@ const tabsVariants = pv(
         variant: ['solid', 'light'],
         color: 'default',
         class: {
-          cursor: ['bg-background-200', 'shadow-sm'],
-          tabContent: 'group-data-[selected=true]:text-background-950',
+          cursor: ['bg-background dark:bg-background-300', 'shadow-sm'],
+          tabContent: 'group-data-[selected=true]:text-foreground',
         },
       },
       {
@@ -199,7 +197,7 @@ const tabsVariants = pv(
         color: 'primary',
         class: {
           cursor: colorVariants.solid.primary,
-          tabContent: 'group-data-[selected=true]:text-primary-950',
+          tabContent: 'group-data-[selected=true]:text-primary-foreground',
         },
       },
       {
@@ -207,7 +205,7 @@ const tabsVariants = pv(
         color: 'secondary',
         class: {
           cursor: colorVariants.solid.secondary,
-          tabContent: 'group-data-[selected=true]:text-secondary-950',
+          tabContent: 'group-data-[selected=true]:text-secondary-foreground',
         },
       },
       {
@@ -215,7 +213,7 @@ const tabsVariants = pv(
         color: 'success',
         class: {
           cursor: colorVariants.solid.success,
-          tabContent: 'group-data-[selected=true]:text-success-950',
+          tabContent: 'group-data-[selected=true]:text-success-foreground',
         },
       },
       {
@@ -223,7 +221,7 @@ const tabsVariants = pv(
         color: 'warning',
         class: {
           cursor: colorVariants.solid.warning,
-          tabContent: 'group-data-[selected=true]:text-warning-950',
+          tabContent: 'group-data-[selected=true]:text-warning-foreground',
         },
       },
       {
@@ -231,7 +229,7 @@ const tabsVariants = pv(
         color: 'danger',
         class: {
           cursor: colorVariants.solid.danger,
-          tabContent: 'group-data-[selected=true]:text-danger-950',
+          tabContent: 'group-data-[selected=true]:text-danger-foreground',
         },
       },
       // underlined && color
@@ -239,53 +237,53 @@ const tabsVariants = pv(
         variant: 'underlined',
         color: 'default',
         class: {
-          cursor: 'bg-background-950',
-          tabContent: 'group-data-[selected=true]:text-background-950',
+          cursor: 'bg-foreground',
+          tabContent: 'group-data-[selected=true]:text-foreground',
         },
       },
       {
         variant: 'underlined',
         color: 'primary',
         class: {
-          cursor: 'bg-primary-400 dark:bg-primary-600',
+          cursor: 'bg-primary',
           tabContent:
-            'group-data-[selected=true]:text-primary-400 dark:group-data-[selected=true]:text-primary-600',
+            'group-data-[selected=true]:text-primary',
         },
       },
       {
         variant: 'underlined',
         color: 'secondary',
         class: {
-          cursor: 'bg-secondary-400 dark:bg-secondary-600',
+          cursor: 'bg-secondary',
           tabContent:
-            'group-data-[selected=true]:text-secondary-400 dark:group-data-[selected=true]:text-secondary-600',
+            'group-data-[selected=true]:text-secondary',
         },
       },
       {
         variant: 'underlined',
         color: 'success',
         class: {
-          cursor: 'bg-success-400 dark:bg-success-600',
+          cursor: 'bg-success',
           tabContent:
-            'group-data-[selected=true]:text-success-400 dark:group-data-[selected=true]:text-success-600',
+            'group-data-[selected=true]:text-success',
         },
       },
       {
         variant: 'underlined',
         color: 'warning',
         class: {
-          cursor: 'bg-warning-400 dark:bg-warning-600',
+          cursor: 'bg-warning',
           tabContent:
-            'group-data-[selected=true]:text-warning-400 dark:group-data-[selected=true]:text-warning-600',
+            'group-data-[selected=true]:text-warning',
         },
       },
       {
         variant: 'underlined',
         color: 'danger',
         class: {
-          cursor: 'bg-danger-400 dark:bg-danger-600',
+          cursor: 'bg-danger',
           tabContent:
-            'group-data-[selected=true]:text-danger-400 dark:group-data-[selected=true]:text-danger-600',
+            'group-data-[selected=true]:text-danger',
         },
       },
       /**
@@ -315,7 +313,7 @@ const tabsVariants = pv(
         color: 'default',
         variant: ['solid', 'bordered', 'light'],
         class: {
-          tab: 'data-[selected=true]:bg-border-50 data-[selected=true]:text-background-950',
+          tab: 'data-[selected=true]:bg-border-50 data-[selected=true]:text-foreground',
         },
       },
       {
@@ -323,7 +321,7 @@ const tabsVariants = pv(
         color: 'primary',
         variant: ['solid', 'bordered', 'light'],
         class: {
-          tab: 'data-[selected=true]:bg-primary data-[selected=true]:text-primary-950',
+          tab: 'data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground',
         },
       },
       {
@@ -331,7 +329,7 @@ const tabsVariants = pv(
         color: 'secondary',
         variant: ['solid', 'bordered', 'light'],
         class: {
-          tab: 'data-[selected=true]:bg-secondary data-[selected=true]:text-secondary-950',
+          tab: 'data-[selected=true]:bg-secondary data-[selected=true]:text-secondary-foreground',
         },
       },
       {
@@ -339,7 +337,7 @@ const tabsVariants = pv(
         color: 'success',
         variant: ['solid', 'bordered', 'light'],
         class: {
-          tab: 'data-[selected=true]:bg-success data-[selected=true]:text-success-950',
+          tab: 'data-[selected=true]:bg-success data-[selected=true]:text-success-foreground',
         },
       },
       {
@@ -347,7 +345,7 @@ const tabsVariants = pv(
         color: 'warning',
         variant: ['solid', 'bordered', 'light'],
         class: {
-          tab: 'data-[selected=true]:bg-warning data-[selected=true]:text-warning-950',
+          tab: 'data-[selected=true]:bg-warning data-[selected=true]:text-warning-foreground',
         },
       },
       {
@@ -355,7 +353,7 @@ const tabsVariants = pv(
         color: 'danger',
         variant: ['solid', 'bordered', 'light'],
         class: {
-          tab: 'data-[selected=true]:bg-danger data-[selected=true]:text-danger-950',
+          tab: 'data-[selected=true]:bg-danger data-[selected=true]:text-danger-foreground',
         },
       },
       // disableAnimation && color && underlined
@@ -364,7 +362,7 @@ const tabsVariants = pv(
         color: 'default',
         variant: 'underlined',
         class: {
-          tab: 'data-[selected=true]:after:bg-background-950',
+          tab: 'data-[selected=true]:after:bg-foreground',
         },
       },
       {
@@ -372,7 +370,7 @@ const tabsVariants = pv(
         color: 'primary',
         variant: 'underlined',
         class: {
-          tab: 'data-[selected=true]:after:bg-primary-400 dark:data-[selected=true]:after:bg-primary-600',
+          tab: 'data-[selected=true]:after:bg-primary',
         },
       },
       {
@@ -380,7 +378,7 @@ const tabsVariants = pv(
         color: 'secondary',
         variant: 'underlined',
         class: {
-          tab: 'data-[selected=true]:after:bg-secondary-400 dark:data-[selected=true]:after:bg-secondary-600',
+          tab: 'data-[selected=true]:after:bg-secondary',
         },
       },
       {
@@ -388,7 +386,7 @@ const tabsVariants = pv(
         color: 'success',
         variant: 'underlined',
         class: {
-          tab: 'data-[selected=true]:after:bg-success-400 dark:data-[selected=true]:after:bg-success-600',
+          tab: 'data-[selected=true]:after:bg-success',
         },
       },
       {
@@ -396,7 +394,7 @@ const tabsVariants = pv(
         color: 'warning',
         variant: 'underlined',
         class: {
-          tab: 'data-[selected=true]:after:bg-warning-400 dark:data-[selected=true]:after:bg-warning-600',
+          tab: 'data-[selected=true]:after:bg-warning',
         },
       },
       {
@@ -404,7 +402,7 @@ const tabsVariants = pv(
         color: 'danger',
         variant: 'underlined',
         class: {
-          tab: 'data-[selected=true]:after:bg-danger-400 dark:data-[selected=true]:after:bg-danger-600',
+          tab: 'data-[selected=true]:after:bg-danger',
         },
       },
       // rounded none - underlined
@@ -422,7 +420,6 @@ const tabsVariants = pv(
       variant: 'solid',
       size: 'md',
       fullWidth: false,
-      isDisabled: false,
     },
   },
 );

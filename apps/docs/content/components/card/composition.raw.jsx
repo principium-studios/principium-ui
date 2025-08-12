@@ -11,7 +11,7 @@ import {
   CardDescription,
 } from '@principium/react';
 
-export default function App() {
+function App() {
   const [isFollowed, setIsFollowed] = React.useState(false);
 
   return (
@@ -63,3 +63,5 @@ export default function App() {
     </Card>
   );
 }
+
+export default App;

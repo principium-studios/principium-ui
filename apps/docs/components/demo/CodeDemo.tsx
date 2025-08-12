@@ -44,13 +44,13 @@ const CodeDemo = React.memo(({code}: CodeDemoProps) => {
           <TabsTrigger value="code">Code</TabsTrigger>
         </TabsList>
         <TabsContent
-          className="border-border bg-border/10 flex h-fit min-h-64 items-center justify-center rounded-lg border p-4"
+          className="border-border bg-border/10 h-fit rounded-lg border px-4 py-8 flex flex-col"
           value="preview"
         >
           <LiveCodePreview code={cleanCode} />
         </TabsContent>
         <TabsContent
-          className="bg-border h-110 relative overflow-hidden rounded-lg border border-transparent"
+          className="bg-border max-h-110 flex flex-col relative overflow-hidden rounded-lg border border-transparent"
           value="code"
         >
           <div className="absolute right-2 top-2 z-20 hidden items-center justify-center gap-0 bg-transparent opacity-0 transition-opacity group-hover:opacity-100 md:flex">
@@ -64,7 +64,7 @@ const CodeDemo = React.memo(({code}: CodeDemoProps) => {
               <ClipboardIcon size={16} />
             </Button>
           </div>
-          <div className="h-full overflow-auto p-4">
+          <div className="flex-1 overflow-auto p-4">
             <SyntaxHighlighter code={code} language="jsx" showClipboard={false} />
           </div>
         </TabsContent>

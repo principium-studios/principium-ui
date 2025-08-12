@@ -3,10 +3,166 @@ title: Tabs
 description: A set of layered sections of content, known as tab panels, that are displayed one at a time.
 ---
 
+import TabsDemos from '@/content/components/tabs';
+
 <ComponentLinks name="Tabs" />
 
 ---
 
-## Installation 
+## Installation
 
 <PackageManagers packageName="tabs" />
+
+## Usage
+
+<CodeDemo code={TabsDemos.usage} />
+
+### Variants
+
+<CodeDemo code={TabsDemos.variants} />
+
+### Colors
+
+<CodeDemo code={TabsDemos.colors} />
+
+### Sizes
+
+<CodeDemo code={TabsDemos.sizes} />
+
+### Radius
+
+<CodeDemo code={TabsDemos.radius} />
+
+### Disabled Item
+
+<CodeDemo code={TabsDemos.disabledItem} />
+
+### Disabled
+
+<CodeDemo code={TabsDemos.disabled} />
+
+### Controlled
+
+<CodeDemo code={TabsDemos.controlled} />
+
+## API
+
+### Tabs
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'variant', description: 'The visual style of the tabs.'},
+      type: {name: '"solid" | "bordered" | "light" | "underlined"'},
+      default: '"solid"',
+    },
+    {
+      prop: {name: 'size', description: 'Controls the size of the tabs.'},
+      type: {name: '"sm" | "md" | "lg"'},
+      default: '"md"',
+    },
+    {
+      prop: {name: 'color', description: 'Controls the color of the tabs.'},
+      type: {
+        name: '"default" | "primary" | "secondary" | "success" | "warning" | "danger"',
+      },
+      default: '"default"',
+    },
+    {
+      prop: {name: 'radius', description: 'Controls the border radius of the tabs.'},
+      type: {name: '"none" | "sm" | "md" | "lg" | "full"'},
+      default: '"md"',
+    },
+    {
+      prop: {
+        name: 'disableAnimation',
+        description: 'Disables cursor and color transition animations.',
+      },
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'value', description: 'Controlled active tab value.'},
+      type: {name: 'string'},
+      default: '-',
+    },
+    {
+      prop: {name: 'defaultValue', description: 'Initial active tab value (uncontrolled).'},
+      type: {name: 'string'},
+      default: '-',
+    },
+    {
+      prop: {name: 'onChange', description: 'Callback when the active tab changes.'},
+      type: {name: '(tab: string) => void'},
+      default: '-',
+    },
+  ]}
+/>
+
+### TabsList
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'fullWidth', description: 'Makes the list stretch to full width.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'disabled', description: 'Disables all triggers within this list.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...divProps', description: 'All native div element props.'},
+      type: {name: '-'},
+    },
+  ]}
+/>
+
+### TabsTrigger
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'value', description: 'The value that identifies the tab.'},
+      type: {name: 'string'},
+      default: '-',
+    },
+    {
+      prop: {name: 'disabled', description: 'Disables this specific tab trigger.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...buttonProps', description: 'All native button element props.'},
+      type: {name: '-'},
+    },
+  ]}
+/>
+
+### TabsContent
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'value', description: 'The value of the tab this content belongs to.'},
+      type: {name: 'string'},
+      default: '-',
+    },
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...divProps', description: 'All native div element props.'},
+      type: {name: '-'},
+    },
+  ]}
+/>

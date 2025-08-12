@@ -9,7 +9,7 @@ import {
 
 function App() {
   return (
-    <div className="w-full space-y-4">
+    <div className="flex-1 space-y-4">
       <Alert color="primary">
         <AlertIcon />
         <AlertTitle>New Update Available</AlertTitle>

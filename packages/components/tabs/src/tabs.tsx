@@ -40,8 +40,6 @@ const Tabs = ({
   size,
   color,
   radius,
-  fullWidth,
-  isDisabled,
 }: TabsProps) => {
   const [activeTab, setActiveTab] = useControllableState({
     prop: value,
@@ -50,14 +48,7 @@ const Tabs = ({
   });
 
   return (
-    <TabsVariantProvider
-      color={color}
-      fullWidth={fullWidth}
-      isDisabled={isDisabled}
-      radius={radius}
-      size={size}
-      variant={variant}
-    >
+    <TabsVariantProvider color={color} radius={radius} size={size} variant={variant}>
       <TabsProvider activeTab={activeTab} setActiveTab={setActiveTab}>
         {children}
       </TabsProvider>
@@ -72,11 +63,13 @@ interface TabsListCtx {
 }
 const [TabsListProvider, useTabsList] = createContext<TabsListCtx>('TabsList');
 
-interface TabsListProps extends PrimitiveProps<'div'> {
-  children: React.ReactNode;
-}
-const TabsList = ({children, className, ...props}: TabsListProps) => {
-  const {variant, size, radius, fullWidth, isDisabled} = useTabsVariant();
+type TabsListProps = PrimitiveProps<'div'> &
+  Pick<SlotParams<typeof tabsVariants.tabList>, 'fullWidth'> & {
+    children: React.ReactNode;
+    disabled?: boolean;
+  };
+const TabsList = ({children, className, fullWidth, disabled, ...props}: TabsListProps) => {
+  const {variant, size, radius} = useTabsVariant();
   const id = React.useId();
 
   return (
@@ -87,9 +80,9 @@ const TabsList = ({children, className, ...props}: TabsListProps) => {
           size,
           radius,
           fullWidth,
-          isDisabled,
           className,
         })}
+        data-disabled={disabled}
         {...props}
       >
         {children}
@@ -102,8 +95,9 @@ const TabsList = ({children, className, ...props}: TabsListProps) => {
 interface TabsTriggerProps {
   children: React.ReactNode;
   value: string;
+  disabled?: boolean;
 }
-const TabsTrigger = ({children, value}: TabsTriggerProps) => {
+const TabsTrigger = ({children, value, disabled}: TabsTriggerProps) => {
   const {setActiveTab, activeTab} = useTabs();
   const {variant, size, color, radius, disableAnimation} = useTabsVariant();
   const {cursorId} = useTabsList();
@@ -112,7 +106,12 @@ const TabsTrigger = ({children, value}: TabsTriggerProps) => {
     <button
       className={tabsVariants.tab({variant, size, color, radius, disableAnimation})}
       data-selected={activeTab === value}
-      onClick={() => setActiveTab(value)}
+      data-disabled={disabled}
+      tabIndex={disabled ? -1 : 0}
+      onClick={() => {
+        if (disabled) return;
+        setActiveTab(value);
+      }}
     >
       {activeTab === value && (
         <LazyMotion features={domMax}>

@@ -2,7 +2,7 @@ import {Alert, AlertTitle, AlertDescription} from '@principium/react';
 
 function App() {
   return (
-    <div className="w-full space-y-4">
+    <div className="flex-1 space-y-4">
       <Alert hideIconWrapper color="primary">
         <AlertTitle>Simple Alert</AlertTitle>
         <AlertDescription>This alert doesn&apos;t have an icon.</AlertDescription>
