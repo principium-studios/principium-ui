@@ -51,12 +51,6 @@ const routes: Route[] = [
     keywords: 'interface elements, interactive components, UI components, widgets',
     routes: [
       {
-        key: 'overview',
-        title: 'Overview',
-        keywords: 'overview, components, principium',
-        path: '/docs/components/overview.mdx',
-      },
-      {
         key: 'alert',
         title: 'Alert',
         keywords: 'alert, principium',

@@ -8,8 +8,6 @@ import PackageManagers from '../docs/PackageManagers';
 import {CodeDemo} from '../demo/CodeDemo';
 import SyntaxHighlighter from '../demo/SyntaxHighlighter';
 
-import Overview from '@/content/components/overview';
-
 export interface LinkedHeadingProps {
   as: keyof React.JSX.IntrinsicElements;
   children?: React.ReactNode;
@@ -94,7 +92,6 @@ const ApiTable = ({
 
 const MDXComponents = {
   ...PrincipiumComponents,
-  ...Overview,
   NextImage: Image,
   Community,
   ComponentLinks,
