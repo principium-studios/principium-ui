@@ -59,20 +59,20 @@ const cardVariants = pv(
           base: 'rounded-lg',
         },
       },
-      isHoverable: {
+      hoverable: {
         true: {
           base: 'hover:bg-card',
         },
       },
-      isPressable: {
+      pressable: {
         true: {base: 'cursor-pointer'},
       },
-      isBlurred: {
+      blurred: {
         true: {
           base: 'bg-card/80 backdrop-blur-md backdrop-saturate-150',
         },
       },
-      isFooterBlurred: {
+      footerBlurred: {
         true: {
           footer: 'bg-card/10 backdrop-blur backdrop-saturate-150',
         },
@@ -85,15 +85,15 @@ const cardVariants = pv(
     },
     compoundVariants: [
       {
-        isPressable: true,
+        pressable: true,
         class: {base: 'active:scale-97'},
       },
     ] as const,
     defaultVariants: {
-      isHoverable: false,
-      isPressable: false,
+      hoverable: false,
+      pressable: false,
       disabled: false,
-      isFooterBlurred: false,
+      footerBlurred: false,
       radius: 'md',
       shadow: 'sm',
     },

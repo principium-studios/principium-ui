@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
       {list.map((item, index) => (
-        <Card key={index} isPressable shadow="sm">
+        <Card key={index} pressable shadow="sm">
           <CardContent className="overflow-visible p-0">
             <Image
               alt={item.title}

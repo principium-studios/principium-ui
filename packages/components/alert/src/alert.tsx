@@ -14,11 +14,11 @@ const [AlertProvider, useAlert] = createContext<AlertContextType>('Alert');
 
 // ________________________ Alert ________________________
 type AlertProps = PrimitiveProps<'div'> & SlotParams<typeof alertVariants.base>;
-const Alert = ({className, variant, color, radius, hideIconWrapper, ...props}: AlertProps) => {
+const Alert = ({className, variant, color, radius, ...props}: AlertProps) => {
   return (
     <AlertProvider color={color} variant={variant}>
       <Primitive.div
-        className={alertVariants.base({variant, color, className, hideIconWrapper, radius})}
+        className={alertVariants.base({variant, color, className, radius})}
         {...props}
       />
     </AlertProvider>
@@ -42,9 +42,7 @@ const AlertDescription = ({className, ...props}: AlertDescriptionProps) => {
 };
 
 // ________________________ AlertIcon ________________________
-type AlertIconProps = PrimitiveProps<'div'> & {
-  hideIconWrapper?: boolean;
-};
+type AlertIconProps = PrimitiveProps<'div'> & SlotParams<typeof alertVariants.alertIcon>;
 const AlertIcon = ({className, children, hideIconWrapper, ...props}: AlertIconProps) => {
   const {variant, color} = useAlert();
 

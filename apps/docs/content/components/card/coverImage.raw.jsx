@@ -55,7 +55,7 @@ function App() {
           className="z-0 h-full w-full object-cover"
           src="https://i.kym-cdn.com/entries/icons/mobile/000/046/685/1.jpg"
         />
-        <CardFooter isBlurred className="absolute bottom-0 z-10 justify-between">
+        <CardFooter blurred className="absolute bottom-0 z-10 justify-between">
           <div>
             <p className="text-tiny text-white">Available soon.</p>
             <p className="text-tiny text-white">Get notified.</p>
@@ -75,7 +75,7 @@ function App() {
           className="z-0 h-full w-full object-cover"
           src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&auto=format&fit=crop&q=60"
         />
-        <CardFooter isBlurred className="absolute bottom-0 z-10 justify-between">
+        <CardFooter blurred className="absolute bottom-0 z-10 justify-between">
           <div className="flex grow items-center gap-2">
             <Avatar className="rounded-full">
               <AvatarFallback>

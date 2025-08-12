@@ -9,7 +9,7 @@ function App() {
         src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=60"
       />
       <CardFooter
-        isBlurred
+        blurred
         className="border-border/10 absolute bottom-1 mx-1 w-[calc(100%_-_8px)] justify-between rounded-lg border"
       >
         <p className="text-xs text-white">Available soon.</p>

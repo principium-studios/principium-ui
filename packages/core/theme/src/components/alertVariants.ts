@@ -67,7 +67,7 @@ const alertVariants = pv(
       },
       hideIconWrapper: {
         true: {
-          base: 'gap-x-0',
+          alertIcon: [],
           iconWrapper: '!bg-transparent !shadow-none !border-none',
         },
       },

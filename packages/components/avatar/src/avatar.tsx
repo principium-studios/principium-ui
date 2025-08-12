@@ -15,11 +15,11 @@ const [AvatarVariantProvider, useAvatarVariant] =
 
 type AvatarProps = PrimitiveProps<'span'> & SlotParams<typeof avatarVariants.base>;
 
-const Avatar = ({className, size, color, isBordered, disabled, radius, ...props}: AvatarProps) => {
+const Avatar = ({className, size, color, bordered, disabled, radius, ...props}: AvatarProps) => {
   return (
     <AvatarVariantProvider radius={radius}>
       <Primitive.span
-        className={avatarVariants.base({size, color, isBordered, disabled, radius, className})}
+        className={avatarVariants.base({size, color, bordered, disabled, radius, className})}
         {...props}
       />
     </AvatarVariantProvider>

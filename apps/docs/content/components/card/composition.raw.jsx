@@ -18,7 +18,7 @@ function App() {
     <Card className="max-w-[340px]">
       <CardHeader className="flex-row justify-between">
         <div className="flex items-center gap-5">
-          <Avatar isBordered radius="full" size="md">
+          <Avatar bordered radius="full" size="md">
             <AvatarImage src="https://i.pravatar.cc/150?u=zoey" />
           </Avatar>
           <div className="flex flex-col items-start justify-center gap-1">

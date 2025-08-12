@@ -110,7 +110,7 @@ const avatarVariants = pv(
           base: colorVariants.solid.danger,
         },
       },
-      isBordered: {
+      bordered: {
         true: {
           base: 'ring-2 ring-offset-2 ring-offset-background',
         },
@@ -129,42 +129,42 @@ const avatarVariants = pv(
     compoundVariants: [
       {
         color: 'default',
-        isBordered: true,
+        bordered: true,
         class: {
           base: 'ring-border',
         },
       },
       {
         color: 'primary',
-        isBordered: true,
+        bordered: true,
         class: {
           base: 'ring-primary',
         },
       },
       {
         color: 'secondary',
-        isBordered: true,
+        bordered: true,
         class: {
           base: 'ring-secondary',
         },
       },
       {
         color: 'success',
-        isBordered: true,
+        bordered: true,
         class: {
           base: 'ring-success',
         },
       },
       {
         color: 'warning',
-        isBordered: true,
+        bordered: true,
         class: {
           base: 'ring-warning',
         },
       },
       {
         color: 'danger',
-        isBordered: true,
+        bordered: true,
         class: {
           base: 'ring-danger',
         },

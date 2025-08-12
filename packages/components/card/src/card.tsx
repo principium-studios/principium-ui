@@ -11,8 +11,8 @@ import {useInsertChildren} from '@principium/use-insert-children';
 
 // ________________________ Card ________________________
 type CardProps = (
-  | ({isPressable: true} & PrimitiveProps<'button'>)
-  | ({isPressable?: false | undefined | null} & PrimitiveProps<'div'>)
+  | ({pressable: true} & PrimitiveProps<'button'>)
+  | ({pressable?: false | undefined | null} & PrimitiveProps<'div'>)
 ) &
   (SlotParams<typeof cardVariants.base> & {
     disableRipple?: boolean;
@@ -21,10 +21,10 @@ type CardProps = (
 // TODO: fix types
 const Card = ({
   disableRipple = false,
-  isPressable,
+  pressable,
   disabled,
-  isHoverable,
-  isBlurred,
+  hoverable,
+  blurred,
   className,
   children,
   onClick,
@@ -33,26 +33,26 @@ const Card = ({
   asChild,
   ...props
 }: CardProps) => {
-  const Component = isPressable ? Primitive.button : Primitive.div;
+  const Component = pressable ? Primitive.button : Primitive.div;
 
   const content = useInsertChildren(asChild, children, <Ripple />);
 
   return (
-    <RippleProvider disableRipple={disableRipple || !isPressable}>
+    <RippleProvider disableRipple={disableRipple || !pressable}>
       {/* @ts-ignore */}
       <Component
         asChild={asChild}
         className={cardVariants.base({
-          isPressable,
+          pressable,
           disabled,
-          isHoverable,
-          isBlurred,
+          hoverable,
+          blurred,
           radius,
           shadow,
           className,
         })}
         onClick={(e) => {
-          if (!isPressable) return;
+          if (!pressable) return;
           // @ts-ignore
           onClick?.(e);
         }}
@@ -89,11 +89,9 @@ const CardContent = ({className, ...props}: CardContentProps) => {
 };
 
 // ________________________ CardFooter ________________________
-type CardFooterProps = React.ComponentPropsWithRef<'div'> & {isBlurred?: boolean};
-const CardFooter = ({className, isBlurred, ...props}: CardFooterProps) => {
-  return (
-    <div className={cardVariants.footer({className, isFooterBlurred: isBlurred})} {...props} />
-  );
+type CardFooterProps = React.ComponentPropsWithRef<'div'> & {blurred?: boolean};
+const CardFooter = ({className, blurred, ...props}: CardFooterProps) => {
+  return <div className={cardVariants.footer({className, footerBlurred: blurred})} {...props} />;
 };
 
 export {Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter};
