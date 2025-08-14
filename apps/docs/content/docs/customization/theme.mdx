@@ -3,131 +3,34 @@ title: Theme
 description: Understanding and configuring the Principium UI theme system.
 ---
 
-## Theme System
+## Theme system
 
-Principium UI's theme system is built around **TailwindCSS v4** and provides a powerful way to customize the look and feel of your components. The theme system uses CSS custom properties (variables) and the `shadesPlugin` to generate consistent color scales.
+Principium UI’s theme system is built around **Tailwind CSS v4** and the `shadesPlugin`. It generates CSS variables and Tailwind color scales from concise HSL definitions so your components stay consistent.
 
-## How It Works
+---
 
-The theme system generates color scales automatically from base hue and saturation values. Each color generates multiple shades (50, 100, 200, ..., 950) that are used throughout the component library.
+## Default themes and merging
 
-### Color Structure
+Principium ships with two default themes: `light` and `dark`. When you enable `defaults: true`, these defaults are automatically available. If you also provide your own `light` or `dark` theme entries, they are merged with the defaults so you only need to override what you want (e.g., brand or semantic colors).
 
-Every color in Principium follows this structure:
+<SyntaxHighlighter showClipboard={false} className="bg-border" language="ts" code={`import {shadesPlugin} from '@principium/shades';
 
-<SyntaxHighlighter className="bg-border" language="typescript" code={`{
-  hue: number;        // 0-360 (color wheel position)
-  saturation: number; // 0-100 (color intensity)
-}`} />
-
-The system automatically generates lightness values to create a complete color scale.
-
-## Default Theme
-
-Here's the default light theme configuration:
-
-<SyntaxHighlighter className="bg-border" language="typescript" code={`const lightTheme = {
-  colors: {
-    background: {
-      hue: 0,         // Neutral gray
-      saturation: 0,
-    },
-    border: {
-      hue: 240,       // Cool gray
-      saturation: 10,
-    },
-    outline: {
-      hue: 212,       // Blue
-      saturation: 100,
-    },
-    primary: {
-      hue: 212,       // Blue
-      saturation: 100,
-    },
-    secondary: {
-      hue: 270,       // Purple
-      saturation: 67,
-    },
-    success: {
-      hue: 146,       // Green
-      saturation: 55,
-    },
-    warning: {
-      hue: 37,        // Orange
-      saturation: 90,
-    },
-    danger: {
-      hue: 339,       // Red
-      saturation: 90,
-    },
-  },
-};`} />
-
-## Color Scales
-
-Each color generates a complete scale from 50 (lightest) to 950 (darkest):
-
-- `background-50` - Very light background
-- `background-100` - Light background
-- `background-200` - ...
-- `background-500` - Base color
-- `background-900` - Very dark
-- `background-950` - Darkest
-
-## Semantic Color Usage
-
-Principium uses semantic color names that automatically adapt to light and dark themes:
-
-### Background Colors
-- `background-*` - Main background colors, from light to dark
-- Used for: page backgrounds, card backgrounds, surfaces
-
-### Border Colors  
-- `border-*` - Border and divider colors
-- Used for: component borders, dividers, outlines
-
-### Text Colors
-- Text automatically uses appropriate `background-*` shades
-- Light theme: `background-900` for primary text
-- Dark theme: `background-100` for primary text
-
-### Intent Colors
-- `primary-*` - Primary brand color
-- `secondary-*` - Secondary brand color  
-- `success-*` - Success states (green tones)
-- `warning-*` - Warning states (orange tones)
-- `danger-*` - Error/danger states (red tones)
-
-## CSS Variables
-
-The theme system generates CSS custom properties that can be used directly:
-
-<SyntaxHighlighter className="bg-border" language="css" code={`.my-component {
-  background-color: var(--background-100);
-  border-color: var(--border-200);
-  color: var(--primary-600);
-}`} />
-
-## Theme Configuration
-
-Configure your theme in `tailwind.config.ts`:
-
-<SyntaxHighlighter className="bg-border" language="typescript" code={`import {shadesPlugin} from '@principium/theme';
-
-const config = {
+export default {
   plugins: [
     shadesPlugin({
-      defaultTheme: 'light',
+      defaults: true,
       themes: {
         light: {
           colors: {
-            // Your light theme colors
+            // Only override what you need
+            primary: {hue: 200, saturation: 95, lightness: 58, foreground: {lightness: 98}},
+            secondary: {hue: 275, saturation: 80, lightness: 58, foreground: {lightness: 98}},
           },
         },
         dark: {
-          isDarkTheme: true,
           colors: {
-            // Your dark theme colors
+            // Override just a few colors here as well if desired
+            primary: {hue: 200, saturation: 95, lightness: 58, foreground: {lightness: 95}},
           },
         },
       },
@@ -135,69 +38,149 @@ const config = {
   ],
 };`} />
 
-## Theme Properties
+With `defaults: true`, any colors you don’t specify remain from the defaults. This keeps your configuration minimal and focused on brand/semantic tweaks.
 
-### `defaultTheme`
-The default theme to use when no theme class is applied.
+---
 
-### `themes`
-An object containing theme configurations. Each theme can have:
+## Creating additional themes
 
-- `colors` - Color definitions using hue/saturation
-- `isDarkTheme` - Boolean indicating if this is a dark theme
+You can define any number of custom themes (e.g., `coffee`, `emerald`, `high-contrast`). Add them alongside `light`/`dark` and pick a `defaultTheme` if you want the default to be something else.
 
-## Best Practices
+<SyntaxHighlighter className="bg-border" language="ts" code={`import {shadesPlugin} from '@principium/shades';
 
-### 1. Use Semantic Colors
-Always use semantic color names instead of specific color values:
+export default {
+  plugins: [
+    shadesPlugin({
+      defaults: true,
+      defaultTheme: 'light',
+      themes: {
+        coffee: {
+          // Optional: control scale orientation with 'mode'.
+          // mode: 'normal',
+          colors: {
+            background: {hue: 25, saturation: 10, lightness: 96, foreground: {lightness: 10}},
+            card: {hue: 25, saturation: 10, lightness: 94, foreground: {lightness: 10}},
+            primary: {hue: 25, saturation: 70, lightness: 52, foreground: {lightness: 98}},
+            ...restOfColors, // Add all of the required colors here / and any other colors you want to use yourself
+          },
+        },
+      },
+    }),
+  ],
+};`} />
 
-<SyntaxHighlighter className="bg-border" language="tsx" code={`// ✅ Good - semantic and theme-aware
-<div className="bg-border text-background-900 border-border-200">
+You can switch themes in your app by applying the corresponding theme class name somewhere up the tree. The plugin will scope CSS variables to each theme name for you.
 
-// ❌ Avoid - hardcoded colors
-<div className="bg-gray-100 text-gray-900 border-gray-200">`} />
+---
 
-### 2. Consistent Color Scales
-Stick to the generated color scales for consistency:
+## What gets generated
 
-<SyntaxHighlighter className="bg-border" language="tsx" code={`// ✅ Good - uses consistent scale
-<Card className="bg-background-50 border-border-200" />
+The plugin creates two things for each theme and color:
 
-// ❌ Inconsistent - mixed scales
-<Card className="bg-gray-50 border-blue-200" />`} />
+- **CSS variables**: for base color, optional foreground, and shade scale
+- **Tailwind color entries**: so you can use `bg-primary-500`, `text-card-foreground`, etc.
 
-### 3. Intent-Based Colors
-Use intent colors for interactive elements:
+### CSS variables
 
-<SyntaxHighlighter className="bg-border" language="tsx" code={`// ✅ Good - clear intent
-<Button variant="primary">Submit</Button>
-<Alert variant="success">Success!</Alert>
+- Base color (when `lightness` is provided): `--primary`
+- Foreground color (when `foreground` is provided): `--primary-foreground`
+- Special case: `background`’s foreground becomes the global `--foreground`
+- Shades (when `generateShades !== false`): `--primary-50` ... `--primary-950`
 
-// ❌ Less clear
-<Button className="bg-blue-500">Submit</Button>`} />
+<SyntaxHighlighter className="bg-border" language="css" code={`:root {
+  /* defaultTheme variables */
+  --background: hsl(...);
+  --foreground: hsl(...);
+  --primary: hsl(...);
+  --primary-50: hsl(...);
+  /* ... up to --primary-950 */
+}
 
-## Advanced Usage
-
-### Custom CSS Properties
-You can create custom CSS properties that respect the theme:
-
-<SyntaxHighlighter className="bg-border" language="css" code={`.custom-component {
-  --custom-bg: var(--background-100);
-  --custom-border: var(--border-300);
-  
-  background-color: var(--custom-bg);
-  border-color: var(--custom-border);
+.coffee {
+  /* variables scoped to the 'coffee' theme */
+  --background: hsl(...);
+  --foreground: hsl(...);
+  --primary: hsl(...);
+  --primary-50: hsl(...);
 }`} />
 
-### Conditional Styling
-Use TailwindCSS variants for theme-specific styling:
+### Tailwind color entries
 
-<SyntaxHighlighter className="bg-border" language="tsx" code={`<div className="bg-border dark:bg-background-800">
-  {/* Automatically adapts to theme */}
-</div>`} />
+For each color, the plugin extends Tailwind’s `theme.colors` with:
 
-## Next Steps
+- `DEFAULT` (when base `lightness` provided), `50` ... `950` (when shades generated)
+- `foreground` (when provided)
+- Special case: a global `foreground` color mapping to `var(--foreground)`
 
-- Learn how to [customize colors](/docs/customization/colors) in your theme
-- Explore [dark mode](/docs/customization/dark-mode) implementation
-- See how to [customize the entire theme](/docs/customization/customize-theme)
+<SyntaxHighlighter className="bg-border" language="ts" code={`// theme.extend.colors
+{
+  primary: {
+    DEFAULT: 'var(--primary)',
+    50: 'var(--primary-50)',
+    /* ... */
+    950: 'var(--primary-950)',
+    foreground: 'var(--primary-foreground)',
+  },
+  // Special case
+  foreground: 'var(--foreground)',
+}`} />
+
+---
+
+## API
+
+Use the options below with `shadesPlugin` in your `tailwind.config.ts`.
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'defaults', description: 'Enable Principium’s built-in light and dark themes.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'themes', description: 'Theme definitions keyed by theme name.'},
+      type: {name: 'Themes'},
+    },
+    {
+      prop: {name: 'defaultTheme', description: 'The theme used for :root variables.'},
+      type: {name: 'string'},
+    },
+  ]}
+/>
+
+### Types
+
+These are the exact types used by the plugin.
+
+<SyntaxHighlighter className="bg-border" language="ts" code={`interface ForegroundColor {
+    lightness: number; // Foreground uses the hue and saturation of the base color
+}
+
+interface Color {
+    hue: number;
+    saturation: number;
+    lightness?: number; // Lightness is optional for the base color (if not provided, the color won't be generated)
+    foreground?: ForegroundColor; // Foreground is optional for the base color (if not provided, the color won't be generated)
+    generateShades?: boolean; // If false, no shades will be generated for this color
+}
+
+interface Theme {
+    mode?: 'normal' | 'flipped'; // If normal, the color lightness will be generated in the normal order (50, 100, 200, ..., 950). If flipped, the color lightness will be generated in the flipped order (950, 900, 800, ..., 50).
+    colors?: Record<string, Color>; 
+}
+
+type Themes = Record<string, Theme>;`} />
+
+### Semantic colors
+
+Principium’s defaults include a helpful set of semantic colors:
+
+- `background`, `card`, `muted`
+- `primary`, `secondary`
+- `success`, `warning`, `danger`
+- `border`, `ring`
+
+Keep overrides minimal by changing only what you need.
+
+<div className="h-40"/>
