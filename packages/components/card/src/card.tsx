@@ -51,6 +51,7 @@ const Card = ({
           shadow,
           className,
         })}
+        data-disabled={disabled}
         onClick={(e) => {
           if (!pressable) return;
           // @ts-ignore

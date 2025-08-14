@@ -5,10 +5,10 @@ function App() {
   const [isSelected, setIsSelected] = React.useState(false);
 
   return (
-    <div className="flex-1 flex flex-col gap-2">
+    <div className="flex flex-1 flex-col gap-2">
       <div className="flex items-center gap-2">
-        <Checkbox checked={isSelected} onCheckedChange={setIsSelected} />
-        <Label>Subscribe (controlled)</Label>
+        <Checkbox checked={isSelected} onCheckedChange={setIsSelected} id="cc-subscribe" />
+        <Label htmlFor="cc-subscribe">Subscribe (controlled)</Label>
       </div>
       <p className="text-default-500">Selected: {isSelected ? 'true' : 'false'}</p>
     </div>

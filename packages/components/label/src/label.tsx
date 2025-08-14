@@ -1,12 +1,23 @@
 import {labelVariants} from '@principium/theme';
+import {Primitive, PrimitiveProps} from '@principium/primitive';
 
-type LabelProps = React.HTMLAttributes<HTMLLabelElement>;
+type LabelProps = PrimitiveProps<'label'>;
 
 const Label = ({children, className, ...props}: LabelProps) => {
   return (
-    <label {...props} className={labelVariants({className})}>
+    <Primitive.label
+      {...props}
+      className={labelVariants({className})}
+      onMouseDown={(event) => {
+        const target = event.target as HTMLElement;
+        if (target.closest('button, input, select, textarea')) return;
+
+        props.onMouseDown?.(event);
+        if (!event.defaultPrevented && event.detail > 1) event.preventDefault();
+      }}
+    >
       {children}
-    </label>
+    </Primitive.label>
   );
 };
 

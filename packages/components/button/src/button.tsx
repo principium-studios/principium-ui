@@ -32,7 +32,6 @@ const Button = ({
     <RippleProvider disableRipple={disableRipple || disabled}>
       <Primitive.button
         {...props}
-        aria-disabled={disabled}
         asChild={asChild}
         className={buttonVariants({
           variant,
@@ -43,7 +42,7 @@ const Button = ({
           radius,
           disableAnimation,
         })}
-        disabled={disabled}
+        data-disabled={disabled}
         onClick={(e) => {
           if (disabled) return;
           onClick?.(e);

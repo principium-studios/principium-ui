@@ -44,7 +44,7 @@ const Checkbox = ({
         color,
         size,
         radius,
-        isDisabled: disabled,
+        disabled,
         disableAnimation,
         className,
       })}

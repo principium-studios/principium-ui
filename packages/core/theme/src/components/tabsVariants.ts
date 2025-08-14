@@ -115,7 +115,7 @@ const tabsVariants = pv(
         sm: {
           context: [],
           tabList: 'rounded-md',
-          tab: 'h-7 text-tiny rounded-sm',
+          tab: 'h-7 text-xs rounded-sm',
           cursor: 'rounded-sm',
         },
         md: {

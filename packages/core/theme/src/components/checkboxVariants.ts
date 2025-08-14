@@ -15,6 +15,7 @@ const checkboxVariants = pv(
   {
     base: [
       'group',
+      'peer',
       'relative',
       'inline-flex',
       'items-center',
@@ -99,7 +100,7 @@ const checkboxVariants = pv(
           base: 'rounded-full before:rounded-full after:rounded-full',
         },
       },
-      isDisabled: {
+      disabled: {
         true: {
           base: 'opacity-50 pointer-events-none',
         },
@@ -126,7 +127,7 @@ const checkboxVariants = pv(
     defaultVariants: {
       color: 'primary',
       size: 'md',
-      isDisabled: false,
+      disabled: false,
       disableAnimation: false,
     },
   },

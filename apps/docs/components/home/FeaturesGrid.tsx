@@ -27,7 +27,7 @@ const FeaturesGrid = ({features}: {features: Feature[]}) => {
 
         if (feature.href) {
           return (
-            <Card key={feature.title} asChild isBlurred isPressable>
+            <Card key={feature.title} asChild blurred pressable>
               {feature.target === '_blank' ? (
                 <a href={feature.href} rel="noopener noreferrer" target="_blank">
                   {content}
@@ -40,7 +40,7 @@ const FeaturesGrid = ({features}: {features: Feature[]}) => {
         }
 
         return (
-          <Card key={feature.title} isBlurred>
+          <Card key={feature.title} blurred>
             {content}
           </Card>
         );

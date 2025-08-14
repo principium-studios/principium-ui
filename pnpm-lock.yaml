@@ -546,6 +546,9 @@ importers:
 
   packages/components/label:
     dependencies:
+      '@principium/primitive':
+        specifier: workspace:*
+        version: link:../utils/primitive
       '@principium/theme':
         specifier: workspace:*
         version: link:../../core/theme

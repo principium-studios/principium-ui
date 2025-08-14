@@ -4,12 +4,12 @@ function App() {
   return (
     <div className="flex-1 flex gap-4">
       <div className="flex items-center gap-2">
-        <Checkbox disabled />
-        <Label>Option</Label>
+        <Checkbox disabled id="cd-disabled" />
+        <Label htmlFor="cd-disabled">Option</Label>
       </div>
       <div className="flex items-center gap-2">
-        <Checkbox defaultChecked disabled />
-        <Label>Option</Label>
+        <Checkbox defaultChecked disabled id="cd-default-disabled" />
+        <Label htmlFor="cd-default-disabled">Option</Label>
       </div>
     </div>
   );

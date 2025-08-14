@@ -20,6 +20,7 @@ const Avatar = ({className, size, color, bordered, disabled, radius, ...props}: 
     <AvatarVariantProvider radius={radius}>
       <Primitive.span
         className={avatarVariants.base({size, color, bordered, disabled, radius, className})}
+        data-disabled={disabled}
         {...props}
       />
     </AvatarVariantProvider>

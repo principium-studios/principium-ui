@@ -51,6 +51,7 @@
     "@principium/variants": "workspace:*"
   },
   "dependencies": {
+    "@principium/primitive": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }
