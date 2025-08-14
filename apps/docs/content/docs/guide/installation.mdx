@@ -3,76 +3,50 @@ title: Installation
 description: How to set up Principium UI with the CLI and scaffold your own components.
 ---
 
-## 1. Install the CLI
+## 1. Install dependencies
 
-Run the following command to get started:
+Install the theme package (provides all utility classes used by components):
 
-<SyntaxHighlighter className="bg-background-100" language="bash" code={`npx create-principium@latest`} />
+<PackageManagers packageName="theme" />
 
-## 2. Scaffold Your First Component
+Then install the Shades plugin (hooks the theme into Tailwind and exposes config):
 
-To add a Button component to your project:
+<PackageManagers packageName="shades" />
 
-<SyntaxHighlighter className="bg-background-100" language="bash" code={`npx create-principium add button`} />
+## 2. Configure Tailwind
 
-This will create:
+Add this to your `tailwind.config.ts`:
 
-- `src/components/principium/Button.tsx`
-- `src/components/principium/variants/button.ts`
-
-## 3. Set Up the Theme
-
-Add the Principium theme plugin to your `tailwind.config.ts`:
-
-<SyntaxHighlighter className="bg-background-100" language="typescript" code={`import { shadesPlugin } from '@principium/theme';
+<SyntaxHighlighter className="bg-border" language="ts" code={`import {shadesPlugin} from '@principium/shades';
 
 export default {
-  plugins: [
-    shadesPlugin({
-      // your theme config here
-    }),
-  ],
-};`} />
+    content: ['./node_modules/@principium/theme/dist/**/*.{js,ts,jsx,tsx}'],
+    plugins: [
+      shadesPlugin({
+        defaults: true,
+      }),
+    ],
+};
+`} />
 
-## 4. Use Your Component
+Note: adjust the `content` path if your project structure differs (e.g., monorepo).
 
-Import and use the generated component in your app:
+## 3. Wire up global CSS
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`import { Button } from '@/components/principium/Button';
+Add this to your `globals.css` (and ensure this stylesheet is loaded by your app):
 
-export default function Example() {
-  return <Button variant="primary">Click me</Button>;
-}`} />
+<SyntaxHighlighter className="bg-border" language="css" code={`@import 'tailwindcss';
 
-## 5. Customize Freely
+/* Make Principium Theme available to Tailwind */
+@config "../tailwind.config.ts";
+@custom-variant dark (&:is(.dark \*));
+`} />
 
-Edit the generated files to change styles, add variants, or adapt to your needs. You own the code!
+## 4. Add components
 
-## 6. Update or Add More Components
+Install the React package to start importing or scaffolding components.  
+You can also add components individually as needed-see the [components page](/docs/guide/components) for details.
 
-To update a component or add new ones, just re-run the CLI:
-
-<SyntaxHighlighter className="bg-background-100" language="bash" code={`npx create-principium add card`} />
-
-## 7. Peer Dependencies
-
-Make sure you have these installed:
-
-<SyntaxHighlighter className="bg-background-100" language="bash" code={`npm install react@^19.0.0 tailwindcss@^4.0.0`} />
+<PackageManagers packageName="react" />
 
 ---
-
-## Why This Approach?
-
-- **Full control:** You own and edit every component.
-- **No lock-in:** No runtime dependency on Principium packages.
-- **Minimal bundle:** Only the code you use is included.
-- **Easy theming:** Tailwind classes are right in your code.
-
----
-
-## Next Steps
-
-- [See all available components](/docs/guide/components)
-- [Learn about theming and color customization](/docs/customization/theme)
-- [How to update components](/docs/guide/update)

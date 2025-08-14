@@ -11,7 +11,7 @@ Principium UI provides comprehensive dark mode support through its theme system.
 
 ### Basic Dark Mode Configuration
 
-<SyntaxHighlighter className="bg-background-100" language="typescript" code={`// tailwind.config.ts
+<SyntaxHighlighter className="bg-border" language="typescript" code={`// tailwind.config.ts
 import {shadesPlugin} from '@principium/theme';
 
 const config = {
@@ -41,7 +41,7 @@ primary: { hue: 212, saturation: 85 },
 
 ### Theme Provider Setup
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`// app/providers.tsx
+<SyntaxHighlighter className="bg-border" language="tsx" code={`// app/providers.tsx
 'use client';
 
 import {ThemeProvider} from 'next-themes';
@@ -59,7 +59,7 @@ export function Providers({children}: {children: React.ReactNode}) {
   );
 }`} />
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`// app/layout.tsx
+<SyntaxHighlighter className="bg-border" language="tsx" code={`// app/layout.tsx
 import {Providers} from './providers';
 
 export default function RootLayout({children}) {
@@ -81,7 +81,7 @@ export default function RootLayout({children}) {
 Dark themes typically need adjusted saturation and different color relationships:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`const colorComparison = {
   light: {
@@ -107,7 +107,7 @@ Dark themes typically need adjusted saturation and different color relationships
 
 Pure colors can be harsh in dark mode:
 
-<SyntaxHighlighter className="bg-background-100" language="typescript" code={`// ✅ Good - reduced saturation for dark mode
+<SyntaxHighlighter className="bg-border" language="typescript" code={`// ✅ Good - reduced saturation for dark mode
 dark: {
   colors: {
     primary: { hue: 212, saturation: 85 },    // Was 100 in light
@@ -128,7 +128,7 @@ success: { hue: 146, saturation: 55 }, // Too bright
 
 Pure black backgrounds can be harsh. Use dark grays with subtle color tints:
 
-<SyntaxHighlighter className="bg-background-100" language="typescript" code={`// ✅ Good - tinted dark backgrounds
+<SyntaxHighlighter className="bg-border" language="typescript" code={`// ✅ Good - tinted dark backgrounds
 background: { hue: 220, saturation: 15 }, // Dark blue-gray
 border: { hue: 220, saturation: 20 },     // Matching tint
 
@@ -140,7 +140,7 @@ background: { hue: 0, saturation: 0 }, // Too stark`} />
 Ensure sufficient contrast ratios in dark mode:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`// Light mode text uses background-900 (very dark)
 // Dark mode text uses background-100 (very light)
@@ -151,7 +151,7 @@ Ensure sufficient contrast ratios in dark mode:
 
 ### Basic Toggle
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`'use client';
+<SyntaxHighlighter className="bg-border" language="tsx" code={`'use client';
 
 import {useTheme} from 'next-themes';
 import {Button} from '@principium/react';
@@ -174,7 +174,7 @@ onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} >
 
 ### Advanced Toggle with System
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`'use client';
+<SyntaxHighlighter className="bg-border" language="tsx" code={`'use client';
 
 import {useTheme} from 'next-themes';
 import {Button} from '@principium/react';
@@ -212,7 +212,7 @@ className="flex items-center gap-2" >
 
 Principium components automatically adapt to dark mode through the color scale:
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`// This button automatically adapts to dark mode
+<SyntaxHighlighter className="bg-border" language="tsx" code={`// This button automatically adapts to dark mode
 <Button variant="primary">
   Click me
 </Button>
@@ -229,7 +229,7 @@ Principium components automatically adapt to dark mode through the color scale:
 
 For specific cases, you can manually override dark mode styles:
 
-<SyntaxHighlighter className="bg-background-100"  language="tsx" code={`// Custom dark mode styling
+<SyntaxHighlighter className="bg-border"  language="tsx" code={`// Custom dark mode styling
 <div className="bg-white dark:bg-background-900 text-black dark:text-white">
   Custom styled content
 </div>
@@ -248,7 +248,7 @@ For specific cases, you can manually override dark mode styles:
 
 Handle images and media for dark mode:
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`// Logo that changes in dark mode
+<SyntaxHighlighter className="bg-border" language="tsx" code={`// Logo that changes in dark mode
 <div className="relative h-8 w-32">
   <img
     src="/logo-light.svg"
@@ -274,7 +274,7 @@ Handle images and media for dark mode:
 
 ### System Theme Detection
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`'use client';
+<SyntaxHighlighter className="bg-border" language="tsx" code={`'use client';
 
 import {useTheme} from 'next-themes';
 import {useEffect, useState} from 'react';
@@ -305,7 +305,7 @@ Current theme: {currentTheme}
 
 ### Theme Persistence
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`// The theme is automatically persisted by next-themes
+<SyntaxHighlighter className="bg-border" language="tsx" code={`// The theme is automatically persisted by next-themes
 // But you can customize the storage key and other options
 
 <ThemeProvider
@@ -325,7 +325,7 @@ Current theme: {currentTheme}
 Create custom TailwindCSS variants for complex dark mode scenarios:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`// tailwind.config.ts
 const config = {
@@ -348,7 +348,7 @@ const config = {
 Use custom variants:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="tsx"
   code={`<button className="bg-primary-500 hover:bg-primary-600 dark-hover:bg-primary-400">
   Custom dark mode hover
@@ -360,7 +360,7 @@ Use custom variants:
 ### Creating Variant Dark Themes
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`const config = {
   plugins: [
@@ -398,7 +398,7 @@ Use custom variants:
 
 ### Dark Theme Selector
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`'use client';
+<SyntaxHighlighter className="bg-border" language="tsx" code={`'use client';
 
 import {useTheme} from 'next-themes';
 
@@ -441,7 +441,7 @@ theme === darkTheme.key
 
 Prevent hydration mismatches:
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`'use client';
+<SyntaxHighlighter className="bg-border" language="tsx" code={`'use client';
 
 import {useTheme} from 'next-themes';
 import {useEffect, useState} from 'react';
@@ -472,7 +472,7 @@ Theme-specific content
 
 Prevent FOUC by setting the theme class on the html element:
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`// app/layout.tsx
+<SyntaxHighlighter className="bg-border" language="tsx" code={`// app/layout.tsx
 import Script from 'next/script';
 
 export default function RootLayout({children}) {
@@ -501,7 +501,7 @@ export default function RootLayout({children}) {
 
 ### Respecting User Preferences
 
-<SyntaxHighlighter className="bg-background-100" language="css" code={`/* Respect reduced motion preference in dark mode */
+<SyntaxHighlighter className="bg-border" language="css" code={`/* Respect reduced motion preference in dark mode */
 @media (prefers-reduced-motion: reduce) {
   .dark * {
     animation-duration: 0.01ms !important;
@@ -520,7 +520,7 @@ export default function RootLayout({children}) {
 
 ### Screen Reader Announcements
 
-<SyntaxHighlighter className="bg-background-100"  language="tsx" code={`'use client';
+<SyntaxHighlighter className="bg-border"  language="tsx" code={`'use client';
 
 import {useTheme} from 'next-themes';
 import {useEffect} from 'react';
@@ -555,7 +555,7 @@ return null;
 Always test your application in both light and dark modes:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="tsx"
   code={`// Create a development tool for quick theme testing
 {process.env.NODE_ENV === 'development' && (
@@ -570,7 +570,7 @@ Always test your application in both light and dark modes:
 Ensure sufficient contrast in both themes:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`// Use tools to verify contrast ratios
 const verifyContrast = (foreground: string, background: string) => {
@@ -586,7 +586,7 @@ const verifyContrast = (foreground: string, background: string) => {
 Provide fallbacks for when JavaScript is disabled:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="css"
   code={`/* CSS fallback for dark mode */
 @media (prefers-color-scheme: dark) {

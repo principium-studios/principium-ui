@@ -37,7 +37,7 @@ Lightness values are automatically generated to create the color scale from 50 (
 Here are the default colors with their HSL values:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`const defaultColors = {
   // Neutral colors
@@ -64,7 +64,7 @@ Here are the default colors with their HSL values:
 
 To customize colors, modify the theme configuration in your `tailwind.config.ts`:
 
-<SyntaxHighlighter className="bg-background-100" language="typescript" code={`import {shadesPlugin} from '@principium/theme';
+<SyntaxHighlighter className="bg-border" language="typescript" code={`import {shadesPlugin} from '@principium/theme';
 
 const config = {
 plugins: [
@@ -95,7 +95,7 @@ secondary: { hue: 280, saturation: 70 }, // Custom purple
 #### Warm Theme
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`colors: {
   primary: { hue: 25, saturation: 85 },    // Warm orange
@@ -108,7 +108,7 @@ secondary: { hue: 280, saturation: 70 }, // Custom purple
 #### Cool Theme
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`colors: {
   primary: { hue: 200, saturation: 85 },   // Cool blue
@@ -121,7 +121,7 @@ secondary: { hue: 280, saturation: 70 }, // Custom purple
 #### Nature Theme
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`colors: {
   primary: { hue: 120, saturation: 70 },   // Forest green
@@ -138,7 +138,7 @@ secondary: { hue: 280, saturation: 70 }, // Custom purple
 Each color automatically generates a complete scale:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="css"
   code={`/* Primary color scale (hue: 212, saturation: 100) */
 .text-primary-50   /* Very light blue */
@@ -152,7 +152,7 @@ Each color automatically generates a complete scale:
 
 ### Component Usage
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`// Button with custom colors
+<SyntaxHighlighter className="bg-border" language="tsx" code={`// Button with custom colors
 <Button 
   className="bg-primary-500 hover:bg-primary-600 text-white"
 >
@@ -174,7 +174,7 @@ Each color automatically generates a complete scale:
 You can add completely new colors to your theme:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`colors: {
   // Existing colors
@@ -190,7 +190,7 @@ You can add completely new colors to your theme:
 
 Use custom colors in your components:
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`<div className="bg-accent-100 text-accent-800 border-accent-300">
+<SyntaxHighlighter className="bg-border" language="tsx" code={`<div className="bg-accent-100 text-accent-800 border-accent-300">
   Custom accent color
 </div>
 
@@ -201,7 +201,7 @@ Use custom colors in your components:
 Colors in dark themes often need different saturation levels:
 
 <SyntaxHighlighter
-  className="bg-background-100"
+  className="bg-border"
   language="typescript"
   code={`themes: {
   light: {
@@ -232,8 +232,8 @@ The automatic color scale generation ensures good contrast ratios, but consider 
 
 ### Testing Colors
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`// Good contrast examples
-<div className="bg-background-100 text-background-900">High contrast text</div>
+<SyntaxHighlighter className="bg-border" language="tsx" code={`// Good contrast examples
+<div className="bg-border text-background-900">High contrast text</div>
 <div className="bg-primary-500 text-white">White on primary</div>
 <div className="bg-success-100 text-success-800">Success message</div>
 
@@ -247,7 +247,7 @@ The automatic color scale generation ensures good contrast ratios, but consider 
 
 Stick to your defined color palette across your application:
 
-<SyntaxHighlighter className="bg-background-100"  language="tsx" code={`// ✅ Consistent with theme
+<SyntaxHighlighter className="bg-border"  language="tsx" code={`// ✅ Consistent with theme
 <Button variant="primary">Primary</Button>
 <Link className="text-primary-600">Link</Link>
 
@@ -260,7 +260,7 @@ Stick to your defined color palette across your application:
 
 Prefer semantic color names over specific hues:
 
-<SyntaxHighlighter className="bg-background-100" language="typescript" code={`// ✅ Semantic names
+<SyntaxHighlighter className="bg-border" language="typescript" code={`// ✅ Semantic names
 colors: {
   primary: { hue: 212, saturation: 100 },
   brand: { hue: 350, saturation: 85 },
@@ -297,7 +297,7 @@ Use online HSL color pickers to find the perfect hue and saturation values:
 
 Create a color preview component to test your theme:
 
-<SyntaxHighlighter className="bg-background-100" language="tsx" code={`const ColorPreview = ({ colorName }: { colorName: string }) => (
+<SyntaxHighlighter className="bg-border" language="tsx" code={`const ColorPreview = ({ colorName }: { colorName: string }) => (
   <div className="grid grid-cols-10 gap-1">
     {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map(shade => (
       <div
