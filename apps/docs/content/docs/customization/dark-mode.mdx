@@ -3,603 +3,116 @@ title: Dark Mode
 description: Implement and customize dark mode in your Principium UI application.
 ---
 
-## Dark Mode Overview
+## Overview
 
-Principium UI provides comprehensive dark mode support through its theme system. Dark mode is automatically handled by the `shadesPlugin` and integrates seamlessly with popular theme providers like `next-themes`.
+Dark themes use the same system as light themes. The difference is the `mode` option on a theme:
 
-## Quick Setup
+- `mode: 'normal'` — shade scale runs from light (50) to dark (950)
+- `mode: 'flipped'` — the scale is inverted for dark themes (50 becomes darkest, 950 lightest)
 
-### Basic Dark Mode Configuration
+---
 
-<SyntaxHighlighter className="bg-border" language="typescript" code={`// tailwind.config.ts
-import {shadesPlugin} from '@principium/theme';
+## Enable the `dark:` variant
 
-const config = {
-plugins: [
-shadesPlugin({
-defaultTheme: 'light',
-themes: {
-light: {
-colors: {
-background: { hue: 0, saturation: 0 },
-primary: { hue: 212, saturation: 100 },
-// ... other light theme colors
-},
-},
-dark: {
-isDarkTheme: true, // ← Important: marks this as a dark theme
-colors: {
-background: { hue: 220, saturation: 15 },
-primary: { hue: 212, saturation: 85 },
-// ... other dark theme colors
-},
-},
-},
-}),
-],
-};`} />
-
-### Theme Provider Setup
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`// app/providers.tsx
-'use client';
-
-import {ThemeProvider} from 'next-themes';
-
-export function Providers({children}: {children: React.ReactNode}) {
-  return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      themes={['light', 'dark']}
-      enableSystem={true}
-    >
-      {children}
-    </ThemeProvider>
-  );
-}`} />
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`// app/layout.tsx
-import {Providers} from './providers';
-
-export default function RootLayout({children}) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <Providers>
-          {children}
-        </Providers>
-      </body>
-    </html>
-  );
-}`} />
-
-## Dark Mode Colors
-
-### Color Adaptations
-
-Dark themes typically need adjusted saturation and different color relationships:
+Add this to your global CSS so Tailwind’s `dark:` variant works under a `.dark` class:
 
 <SyntaxHighlighter
-  className="bg-border"
-  language="typescript"
-  code={`const colorComparison = {
-  light: {
-    // Light theme - higher saturation, lighter backgrounds
-    background: { hue: 0, saturation: 0 },    // Pure gray
-    primary: { hue: 212, saturation: 100 },   // Vivid blue
-    success: { hue: 146, saturation: 55 },    // Standard green
-    border: { hue: 240, saturation: 10 },     // Cool gray
-  },
-  dark: {
-    // Dark theme - lower saturation, darker backgrounds
-    background: { hue: 220, saturation: 15 }, // Dark blue-gray
-    primary: { hue: 212, saturation: 85 },    // Less saturated blue
-    success: { hue: 146, saturation: 45 },    // Muted green
-    border: { hue: 220, saturation: 20 },     // Blue-tinted borders
-  },
-};`}
-/>
-
-### Dark Mode Best Practices
-
-#### 1. Reduce Saturation
-
-Pure colors can be harsh in dark mode:
-
-<SyntaxHighlighter className="bg-border" language="typescript" code={`// ✅ Good - reduced saturation for dark mode
-dark: {
-  colors: {
-    primary: { hue: 212, saturation: 85 },    // Was 100 in light
-    success: { hue: 146, saturation: 45 },    // Was 55 in light
-    warning: { hue: 37, saturation: 75 },     // Was 90 in light
-  },
-}
-
-// ❌ Avoid - same saturation as light mode
-dark: {
-colors: {
-primary: { hue: 212, saturation: 100 }, // Too harsh
-success: { hue: 146, saturation: 55 }, // Too bright
-},
-}`} />
-
-#### 2. Tinted Backgrounds
-
-Pure black backgrounds can be harsh. Use dark grays with subtle color tints:
-
-<SyntaxHighlighter className="bg-border" language="typescript" code={`// ✅ Good - tinted dark backgrounds
-background: { hue: 220, saturation: 15 }, // Dark blue-gray
-border: { hue: 220, saturation: 20 },     // Matching tint
-
-// ❌ Avoid - pure black/gray
-background: { hue: 0, saturation: 0 }, // Too stark`} />
-
-#### 3. Maintain Contrast
-
-Ensure sufficient contrast ratios in dark mode:
-
-<SyntaxHighlighter
-  className="bg-border"
-  language="typescript"
-  code={`// Light mode text uses background-900 (very dark)
-// Dark mode text uses background-100 (very light)
-// This happens automatically with the color scale`}
-/>
-
-## Theme Toggle Component
-
-### Basic Toggle
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`'use client';
-
-import {useTheme} from 'next-themes';
-import {Button} from '@principium/react';
-import {SunIcon, MoonIcon} from '@phosphor-icons/react';
-
-export function ThemeToggle() {
-  const {theme, setTheme} = useTheme();
-
-return (
-<Button
-variant="ghost"
-size="icon"
-onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} >
-<SunIcon className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-<MoonIcon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-<span className="sr-only">Toggle theme</span>
-</Button>
-);
-}`} />
-
-### Advanced Toggle with System
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`'use client';
-
-import {useTheme} from 'next-themes';
-import {Button} from '@principium/react';
-import {SunIcon, MoonIcon, DesktopIcon} from '@phosphor-icons/react';
-
-const themes = [
-{ key: 'light', icon: SunIcon, label: 'Light' },
-{ key: 'dark', icon: MoonIcon, label: 'Dark' },
-{ key: 'system', icon: DesktopIcon, label: 'System' },
-];
-
-export function ThemeSelector() {
-  const {theme, setTheme} = useTheme();
-
-return (
-<div className="flex rounded-lg border border-border-200 p-1">
-{themes.map(({key, icon: Icon, label}) => (
-<Button
-key={key}
-variant={theme === key ? 'primary' : 'ghost'}
-size="sm"
-onClick={() => setTheme(key)}
-className="flex items-center gap-2" >
-<Icon size={16} />
-{label}
-</Button>
-))}
-</div>
-);
-}`} />
-
-## Component Dark Mode Adaptations
-
-### Automatic Color Adaptation
-
-Principium components automatically adapt to dark mode through the color scale:
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`// This button automatically adapts to dark mode
-<Button variant="primary">
-  Click me
-</Button>
-
-// This card automatically gets proper dark mode styling
-
-<Card className="p-6">
-  <h3 className="text-background-900 dark:text-background-100">Card Title</h3>
-  <p className="text-background-600 dark:text-background-400">Card content that adapts to theme</p>
-</Card>
-`} />
-
-### Manual Dark Mode Overrides
-
-For specific cases, you can manually override dark mode styles:
-
-<SyntaxHighlighter className="bg-border"  language="tsx" code={`// Custom dark mode styling
-<div className="bg-white dark:bg-background-900 text-black dark:text-white">
-  Custom styled content
-</div>
-
-// Different layout in dark mode
-
-<nav className="border-border-200 dark:border-border-700 border-b">
-  <div className="flex items-center justify-between p-4">
-    <div className="font-semibold">Brand</div>
-    <ThemeToggle />
-  </div>
-</nav>
-`} />
-
-### Images and Media
-
-Handle images and media for dark mode:
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`// Logo that changes in dark mode
-<div className="relative h-8 w-32">
-  <img
-    src="/logo-light.svg"
-    alt="Logo"
-    className="h-full w-full object-contain dark:hidden"
-  />
-  <img
-    src="/logo-dark.svg"
-    alt="Logo"
-    className="hidden h-full w-full object-contain dark:block"
-  />
-</div>
-
-// Images with dark mode overlays
-
-<div className="relative">
-  <img src="/hero-image.jpg" alt="Hero" className="w-full" />
-  <div className="absolute inset-0 bg-black/20 dark:bg-black/40" />
-</div>
-`} />
-
-## Advanced Dark Mode Features
-
-### System Theme Detection
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`'use client';
-
-import {useTheme} from 'next-themes';
-import {useEffect, useState} from 'react';
-
-export function SystemThemeIndicator() {
-  const {theme, systemTheme} = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-useEffect(() => {
-setMounted(true);
-}, []);
-
-if (!mounted) return null;
-
-const currentTheme = theme === 'system' ? systemTheme : theme;
-
-return (
-<div className="text-sm text-background-600">
-Current theme: {currentTheme}
-{theme === 'system' && (
-<span className="ml-2 text-xs">
-(following system: {systemTheme})
-</span>
-)}
-</div>
-);
-}`} />
-
-### Theme Persistence
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`// The theme is automatically persisted by next-themes
-// But you can customize the storage key and other options
-
-<ThemeProvider
-  attribute="class"
-  defaultTheme="system"
-  themes={['light', 'dark']}
-  enableSystem={true}
-  storageKey="app-theme" // Custom storage key
-  disableTransitionOnChange={false} // Enable transitions
->
-  {children}
-</ThemeProvider>
-`} />
-
-### Custom Dark Mode Variants
-
-Create custom TailwindCSS variants for complex dark mode scenarios:
-
-<SyntaxHighlighter
-  className="bg-border"
-  language="typescript"
-  code={`// tailwind.config.ts
-const config = {
-  plugins: [
-    shadesPlugin({...}),
-    plugin(function({addVariant}) {
-      // Custom variant for dark mode + hover
-      addVariant('dark-hover', '.dark &:hover');
-      
-      // Custom variant for dark mode + focus
-      addVariant('dark-focus', '.dark &:focus');
-      
-      // Custom variant for reduced motion in dark mode
-      addVariant('dark-motion-safe', '.dark &:where([data-motion="safe"])');
-    }),
-  ],
-};`}
-/>
-
-Use custom variants:
-
-<SyntaxHighlighter
-  className="bg-border"
-  language="tsx"
-  code={`<button className="bg-primary-500 hover:bg-primary-600 dark-hover:bg-primary-400">
-  Custom dark mode hover
-</button>`}
-/>
-
-## Multiple Dark Themes
-
-### Creating Variant Dark Themes
-
-<SyntaxHighlighter
-  className="bg-border"
-  language="typescript"
-  code={`const config = {
-  plugins: [
-    shadesPlugin({
-      defaultTheme: 'light',
-      themes: {
-        light: {
-          colors: { /* light colors */ },
-        },
-        dark: {
-          isDarkTheme: true,
-          colors: { /* standard dark colors */ },
-        },
-        'dark-blue': {
-          isDarkTheme: true,
-          colors: {
-            background: { hue: 220, saturation: 20 }, // Blue-tinted dark
-            primary: { hue: 200, saturation: 80 },
-            // ... other colors
-          },
-        },
-        'dark-warm': {
-          isDarkTheme: true,
-          colors: {
-            background: { hue: 30, saturation: 15 }, // Warm-tinted dark
-            primary: { hue: 25, saturation: 75 },
-            // ... other colors
-          },
-        },
-      },
-    }),
-  ],
-};`}
-/>
-
-### Dark Theme Selector
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`'use client';
-
-import {useTheme} from 'next-themes';
-
-const darkThemes = [
-{ key: 'dark', label: 'Dark', description: 'Standard dark theme' },
-{ key: 'dark-blue', label: 'Dark Blue', description: 'Cool blue dark theme' },
-{ key: 'dark-warm', label: 'Dark Warm', description: 'Warm dark theme' },
-];
-
-export function DarkThemeSelector() {
-  const {theme, setTheme} = useTheme();
-
-return (
-<div className="space-y-2">
-<h3 className="font-medium">Dark Theme Variants</h3>
-<div className="grid gap-2">
-{darkThemes.map((darkTheme) => (
-<button
-key={darkTheme.key}
-onClick={() => setTheme(darkTheme.key)}
-className={\`text-left p-3 rounded-lg border \${
-theme === darkTheme.key
-? 'border-primary-500 bg-primary-50'
-: 'border-border-200 hover:bg-background-50'
-}\`} >
-<div className="font-medium">{darkTheme.label}</div>
-<div className="text-sm text-background-600">
-{darkTheme.description}
-</div>
-</button>
-))}
-</div>
-</div>
-);
-}`} />
-
-## Troubleshooting
-
-### Hydration Issues
-
-Prevent hydration mismatches:
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`'use client';
-
-import {useTheme} from 'next-themes';
-import {useEffect, useState} from 'react';
-
-export function ThemeAwareComponent() {
-  const {theme} = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-useEffect(() => {
-setMounted(true);
-}, []);
-
-// Return a skeleton or neutral version until mounted
-if (!mounted) {
-return (
-<div className="h-8 w-8 rounded bg-background-200 animate-pulse" />
-);
-}
-
-return (
-<div className={\`themed-component theme-\${theme}\`}>
-Theme-specific content
-</div>
-);
-}`} />
-
-### Flash of Unstyled Content (FOUC)
-
-Prevent FOUC by setting the theme class on the html element:
-
-<SyntaxHighlighter className="bg-border" language="tsx" code={`// app/layout.tsx
-import Script from 'next/script';
-
-export default function RootLayout({children}) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <Script id="theme-script" strategy="beforeInteractive">
-          {\`
-            try {
-              const theme = localStorage.getItem('theme') || 'system';
-              const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-              const effectiveTheme = theme === 'system' ? systemTheme : theme;
-              document.documentElement.classList.add(effectiveTheme);
-            } catch (e) {}
-          \`}
-        </Script>
-      </head>
-      <body>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  );
-}`} />
-
-## Accessibility Considerations
-
-### Respecting User Preferences
-
-<SyntaxHighlighter className="bg-border" language="css" code={`/* Respect reduced motion preference in dark mode */
-@media (prefers-reduced-motion: reduce) {
-  .dark * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/_ Respect contrast preferences _/
-@media (prefers-contrast: high) {
-.dark {
---background-950: hsl(0 0% 0%); /_ Pure black for high contrast _/
---background-50: hsl(0 0% 100%); /_ Pure white text _/
-}
-}`} />
-
-### Screen Reader Announcements
-
-<SyntaxHighlighter className="bg-border"  language="tsx" code={`'use client';
-
-import {useTheme} from 'next-themes';
-import {useEffect} from 'react';
-
-export function ThemeAnnouncer() {
-  const {theme} = useTheme();
-
-useEffect(() => {
-// Announce theme changes to screen readers
-const announcement = \`Theme changed to \${theme}\`;
-const announcer = document.createElement('div');
-announcer.setAttribute('aria-live', 'polite');
-announcer.setAttribute('aria-atomic', 'true');
-announcer.className = 'sr-only';
-announcer.textContent = announcement;
-
-    document.body.appendChild(announcer);
-
-    setTimeout(() => {
-      document.body.removeChild(announcer);
-    }, 1000);
-
-}, [theme]);
-
-return null;
-}`} />
-
-## Best Practices
-
-### 1. Test in Both Modes
-
-Always test your application in both light and dark modes:
-
-<SyntaxHighlighter
-  className="bg-border"
-  language="tsx"
-  code={`// Create a development tool for quick theme testing
-{process.env.NODE_ENV === 'development' && (
-  <div className="fixed bottom-4 right-4 z-50">
-    <ThemeToggle />
-  </div>
-)}`}
-/>
-
-### 2. Consider Color Accessibility
-
-Ensure sufficient contrast in both themes:
-
-<SyntaxHighlighter
-  className="bg-border"
-  language="typescript"
-  code={`// Use tools to verify contrast ratios
-const verifyContrast = (foreground: string, background: string) => {
-  // WCAG AA requires 4.5:1 for normal text
-  // WCAG AAA requires 7:1 for normal text
-  const ratio = getContrastRatio(foreground, background);
-  return ratio >= 4.5;
-};`}
-/>
-
-### 3. Graceful Degradation
-
-Provide fallbacks for when JavaScript is disabled:
-
-<SyntaxHighlighter
+  showClipboard={false}
   className="bg-border"
   language="css"
-  code={`/* CSS fallback for dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-50: hsl(220 15% 5%);
-    --background-900: hsl(220 15% 95%);
-    /* ... other dark mode variables */
-  }
-}`}
+  code={`@custom-variant dark (&:is(.dark *));`}
 />
 
-## Next Steps
+If you have multiple dark themes (e.g., `.dark`, `.coffee`), include them too:
 
-- Explore [advanced theme customization](/docs/customization/customize-theme)
-- Learn about [color theory](/docs/customization/colors) for better dark mode design
-- Check out the [layout guide](/docs/customization/layout) for dark mode specific spacing considerations
+<SyntaxHighlighter
+  showClipboard={false}
+  className="bg-border"
+  language="css"
+  code={`@custom-variant dark (&:is(.dark *, .coffee *));`}
+/>
+
+---
+
+## Define one or many dark themes
+
+Declare dark themes with `mode: 'flipped'`. You can define as many as you like.
+
+<SyntaxHighlighter showClipboard={false} className="bg-border" language="ts" code={`// tailwind.config.ts
+import {shadesPlugin} from '@principium/shades';
+
+export default {
+      plugins: [
+            shadesPlugin({
+                  defaults: true,
+                  defaultTheme: 'light',
+                  themes: {
+                        light: {
+                              // light theme (mode: 'normal' by default)
+                        },
+                        dark: {
+                              mode: 'flipped',
+                              colors: {
+                                    background: {hue: 220, saturation: 15, lightness: 2, foreground: {lightness: 95}},
+                                    ...restOfDarkColors,
+                              },
+                        },
+                        coffee: {
+                              mode: 'flipped',
+                              colors: {
+                                    background: {hue: 25, saturation: 12, lightness: 4, foreground: {lightness: 95}},
+                                    ...restOfCoffeeColors,
+                              },
+                        },
+                  },
+            }),
+      ],
+};`} />
+
+Note: When `defaults: true` and you extend the `dark` theme, your overrides are merged with Principium’s default dark theme. The theme’s `mode` remains inverted unless you supply `mode` yourself.
+
+---
+
+## Coffee dark theme example
+
+Here’s a minimal coffee-flavored dark theme you can use:
+
+<SyntaxHighlighter showClipboard={false} className="bg-border" language="ts" code={`// tailwind.config.ts
+import {shadesPlugin} from '@principium/shades';
+
+export default {
+      plugins: [
+            shadesPlugin({
+                  themes: {
+                        coffee: {
+                              mode: 'flipped',
+                              colors: {
+                                    // Core
+                                    background: {hue: 25, saturation: 10, lightness: 6, foreground: {lightness: 96}},
+                                    card: {hue: 25, saturation: 10, lightness: 10},
+                                    muted: {hue: 25, saturation: 10, lightness: 50, generateShades: false},
+
+                                    // Brand
+                                    primary: {hue: 25, saturation: 70, lightness: 52, foreground: {lightness: 98}},
+                                    secondary: {hue: 35, saturation: 70, lightness: 52, foreground: {lightness: 10}},
+
+                                    // State
+                                    danger: {hue: 339, saturation: 90, lightness: 60, foreground: {lightness: 95}},
+                                    success: {hue: 146, saturation: 90, lightness: 60, foreground: {lightness: 5}},
+                                    warning: {hue: 37, saturation: 90, lightness: 60, foreground: {lightness: 5}},
+
+                                    // Utility
+                                    border: {hue: 25, saturation: 10, lightness: 18},
+                                    ring: {hue: 25, saturation: 70, lightness: 52, generateShades: false},
+                              },
+                        },
+                  },
+            }),
+      ],
+};`} />
+
+Apply it by adding the class to a high-level element (and include it in your `@custom-variant` rule if you want to use `dark:` with it):
+
+<SyntaxHighlighter showClipboard={false} className="bg-border" language="tsx" code={`<html className="coffee">`} />
+
+<div className="h-40" />

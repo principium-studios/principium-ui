@@ -32,16 +32,16 @@ const routes: Route[] = [
         path: '/docs/customization/theme.mdx',
       },
       {
-        key: 'colors',
-        title: 'Colors',
-        keywords: 'colors, principium',
-        path: '/docs/customization/colors.mdx',
-      },
-      {
         key: 'dark-mode',
         title: 'Dark mode',
         keywords: 'dark mode, principium',
         path: '/docs/customization/dark-mode.mdx',
+      },
+      {
+        key: 'colors',
+        title: 'Colors',
+        keywords: 'colors, principium',
+        path: '/docs/customization/colors.mdx',
       },
     ],
   },

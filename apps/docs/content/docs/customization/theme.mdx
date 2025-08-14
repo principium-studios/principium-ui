@@ -16,26 +16,26 @@ Principium ships with two default themes: `light` and `dark`. When you enable `d
 <SyntaxHighlighter showClipboard={false} className="bg-border" language="ts" code={`import {shadesPlugin} from '@principium/shades';
 
 export default {
-  plugins: [
-    shadesPlugin({
-      defaults: true,
-      themes: {
-        light: {
-          colors: {
-            // Only override what you need
-            primary: {hue: 200, saturation: 95, lightness: 58, foreground: {lightness: 98}},
-            secondary: {hue: 275, saturation: 80, lightness: 58, foreground: {lightness: 98}},
-          },
-        },
-        dark: {
-          colors: {
-            // Override just a few colors here as well if desired
-            primary: {hue: 200, saturation: 95, lightness: 58, foreground: {lightness: 95}},
-          },
-        },
-      },
-    }),
-  ],
+      plugins: [
+            shadesPlugin({
+                  defaults: true,
+                  themes: {
+                        light: {
+                              colors: {
+                                    // Only override what you need
+                                    primary: {hue: 200, saturation: 95, lightness: 58, foreground: {lightness: 98}},
+                                    secondary: {hue: 275, saturation: 80, lightness: 58, foreground: {lightness: 98}},
+                              },
+                        },
+                        dark: {
+                              colors: {
+                                    // Override just a few colors here as well if desired
+                                    primary: {hue: 200, saturation: 95, lightness: 58, foreground: {lightness: 95}},
+                              },
+                        },
+                  },
+            }),
+      ],
 };`} />
 
 With `defaults: true`, any colors you don’t specify remain from the defaults. This keeps your configuration minimal and focused on brand/semantic tweaks.
@@ -46,27 +46,27 @@ With `defaults: true`, any colors you don’t specify remain from the defaults. 
 
 You can define any number of custom themes (e.g., `coffee`, `emerald`, `high-contrast`). Add them alongside `light`/`dark` and pick a `defaultTheme` if you want the default to be something else.
 
-<SyntaxHighlighter className="bg-border" language="ts" code={`import {shadesPlugin} from '@principium/shades';
+<SyntaxHighlighter showClipboard={false} className="bg-border" language="ts" code={`import {shadesPlugin} from '@principium/shades';
 
 export default {
-  plugins: [
-    shadesPlugin({
-      defaults: true,
-      defaultTheme: 'light',
-      themes: {
-        coffee: {
-          // Optional: control scale orientation with 'mode'.
-          // mode: 'normal',
-          colors: {
-            background: {hue: 25, saturation: 10, lightness: 96, foreground: {lightness: 10}},
-            card: {hue: 25, saturation: 10, lightness: 94, foreground: {lightness: 10}},
-            primary: {hue: 25, saturation: 70, lightness: 52, foreground: {lightness: 98}},
-            ...restOfColors, // Add all of the required colors here / and any other colors you want to use yourself
-          },
-        },
-      },
-    }),
-  ],
+      plugins: [
+            shadesPlugin({
+                  defaults: true,
+                  defaultTheme: 'light',
+                  themes: {
+                        coffee: {
+                              // Optional: control scale orientation with 'mode'.
+                              // mode: 'normal',
+                              colors: {
+                                    background: {hue: 25, saturation: 10, lightness: 96, foreground: {lightness: 10}},
+                                    card: {hue: 25, saturation: 10, lightness: 94},
+                                    primary: {hue: 25, saturation: 70, lightness: 52, foreground: {lightness: 98}},
+                                    ...restOfColors, // Add all of the required colors here / and any other colors you want to use yourself
+                              },
+                        },
+                  },
+            }),
+      ],
 };`} />
 
 You can switch themes in your app by applying the corresponding theme class name somewhere up the tree. The plugin will scope CSS variables to each theme name for you.
@@ -87,21 +87,21 @@ The plugin creates two things for each theme and color:
 - Special case: `background`’s foreground becomes the global `--foreground`
 - Shades (when `generateShades !== false`): `--primary-50` ... `--primary-950`
 
-<SyntaxHighlighter className="bg-border" language="css" code={`:root {
-  /* defaultTheme variables */
-  --background: hsl(...);
-  --foreground: hsl(...);
-  --primary: hsl(...);
-  --primary-50: hsl(...);
-  /* ... up to --primary-950 */
+<SyntaxHighlighter showClipboard={false} className="bg-border" language="css" code={`:root {
+      /* defaultTheme variables */
+      --background: hsl(...);
+      --foreground: hsl(...);
+      --primary: hsl(...);
+      --primary-50: hsl(...);
+      /* ... up to --primary-950 */
 }
 
 .coffee {
-  /* variables scoped to the 'coffee' theme */
-  --background: hsl(...);
-  --foreground: hsl(...);
-  --primary: hsl(...);
-  --primary-50: hsl(...);
+      /* variables scoped to the 'coffee' theme */
+      --background: hsl(...);
+      --foreground: hsl(...);
+      --primary: hsl(...);
+      --primary-50: hsl(...);
 }`} />
 
 ### Tailwind color entries
@@ -112,17 +112,17 @@ For each color, the plugin extends Tailwind’s `theme.colors` with:
 - `foreground` (when provided)
 - Special case: a global `foreground` color mapping to `var(--foreground)`
 
-<SyntaxHighlighter className="bg-border" language="ts" code={`// theme.extend.colors
+<SyntaxHighlighter showClipboard={false} className="bg-border" language="ts" code={`// theme.extend.colors
 {
-  primary: {
-    DEFAULT: 'var(--primary)',
-    50: 'var(--primary-50)',
-    /* ... */
-    950: 'var(--primary-950)',
-    foreground: 'var(--primary-foreground)',
-  },
-  // Special case
-  foreground: 'var(--foreground)',
+      primary: {
+            DEFAULT: 'var(--primary)',
+            50: 'var(--primary-50)',
+            /* ... */
+            950: 'var(--primary-950)',
+            foreground: 'var(--primary-foreground)',
+      },
+      // Special case when the color is the background color
+      foreground: 'var(--foreground)',
 }`} />
 
 ---
@@ -153,21 +153,21 @@ Use the options below with `shadesPlugin` in your `tailwind.config.ts`.
 
 These are the exact types used by the plugin.
 
-<SyntaxHighlighter className="bg-border" language="ts" code={`interface ForegroundColor {
-    lightness: number; // Foreground uses the hue and saturation of the base color
+<SyntaxHighlighter showClipboard={false} className="bg-border" language="ts" code={`interface ForegroundColor {
+      lightness: number; // Foreground uses the hue and saturation of the base color
 }
 
 interface Color {
-    hue: number;
-    saturation: number;
-    lightness?: number; // Lightness is optional for the base color (if not provided, the color won't be generated)
-    foreground?: ForegroundColor; // Foreground is optional for the base color (if not provided, the color won't be generated)
-    generateShades?: boolean; // If false, no shades will be generated for this color
+      hue: number;
+      saturation: number;
+      lightness?: number; // Lightness is optional for the base color (if not provided, the color won't be generated)
+      foreground?: ForegroundColor; // Foreground is optional for the base color (if not provided, the color won't be generated)
+      generateShades?: boolean; // If false, no shades will be generated for this color
 }
 
 interface Theme {
-    mode?: 'normal' | 'flipped'; // If normal, the color lightness will be generated in the normal order (50, 100, 200, ..., 950). If flipped, the color lightness will be generated in the flipped order (950, 900, 800, ..., 50).
-    colors?: Record<string, Color>; 
+      mode?: 'normal' | 'flipped'; // If normal, the color lightness will be generated in the normal order (50, 100, 200, ..., 950). If flipped, the color lightness will be generated in the flipped order (950, 900, 800, ..., 50).
+      colors?: Record<string, Color>; 
 }
 
 type Themes = Record<string, Theme>;`} />

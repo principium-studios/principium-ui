@@ -40,7 +40,7 @@ const PRINCIPIUM_DEFAULTS: Themes = {
     colors: {
       // Core colors
       background: {hue: 0, saturation: 0, lightness: 99, foreground: {lightness: 5}},
-      card: {hue: 0, saturation: 0, lightness: 98, foreground: {lightness: 5}},
+      card: {hue: 0, saturation: 0, lightness: 98},
       muted: {hue: 0, saturation: 0, lightness: 50, generateShades: false},
 
       // Brand colors
@@ -62,7 +62,7 @@ const PRINCIPIUM_DEFAULTS: Themes = {
     colors: {
       // Core colors
       background: {hue: 220, saturation: 15, lightness: 2, foreground: {lightness: 95}},
-      card: {hue: 220, saturation: 15, lightness: 6, foreground: {lightness: 95}},
+      card: {hue: 220, saturation: 15, lightness: 6},
       muted: {hue: 220, saturation: 15, lightness: 50, generateShades: false},
 
       // Brand colors

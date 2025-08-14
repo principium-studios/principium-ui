@@ -34,7 +34,7 @@ export async function generateMetadata({params}: DocPageProps): Promise<Metadata
   }
 
   return {
-    title: doc.title,
+    title: doc.title + ' | Principium UI',
     description: doc.description,
     openGraph: {
       title: doc.title,
