@@ -69,7 +69,7 @@ export default async function DocPage({params}: DocPageProps) {
 
   return (
     <>
-      <article className="prose prose-neutral relative col-span-8 flex max-w-none flex-col items-center [&>*]:w-full [&>*]:max-w-3xl">
+      <article className="prose prose-neutral relative col-span-12 flex max-w-none flex-col items-center lg:col-span-10 xl:col-span-8 [&>*]:w-full [&>*]:max-w-3xl">
         <div className="not-prose mb-4 flex items-center justify-between">
           <h1 className="text-background-950 text-4xl font-bold">{doc.title}</h1>
 
@@ -87,7 +87,7 @@ export default async function DocPage({params}: DocPageProps) {
         )}
         <MDXContent code={doc.body.code} />
       </article>
-      <aside className="sticky top-20 col-span-2">
+      <aside className="sticky top-20 hidden xl:col-span-2 xl:block">
         <div className="relative">
           <TableOfContents headings={headings} />
         </div>
