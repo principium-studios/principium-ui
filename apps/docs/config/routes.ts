@@ -87,6 +87,12 @@ const routes: Route[] = [
         path: '/docs/components/checkbox.mdx',
       },
       {
+        key: 'chip',
+        title: 'Chip',
+        keywords: 'chip, principium',
+        path: '/docs/components/chip.mdx',
+      },
+      {
         key: 'divider',
         title: 'Divider',
         keywords: 'divider, principium',

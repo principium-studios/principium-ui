@@ -1,0 +1,83 @@
+---
+title: Chip
+description: A small, compact element used to display status, metadata, or selections.
+---
+
+import ChipDemos from '@/content/components/chip';
+
+<ComponentLinks name="Chip" />
+
+---
+
+## Installation
+
+<PackageManagers packageName="chip" />
+
+## Usage
+
+<CodeDemo code={ChipDemos.usage} />
+
+### Colors
+
+<CodeDemo code={ChipDemos.colors} />
+
+### Sizes
+
+<CodeDemo code={ChipDemos.sizes} />
+
+### Variants
+
+<CodeDemo code={ChipDemos.variants} />
+
+### Radius
+
+<CodeDemo code={ChipDemos.radius} />
+
+### Disabled
+
+<CodeDemo code={ChipDemos.disabled} />
+
+## API
+
+### Chip
+
+<ApiTable
+  data={[
+    {
+      prop: { name: 'variant', description: 'The visual style of the chip.' },
+      type: { name: '"solid" | "bordered" | "light" | "flat" | "faded" | "shadow"' },
+      default: '"solid"',
+    },
+    {
+      prop: { name: 'size', description: 'Controls the size of the chip.' },
+      type: { name: '"sm" | "md" | "lg"' },
+      default: '"md"',
+    },
+    {
+      prop: { name: 'color', description: 'Controls the color of the chip.' },
+      type: { name: '"default" | "primary" | "secondary" | "success" | "warning" | "danger"' },
+      default: '"default"',
+    },
+    {
+      prop: { name: 'radius', description: 'Controls the border radius of the chip.' },
+      type: { name: '"none" | "sm" | "md" | "lg" | "full"' },
+      default: '"full"',
+    },
+    {
+      prop: { name: 'disabled', description: 'Disables the chip.' },
+      type: { name: 'boolean' },
+      default: 'false',
+    },
+    {
+      prop: { name: 'asChild', description: 'Renders the component as a child element.' },
+      type: { name: 'boolean' },
+      default: 'false',
+    },
+    {
+      prop: { name: '...spanProps', description: 'All native span element props.' },
+      type: { name: '-' },
+    },
+  ]}
+/>
+
+
