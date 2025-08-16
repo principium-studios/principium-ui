@@ -1,0 +1,53 @@
+---
+title: Skeleton
+description: Skeleton is a component that displays a loading state.
+---
+
+import SkeletonDemos from '@/content/components/skeleton';
+
+<ComponentLinks name="Skeleton" />
+
+---
+
+## Installation
+
+<PackageManagers packageName="skeleton" />
+
+## Usage
+
+<CodeDemo code={SkeletonDemos.usage} />
+
+## API
+
+### Skeleton
+
+<ApiTable
+  data={[
+    {
+      prop: {
+        name: 'disableAnimation',
+        description: 'Disable the animation of the skeleton.',
+      },
+      type: {
+        name: 'boolean',
+        default: 'false',
+      },
+    },
+    {
+      prop: {
+        name: 'asChild',
+        description: 'Renders the component as a child element.',
+      },
+      type: {
+        name: 'boolean',
+        default: 'false',
+      },
+    },
+    {
+      prop: {
+        name: '...divProps',
+        description: 'All native div element props.',
+      }
+    },
+  ]}
+/>

@@ -9,3 +9,4 @@ export * from '@principium/divider';
 export * from '@principium/checkbox';
 export * from '@principium/label';
 export * from '@principium/tabs';
+export * from '@principium/skeleton';

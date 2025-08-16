@@ -4,6 +4,7 @@ import plugin from 'tailwindcss/plugin.js';
 
 import {DEFAULT_TRANSITION_DURATION} from './utils';
 import transition from './utils/transition';
+import { animations } from './utils/animations';
 
 // lightness maps for the shades
 const LIGHTNESS = {
@@ -275,6 +276,7 @@ const shadesPlugin = <T extends Themes>(opts: {
             400: '400ms',
             DEFAULT: DEFAULT_TRANSITION_DURATION,
           },
+          ...animations,
         },
       },
     },

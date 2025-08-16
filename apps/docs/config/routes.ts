@@ -99,6 +99,12 @@ const routes: Route[] = [
         path: '/docs/components/divider.mdx',
       },
       {
+        key: 'skeleton',
+        title: 'Skeleton',
+        keywords: 'skeleton, principium',
+        path: '/docs/components/skeleton.mdx',
+      },
+      {
         key: 'tabs',
         title: 'Tabs',
         keywords: 'tabs, principium',
