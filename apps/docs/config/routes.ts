@@ -93,6 +93,12 @@ const routes: Route[] = [
         path: '/docs/components/chip.mdx',
       },
       {
+        key: 'collapsible',
+        title: 'Collapsible',
+        keywords: 'collapsible, principium',
+        path: '/docs/components/collapsible.mdx',
+      },
+      {
         key: 'divider',
         title: 'Divider',
         keywords: 'divider, principium',

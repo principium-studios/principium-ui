@@ -1,9 +1,9 @@
 {
-  "name": "@principium/react",
+  "name": "@principium/framer-utils",
   "version": "0.0.1",
   "description": "",
   "keywords": [
-    "react"
+    "framer-utils"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",
@@ -11,14 +11,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/principium-studios/principium",
-    "directory": "packages/components/react"
+    "directory": "packages/utilities/framer-utils"
   },
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
     "dist",
     "!dist/**/*.test.*"
-  ],
+  ],  
   "publishConfig": {
     "access": "public"
   },
@@ -34,26 +34,12 @@
     "postpack": "clean-package restore",
     "prepublishOnly": "pnpm build"
   },
-  "dependencies": {
-    "@principium/alert": "workspace:*",
-    "@principium/avatar": "workspace:*",
-    "@principium/badge": "workspace:*",
-    "@principium/button": "workspace:*",
-    "@principium/card": "workspace:*",
-    "@principium/chip": "workspace:*",
-    "@principium/divider": "workspace:*",
-    "@principium/tabs": "workspace:*",
-    "@principium/checkbox": "workspace:*",
-    "@principium/label": "workspace:*",
-    "@principium/skeleton": "workspace:*",
-    "@principium/switch": "workspace:*",
-    "@principium/collapsible": "workspace:*"
+  "peerDependencies": {
+    "motion": "^12.23.6"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^24.0.13",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
     "eslint": "^9.16.0",
     "tsup": "^8.5.0",
     "typescript": "^5.5.2",

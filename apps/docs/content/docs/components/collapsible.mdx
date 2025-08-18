@@ -1,0 +1,82 @@
+---
+title: Collapsible
+description: An interactive component which expands and collapses content.
+---
+
+import CollapsibleDemos from '@/content/components/collapsible';
+
+<ComponentLinks name="Collapsible" />
+
+---
+
+## Installation
+
+<PackageManagers packageName="collapsible" />
+
+## Usage
+
+<CodeDemo code={CollapsibleDemos.usage} />
+
+### Controlled
+
+<CodeDemo code={CollapsibleDemos.controlled} />
+
+## API
+
+### Collapsible
+
+<ApiTable
+  data={[
+    {
+      prop: { name: 'defaultOpen', description: 'Initial open state when uncontrolled.' },
+      type: { name: 'boolean' },
+      default: 'false',
+    },
+    {
+      prop: { name: 'open', description: 'Controls the open state of the collapsible.' },
+      type: { name: 'boolean' },
+    },
+    {
+      prop: { name: 'onChange', description: 'Handler called when the open state changes.' },
+      type: { name: '(open: boolean) => void' },
+    },
+    {
+      prop: { name: '...divProps', description: 'All native div element props.' },
+     },
+  ]}
+/>
+
+### CollapsibleTrigger
+
+<ApiTable
+  data={[
+    {
+      prop: { name: 'children', description: 'The content of the trigger.' },
+      type: { name: 'React.ReactNode' },
+    },
+    {
+      prop: { name: 'asChild', description: 'Renders the component as a child element.' },
+      type: { name: 'boolean' },
+      default: 'false',
+    },
+    {
+      prop: { name: '...buttonProps', description: 'All native button element props.' },
+      type: { name: '-' },
+    },
+  ]}
+/>
+
+### CollapsibleContent
+
+<ApiTable
+  data={[
+    {
+      prop: { name: 'children', description: 'The content to be collapsed/expanded.' },
+      type: { name: 'React.ReactNode' },
+    },
+    {
+      prop: { name: '...motionProps', description: 'All motion div element props from Framer Motion (excluding animate, initial, variants).' },
+      type: { name: '-' },
+    },
+  ]}
+/>
