@@ -1,0 +1,89 @@
+---
+title: Switch
+description: A toggle control that allows users to switch between two states.
+---
+
+import SwitchDemos from '@/content/components/switch';
+
+<ComponentLinks name="Switch" />
+
+---
+
+## Installation
+
+<PackageManagers packageName="switch" />
+
+## Usage
+
+<CodeDemo code={SwitchDemos.usage} />
+
+### Colors
+
+<CodeDemo code={SwitchDemos.colors} />
+
+### Sizes
+
+<CodeDemo code={SwitchDemos.sizes} />
+
+### Disabled
+
+<CodeDemo code={SwitchDemos.disabled} />
+
+### With Label
+
+<CodeDemo code={SwitchDemos.withLabel} />
+
+### Controlled
+
+<CodeDemo code={SwitchDemos.controlled} />
+
+## API
+
+### Switch
+
+<ApiTable
+  data={[
+    {
+      prop: { name: 'defaultChecked', description: 'Initial checked state.' },
+      type: { name: 'boolean' },
+      default: 'false',
+    },
+    {
+      prop: { name: 'checked', description: 'Current checked state.' },
+      type: { name: 'boolean' },
+    },
+    {
+      prop: { name: 'onCheckedChange', description: 'Callback function to handle checked state changes.' },
+      type: { name: '(checked: boolean) => void' },
+    },
+    {
+      prop: { name: 'color', description: 'Controls the color of the switch when active.' },
+      type: { name: '"default" | "primary" | "secondary" | "success" | "warning" | "danger"' },
+      default: '"primary"',
+    },
+    {
+      prop: { name: 'size', description: 'Controls the size of the switch.' },
+      type: { name: '"sm" | "md" | "lg"' },
+      default: '"md"',
+    },
+    {
+      prop: { name: 'disabled', description: 'Disables the switch.' },
+      type: { name: 'boolean' },
+      default: 'false',
+    },
+    {
+      prop: { name: 'disableAnimation', description: 'Disables the built-in animations.' },
+      type: { name: 'boolean' },
+      default: 'false',
+    },
+    {
+      prop: { name: 'asChild', description: 'Renders the component as a child element.' },
+      type: { name: 'boolean' },
+      default: 'false',
+    },
+    {
+      prop: { name: '...buttonProps', description: 'All native button element props.' },
+      type: { name: '-' },
+    },
+  ]}
+/>

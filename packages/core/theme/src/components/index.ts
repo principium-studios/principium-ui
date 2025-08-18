@@ -9,3 +9,4 @@ export * from './tabsVariants';
 export * from './checkboxVariants';
 export * from './labelVariants';
 export * from './skeletonVariants';
+export * from './switchVariants';

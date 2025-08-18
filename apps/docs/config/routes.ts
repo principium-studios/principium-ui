@@ -105,6 +105,12 @@ const routes: Route[] = [
         path: '/docs/components/skeleton.mdx',
       },
       {
+        key: 'switch',
+        title: 'Switch',
+        keywords: 'switch, principium',
+        path: '/docs/components/switch.mdx',
+      },
+      {
         key: 'tabs',
         title: 'Tabs',
         keywords: 'tabs, principium',
