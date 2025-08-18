@@ -1,9 +1,16 @@
 {
   "name": "@principium/portal",
   "version": "0.0.1",
-  "description": "",
+  "description": "A React Portal component that renders content into a different part of the DOM tree with SSR support and container customization.",
   "keywords": [
-    "portal"
+    "portal",
+    "react-portal",
+    "react",
+    "component",
+    "ssr",
+    "server-side-rendering",
+    "dom-manipulation",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",

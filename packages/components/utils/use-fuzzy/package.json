@@ -1,9 +1,17 @@
 {
   "name": "@principium/use-fuzzy",
   "version": "0.0.1",
-  "description": "",
+  "description": "A React hook that creates fuzzy search regular expressions for flexible text matching and filtering.",
   "keywords": [
-    "use-fuzzy"
+    "use-fuzzy",
+    "fuzzy-search",
+    "regex",
+    "search",
+    "filtering",
+    "text-matching",
+    "react-hook",
+    "utilities",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",

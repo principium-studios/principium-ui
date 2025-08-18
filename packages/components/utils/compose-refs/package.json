@@ -1,9 +1,16 @@
 {
   "name": "@principium/compose-refs",
   "version": "0.0.1",
-  "description": "",
+  "description": "A utility function that combines multiple React refs into a single ref callback with support for React 19 cleanup functions.",
   "keywords": [
-    "compose-refs"
+    "compose-refs",
+    "react-refs",
+    "ref-composition",
+    "react",
+    "utilities",
+    "react-19",
+    "cleanup-refs",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",

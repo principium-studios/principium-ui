@@ -1,9 +1,16 @@
 {
   "name": "@principium/use-insert-children",
   "version": "0.0.1",
-  "description": "",
+  "description": "A React hook that safely inserts additional children alongside existing children with support for the asChild pattern.",
   "keywords": [
-    "use-insert-children"
+    "use-insert-children",
+    "react-children",
+    "children-manipulation",
+    "as-child",
+    "component-composition",
+    "react-hook",
+    "cloneElement",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",
@@ -11,7 +18,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/principium-studios/principium",
-    "directory": "packages/components/use-insert-children"
+    "directory": "packages/components/utils/use-insert-children"
   },
   "sideEffects": false,
   "main": "src/index.ts",

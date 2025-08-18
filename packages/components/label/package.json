@@ -1,9 +1,17 @@
 {
   "name": "@principium/label",
   "version": "0.0.1",
-  "description": "",
+  "description": "An accessible label component for form controls.",
   "keywords": [
-    "label"
+    "label",
+    "form",
+    "accessibility",
+    "a11y",
+    "ui",
+    "component",
+    "react",
+    "aria",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",

@@ -1,9 +1,16 @@
 {
   "name": "@principium/chip",
   "version": "0.0.1",
-  "description": "",
+  "description": "A small component for filters, tags, and selections.",
   "keywords": [
-    "chip"
+    "chip",
+    "tag",
+    "badge",
+    "filter",
+    "ui",
+    "component",
+    "react",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",

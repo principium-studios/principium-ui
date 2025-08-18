@@ -1,9 +1,17 @@
 {
   "name": "@principium/use-controllable-state",
   "version": "0.0.1",
-  "description": "",
+  "description": "A React hook that manages both controlled and uncontrolled state patterns with automatic mode detection and development warnings.",
   "keywords": [
-    "use-controllable-state"
+    "use-controllable-state",
+    "react-hook",
+    "controlled-state",
+    "uncontrolled-state",
+    "state-management",
+    "react",
+    "hook",
+    "form-controls",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",

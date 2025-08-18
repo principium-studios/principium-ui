@@ -1,9 +1,17 @@
 {
   "name": "@principium/tabs",
   "version": "0.0.1",
-  "description": "A set of sections that organize contents",
+  "description": "A tabbed interface component for organizing content into multiple views.",
   "keywords": [
-    "tabs"
+    "tabs",
+    "tab",
+    "tablist",
+    "ui",
+    "component",
+    "react",
+    "accessibility",
+    "aria",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",

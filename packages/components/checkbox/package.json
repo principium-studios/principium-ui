@@ -1,9 +1,17 @@
 {
   "name": "@principium/checkbox",
   "version": "0.0.1",
-  "description": "",
+  "description": "An accessible checkbox component for enabling and disabling features.",
   "keywords": [
-    "checkbox"
+    "checkbox",
+    "form",
+    "input",
+    "ui",
+    "component",
+    "react",
+    "accessibility",
+    "aria",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",

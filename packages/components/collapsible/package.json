@@ -1,9 +1,16 @@
 {
   "name": "@principium/collapsible",
   "version": "0.0.1",
-  "description": "",
+  "description": "An animated collapsible component for expanding and hiding content with SEO-friendly rendering.",
   "keywords": [
-    "collapsible"
+    "collapsible",
+    "accordion",
+    "disclosure",
+    "ui",
+    "component",
+    "react",
+    "animation",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",

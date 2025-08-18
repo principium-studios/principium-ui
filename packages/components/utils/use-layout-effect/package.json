@@ -1,9 +1,17 @@
 {
   "name": "@principium/use-layout-effect",
   "version": "0.0.1",
-  "description": "",
+  "description": "A cross-platform React hook that safely uses useLayoutEffect in browser environments and falls back gracefully on the server.",
   "keywords": [
-    "use-layout-effect"
+    "use-layout-effect",
+    "react-hook",
+    "ssr",
+    "server-side-rendering",
+    "cross-platform",
+    "layout-effect",
+    "isomorphic",
+    "browser-detection",
+    "principium"
   ],
   "author": "Principium <support@principium.dev>",
   "homepage": "https://github.com/principium-studios/principium",
@@ -50,5 +58,5 @@
   },
   "dependencies": {
   },
-  "clean-package": "../../../clean-package.config.json"
+  "clean-package": "../../../../clean-package.config.json"
 }
