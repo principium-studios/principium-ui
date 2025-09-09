@@ -2,7 +2,7 @@ import {Avatar, AvatarFallback, AvatarImage} from '@principium/react';
 
 function App() {
   return (
-    <div className="flex-1 flex gap-4">
+    <div className="flex flex-1 gap-4">
       <Avatar>
         <AvatarImage src="//" />
         <AvatarFallback>JD</AvatarFallback>

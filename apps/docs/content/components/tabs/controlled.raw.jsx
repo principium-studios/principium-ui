@@ -6,12 +6,7 @@ function App() {
 
   return (
     <div className="flex w-full flex-1 flex-col gap-4">
-      <Tabs
-        value={value}
-        onChange={setValue}
-        defaultValue="photos"
-        aria-label="Tabs - Controlled"
-      >
+      <Tabs aria-label="Tabs - Controlled" defaultValue="photos" value={value} onChange={setValue}>
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>
@@ -49,5 +44,3 @@ function App() {
 }
 
 export default App;
-
-

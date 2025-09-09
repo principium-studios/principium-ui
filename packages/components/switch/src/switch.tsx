@@ -2,7 +2,7 @@ import {Primitive, PrimitiveProps} from '@principium/primitive';
 import {switchVariants} from '@principium/theme';
 import {SlotParams} from '../../../core/variants/src';
 import {useControllableState} from '@principium/use-controllable-state';
-import { composeHandlers } from '@principium/compose-handlers';
+import {composeHandlers} from '@principium/compose-handlers';
 
 type SwitchProps = PrimitiveProps<'button'> &
   SlotParams<typeof switchVariants.base> &
@@ -37,7 +37,7 @@ const Switch = ({
       aria-checked={checkedState}
       data-selected={checkedState}
       data-disabled={disabled}
-      onClick={composeHandlers(onClick,() => setChecked(prev => !prev))}
+      onClick={composeHandlers(onClick, () => setChecked((prev) => !prev))}
       className={switchVariants.base({className, disabled})}
       {...props}
     >

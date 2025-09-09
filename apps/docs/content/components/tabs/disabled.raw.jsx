@@ -3,7 +3,7 @@ import {Tabs, TabsContent, TabsList, TabsTrigger, Card, CardContent} from '@prin
 function App() {
   return (
     <div className="flex w-full flex-1 flex-col gap-4">
-      <Tabs defaultValue="photos" aria-label="Tabs - Disabled">
+      <Tabs aria-label="Tabs - Disabled" defaultValue="photos">
         <TabsList disabled>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>

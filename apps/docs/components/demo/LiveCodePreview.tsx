@@ -7,7 +7,7 @@ import Image from 'next/image';
 const LiveCodePreview = React.memo(({code}: {code: string}) => {
   return (
     <LiveProvider code={code} scope={{...PhosphorIcons, ...PrincipiumComponents, Image}}>
-      <LivePreview className="flex flex-1 w-full justify-center items-center" />
+      <LivePreview className="flex w-full flex-1 items-center justify-center" />
       <LiveError className="mt-2 rounded bg-red-100 p-2 text-red-800" />
     </LiveProvider>
   );

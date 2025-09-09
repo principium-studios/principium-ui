@@ -3,7 +3,7 @@ import {Tabs, TabsList, TabsTrigger} from '@principium/react';
 function App() {
   return (
     <div className="flex flex-1 flex-wrap gap-4">
-      <Tabs defaultValue="photos" color="default" aria-label="Tabs - Default color">
+      <Tabs aria-label="Tabs - Default color" color="default" defaultValue="photos">
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>
@@ -11,7 +11,7 @@ function App() {
         </TabsList>
       </Tabs>
 
-      <Tabs defaultValue="photos" color="primary" aria-label="Tabs - Primary color">
+      <Tabs aria-label="Tabs - Primary color" color="primary" defaultValue="photos">
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>
@@ -19,7 +19,7 @@ function App() {
         </TabsList>
       </Tabs>
 
-      <Tabs defaultValue="photos" color="secondary" aria-label="Tabs - Secondary color">
+      <Tabs aria-label="Tabs - Secondary color" color="secondary" defaultValue="photos">
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>
@@ -27,7 +27,7 @@ function App() {
         </TabsList>
       </Tabs>
 
-      <Tabs defaultValue="photos" color="success" aria-label="Tabs - Success color">
+      <Tabs aria-label="Tabs - Success color" color="success" defaultValue="photos">
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>
@@ -35,7 +35,7 @@ function App() {
         </TabsList>
       </Tabs>
 
-      <Tabs defaultValue="photos" color="warning" aria-label="Tabs - Warning color">
+      <Tabs aria-label="Tabs - Warning color" color="warning" defaultValue="photos">
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>
@@ -43,7 +43,7 @@ function App() {
         </TabsList>
       </Tabs>
 
-      <Tabs defaultValue="photos" color="danger" aria-label="Tabs - Danger color">
+      <Tabs aria-label="Tabs - Danger color" color="danger" defaultValue="photos">
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>

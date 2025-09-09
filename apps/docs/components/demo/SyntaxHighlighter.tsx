@@ -66,7 +66,7 @@ const SyntaxHighlighter = React.memo(
         jsxs,
         components: {
           pre: ({className, style: _, children, ...props}) => (
-            <pre {...props} className={className + ' group relative ' + classNameProp}>
+            <pre {...props} className={className + ' group relative' + classNameProp}>
               {children}
               {showClipboard && (
                 <Button

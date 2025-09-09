@@ -6,7 +6,7 @@ function App() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <div className="flex flex-1 flex-col items-center gap-4 min-h-70">
+    <div className="min-h-70 flex flex-1 flex-col items-center gap-4">
       <div className="flex items-center gap-4">
         <span className="text-sm font-medium">State: {isOpen ? 'Open' : 'Closed'}</span>
         <Button size="sm" variant="bordered" onClick={() => setIsOpen(!isOpen)}>
@@ -14,11 +14,11 @@ function App() {
         </Button>
       </div>
 
-      <Collapsible open={isOpen} onChange={setIsOpen} className="flex w-[350px] flex-col gap-2">
+      <Collapsible className="flex w-[350px] flex-col gap-2" open={isOpen} onChange={setIsOpen}>
         <div className="flex items-center justify-between gap-4 px-4">
           <h4 className="text-sm font-semibold">Controlled Collapsible</h4>
           <CollapsibleTrigger asChild>
-            <Button variant="ghost" size="icon" className="size-8">
+            <Button className="size-8" size="icon" variant="ghost">
               <CaretDownIcon
                 className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
                 size={16}

@@ -5,7 +5,7 @@ function App() {
   const [checked, setChecked] = React.useState(false);
 
   return (
-    <div className="flex-1 flex flex-col gap-2">
+    <div className="flex flex-1 flex-col gap-2">
       <Switch defaultChecked checked={checked} onCheckedChange={setChecked} />
       <p>Checked: {checked ? 'true' : 'false'}</p>
     </div>

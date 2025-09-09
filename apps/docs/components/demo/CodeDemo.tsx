@@ -11,7 +11,7 @@ const IMPORTS_EXPORTS_REGEX = {
   // This regex matches single-line and multi-line (wrapped) import statements.
   // It matches from 'import' up to the ending semicolon, including newlines.
   imports: /^import[\s\S]*?;\s*$/gm,
-  exports: /^.*export\s+(?:default\s+)?.*?;\s*\n?/gm,     
+  exports: /^.*export\s+(?:default\s+)?.*?;\s*\n?/gm,
   lineEndings: /\r\n/g,
   // This regex matches single-line or multi-line return statements that only contain alphanumeric characters (and tabs/spaces).
   // It matches 'return' followed by any number of tabs/spaces/alphanumerics (including newlines), ending with a semicolon.
@@ -44,13 +44,13 @@ const CodeDemo = React.memo(({code}: CodeDemoProps) => {
           <TabsTrigger value="code">Code</TabsTrigger>
         </TabsList>
         <TabsContent
-          className="border-border bg-border/10 h-fit rounded-lg border px-4 py-8 flex flex-col"
+          className="border-border bg-border/10 flex h-fit flex-col rounded-lg border px-4 py-8"
           value="preview"
         >
           <LiveCodePreview code={cleanCode} />
         </TabsContent>
         <TabsContent
-          className="bg-border max-h-110 flex flex-col relative overflow-hidden rounded-lg border border-transparent"
+          className="bg-border max-h-110 relative flex flex-col overflow-hidden rounded-lg border border-transparent"
           value="code"
         >
           <div className="absolute right-2 top-2 z-20 hidden items-center justify-center gap-0 bg-transparent opacity-0 transition-opacity group-hover:opacity-100 md:flex">

@@ -3,7 +3,7 @@ import {Tabs, TabsList, TabsTrigger} from '@principium/react';
 function App() {
   return (
     <div className="flex flex-1 flex-wrap gap-4">
-      <Tabs defaultValue="photos" variant="solid" color="primary" aria-label="Tabs - Solid">
+      <Tabs aria-label="Tabs - Solid" color="primary" defaultValue="photos" variant="solid">
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>
@@ -11,7 +11,7 @@ function App() {
         </TabsList>
       </Tabs>
 
-      <Tabs defaultValue="photos" variant="bordered" color="primary" aria-label="Tabs - Bordered">
+      <Tabs aria-label="Tabs - Bordered" color="primary" defaultValue="photos" variant="bordered">
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>
@@ -19,7 +19,7 @@ function App() {
         </TabsList>
       </Tabs>
 
-      <Tabs defaultValue="photos" variant="light" color="primary" aria-label="Tabs - Light">
+      <Tabs aria-label="Tabs - Light" color="primary" defaultValue="photos" variant="light">
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>
           <TabsTrigger value="music">Music</TabsTrigger>
@@ -28,10 +28,10 @@ function App() {
       </Tabs>
 
       <Tabs
+        aria-label="Tabs - Underlined"
+        color="primary"
         defaultValue="photos"
         variant="underlined"
-        color="primary"
-        aria-label="Tabs - Underlined"
       >
         <TabsList>
           <TabsTrigger value="photos">Photos</TabsTrigger>

@@ -2,25 +2,25 @@ import {Checkbox, Label} from '@principium/react';
 
 function App() {
   return (
-    <div className="flex-1 flex flex-wrap gap-4">
+    <div className="flex flex-1 flex-wrap gap-4">
       <div className="flex items-center gap-2">
-        <Checkbox defaultChecked radius="full" id="cr-full" />
+        <Checkbox defaultChecked id="cr-full" radius="full" />
         <Label htmlFor="cr-full">Full</Label>
       </div>
       <div className="flex items-center gap-2">
-        <Checkbox defaultChecked radius="lg" id="cr-lg" />
+        <Checkbox defaultChecked id="cr-lg" radius="lg" />
         <Label htmlFor="cr-lg">Large</Label>
       </div>
       <div className="flex items-center gap-2">
-        <Checkbox defaultChecked radius="md" id="cr-md" />
+        <Checkbox defaultChecked id="cr-md" radius="md" />
         <Label htmlFor="cr-md">Medium</Label>
       </div>
       <div className="flex items-center gap-2">
-        <Checkbox defaultChecked radius="sm" id="cr-sm" />
+        <Checkbox defaultChecked id="cr-sm" radius="sm" />
         <Label htmlFor="cr-sm">Small</Label>
       </div>
       <div className="flex items-center gap-2">
-        <Checkbox defaultChecked radius="none" id="cr-none" />
+        <Checkbox defaultChecked id="cr-none" radius="none" />
         <Label htmlFor="cr-none">None</Label>
       </div>
     </div>

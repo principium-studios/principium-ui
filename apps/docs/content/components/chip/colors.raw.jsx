@@ -2,7 +2,7 @@ import {Chip} from '@principium/react';
 
 function App() {
   return (
-    <div className="flex-1 flex flex-wrap items-center gap-3">
+    <div className="flex flex-1 flex-wrap items-center gap-3">
       <Chip color="default">Default</Chip>
       <Chip color="primary">Primary</Chip>
       <Chip color="secondary">Secondary</Chip>

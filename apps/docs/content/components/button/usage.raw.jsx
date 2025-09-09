@@ -2,7 +2,7 @@ import {Button} from '@principium/react';
 
 function App() {
   return (
-    <div className="flex-1 flex items-center gap-3">
+    <div className="flex flex-1 items-center gap-3">
       <Button>Button</Button>
     </div>
   );

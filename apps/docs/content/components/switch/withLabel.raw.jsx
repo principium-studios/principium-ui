@@ -8,11 +8,11 @@ function App() {
         <Label htmlFor="wl-notifications">Enable notifications</Label>
       </div>
       <div className="flex items-center gap-3">
-        <Switch defaultChecked id="wl-darkmode" color="success" />
+        <Switch defaultChecked color="success" id="wl-darkmode" />
         <Label htmlFor="wl-darkmode">Dark mode</Label>
       </div>
       <div className="flex items-center gap-3">
-        <Switch defaultChecked id="wl-marketing" color="warning" disabled />
+        <Switch defaultChecked disabled color="warning" id="wl-marketing" />
         <Label htmlFor="wl-marketing">Marketing emails (disabled)</Label>
       </div>
     </div>

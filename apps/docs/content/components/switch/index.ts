@@ -6,10 +6,10 @@ import withLabel from './withLabel.raw.jsx?raw';
 import controlled from './controlled.raw.jsx?raw';
 
 export default {
-    usage,
-    colors,
-    disabled,
-    sizes,
-    withLabel,
-    controlled,
+  usage,
+  colors,
+  disabled,
+  sizes,
+  withLabel,
+  controlled,
 };
