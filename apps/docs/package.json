@@ -42,7 +42,6 @@
     "esbuild-plugin-raw": "^0.1.8",
     "shiki": "^3.9.1",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "wrangler": "^4.35.0"
+    "typescript": "^5"
   }
 }
