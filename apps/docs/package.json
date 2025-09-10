@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "rimraf .contentlayer && concurrently \"contentlayer2 dev\" \"next dev --turbopack\"",
     "build": "contentlayer2 build && next build",
-    "comp:build": "cd ../../ && pnpm build",
+    "comp:build": "cd ../../ && pnpm build:fast",
     "start": "next start",
     "lint": "next lint"
   },
