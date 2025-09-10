@@ -16,4 +16,5 @@
     },
   ],
   "r2_buckets": [],
+  "pages_build_output_dir": "apps/docs/.open-next/",
 }
