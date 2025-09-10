@@ -6,14 +6,14 @@
   "packageManager": "pnpm@10.14.0",
   "scripts": {
     "docs": "pnpm --filter @principium/docs dev",
-    "docs:build": "pnpm --filter @principium/docs pages:build",
-    "dev:comp": "turbo run dev",
+    "docs:build": "pnpm --filter @principium/docs build",
+    "dev": "turbo run dev",
     "build": "turbo run build --filter=!@principium/docs",
     "build:fast": "turbo run build:fast --filter=!@principium/docs",
     "typecheck": "turbo run typecheck",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "create:comp": "plop component",
+    "create": "plop component",
     "format:check": "prettier --check packages/components/**/**/src/** --cache",
     "format:write": "prettier --write packages/components/**/**/src/** --cache",
     "lint": "eslint --max-warnings=0",
@@ -56,7 +56,6 @@
     "turbo": "^2.5.6",
     "typescript": "5.9.1-rc",
     "vitest": "^3.2.4",
-    "vitest-axe": "^0.1.0",
-    "wrangler": "^4.35.0"
+    "vitest-axe": "^0.1.0"
   }
 }
