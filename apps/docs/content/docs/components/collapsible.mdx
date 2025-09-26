@@ -21,6 +21,14 @@ import CollapsibleDemos from '@/content/components/collapsible';
 
 <CodeDemo code={CollapsibleDemos.controlled} />
 
+### Custom animation
+
+<CodeDemo code={CollapsibleDemos.customAnimation} />
+
+### Disabled
+
+<CodeDemo code={CollapsibleDemos.disabled} />
+
 ## API
 
 ### Collapsible
@@ -39,6 +47,11 @@ import CollapsibleDemos from '@/content/components/collapsible';
     {
       prop: { name: 'onChange', description: 'Handler called when the open state changes.' },
       type: { name: '(open: boolean) => void' },
+    },
+    {
+      prop: { name: 'disabled', description: 'Disables interactions and applies disabled styles.' },
+      type: { name: 'boolean' },
+      default: 'false',
     },
     {
       prop: { name: '...divProps', description: 'All native div element props.' },
@@ -75,7 +88,20 @@ import CollapsibleDemos from '@/content/components/collapsible';
       type: { name: 'React.ReactNode' },
     },
     {
-      prop: { name: '...motionProps', description: 'All motion div element props from Framer Motion (excluding animate, initial, variants).' },
+      prop: { name: 'animate', description: 'Framer Motion animate prop. Defaults to internal state variants.' },
+      type: { name: 'HTMLMotionProps<"div">["animate"]' },
+    },
+    {
+      prop: { name: 'initial', description: 'Framer Motion initial prop. Defaults to false.' },
+      type: { name: 'HTMLMotionProps<"div">["initial"]' },
+      default: 'false',
+    },
+    {
+      prop: { name: 'variants', description: 'Framer Motion variants used for enter/exit.' },
+      type: { name: 'HTMLMotionProps<"div">["variants"]' },
+    },
+    {
+      prop: { name: '...motionProps', description: 'All motion div element props from Framer Motion.' },
       type: { name: '-' },
     },
   ]}

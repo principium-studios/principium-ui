@@ -51,6 +51,12 @@ const routes: Route[] = [
     keywords: 'interface elements, interactive components, UI components, widgets',
     routes: [
       {
+        key: 'accordion',
+        title: 'Accordion',
+        keywords: 'accordion, principium',
+        path: '/docs/components/accordion.mdx',
+      },
+      {
         key: 'alert',
         title: 'Alert',
         keywords: 'alert, principium',

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.17.1",
   "scripts": {
     "docs": "pnpm --filter @principium/docs dev",
     "docs:build": "pnpm --filter @principium/docs build",
@@ -13,7 +13,7 @@
     "typecheck": "turbo run typecheck",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "create": "plop component",
+    "create:comp": "plop component",
     "format:check": "prettier --check packages/components/**/**/src/** --cache",
     "format:write": "prettier --write packages/components/**/**/src/** --cache",
     "lint": "eslint --max-warnings=0",

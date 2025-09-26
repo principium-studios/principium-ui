@@ -153,7 +153,6 @@ export const TRANSITION_VARIANTS: Variants = {
   },
   collapse: {
     enter: {
-      opacity: 1,
       height: "auto",
       transition: {
         height: {
@@ -168,7 +167,6 @@ export const TRANSITION_VARIANTS: Variants = {
       },
     },
     exit: {
-      opacity: 0,
       height: 0,
       transition: {
         ease: "easeInOut",

@@ -6,6 +6,7 @@ import {Primitive, PrimitiveProps} from '@principium/primitive';
 import {composeHandlers} from '@principium/compose-handlers';
 import {domAnimation, HTMLMotionProps, LazyMotion, m, useWillChange, Variants} from 'motion/react';
 import {TRANSITION_VARIANTS} from '@principium/framer-utils';
+import {collapsibleVariants} from '@principium/theme';
 
 // ______________________________________________________ Collapsible ______________________________________________________
 type CollapsibleContextType = {
@@ -20,9 +21,18 @@ type CollapsibleProps = PrimitiveProps<'div'> & {
   defaultOpen?: boolean;
   open?: boolean;
   onChange?: (open: boolean) => void;
+  disabled?: boolean;
 };
 
-const Collapsible = ({children, defaultOpen, open, onChange, ...props}: CollapsibleProps) => {
+const Collapsible = ({
+  children,
+  defaultOpen,
+  open,
+  onChange,
+  disabled,
+  className,
+  ...props
+}: CollapsibleProps) => {
   const [openState, setOpenState] = useControllableState({
     defaultProp: defaultOpen ?? false,
     prop: open,
@@ -31,14 +41,19 @@ const Collapsible = ({children, defaultOpen, open, onChange, ...props}: Collapsi
 
   return (
     <CollapsibleProvider open={openState} setOpen={setOpenState}>
-      <Primitive.div {...props}>{children}</Primitive.div>
+      <Primitive.div
+        className={collapsibleVariants({disabled, className})}
+        {...props}
+        data-disabled={disabled}
+      >
+        {children}
+      </Primitive.div>
     </CollapsibleProvider>
   );
 };
 
 // ______________________________________________________ CollapsibleTrigger ______________________________________________________
 type CollapsibleTriggerProps = PrimitiveProps<'button'>;
-
 const CollapsibleTrigger = ({children, onClick, ...props}: CollapsibleTriggerProps) => {
   const {setOpen} = useCollapsible();
 
@@ -56,9 +71,16 @@ const CollapsibleTrigger = ({children, onClick, ...props}: CollapsibleTriggerPro
 // ______________________________________________________ CollapsibleContent ______________________________________________________
 type CollapsibleContentProps = {
   children: React.ReactNode;
-} & Omit<HTMLMotionProps<'div'>, 'animate' | 'initial' | 'variants'>;
+} & HTMLMotionProps<'div'>;
 
-const CollapsibleContent = ({children, style, ...props}: CollapsibleContentProps) => {
+const CollapsibleContent = ({
+  children,
+  style,
+  animate,
+  initial,
+  variants,
+  ...props
+}: CollapsibleContentProps) => {
   const {open} = useCollapsible();
 
   const transitionVariants: Variants = React.useMemo(
@@ -79,14 +101,18 @@ const CollapsibleContent = ({children, style, ...props}: CollapsibleContentProps
     [willChange, style],
   );
 
+  const computedAnimate = animate ?? (open ? 'enter' : 'exit');
+  const computedInitial = initial ?? false;
+  const computedVariants = variants ?? transitionVariants;
+
   return (
     <LazyMotion features={domAnimation}>
       <m.div
-        animate={open ? 'enter' : 'exit'}
-        initial={false}
+        animate={computedAnimate}
+        initial={computedInitial}
+        variants={computedVariants}
         data-state={open ? 'enter' : 'exit'}
         style={combinedStyle}
-        variants={transitionVariants}
         {...props}
       >
         {children}

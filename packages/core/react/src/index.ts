@@ -12,3 +12,4 @@ export * from '@principium/tabs';
 export * from '@principium/skeleton';
 export * from '@principium/switch';
 export * from '@principium/collapsible';
+export * from '@principium/accordion';
