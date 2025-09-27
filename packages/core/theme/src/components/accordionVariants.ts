@@ -21,7 +21,7 @@ const accordionVariants = pv(
     wrapper: 'px-2 divide-y divide-border',
     base: '',
     trigger: [
-      'flex py-4 w-full h-full gap-3 outline-solid outline-transparent items-center text-foreground text-base',
+      'flex py-4 w-full h-full gap-3 outline-solid outline-transparent items-center justify-between text-foreground text-base',
       // focus ring
       ...dataFocusVisibleClasses,
     ],
@@ -57,7 +57,7 @@ const accordionVariants = pv(
           trigger: 'py-2',
           indicator: 'text-medium',
           content: 'py-1',
-          context:'',
+          context: '',
         },
       },
       disabled: {
@@ -68,7 +68,7 @@ const accordionVariants = pv(
       disableAnimation: {
         true: {
           content: 'hidden data-[open=true]:block',
-          context:'',
+          context: '',
         },
         false: {
           indicator: 'transition-transform',

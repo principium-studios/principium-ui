@@ -215,6 +215,9 @@ importers:
 
   packages/components/accordion:
     dependencies:
+      '@phosphor-icons/react':
+        specifier: ^2.1.10
+        version: 2.1.10(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@principium/collapsible':
         specifier: workspace:*
         version: link:../collapsible

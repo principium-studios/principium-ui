@@ -13,6 +13,7 @@ import {
 } from '@principium/collapsible';
 import {accordionVariants} from '@principium/theme';
 import {SlotParams} from '@principium/variants';
+import {CaretDownIcon} from '@phosphor-icons/react';
 
 // ________________________ Accordion ________________________
 
@@ -134,6 +135,13 @@ const AccordionImplMulti = ({
 };
 
 // ________________________ Accordion Item ________________________
+
+// ctx
+const [GroupProvider, useGroupProvider] = createContext<{
+  isOpen: boolean;
+}>('GroupProvider');
+
+// impl
 type AccordionItemProps = PrimitiveProps<'div'> &
   Omit<SlotParams<typeof accordionVariants.base>, 'variant'> & {disabled?: boolean};
 const AccordionItem = ({children, className, ...props}: AccordionItemProps) => {
@@ -144,34 +152,35 @@ const AccordionItem = ({children, className, ...props}: AccordionItemProps) => {
   const {variant, fullWidth} = useAccordionVariants();
 
   return (
-    <Collapsible
-      disabled={disabled}
-      open={isOpen}
-      className={accordionVariants.base({className, fullWidth, disabled, variant})}
-      onChange={(open) => {
-        if (open) {
-          onItemOpen?.(id);
-        } else {
-          onItemClose?.(id);
-        }
-      }}
-    >
-      {children}
-    </Collapsible>
+    <GroupProvider isOpen={isOpen}>
+      <Collapsible
+        disabled={disabled}
+        open={isOpen}
+        className={accordionVariants.base({className, fullWidth, disabled, variant})}
+        onChange={(open) => {
+          if (open) {
+            onItemOpen?.(id);
+          } else {
+            onItemClose?.(id);
+          }
+        }}
+      >
+        {children}
+      </Collapsible>
+    </GroupProvider>
   );
 };
 
 // ________________________ Accordion Content ________________________
 type AccordionContentProps = CollapsibleContentProps;
-const AccordionContent = ({children, className, ...props}: AccordionContentProps) => {
+const AccordionContent = ({children, className, style, ...props}: AccordionContentProps) => {
   const {disableAnimation, fullWidth, isCompact} = useAccordionVariants();
   return (
     <CollapsibleContent
       className={accordionVariants.content({className, disableAnimation, fullWidth, isCompact})}
+      style={{overflow: 'hidden', padding: 0, ...style}}
       variants={{
         enter: {
-          display: 'block',
-          overflow: 'hidden',
           height: 'auto',
           transition: {
             height: {
@@ -179,19 +188,13 @@ const AccordionContent = ({children, className, ...props}: AccordionContentProps
               bounce: 0,
               duration: 0.3,
             },
-            opacity: {
-              ease: 'easeInOut',
-              duration: 0.4,
-            },
           },
         },
         exit: {
-          display: 'none',
-          overflow: 'hidden',
           height: 0,
           transition: {
             ease: 'easeInOut',
-            duration: 0.3,
+            duration: 0.2,
           },
         },
       }}
@@ -206,6 +209,7 @@ const AccordionContent = ({children, className, ...props}: AccordionContentProps
 type AccordionTriggerProps = PrimitiveProps<'h3'>;
 const AccordionTrigger = ({children, className, ...props}: AccordionTriggerProps) => {
   const {fullWidth, disableAnimation, isCompact} = useAccordionVariants();
+  const {isOpen} = useGroupProvider();
   return (
     <CollapsibleTrigger asChild>
       <h3
@@ -213,6 +217,10 @@ const AccordionTrigger = ({children, className, ...props}: AccordionTriggerProps
         {...props}
       >
         {children}
+        <CaretDownIcon
+          size={16}
+          className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+        />
       </h3>
     </CollapsibleTrigger>
   );
