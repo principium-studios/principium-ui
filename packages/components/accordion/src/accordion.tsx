@@ -215,7 +215,7 @@ const AccordionTrigger = ({children, className, ...props}: AccordionTriggerProps
   const {isOpen} = useGroupProvider();
   return (
     <CollapsibleTrigger asChild>
-      <h3
+      <Primitive.h3
         className={accordionVariants.trigger({className, fullWidth, disableAnimation, isCompact})}
         {...props}
       >
@@ -224,7 +224,7 @@ const AccordionTrigger = ({children, className, ...props}: AccordionTriggerProps
           size={16}
           className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
         />
-      </h3>
+      </Primitive.h3>
     </CollapsibleTrigger>
   );
 };

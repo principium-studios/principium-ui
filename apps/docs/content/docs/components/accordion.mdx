@@ -21,26 +21,144 @@ import AccordionDemos from '@/content/components/accordion';
 
 <CodeDemo code={AccordionDemos.multiple} />
 
-## Variants
+### Variants
 
 Accordion has 3 variants: `light`, `bordered`, and `splitted`.
 
 ### Light Variant
+
 <CodeDemo code={AccordionDemos.light} />
 
 ### Bordered Variant
+
 <CodeDemo code={AccordionDemos.bordered} />
 
 ### Splitted Variant
+
 <CodeDemo code={AccordionDemos.splitted} />
 
-## Default Keys
+### Default Keys
 
 ### Single Item
+
 <CodeDemo code={AccordionDemos.defaultSingle} />
 
 ### Multiple Items
+
 <CodeDemo code={AccordionDemos.defaultMultiple} />
 
-## Disabled 
+### Disabled
+
 <CodeDemo code={AccordionDemos.disabled} />
+
+## API
+
+### Accordion
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {
+        name: 'type',
+        description: 'Controls whether one or multiple items can be open at once.',
+      },
+      type: {name: "'single' | 'multiple'"},
+    },
+    {
+      prop: {name: 'variant', description: 'Visual style variant.'},
+      type: {name: "'light' | 'bordered' | 'splitted'"},
+      default: "'light'",
+    },
+    {
+      prop: {name: 'fullWidth', description: 'Whether the accordion takes full width.'},
+      type: {name: 'boolean'},
+      default: 'true',
+    },
+    {
+      prop: {name: 'isCompact', description: 'Reduces padding for a more compact appearance.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'disableAnimation', description: 'Disables expand/collapse animations.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: 'value', description: 'Controlled open state.'},
+      type: {name: 'string (single) | string[] (multiple)'},
+    },
+    {
+      prop: {name: 'defaultValue', description: 'Default open state when uncontrolled.'},
+      type: {name: 'string (single) | string[] (multiple)'},
+    },
+    {
+      prop: {name: 'onValueChange', description: 'Callback when open state changes.'},
+      type: {name: '(value: string) => void (single) | (value: string[]) => void (multiple)'},
+    },
+    {
+      prop: {name: '...divProps', description: 'All native div element props.'},
+    },
+  ]}
+/>
+
+### AccordionItem
+
+<ApiTable
+  data={[
+    {
+      prop: {
+        name: 'value',
+        description: 'Unique identifier for the item (auto-generated if not provided).',
+      },
+      type: {name: 'string'},
+      default: 'React.useId()',
+    },
+    {
+      prop: {name: 'disabled', description: 'Whether the item is disabled.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...divProps', description: 'All native div element props.'},
+    },
+  ]}
+/>
+
+### AccordionTrigger
+
+<ApiTable
+  data={[
+    {
+      prop: {name: 'asChild', description: 'Renders the component as a child element.'},
+      type: {name: 'boolean'},
+      default: 'false',
+    },
+    {
+      prop: {name: '...h3Props', description: 'All native h3 element props.'},
+      type: {name: '-'},
+    },
+  ]}
+/>
+
+### AccordionContent
+
+<ApiTable
+  data={[
+    {
+      prop: {name: '...divProps', description: 'All native div element props.'},
+    },
+    {
+      prop: {
+        name: '...motionProps',
+        description: 'All motion div element props from Framer Motion.',
+      },
+      type: {name: '-'},
+    },
+  ]}
+/>

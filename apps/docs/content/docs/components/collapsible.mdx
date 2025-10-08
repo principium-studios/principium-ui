@@ -64,10 +64,6 @@ import CollapsibleDemos from '@/content/components/collapsible';
 <ApiTable
   data={[
     {
-      prop: { name: 'children', description: 'The content of the trigger.' },
-      type: { name: 'React.ReactNode' },
-    },
-    {
       prop: { name: 'asChild', description: 'Renders the component as a child element.' },
       type: { name: 'boolean' },
       default: 'false',
@@ -84,20 +80,11 @@ import CollapsibleDemos from '@/content/components/collapsible';
 <ApiTable
   data={[
     {
-      prop: { name: 'children', description: 'The content to be collapsed/expanded.' },
-      type: { name: 'React.ReactNode' },
+      prop: { name: 'variants', description: 'Framer Motion variants used for `enter`/`exit`.' },
+      type: { name: '{enter: Variant, exit: Variant}' },
     },
     {
-      prop: { name: 'initial', description: 'Framer Motion initial prop. Defaults to false.' },
-      type: { name: 'HTMLMotionProps<"div">["initial"]' },
-      default: 'false',
-    },
-    {
-      prop: { name: 'variants', description: 'Framer Motion variants used for enter/exit.' },
-      type: { name: 'HTMLMotionProps<"div">["variants"]' },
-    },
-    {
-      prop: { name: '...motionProps', description: 'All motion div element props from Framer Motion.' },
+      prop: { name: '...motionProps', description: 'All motion `div` element props from Framer Motion.' },
       type: { name: '-' },
     },
   ]}
