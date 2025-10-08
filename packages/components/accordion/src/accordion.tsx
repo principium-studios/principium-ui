@@ -23,7 +23,7 @@ const [AccordionVariantsProvider, useAccordionVariants] =
 
 // Impl
 type AccordionProps = PrimitiveProps<'div'> &
-  SlotParams<typeof accordionVariants.wrapper> &
+  SlotParams<typeof accordionVariants.base> &
   SlotParams<typeof accordionVariants.context> & {
     type: 'single' | 'multiple';
   } & (AccordionImplSingleProps | AccordionImplMultiProps);
@@ -47,7 +47,7 @@ const Accordion = ({
       disableAnimation={disableAnimation}
       isCompact={isCompact}
     >
-      <Primitive.div className={accordionVariants.wrapper({className, variant})}>
+      <Primitive.div className={accordionVariants.base({className, variant})}>
         {type === 'single' ? (
           <AccordionImplSingle {...accordionSingleProps} />
         ) : (
@@ -143,9 +143,9 @@ const [GroupProvider, useGroupProvider] = createContext<{
 
 // impl
 type AccordionItemProps = PrimitiveProps<'div'> &
-  Omit<SlotParams<typeof accordionVariants.base>, 'variant'> & {disabled?: boolean};
-const AccordionItem = ({children, className, ...props}: AccordionItemProps) => {
-  const id = React.useId();
+  Omit<SlotParams<typeof accordionVariants.item>, 'variant'> & {disabled?: boolean; value?: string};
+const AccordionItem = ({children, value: valueProp, className, ...props}: AccordionItemProps) => {
+  const id = valueProp ?? React.useId();
   const {value, onItemOpen, onItemClose} = useAccordionValueProvider();
   const isOpen = (value && value?.includes(id)) || false;
   const disabled = props.disabled || false;
@@ -156,7 +156,7 @@ const AccordionItem = ({children, className, ...props}: AccordionItemProps) => {
       <Collapsible
         disabled={disabled}
         open={isOpen}
-        className={accordionVariants.base({className, fullWidth, disabled, variant})}
+        className={accordionVariants.item({className, fullWidth, disabled, variant})}
         onChange={(open) => {
           if (open) {
             onItemOpen?.(id);
@@ -173,15 +173,16 @@ const AccordionItem = ({children, className, ...props}: AccordionItemProps) => {
 
 // ________________________ Accordion Content ________________________
 type AccordionContentProps = CollapsibleContentProps;
-const AccordionContent = ({children, className, style, ...props}: AccordionContentProps) => {
+const AccordionContent = ({children, className, ...props}: AccordionContentProps) => {
   const {disableAnimation, fullWidth, isCompact} = useAccordionVariants();
   return (
     <CollapsibleContent
       className={accordionVariants.content({className, disableAnimation, fullWidth, isCompact})}
-      style={{overflow: 'hidden', padding: 0, ...style}}
       variants={{
         enter: {
           height: 'auto',
+          opacity: 1,
+          marginBlock: '0.5rem',
           transition: {
             height: {
               type: 'spring',
@@ -192,6 +193,8 @@ const AccordionContent = ({children, className, style, ...props}: AccordionConte
         },
         exit: {
           height: 0,
+          opacity: 0,
+          marginBlock: 0,
           transition: {
             ease: 'easeInOut',
             duration: 0.2,

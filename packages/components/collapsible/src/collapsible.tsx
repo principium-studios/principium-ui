@@ -100,15 +100,13 @@ const CollapsibleContent = ({
     }),
     [willChange, style],
   );
-
-  const computedAnimate = animate ?? (open ? 'enter' : 'exit');
   const computedInitial = initial ?? false;
   const computedVariants = variants ?? transitionVariants;
 
   return (
     <LazyMotion features={domAnimation}>
       <m.div
-        animate={computedAnimate}
+        animate={open ? 'enter' : 'exit'}
         initial={computedInitial}
         variants={computedVariants}
         data-state={open ? 'enter' : 'exit'}

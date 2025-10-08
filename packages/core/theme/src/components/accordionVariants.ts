@@ -5,8 +5,8 @@ import {dataFocusVisibleClasses} from '../utils';
  *
  * @example
  * ```js
- * <div className={accordionVariants.wrapper({...})}>
- *   <div className={accordionVariants.base())}>
+ * <div className={accordionVariants.base({...})}>
+ *   <div className={accordionVariants.item())}>
  *      <h3 className={accordionVariants.trigger())}>
  *       Title
  *      <span className={accordionVariants.indicator())}>Indicator</span>
@@ -18,34 +18,34 @@ import {dataFocusVisibleClasses} from '../utils';
  */
 const accordionVariants = pv(
   {
-    wrapper: 'px-2 divide-y divide-border',
-    base: '',
+    base: 'px-2 divide-y divide-border',
+    item: 'overflow-hidden',
     trigger: [
-      'flex py-4 w-full h-full gap-3 outline-solid outline-transparent items-center justify-between text-foreground text-base',
+      'flex py-4 cursor-pointer w-full h-full gap-3 outline-solid outline-transparent items-center justify-between text-foreground text-base',
       // focus ring
       ...dataFocusVisibleClasses,
     ],
     indicator: 'text-border-400',
-    content: 'py-2',
+    content: '',
     context: '',
   },
   {
     variants: {
       variant: {
         light: {
-          wrapper: '',
+          base: '',
           context: '',
         },
-        shadow: {wrapper: 'px-4 shadow-medium rounded-medium bg-content1'},
-        bordered: {wrapper: 'px-4 border-medium border-divider rounded-medium'},
+        shadow: {base: 'px-4 shadow-md rounded-md'},
+        bordered: {base: 'px-4 border border-border rounded-md'},
         splitted: {
-          wrapper: 'flex flex-col gap-2',
-          base: 'px-4 bg-content1 shadow-medium rounded-medium',
+          base: 'flex flex-col gap-2 divide-y-0 divide-transparent',
+          item: 'px-4 shadow-md rounded-md border border-border',
         },
       },
       fullWidth: {
         true: {
-          base: 'w-full',
+          item: 'w-full',
           trigger: 'w-full',
           indicator: 'w-full',
           content: 'w-full',
@@ -62,7 +62,7 @@ const accordionVariants = pv(
       },
       disabled: {
         true: {
-          base: 'opacity-disabled pointer-events-none',
+          item: 'opacity-disabled pointer-events-none',
         },
       },
       disableAnimation: {
